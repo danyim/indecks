@@ -27,11 +27,9 @@ const Deck = React.createClass({
                 Edit Deck
               </span>
             </Link>
-            <button className="button button-delete">
-              <span className="delete-deck" onClick={() => this.props.removeDeck(deck.id)}>
+            <a className="button button-delete" onClick={() => this.props.removeDeck(deck.id)}>
                 Delete Deck
-              </span>
-            </button>
+            </a>
           </div>
         </figcaption>
       </figure>

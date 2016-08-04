@@ -1,22 +1,40 @@
-import { Link, browserHistory} from 'react-router';
 import React from 'react';
+import { Link, browserHistory} from 'react-router';
+import KeyBinding from 'react-keybinding-component';
 import Deck from './Deck';
 
 const DeckNavigator = React.createClass({
   mode: null,
+  maxCardIndex: null,
+
   nextCard() {
-    const index = this.props.cardIndex + 1;
-    browserHistory.push(`/${this.mode}/${this.props.deck.id}/${index}`);
+    if(this.props.cardIndex < this.maxCardIndex) {
+      const index = this.props.cardIndex + 1;
+      browserHistory.push(`/${this.mode}/${this.props.deck.id}/${index}`);
+    }
   },
 
   prevCard() {
-    const index = this.props.cardIndex - 1;
-    browserHistory.push(`/${this.mode}/${this.props.deck.id}/${index}`);
+    if(this.props.cardIndex > 1) {
+      const index = this.props.cardIndex - 1;
+      browserHistory.push(`/${this.mode}/${this.props.deck.id}/${index}`);
+    }
+  },
+
+  handleKeyDown: function(e) {
+    // Left arrow
+    if (e.keyCode === 37) {
+      this.prevCard();
+    }
+    // Right arrow
+    if (e.keyCode == 39) {
+      this.nextCard();
+    }
   },
 
   render() {
     const { cardIndex, deck, mode } = this.props;
-    const maxCardIndex = deck.cards.length;
+    this.maxCardIndex = this.props.deck.cards.length;
 
     if(mode !== 'edit' && mode !== 'view') {
       throw Error('Mode is not edit or view');
@@ -35,10 +53,12 @@ const DeckNavigator = React.createClass({
 
     return (
       <div className="deck-navigator">
-        <h2>{cardIndex} of {maxCardIndex}</h2>
-        <button className="button" onClick={this.prevCard} disabled={this.props.cardIndex > 1 ? false : true}>Previous</button>
+        <KeyBinding onKey={ e => this.handleKeyDown(e) } />
+
+        <h2>{cardIndex} of {this.maxCardIndex}</h2>
+        <button className="button" ref={this.inputLoaded} onClick={this.prevCard} disabled={this.props.cardIndex > 1 ? false : true}>Previous</button>
         <button>Shuffle</button>
-        <button className="button" onClick={this.nextCard} disabled={this.props.cardIndex < maxCardIndex ? false : true}>Next</button>
+        <button className="button" onClick={this.nextCard} disabled={this.props.cardIndex < this.maxCardIndex ? false : true}>Next</button>
         <p>{actionOnCard}</p>
         <p><Link to={`/`}>Back to decks</Link></p>
       </div>

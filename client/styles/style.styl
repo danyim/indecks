@@ -1,15 +1,22 @@
 @import '_normalize.styl'
+@import '_variables.styl'
 @import '_typography.styl'
 @import '_animations.styl'
 
+html
+  margin 0
+  padding 0
 body
   background offwhite
-a
-  color blue
-  font-weight bold
-  text-decoration none
-  &:hover, &:active, &:visited
-    text-decoration none
+  margin 0
+  padding 0
+
+// header
+header
+  margin 0
+  padding 0
+  // background-color red
+  margin 1rem 0 2rem 2rem
 
 .deck-grid
   display flex
@@ -41,11 +48,12 @@ a
     margin 0 2rem 0 0
     border 0
     padding 0
-    flex 1 0 60%
-    max-width 60%
+    flex 1 0 100%
+    max-width 100%
   .deck-navigator
-    flex 1 0 40%
-    max-width 40%
+    display block
+    flex 1 0 100%
+    max-width 100%
   .grid-card
     width 100%
     margin 0
@@ -121,10 +129,10 @@ button, .button
   text-decoration none
   padding 5px
   text-align center
-  font-size 15px
   color blue
   transition all 0.2s
   box-sizing padding-box
+  cursor pointer
   &:hover, &:focus
     border-color blue
     outline 0
@@ -135,6 +143,8 @@ button, .button
 
 .button-delete
   color red
+  &:hover, &:focus
+    border-color red
 
 /*
   Cowboy style speech bubble - you should probably use an SVG for this if you are doing more icons.

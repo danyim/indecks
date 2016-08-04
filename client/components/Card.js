@@ -7,7 +7,7 @@ const Card = React.createClass({
     const { card } = this.props;
 
     return (
-      <figure className="card-figure">
+      <figure className="grid-figure">
         <div className="card-title">
           <h1>{card.title}</h1>
         </div>

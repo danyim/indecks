@@ -12,7 +12,7 @@ const DeckEdit = React.createClass({
 
     return (
       <div className="single-card">
-        <EditCard card={deck.cards[cardIndex - 1]} deckId={deck.id} {...this.props} />
+        <EditCard card={deck.cards[cardIndex - 1]} cardIndex={cardIndex} deckId={deck.id} {...this.props} />
         <DeckNavigator deck={deck} cardIndex={parseInt(cardIndex)} mode="edit" />
       </div>
     )

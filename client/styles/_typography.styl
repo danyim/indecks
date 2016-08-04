@@ -1,16 +1,16 @@
-/*
-  Variables
-*/
-
-blue = #125688
-red = #F05533;
-offwhite = #fafafa
-lightgrey  = #EDEEED
-lightgray = lightgrey // OH Canada!
-
 html
   font-size 10px
   font-family 'Helvetica', sans-serif
+
+a
+  color blue
+  font-weight bold
+  text-decoration none
+  &:hover, &:active, &:visited
+    text-decoration none
+
+button, .button
+  font-size 15px
 
 p
   font-size 1.6rem
@@ -18,21 +18,16 @@ p
 
 h1
   font-size 13rem
+  margin 0
+  padding 0
+
+header > h1
+  font 200 3rem 'Dosis', sans-serif
+  letter-spacing -0.05rem
+  // text-shadow 0px 4px 0 rgba(18, 86, 136, 0.11)
   a
-    color blue
-    text-decoration none
-    &:focus
-      outline 0
-h1.header
-  // font-family billabong, 'billabongregular'
-  font-family 'Cabin'
-  text-align center
-  font-weight 700
-  margin 2rem 0
-  letter-spacing -0.60rem
-  text-shadow 0px 4px 0 rgba(18, 86, 136, 0.11)
-  a
-    color blue
+    font-weight 300
+    color black
     text-decoration none
     &:focus
       outline 0
@@ -42,5 +37,39 @@ h1.header
   font-style: normal;
   font-weight: 700;
   src: local('Cabin Bold'), local('Cabin-Bold'), url(https://fonts.gstatic.com/s/cabin/v9/82B-3YlzWJm8zbCrVEmc_nYhjbSpvc47ee6xR_80Hnw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Oswald Light'), local('Oswald-Light'), url(https://fonts.gstatic.com/s/oswald/v11/l1cOQ90roY9yC7voEhngDIX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Oswald Light'), local('Oswald-Light'), url(https://fonts.gstatic.com/s/oswald/v11/HqHm7BVC_nzzTui2lzQTDZBw1xU1rKptJj_0jans920.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Dosis';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Dosis ExtraLight'), local('Dosis-ExtraLight'), url(https://fonts.gstatic.com/s/dosis/v6/VK-RlLrn4NFhRGqPkj6IwBkAz4rYn47Zy2rvigWQf6w.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Dosis';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Dosis ExtraLight'), local('Dosis-ExtraLight'), url(https://fonts.gstatic.com/s/dosis/v6/RPKDmaFi75RJkvjWaDDb0nYhjbSpvc47ee6xR_80Hnw.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }

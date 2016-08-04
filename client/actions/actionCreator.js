@@ -9,11 +9,12 @@ export function addCard(card, deckId) {
   }
 }
 
-export function editCard(title, answer, deckId) {
+export function editCard(title, answer, cardIndex, deckId) {
   return {
     type: types.EDIT_CARD,
     title,
     answer,
+    cardIndex,
     deckId
   }
 }
