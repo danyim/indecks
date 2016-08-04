@@ -3,19 +3,10 @@
 @import '_typography.styl'
 @import '_animations.styl'
 
-html
-  margin 0
-  padding 0
 body
   background offwhite
-  margin 0
-  padding 0
 
-// header
 header
-  margin 0
-  padding 0
-  // background-color red
   margin 1rem 0 2rem 2rem
 
 .deck-grid
@@ -32,13 +23,20 @@ header
   padding 2rem
   border 1px solid lightgray
   background white
-  box-shadow 0 0 0 5px rgba(0,0,0,0.03);
+  // Multiple stacks
+  box-shadow \
+    5px 5px 0 1px lighten(black, 96%),\
+    6px 6px 0 1px lighten(black, 90%),\
+    12px 12px 0 1px lighten(black, 97%),\
+    13px 13px 0 1px lighten(black, 92%)
   position relative
   h1
     font-size 5rem
 
 .single-card
   @extend .grid-figure
+  // Single stack
+  box-shadow 7px 7px 6px 1px rgba(0,0,0,0.05)
   max-width 900px
   margin 0 auto
   display flex
@@ -74,10 +72,27 @@ header
     color red
 
 .deck-navigator
+  max-width 900px
+  margin 0 auto
   border-bottom 1px solid lightgrey
   padding 0.5rem 0
+  text-align center
+
+  div
+    margin 0.25rem 1.0rem
+  .deck-nav-links, .deck-nav-count, .deck-nav-controls
+    display inline-block
+    color darken(offwhite, 30%)
+    font-size 1.5rem
+    font-weight bold
+  .deck-nav-controls
+    .button, a
+      font-size 1.5rem
+      border none
+  .deck-nav-links
+    display block
   p
-    font-size 1.2rem
+    font-size 1.5rem
     margin 0
   strong
     color blue

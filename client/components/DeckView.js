@@ -11,8 +11,10 @@ const DeckView = React.createClass({
     const deck = this.props.decks[i];
 
     return (
-      <div className="single-card">
-        <Card card={deck.cards[cardIndex - 1]} />
+      <div>
+        <div className="single-card">
+          <Card card={deck.cards[cardIndex - 1]} />
+        </div>
         <DeckNavigator deck={deck} cardIndex={parseInt(cardIndex)} mode="view" />
       </div>
     )

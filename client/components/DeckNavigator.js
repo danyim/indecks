@@ -55,12 +55,18 @@ const DeckNavigator = React.createClass({
       <div className="deck-navigator">
         <KeyBinding onKey={ e => this.handleKeyDown(e) } />
 
-        <h2>{cardIndex} of {this.maxCardIndex}</h2>
-        <button className="button" ref={this.inputLoaded} onClick={this.prevCard} disabled={this.props.cardIndex > 1 ? false : true}>Previous</button>
-        <button>Shuffle</button>
-        <button className="button" onClick={this.nextCard} disabled={this.props.cardIndex < this.maxCardIndex ? false : true}>Next</button>
-        <p>{actionOnCard}</p>
-        <p><Link to={`/`}>Back to decks</Link></p>
+        <div className="deck-nav-count">{cardIndex} of {this.maxCardIndex}</div>
+        <div className="deck-nav-controls">
+          <button className="button" ref={this.inputLoaded} onClick={this.prevCard} disabled={this.props.cardIndex > 1 ? false : true}>Previous</button>
+          <button className="button">Shuffle</button>
+          <button className="button" onClick={this.nextCard} disabled={this.props.cardIndex < this.maxCardIndex ? false : true}>Next</button>
+        </div>
+        <div className="deck-nav-links">
+          {actionOnCard}
+        </div>
+        <div className="deck-nav-links">
+          <Link to={`/`}>Back to decks</Link>
+        </div>
       </div>
     )
   },
