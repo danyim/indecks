@@ -3,13 +3,45 @@
 @import '_typography.styl'
 @import '_animations.styl'
 
+pageWidth = 1200px
+
+html, body
+  height 100%
+
 body
   background offwhite
-  margin 0 2rem
 
-header
-  margin 2rem 0
+#react-root
+  display flex
 
+main.main-container
+  order 3
+  section
+    margin 3rem 5rem
+
+nav.nav-container
+  order 1
+  height 70px
+  background rgba(255,255,255,0.8)
+  border-bottom 1px solid lighten(gray, 70%)
+  .nav-outer-container
+    display flex
+    flex-direction column
+    flex-shrink 0
+    -webkit-box-align center
+    align-items center
+  .nav-inner-container
+    max-width pageWidth
+    padding 20px 40px
+    display flex
+    width 100%
+    flex-direction column
+    -webkit-box-align center
+    align-items center
+    h1
+      flex-shrink 0
+
+.content
 footer
   text-align right
 //   @extends .deck-grid
@@ -18,7 +50,7 @@ footer
 .deck-grid
   display flex
   flex-wrap wrap
-  max-width 1200px
+  max-width pageWidth
   margin 0 auto
 
 .grid-figure
@@ -39,6 +71,10 @@ footer
   .card-title h1
     font-size 3.0rem
     cursor pointer
+  .card-count
+    // text-transform uppercase
+    // font-size 1.2rem
+    // font-weight bold
 
 .single-card
   @extend .grid-figure

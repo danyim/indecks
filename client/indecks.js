@@ -28,4 +28,4 @@ const router = (
     </Router>
   </Provider>
 )
-render(router, document.getElementById('root'));
+render(router, document.getElementById('react-root'));
