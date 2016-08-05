@@ -36,9 +36,11 @@ const EditCard = React.createClass({
 
     return (
       <figure className="grid-figure">
-        <form ref="commentForm" className="comment-form" onSubmit={this.handleSubmit}>
-          <input type="text" ref="title" placeholder="title" onChange={this.handleChangeTitle} defaultValue={card.title} />
-          <input type="text" ref="answer" placeholder="answer" defaultValue={card.answer} />
+        <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
+          {/*<label for="title">Title Card</label>*/}
+          <input type="text" className="large-input" name="title" ref="title" placeholder="Title" onChange={this.handleChangeTitle} defaultValue={card.title} />
+          {/*<label for="answer">Answer Card</label>*/}
+          <input type="text" name="answer" ref="answer" placeholder="Answer" defaultValue={card.answer} />
           <input type="submit" hidden />
           {/*<button className="submit">Save</button> */}
         </form>

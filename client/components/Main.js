@@ -7,10 +7,13 @@ const Main = React.createClass({
       <div>
         <header>
           <h1 className="header">
-            <Link to="/">indecks</Link>
+            <Link to="/">in<span className="title-bold">decks</span></Link>
           </h1>
         </header>
         { React.cloneElement(this.props.children, this.props)}
+        <footer>
+          <span className="credit">@danyim</span>
+        </footer>
       </div>
     )
   }

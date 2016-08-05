@@ -1,20 +1,20 @@
 import React from 'react';
-import EditCard from './EditCard';
+import Card from './Card';
 import DeckNavigator from './DeckNavigator';
 
-const DeckEdit = React.createClass({
+const CardView = React.createClass({
   render() {
     const { deckId, cardIndex } = this.props.params;
     // index of the deck
     const i = this.props.decks.findIndex((deck) => deck.id === deckId)
-    // get us the deck
+    // get us the post
     const deck = this.props.decks[i];
-    const mode = 'edit';
+    const mode = 'view';
 
     return (
       <div>
         <div className="single-card">
-          <EditCard card={deck.cards[cardIndex - 1]} cardIndex={cardIndex} deckId={deck.id} {...this.props} />
+          <Card card={deck.cards[cardIndex - 1]} />
         </div>
         <DeckNavigator deck={deck} cardIndex={parseInt(cardIndex)} mode={mode} />
       </div>
@@ -22,4 +22,4 @@ const DeckEdit = React.createClass({
   }
 });
 
-export default DeckEdit;
+export default CardView;

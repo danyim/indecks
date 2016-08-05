@@ -7,7 +7,9 @@ const DeckGrid = React.createClass({
     return (
       <div className="deck-grid">
         <AddDeck />
-        {this.props.decks.map((deck, i) => <Deck {...this.props} key={i} i={i} deck={deck} />)}
+        {this.props.decks.map((deck, i) =>
+          <Deck {...this.props} key={i} i={i} deck={deck} />
+        )}
       </div>
     )
   }

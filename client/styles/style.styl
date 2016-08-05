@@ -5,9 +5,15 @@
 
 body
   background offwhite
+  margin 0 2rem
 
 header
-  margin 1rem 0 2rem 2rem
+  margin 2rem 0
+
+footer
+  text-align right
+//   @extends .deck-grid
+
 
 .deck-grid
   display flex
@@ -25,13 +31,11 @@ header
   background white
   // Multiple stacks
   box-shadow \
-    5px 5px 0 1px lighten(black, 96%),\
-    6px 6px 0 1px lighten(black, 90%),\
-    12px 12px 0 1px lighten(black, 97%),\
-    13px 13px 0 1px lighten(black, 92%)
+    3px 3px 0 1px lighten(black, 97%),\
+    4px 4px 0 1px lighten(black, 91%),\
+    8px 8px 0 1px lighten(black, 96%),\
+    9px 9px 0 1px lighten(black, 90%)
   position relative
-  h1
-    font-size 5rem
 
 .single-card
   @extend .grid-figure
@@ -101,7 +105,7 @@ header
     .remove-comment
       opacity 1
 
-.comment-form
+.edit-form
   input, textarea
     width 100%
     border 0
@@ -110,10 +114,21 @@ header
     border-bottom 1px solid lightgrey
     outline none
     resize vertical
+    transition all 0.2s
+    opacity 0.6
+    &:hover
+      opacity 1
+  .large-input
+    font-size 4rem
 
 
-.grid-photo-wrap
-  position relative
+.grid-deck-wrap
+  // position relative
+  display flex // experimenting
+  h1
+    cursor pointer
+    align-self flex-start
+    flex 1 0 100%
 
 .likes-heart
   background url(http://f.cl.ly/items/3Y373q2Q3J3Y1j203n0m/Bitmap-3.png) center no-repeat
@@ -136,7 +151,7 @@ header
   justify-content space-between
 
 button, .button
-  border 2px solid lighten(grey, 90%)
+  border 2px solid lighten(grey, 93%)
   background none
   flex-basis 48%
   display inline-block
@@ -152,7 +167,7 @@ button, .button
     border-color blue
     outline 0
   &[disabled]
-    color #AAA
+    color #BBB
   &[disabled]:hover
     border-color none
 

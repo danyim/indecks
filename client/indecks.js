@@ -5,6 +5,7 @@ import css from './styles/style.styl';
 
 // import components
 import App from './components/App';
+import CardView from './components/CardView';
 import DeckEdit from './components/DeckEdit';
 import DeckView from './components/DeckView';
 import DeckGrid from './components/DeckGrid';
@@ -21,7 +22,8 @@ const router = (
         <IndexRoute component={DeckGrid}></IndexRoute>
         <Route path="/add" component={DeckGrid}></Route>
         <Route path="/edit/:deckId/:cardIndex" component={DeckEdit}></Route>
-        <Route path="/view/:deckId/:cardIndex" component={DeckView}></Route>
+        <Route path="/view/:deckId/:cardIndex" component={CardView}></Route>
+        <Route path="/view/:deckId" component={DeckView}></Route>
       </Route>
     </Router>
   </Provider>
