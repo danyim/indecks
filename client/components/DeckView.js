@@ -1,9 +1,12 @@
 import React from 'react';
 import Card from './Card';
 import DeckNavigator from './DeckNavigator';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 const DeckView = React.createClass({
+  editCard(deckId, i) {
+    browserHistory.push(`/edit/${deckId}/${i + 1}`);
+  },
   render() {
     const { deckId } = this.props.params;
     // index of the deck
@@ -14,9 +17,16 @@ const DeckView = React.createClass({
 
     return (
       <div>
-        <h2>{deck.title}</h2>
+        <div>
+          <h2>{deck.title}</h2>
+          <p>{deck.description}</p>
+        </div>
         <div className="deck-grid">
-          {deck.cards.map((c, i) => <Card card={c} key={i} />)}
+          {
+            deck.cards.map((c, i) =>
+              <Card card={c} key={i} handleOnClick={() => this.editCard(deckId, i)} />
+            )
+          }
         </div>
         <div className="deck-navigator">
           <div className="deck-nav-links">

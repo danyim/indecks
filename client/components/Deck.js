@@ -22,7 +22,8 @@ const Deck = React.createClass({
           <p><code>{deck.id}</code></p>
           <p>URL: <a href={deck.url}>Link</a></p>
           */}
-          <p>{deck.cards.length} cards</p>
+          <p className="card-count">{deck.cards.length} cards</p>
+          <p>{deck.description}</p>
           <div className="control-buttons">
             <Link className="button" to={`/edit/${deck.id}/1`}>
               <span className="comment-count">

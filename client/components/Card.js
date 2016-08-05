@@ -8,7 +8,7 @@ const Card = React.createClass({
 
     return (
       <figure className="grid-figure">
-        <div className="card-title">
+        <div className="card-title" onClick={this.props.handleOnClick || null}>
           <h1>{card.title}</h1>
         </div>
 

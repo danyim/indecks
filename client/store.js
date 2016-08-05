@@ -5,13 +5,13 @@ import { browserHistory } from 'react-router';
 // import the root reducer
 import rootReducer from './reducers/index';
 
-// import comments from './data/comments';
+import config from './data/config';
 import decks from './data/decks';
 
 // create an object for the default data
 const defaultState = {
+  config,
   decks
-  // comments
 };
 
 const enhancers = compose(
