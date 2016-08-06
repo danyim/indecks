@@ -1,10 +1,11 @@
 var path = require('path');
 var webpack = require('webpack');
+var loaders = require('./webpack.config.loaders');
+var autoPrefixer = require('autoprefixer');
 
 module.exports = {
   devtool: 'source-map',
   entry: [
-
     './client/indecks'
   ],
   output: {
@@ -16,8 +17,9 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': "'production'"
-      }
+        'NODE_ENV': JSON.stringify('production')
+      },
+      __DEV__: 'false'
     }),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
@@ -26,19 +28,10 @@ module.exports = {
     })
   ],
   module: {
-    loaders: [
-    // js
-    {
-      test: /\.js$/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'client')
-    },
-    // CSS
-    {
-      test: /\.styl$/,
-      include: path.join(__dirname, 'client'),
-      loader: 'style-loader!css-loader!stylus-loader'
-    }
-    ]
-  }
+    loaders
+  },
+  resolve: {
+    extensions: ['', '.js', '.styl']
+  },
+  postcss: [autoPrefixer({ browsers: ['last 2 versions'] })]
 };

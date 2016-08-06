@@ -1,5 +1,11 @@
 var path = require('path');
 var webpack = require('webpack');
+var loaders = require('./webpack.config.loaders');
+var autoPrefixer = require('autoprefixer');
+
+var definePlugin = new webpack.DefinePlugin({
+  __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true'))
+});
 
 module.exports = {
   devtool: 'source-map',
@@ -14,22 +20,14 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    definePlugin
   ],
   module: {
-    loaders: [
-    // js
-    {
-      test: /\.js$/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'client')
-    },
-    // CSS
-    {
-      test: /\.styl$/,
-      include: path.join(__dirname, 'client'),
-      loader: 'style-loader!css-loader!stylus-loader'
-    }
-    ]
-  }
+    loaders
+  },
+  resolve: {
+    extensions: ['', '.js', '.styl']
+  },
+  postcss: [autoPrefixer({ browsers: ['last 2 versions'] })]
 };
