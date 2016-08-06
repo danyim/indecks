@@ -1,8 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
+import Remarkable from 'remarkable';
 
 const Card = React.createClass({
+  convertToMarkdown(plaintext = '') {
+    const md = new Remarkable();
+    const rawMarkup = md.render(plaintext);
+    return { __html: rawMarkup };
+  },
   render() {
     const { card } = this.props;
 
@@ -13,7 +19,8 @@ const Card = React.createClass({
         </div>
 
         <figcaption>
-          <p>{card.answer}</p>
+          <span dangerouslySetInnerHTML={this.convertToMarkdown(card.answer)} />
+          <pre>{card.answer}</pre>
         </figcaption>
       </figure>
     );

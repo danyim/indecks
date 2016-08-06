@@ -57,6 +57,11 @@ main.main-container
     // .deck-title
   .single
     max-width pageWidth
+  .deck-import
+    max-width pageWidth
+    .grid-figure
+      display flex
+      flex-basis auto
 
 .content,footer
   text-align right
@@ -114,14 +119,22 @@ main.main-container
   margin-top -2rem
   max-width none
 
-// Comments
-.remove-comment
-  background none
-  border 0
-  line-height 1
-  opacity 0
-  &:hover
-    color red
+.figure-box
+  width 33.33%
+  display flex
+  .container
+    margin 1rem 4rem 1rem 1rem
+    // border 2px dashed lighten(gray, 50%)
+    text-align center
+    .symbol
+      color blue
+      font-size 13rem
+      // font-weight bold
+      position relative
+      top 1.2rem
+      transition all 0.1s ease-out
+      &:hover
+        transform rotate(7deg) scale(1.2,1.2)
 
 .deck-navigator
   max-width 900px
@@ -154,6 +167,9 @@ main.main-container
       opacity 1
 
 .edit-form
+  display flex
+  flex-direction column
+  flex-flow space-between
   input, textarea
     width 100%
     border 0
@@ -169,14 +185,6 @@ main.main-container
   .large-input
     font-size 4rem
 
-
-.grid-deck-wrap
-  // position relative
-  display flex // experimenting
-  h1
-    cursor pointer
-    align-self flex-start
-    flex 1 0 100%
 
 /*
   Buttons
@@ -215,3 +223,15 @@ button, .button
   &:hover, &:focus
     border-color red
 
+.drop
+  width 100%
+  padding 1rem 0
+  margin 1rem 0
+  border 1px dashed lighten(gray, 60%)
+  text-align center
+  p
+    color lighten(gray, 60%)
+.drop-active
+  border 1px solid green
+.drop-reject
+  border 1px solid red

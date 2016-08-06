@@ -11,7 +11,7 @@ const decks = [
          },
          {
             title: "(T/F) WeakMaps have a length property",
-            answer: "True, WeakMaps do not have a length"
+            answer: "True, **WeakMaps** do not have a length"
          },
          {
             title: "(T/F) Sets can have dupilcate values",

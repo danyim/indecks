@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
-const EditCard = React.createClass({
+const CardEdit = React.createClass({
   title: null,
   answer: null,
   cardIndex: null,
@@ -20,7 +20,7 @@ const EditCard = React.createClass({
   },
   handleSubmit(e) {
     e.preventDefault();
-    this.props.editCard(
+    this.props.CardEdit(
       this.refs.title.value,
       this.refs.answer.value,
       this.cardIndex,
@@ -40,13 +40,12 @@ const EditCard = React.createClass({
           {/*<label for="title">Title Card</label>*/}
           <input type="text" className="large-input" name="title" ref="title" placeholder="Title" onChange={this.handleChangeTitle} defaultValue={card.title} />
           {/*<label for="answer">Answer Card</label>*/}
-          <input type="text" name="answer" ref="answer" placeholder="Answer" defaultValue={card.answer} />
-          <input type="submit" hidden />
-          {/*<button className="submit">Save</button> */}
+          <textarea type="text" name="answer" ref="answer" placeholder="Answer (Markdown)" defaultValue={card.answer} rows="4" />
+          <button type="submit" className="button">Save</button>
         </form>
       </figure>
     );
   }
 })
 
-export default EditCard;
+export default CardEdit;
