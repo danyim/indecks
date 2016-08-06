@@ -16,13 +16,13 @@ const Main = React.createClass({
           </div>
         </nav>
         <main className="main-container">
-          <section>
-            { React.cloneElement(this.props.children, this.props)}
-          </section>
+          { React.cloneElement(this.props.children, this.props)}
         </main>
+        {/*
         <footer>
           <span className="credit">@danyim</span>
         </footer>
+        */}
       </section>
     )
   }

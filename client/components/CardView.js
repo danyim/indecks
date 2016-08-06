@@ -12,12 +12,13 @@ const CardView = React.createClass({
     const mode = 'view';
 
     return (
-      <div>
+      <section className="single">
         <div className="single-card">
           <Card card={deck.cards[cardIndex - 1]} />
         </div>
+
         <DeckNavigator deck={deck} cardIndex={parseInt(cardIndex)} mode={mode} />
-      </div>
+      </section>
     )
   }
 });

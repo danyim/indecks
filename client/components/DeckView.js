@@ -16,12 +16,12 @@ const DeckView = React.createClass({
     const mode = 'view';
 
     return (
-      <div>
+      <section className="deck-view">
         <div>
-          <h2>{deck.title}</h2>
+          <h1>{deck.title}</h1>
           <p>{deck.description}</p>
         </div>
-        <div className="deck-grid">
+        <div className="wrap-row">
           {
             deck.cards.map((c, i) =>
               <Card card={c} key={i} handleOnClick={() => this.editCard(deckId, i)} />
@@ -33,7 +33,7 @@ const DeckView = React.createClass({
             <Link to={`/`}>Back to decks</Link>
           </div>
         </div>
-      </div>
+      </section>
     )
   }
 });

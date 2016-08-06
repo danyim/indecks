@@ -25,13 +25,18 @@ const Deck = React.createClass({
           <p className="card-count">{deck.cards.length} cards</p>
           <p>{deck.description}</p>
           <div className="control-buttons">
+            <Link className="button" to={`/view/${deck.id}/1`}>
+              <span className="comment-count">
+                View
+              </span>
+            </Link>
             <Link className="button" to={`/edit/${deck.id}/1`}>
               <span className="comment-count">
-                Edit Deck
+                Edit
               </span>
             </Link>
             <a className="button button-delete" onClick={() => this.props.removeDeck(deck.id)}>
-                Delete Deck
+                Delete
             </a>
           </div>
         </figcaption>

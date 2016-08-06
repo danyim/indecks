@@ -5,12 +5,12 @@ import AddDeck from './AddDeck';
 const DeckGrid = React.createClass({
   render() {
     return (
-      <div className="deck-grid">
+      <section className="deck-grid wrap-row">
         <AddDeck />
         {this.props.decks.map((deck, i) =>
           <Deck {...this.props} key={i} i={i} deck={deck} />
         )}
-      </div>
+      </section>
     )
   }
 });
