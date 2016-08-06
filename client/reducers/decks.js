@@ -36,6 +36,11 @@ function decks(state = [], action) {
     case 'REMOVE_CARD':
       return state;
     case 'ADD_DECK':
+      const jsonDeck = Object.assign({}, action.deck);
+      return [
+        ...state,
+        jsonDeck
+      ];
       return state;
     case 'REMOVE_DECK':
       deckIndex = state.findIndex(v => v.id === action.deckId);

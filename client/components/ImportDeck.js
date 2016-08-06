@@ -5,8 +5,6 @@ import Dropzone from 'react-dropzone';
 import Remarkable from 'remarkable';
 
 const ImportDeck = React.createClass({
-  files: null,
-
   navigateToAddDeck(deckId) {
     browserHistory.push(`/add`);
   },
@@ -17,6 +15,11 @@ const ImportDeck = React.createClass({
     reader.onload = e => {
       const result = e.target.result;
       const resultJson = JSON.parse(result);
+
+      // Absolutely no validation of the JSON here...
+      // We're trusting that the user is providing a indecks-produced deck json
+      this.props.addDeck(resultJson);
+      browserHistory.push(`/view/${resultJson.id}`);
       // TODO: Parse the contents of the card descriptions into Markdown
       // for(let card of resultJson.cards) {
 
@@ -25,18 +28,22 @@ const ImportDeck = React.createClass({
       // const markup = md.render(result);
       // this.setState({unprocessed: result, processed: markup});
       // console.log('complete!', result, markup, resultJson);
-      console.log('complete!', resultJson);
+      // console.log('complete!', resultJson);
     }
     reader.readAsText(file);
-    console.log('File', file);
-    // console.log('examining', contents);
-
-    this.file = files[0];
   },
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.refs);
+    const id = 'testingid';
+    this.props.addDeck({
+      id: id,
+      title: this.refs.title.value,
+      description: this.refs.description.value,
+      cards: []
+    });
+
+    browserHistory.push(`/view/${id}`);
   },
 
   render() {
@@ -56,7 +63,6 @@ const ImportDeck = React.createClass({
           <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
             <input type="text" className="large-input" name="title" ref="title" placeholder="Deck Title" maxLength="30" />
             <textarea type="text" name="description" ref="description" placeholder="Description" rows="3" />
-            {/*<input type="url" name="url" ref="url" placeholder="http://example.com/something.json"/>*/}
             <Dropzone
               onDrop={this.handleDrop}
               className="drop"
@@ -64,7 +70,7 @@ const ImportDeck = React.createClass({
               rejectClassName="drop-reject"
               multiple={false}
               accept="application/json">
-              <p>Drop your JSON here</p>
+              <p>(Optional) Drop your deck JSON here</p>
             </Dropzone>
             <br /><br />
             <div>
@@ -72,16 +78,6 @@ const ImportDeck = React.createClass({
             </div>
           </form>
         </figure>
-        shit we found
-        <pre>
-
-        </pre>
-        {/*
-        <figure className="grid-figure">
-          <h1>{deck.title}</h1>
-          <p>{deck.description}</p>
-        </figure>
-        */}
       </section>
     );
   }

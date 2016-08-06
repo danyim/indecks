@@ -27,11 +27,10 @@ export function removeCard(cardIndex, deckId) {
   }
 }
 
-export function addDeck(title, url) {
+export function addDeck(deck) {
   return {
     type: types.ADD_DECK,
-    title,
-    url
+    deck
   }
 }
 

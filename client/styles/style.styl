@@ -127,7 +127,7 @@ main.main-container
     // border 2px dashed lighten(gray, 50%)
     text-align center
     .symbol
-      color blue
+      color lighten(gray, 20%)
       font-size 13rem
       // font-weight bold
       position relative
@@ -169,11 +169,11 @@ main.main-container
 .edit-form
   display flex
   flex-direction column
-  flex-flow space-between
+  justify-content space-between
   input, textarea
     width 100%
     border 0
-    font-size 1.3rem
+    font-size 1.4rem
     padding 1rem 0
     border-bottom 1px solid lightgrey
     outline none
@@ -182,8 +182,11 @@ main.main-container
     opacity 0.6
     &:hover
       opacity 1
+  textarea.mono
+    font-family 'Courier'
+    // border 1px solid lightgrey
   .large-input
-    font-size 4rem
+    font-size 3rem
 
 
 /*
@@ -194,11 +197,12 @@ main.main-container
   width 100%
   flex-direction row
   justify-content space-between
-  // .button
+  .button
+    margin-right 1rem
 
 
 button, .button
-  border 2px solid lighten(grey, 93%)
+  border 2px solid lightgrey
   background none
   flex-basis 48%
   display inline-block
