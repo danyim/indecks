@@ -35,18 +35,31 @@ const DeckView = React.createClass({
         <div>
           <h1>{deck.title}</h1>
           <p>{deck.description}</p>
-          <p>
-            <ExportDeckButton
-              filename={`${slug(deck.title)}.json`}
-              label="Export Deck (JSON)"
-              className="button"
-              style={{}}
-              /*
-                // Use this if you want to use the replacer
-                exportFile={() =>  JSON.stringify(deck, this.mdReplacer, 2)}
-              */
-             exportFile={() => JSON.stringify(deck, null, 2)} />
-          </p>
+        </div>
+        <div className="control-buttons">
+          <Link className="button" to={`/view/${deck.id}/1`}>
+            <span className="comment-count">
+              View Deck
+            </span>
+          </Link>
+          {/*<Link className="button" to={`/edit/${deck.id}/1`}>
+            <span className="comment-count">
+              Edit
+            </span>
+          </Link>*/}
+          <ExportDeckButton
+            filename={`${slug(deck.title)}.json`}
+            label="Export Deck (JSON)"
+            className="button"
+            style={{}}
+            /*
+              // Use this if you want to use the replacer
+              exportFile={() =>  JSON.stringify(deck, this.mdReplacer, 2)}
+            */
+           exportFile={() => JSON.stringify(deck, null, 2)} />
+          <a className="button button-delete" onClick={() => this.props.removeDeck(deck.id)}>
+              Delete Deck
+          </a>
         </div>
         <div className="wrap-row">
           {
