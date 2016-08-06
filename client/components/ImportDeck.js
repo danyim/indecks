@@ -3,8 +3,16 @@ import { Link, browserHistory } from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Dropzone from 'react-dropzone';
 import Remarkable from 'remarkable';
+import samples from '../data/samples'
 
 const ImportDeck = React.createClass({
+  generateRandomString(length = 8) {
+    const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let result = '';
+    for (let i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
+  },
+
   navigateToAddDeck(deckId) {
     browserHistory.push(`/add`);
   },
@@ -35,7 +43,7 @@ const ImportDeck = React.createClass({
 
   handleSubmit(e) {
     e.preventDefault();
-    const id = 'testingid';
+    const id = this.generateRandomString();
     this.props.addDeck({
       id: id,
       title: this.refs.title.value,
@@ -44,6 +52,16 @@ const ImportDeck = React.createClass({
     });
 
     browserHistory.push(`/view/${id}`);
+  },
+
+  handleLoadSample() {
+    let sampleDeck;
+    for(let d of samples) {
+      sampleDeck = { ...d };
+      sampleDeck.id = this.generateRandomString();
+      this.props.addDeck(sampleDeck);
+    }
+    browserHistory.push(`/`);
   },
 
   render() {
@@ -74,7 +92,10 @@ const ImportDeck = React.createClass({
             </Dropzone>
             <br /><br />
             <div>
-              <button type="submit">Create</button>
+              <button type="submit" className="button">Create</button>
+            </div>
+            <div>
+              <button type="button" className="button" onClick={() => this.handleLoadSample()}>Load Sample Decks</button>
             </div>
           </form>
         </figure>

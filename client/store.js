@@ -7,11 +7,14 @@ import rootReducer from './reducers/index';
 
 import config from './data/config';
 import decks from './data/decks';
+import samples from './data/samples';
 
 // create an object for the default data
+let decksCombined;
+decksCombined = [...decks, ...samples]; // Comment this out for release
 const defaultState = {
   config,
-  decks
+  decks: decksCombined || []
 };
 
 const enhancers = compose(

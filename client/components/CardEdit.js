@@ -28,17 +28,15 @@ const CardEdit = React.createClass({
     );
   },
   render() {
-    const { card, cardIndex, deckId } = this.props;
-    this.title = card.title;
-    this.answer = card.answer;
-    this.cardIndex = cardIndex;
-    this.deckId = deckId;
+    const { title = '', answer = '' } = this.props.card;
+    this.deckId = this.props.deckId || this.params.deckId;
+    this.cardIndex = this.props.cardIndex;
 
     return (
       <figure className="grid-figure">
         <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
-          <input type="text" className="large-input" name="title" ref="title" placeholder="Title" defaultValue={card.title} />
-          <textarea type="text" className="mono" name="answer" ref="answer" placeholder="Answer (Markdown)" defaultValue={card.answer} rows="4" />
+          <input type="text" className="large-input" name="title" ref="title" placeholder="Title" defaultValue={title} />
+          <textarea type="text" className="mono" name="answer" ref="answer" placeholder="Answer (Markdown)" defaultValue={answer} rows="4" />
           <button type="submit" className="button">Save</button>
         </form>
       </figure>

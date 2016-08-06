@@ -26,16 +26,37 @@ nav.nav-container
     align-items center
   .nav-inner-container
     max-width pageWidth
-    padding 20px 40px
+    padding 20px 20px
     width 100%
-    align-items center
+    justify-content space-between
+    flex-direction row
+    .nav-left, .nav-right
+      font-size 1.5rem
     h1
       flex-shrink 0
+
+// move to typography
+.add-icon
+  font-size 2.3rem
+.grid-icon
+  font-size 1.9rem
+
+.rounded-button
+  border 1px solid lightgray
+  border-radius 0.3rem
+  padding 0.3rem 0.7rem
+  a
+    color black
+  a[disabled]
+    color gray
+    cursor not-allowed
+  a.hidden
+    visibility hidden
 
 main.main-container
   flex-grow 1
   flex-direction row
-  order 3
+  order 2
   justify-content center
   section
     margin-top contentMargin
@@ -54,7 +75,20 @@ main.main-container
     .grid-figure
       flex-basis calc(50% - 2rem)
       margin 0 1rem 2rem 0rem
-    // .deck-title
+    .title-card
+      // background-color darken(white, 5%)
+      border 1px solid lightgray
+      background-color white
+      border-bottom 5px solid black
+      margin 0 1rem 2rem 0
+      padding 2rem
+      // border-radius 1.0rem
+      flex-direction row
+      .title-text
+        flex-grow 1
+      .control-buttons
+        width 25%
+        flex-direction column
   .single
     max-width pageWidth
   .deck-import
@@ -63,9 +97,14 @@ main.main-container
       display flex
       flex-basis auto
 
-.content,footer
-  text-align right
-//   @extends .deck-grid
+footer
+  order 3
+  display flex
+  flex-direction row
+  justify-content center
+  p
+    font-size 1.3rem
+    color lighten(lightgray, 10%);
 
 .grid-figure
   flex-direction row
@@ -134,7 +173,7 @@ main.main-container
       top 1.2rem
       transition all 0.1s ease-out
       &:hover
-        transform rotate(7deg) scale(1.2,1.2)
+        transform rotate(3deg) scale(1.2,1.2)
 
 .deck-navigator
   max-width 900px

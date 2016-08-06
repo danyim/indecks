@@ -32,46 +32,49 @@ const DeckView = React.createClass({
 
     return (
       <section className="deck-view">
-        <div>
-          <h1>{deck.title}</h1>
-          <p>{deck.description}</p>
+        <div className="title-card">
+          <div className="title-text">
+            <h1>{deck.title}</h1>
+            <p>{deck.description}</p>
+          </div>
+          <div className="control-buttons">
+            <Link className="button" to={`/view/${deck.id}/1`}>
+              <span className="comment-count">
+                Play Deck
+              </span>
+            </Link>
+            <Link className="button" to={`/view/${deck.id}/1`}>
+              <span className="comment-count">
+                Edit Details
+              </span>
+            </Link>
+            {/*<Link className="button" to={`/edit/${deck.id}/1`}>
+              <span className="comment-count">
+                Edit
+              </span>
+            </Link>*/}
+            <ExportDeckButton
+              filename={`${slug(deck.title)}.json`}
+              label="Export Deck (JSON)"
+              className="button"
+              style={{}}
+              /*
+                // Use this if you want to use the replacer
+                exportFile={() =>  JSON.stringify(deck, this.mdReplacer, 2)}
+              */
+             exportFile={() => JSON.stringify(deck, null, 2)} />
+            <a className="button button-delete" onClick={() => this.props.removeDeck(deck.id)}>
+                Delete Deck
+            </a>
+          </div>
         </div>
-        <div className="control-buttons">
-          <Link className="button" to={`/view/${deck.id}/1`}>
-            <span className="comment-count">
-              View Deck
-            </span>
-          </Link>
-          {/*<Link className="button" to={`/edit/${deck.id}/1`}>
-            <span className="comment-count">
-              Edit
-            </span>
-          </Link>*/}
-          <ExportDeckButton
-            filename={`${slug(deck.title)}.json`}
-            label="Export Deck (JSON)"
-            className="button"
-            style={{}}
-            /*
-              // Use this if you want to use the replacer
-              exportFile={() =>  JSON.stringify(deck, this.mdReplacer, 2)}
-            */
-           exportFile={() => JSON.stringify(deck, null, 2)} />
-          <a className="button button-delete" onClick={() => this.props.removeDeck(deck.id)}>
-              Delete Deck
-          </a>
-        </div>
+
         <div className="wrap-row">
           {
             deck.cards.map((c, i) =>
               <Card card={c} key={i} handleOnClick={() => this.CardEdit(deckId, i)} />
             )
           }
-        </div>
-        <div className="deck-navigator">
-          <div className="deck-nav-links">
-            <Link to={`/`}>Back to decks</Link>
-          </div>
         </div>
       </section>
     )
