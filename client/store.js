@@ -1,36 +1,41 @@
-import { createStore, compose } from 'redux';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { applyMiddleware, createStore, compose } from 'redux';
 import { browserHistory } from 'react-router';
+import createLogger from 'redux-logger';
+import thunk from 'redux-thunk';
 
 // import the root reducer
 import rootReducer from './reducers/index';
-
 import config from './data/config';
 import decks from './data/decks';
 import samples from './data/samples';
 
-// create an object for the default data
-let decksCombined;
-decksCombined = [...decks, ...samples]; // Comment this out for release
-const defaultState = {
-  config,
-  decks: decksCombined || []
-};
+const logger = createLogger();
+const middlewares = [thunk];
 
-const enhancers = compose(
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-);
+export default function configureStore (initialState = {}, debug = __DEV__)  {
+  const createStoreWithMiddleware = applyMiddleware(...middlewares);
 
-const store = createStore(rootReducer, defaultState, enhancers);
+  let decksCombined;
+  decksCombined = [...decks, ...samples]; // Comment this out for release
+  initialState = {
+    config,
+    decks: decksCombined || []
+  };
 
-export const history = syncHistoryWithStore(browserHistory, store);
+  const store = (debug ?
+    compose(
+      createStoreWithMiddleware,
+      applyMiddleware(logger),
+      window.devToolsExtension ? window.devToolsExtension() : f => f)
+    : createStoreWithMiddleware
+  )(createStore)(rootReducer, initialState);
 
-// hot reloading reducers
-if(module.hot) {
-  module.hot.accept('./reducers/', () => {
-    const nextRootReducer = require('./reducers/index').default;
-    store.replaceReducer(nextRootReducer);
-  })
+  if (module.hot) {
+    module.hot.accept('./reducers', () => {
+      const nextRootReducer = require('./reducers/index');
+      store.replaceReducer(nextRootReducer);
+    });
+  }
+
+  return store;
 }
-
-export default store;

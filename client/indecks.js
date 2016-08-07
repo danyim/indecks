@@ -1,5 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { syncHistoryWithStore } from 'react-router-redux';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Provider } from 'react-redux';
+import configureStore from './store';
+
 // import css
 import css from './styles/style.styl';
 
@@ -12,10 +17,8 @@ import DeckView from './components/DeckView';
 import DeckGrid from './components/DeckGrid';
 import DeckAdd from './components/DeckAdd';
 
-// import router
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import { Provider } from 'react-redux';
-import store, { history } from './store';
+const store = configureStore({});
+const history = syncHistoryWithStore(browserHistory, store);
 
 const router = (
   <Provider store={store}>
