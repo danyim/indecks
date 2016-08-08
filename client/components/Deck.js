@@ -13,8 +13,8 @@ const Deck = React.createClass({
     const post = {};
 
     return (
-      <figure className="grid-figure">
-        <div className="">
+      <figure className={`grid-figure ${styles['grid-figure']}`}>
+        <div>
           <h1 className={`${styles['deck-title']}`} onClick={() => this.navigateToDeck(deck.id)}>{deck.title}</h1>
         </div>
 

@@ -38,7 +38,7 @@ const Card = React.createClass({
     const { card } = this.props;
 
     return (
-      <figure className="grid-figure">
+      <figure className={`grid-figure ${styles['grid-figure']}`}>
         <div onClick={this.props.handleOnClick || null}>
           <h1 className={`${styles['card-title']}`} dangerouslySetInnerHTML={this.convertToMarkdown(card.title, true)} />
           {/*<h1>{card.title}</h1>*/}

@@ -54,23 +54,27 @@ const DeckNavigator = React.createClass({
     }
 
     return (
-      <div className={styles['deck-navigator']}>
+      <div className={`${styles['deck-navigator']}`}>
         <KeyBinding onKey={ e => this.handleKeyDown(e) } />
+        <div className={`${styles['left']}`}>
 
-        <div className={styles['deck-nav-count']}>
-          <CardCount current={cardIndex} max={this.maxCardIndex} />
         </div>
-        <div className={styles['deck-nav-controls']}>
+        <div className={`${styles['deck-nav-controls']}`}>
           <button className="button" ref={this.inputLoaded} onClick={this.prevCard} disabled={this.props.cardIndex > 1 ? false : true}>Previous</button>
-          <button className="button">Shuffle</button>
+          <button className="button"><i className="fa fa-random"></i></button>
           <button className="button" onClick={this.nextCard} disabled={this.props.cardIndex < this.maxCardIndex ? false : true}>Next</button>
         </div>
-        <div className={styles['deck-nav-links']}>
+        <div className={`${styles['right']}`}>
+          <CardCount current={cardIndex} max={this.maxCardIndex} />
+        </div>
+      {/*
+        <div className={`${styles['deck-nav-links']}`}>
           {actionOnCard}
         </div>
-        <div className={styles['deck-nav-links']}>
+        <div className={`${styles['deck-nav-links']}`}>
           <Link to={`/`}>Back to decks</Link>
         </div>
+      */}
       </div>
     )
   },

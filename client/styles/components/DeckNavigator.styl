@@ -1,10 +1,7 @@
 @import '../_variables';
 .deck-navigator
-  // we need this?
-  display block
-  flex 1 0 100%
-  max-width 100%
-  ////////
+  flex-direction row
+  justify-content space-between
 
   div
     margin 0.25rem 1.0rem
@@ -18,14 +15,18 @@
     .remove-comment
       opacity 1
 
-.deck-nav-links, .deck-nav-count, .deck-nav-controls
-    display inline-block
+.left
+  content ''
+.right
+  content ''
+
+.deck-nav-controls
+  flex-direction row
+  .button, a, button
+    font-size 1.5rem
+    border none
+
+.deck-nav-links, .deck-nav-count,
     color darken(offwhite, 30%)
     font-size 1.5rem
     font-weight bold
-.deck-nav-controls
-  .button, a
-    font-size 1.5rem
-    border none
-.deck-nav-links
-  display block

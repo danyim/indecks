@@ -4,9 +4,6 @@
 @import '_animations.styl'
 @import 'components/*'
 
-pageWidth = 1200px
-contentMargin = 2rem
-
 :global
   html, body
     height 100%
@@ -18,40 +15,34 @@ contentMargin = 2rem
     flex-wrap wrap
     flex-direction row
 
-  .rounded-button
-    border 1px solid lightgray
-    border-radius 0.3rem
-    padding 0.3rem 0.7rem
-    a
-      color black
-    a[disabled]
-      color gray
-      cursor not-allowed
-    a.hidden
-      visibility hidden
-
   .grid-figure
     flex-direction row
     flex-basis calc(33.333% - 2rem)
     flex-grow 1
     flex-shrink 0
     margin 0 1rem 2rem 1rem
-    padding 2rem
-    border 1px solid lightgray
+    // padding 2rem
+    border 1px solid lightgrey
     background white
     position relative
+
+  .single
+    width cardWidth
+
+  .single .grid-figure
+    // Single stack
+    box-shadow 7px 7px 6px 1px rgba(0,0,0,0.05)
+    flex-grow 1
 
   /*
     Buttons
   */
-
   .control-buttons
     width 100%
     flex-direction row
     justify-content space-between
     .button
       margin-right 1rem
-
 
   button, .button
     border 2px solid lightgrey
@@ -70,7 +61,7 @@ contentMargin = 2rem
       border-color blue
       outline 0
     &[disabled]
-      color #BBB
+      color grey
     &[disabled]:hover
       border-color none
 
@@ -79,131 +70,45 @@ contentMargin = 2rem
     &:hover, &:focus
       border-color red
 
-
-
-
-
-//////////////////////////////////////
-main.main-container
-  flex-grow 1
-  flex-direction row
-  order 2
-  justify-content center
-  section
-    margin-top contentMargin
-  .deck-view
-    width calc(100% - 5rem * 2)
-    max-width pageWidth
-    .grid-figure
-      flex-basis calc(50% - 2rem)
-      margin 0 1rem 2rem 0rem
-    .title-card
-      // background-color darken(white, 5%)
-      border 1px solid lightgray
-      background-color white
-      border-bottom 5px solid black
-      margin 0 1rem 2rem 0
-      padding 4rem 2rem 2rem 2rem
-      // border-radius 1.0rem
-      flex-direction row
-      .title-text
-        margin-top 2rem
-        flex-grow 1
-      .control-buttons
-        width 25%
-        flex-direction column
-  .single
-    max-width pageWidth
-  .deck-import
-    max-width pageWidth
-    .grid-figure
-      display flex
-      flex-basis auto
-
-footer
-  order 3
-  display flex
-  flex-direction row
-  justify-content center
-  p
-    font-size 1.3rem
-    color lighten(lightgray, 10%);
-
-.single-card
-  // @extends .grid-figure
-  width 700px
-  // Single stack
-  box-shadow 7px 7px 6px 1px rgba(0,0,0,0.05)
-  max-width pageWidth
-  background white
-  transition all 0.1s ease-out
-  .grid-figure
-    box-shadow none
-    margin 0 2rem 0 0
-    border 0
-    padding 0
-    flex 1 0 100%
-    max-width 100%
-  .grid-card
-    width 100%
-    margin 0
-
-.grid-card
-  width calc(100% + 4rem)
-  margin-left -2rem
-  margin-top -2rem
-  max-width none
-
-.figure-box
-  width 33.33%
-  display flex
-  .container
-    margin 1rem 4rem 1rem 1rem
-    // border 2px dashed lighten(gray, 50%)
-    text-align center
-    .symbol
-      color lighten(gray, 20%)
-      font-size 13rem
-      // font-weight bold
-      position relative
-      top 1.2rem
-      transition all 0.1s ease-out
+  /*
+    Forms
+  */
+  .edit-form
+    display flex
+    flex-direction column
+    justify-content space-between
+    input, textarea
+      width 100%
+      border 0
+      font-size 1.4rem
+      padding 1rem 0
+      border-bottom 1px solid lightgrey
+      outline none
+      resize vertical
+      transition all 0.2s
+      opacity 0.6
       &:hover
-        transform rotate(3deg) scale(1.2,1.2)
+        opacity 1
+    textarea.mono
+      font-family 'Courier'
+      // border 1px solid lightgrey
+    .large-input
+      font-size 3rem
 
-.edit-form
-  display flex
-  flex-direction column
-  justify-content space-between
-  input, textarea
-    width 100%
-    border 0
-    font-size 1.4rem
-    padding 1rem 0
-    border-bottom 1px solid lightgrey
-    outline none
-    resize vertical
-    transition all 0.2s
-    opacity 0.6
-    &:hover
-      opacity 1
-  textarea.mono
-    font-family 'Courier'
-    // border 1px solid lightgrey
-  .large-input
-    font-size 3rem
+  main.main-container
+    flex-grow 1
+    flex-direction row
+    order 2
+    justify-content center
+    section
+      margin-top contentMargin
 
 
-
-.drop
-  width 100%
-  padding 1rem 0
-  margin 1rem 0
-  border 1px dashed lighten(gray, 60%)
-  text-align center
-  p
-    color lighten(gray, 60%)
-.drop-active
-  border 1px solid green
-.drop-reject
-  border 1px solid red
+  footer
+    order 3
+    display flex
+    flex-direction row
+    justify-content center
+    p
+      font-size 1.3rem
+      color lighten(lightgrey, 10%);

@@ -69,19 +69,19 @@ const Navbar = React.createClass({
     });
 
     return (
-      <nav className={styles['nav-container']}>
-        <div className={styles['nav-outer-container']}>
-          <div className={styles['nav-inner-container']}>
-            <span className={styles['nav-left']}>
-              <div className="rounded-button">
+      <nav className={`${styles['nav-container']}`}>
+        <div className={`${styles['nav-outer-container']}`}>
+          <div className={`${styles['nav-inner-container']}`}>
+            <span className={`${styles['nav-left']}`}>
+              <div className={`${styles['rounded-button']}`}>
                 {addLink}
               </div>
             </span>
             <h1>
-              <Link to="/">in<span className={styles['title-bold']}>decks</span></Link>
+              <Link to="/">in<span className={`${styles['title-bold']}`}>decks</span></Link>
             </h1>
-            <span className={styles['nav-right']}>
-              <div className="rounded-button">
+            <span className={`${styles['nav-right']}`}>
+              <div className={`${styles['rounded-button']}`}>
                 {listLink}
               </div>
             </span>

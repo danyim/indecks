@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './Card';
 import DeckNavigator from './DeckNavigator';
+import styles from '../styles/components/CardView';
 
 const CardView = React.createClass({
   render() {
@@ -13,10 +14,7 @@ const CardView = React.createClass({
 
     return (
       <section className="single">
-        <div className="single-card">
-          <Card card={deck.cards[cardIndex - 1]} />
-        </div>
-
+        <Card card={deck.cards[cardIndex - 1]} />
         <DeckNavigator deck={deck} cardIndex={parseInt(cardIndex)} mode={mode} />
       </section>
     )
