@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Remarkable from 'remarkable';
+import styles from '../styles/components/Card';
 
 const Card = React.createClass({
   // // Simplified markdown parser supporting bold, italics, and inline code
@@ -37,15 +38,13 @@ const Card = React.createClass({
     const { card } = this.props;
 
     return (
-      <figure className="grid-figure">
-        <div className="card-title" onClick={this.props.handleOnClick || null}>
-          <h1 dangerouslySetInnerHTML={this.convertToMarkdown(card.title, true)} />
-          {/*<h1>{card.title}</h1>*/}
+      <figure className={`grid-figure ${styles['grid-figure']}`}>
+        <div onClick={this.props.handleOnClick || null}>
+          <h1 className={`${styles['card-title']}`} dangerouslySetInnerHTML={this.convertToMarkdown(card.title, true)} />
         </div>
 
         <figcaption>
           <span dangerouslySetInnerHTML={this.convertToMarkdown(card.answer)} />
-          {/*<pre>{card.answer}</pre>*/}
         </figcaption>
       </figure>
     );

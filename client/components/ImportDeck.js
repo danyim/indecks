@@ -4,6 +4,7 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Dropzone from 'react-dropzone';
 import Remarkable from 'remarkable';
 import samples from '../data/samples'
+import styles from '../styles/components/ImportDeck';
 
 const ImportDeck = React.createClass({
   generateRandomString(length = 8) {
@@ -71,11 +72,11 @@ const ImportDeck = React.createClass({
     };
 
     return (
-      <section className="deck-import">
-        <figure className="grid-figure">
-          <aside className="figure-box">
-            <div className="container">
-              <i className="symbol fa fa-list-alt fa-3"></i>
+      <section className={`${styles['deck-import']}`}>
+        <div className={`${styles['grid-figure']}`}>
+          <aside className={`${styles['figure-box']}`}>
+            <div className={`${styles['symbol-container']}`}>
+              <i className={`fa fa-list-alt fa-3 ${styles['symbol']}`}></i>
             </div>
           </aside>
           <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
@@ -83,9 +84,9 @@ const ImportDeck = React.createClass({
             <textarea type="text" name="description" ref="description" placeholder="Description" rows="3" />
             <Dropzone
               onDrop={this.handleDrop}
-              className="drop"
-              activeClassName="drop-active"
-              rejectClassName="drop-reject"
+              className={`${styles['drop']}`}
+              activeClassName={`${styles['drop-active']}`}
+              rejectClassName={`${styles['drop-reject']}`}
               multiple={false}
               accept="application/json">
               <p>(Optional) Drop your deck JSON here</p>
@@ -98,7 +99,7 @@ const ImportDeck = React.createClass({
               <button type="button" className="button" onClick={() => this.handleLoadSample()}>Load Sample Decks</button>
             </div>
           </form>
-        </figure>
+        </div>
       </section>
     );
   }

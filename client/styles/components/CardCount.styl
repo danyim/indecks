@@ -1,10 +1,25 @@
-.current {
-  font-size 4rem
-  color red
-}
-.separator {
+@import '../_variables';
+
+.cardCount
+  display inline-block
+  text-align right
+  color grey
+  // All the other font sizes are in em, which means this value
+  // will determine the scale
+  font-size 0.8rem
+
+.current
+  color blue
+  font 400 3em 'Dosis'
   position relative
-}
-.max {
-  font-size 1rem
-}
+  top -0.5em
+  right 0em
+
+.separator
+  font 200 4em 'Dosis'
+
+.max
+  font 200 1.5em 'Dosis'
+  position relative
+  top -0.5em
+

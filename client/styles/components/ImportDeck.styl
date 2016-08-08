@@ -1,0 +1,39 @@
+@import '../_variables';
+
+.deck-import
+  max-width pageWidth
+.grid-figure
+  padding 2rem
+  background-color white
+  border 1px solid lightgrey
+  flex-direction row
+
+.figure-box
+  flex 1 0 33.33%
+  display flex
+
+.symbol-container
+  margin 1rem 4rem 1rem 1rem
+  // border 2px dashed lighten(gray, 50%)
+  text-align center
+  font-size 13rem
+  color lighten(gray, 20%)
+.symbol
+  // font-weight bold
+  position relative
+  top 1.2rem
+  transition all 0.1s ease-out
+  &:hover
+    transform rotate(3deg) scale(1.2,1.2)
+.drop
+  width 100%
+  padding 1rem 0
+  margin 1rem 0
+  border 1px dashed lighten(gray, 60%)
+  text-align center
+  p
+    color lighten(gray, 60%)
+.drop-active
+  border 1px solid green
+.drop-reject
+  border 1px solid red

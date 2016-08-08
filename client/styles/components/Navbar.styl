@@ -1,0 +1,50 @@
+@import '../_variables';
+
+.nav-container
+  order 1
+  height 70px
+  background rgba(255,255,255,0.8)
+  border-bottom 1px solid lighten(gray, 85%)
+  h1
+    font 200 2.5rem 'Dosis', sans-serif
+    letter-spacing -0.05rem
+    // text-shadow 0px 4px 0 rgba(18, 86, 136, 0.11)
+  a
+    font-weight 300
+    color black
+    text-decoration none
+    &:focus
+      outline 0
+
+.nav-outer-container
+  flex-shrink 0
+  align-items center
+.nav-inner-container
+  max-width pageWidth
+  padding 2.0rem 1.0rem
+  width 100%
+  justify-content space-between
+  flex-direction row
+  h1
+    flex-shrink 0
+.title-bold
+  font-weight 400
+
+.nav-left
+  font-size 2.3rem
+.nav-right
+  font-size 2.2rem
+
+
+
+.rounded-button
+  border 1px solid lightgrey
+  border-radius 0.3rem
+  padding 0.3rem 0.7rem
+  a
+    color black
+  a[disabled]
+    color gray
+    cursor not-allowed
+  a.hidden
+    visibility hidden

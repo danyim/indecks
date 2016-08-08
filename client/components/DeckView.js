@@ -4,6 +4,7 @@ import DeckNavigator from './DeckNavigator';
 import { Link, browserHistory } from 'react-router';
 import ExportDeckButton from './ExportDeckButton'
 import slug from 'slug';
+import styles from '../styles/components/DeckView';
 
 const DeckView = React.createClass({
   // Parses all the cards of a deck object and performs a special replacement
@@ -35,25 +36,25 @@ const DeckView = React.createClass({
     // const convertFn = this.convertToJSON.bind(this);
 
     return (
-      <section className="deck-view">
-        <div className="title-card">
-          <div className="title-text">
+      <section className={`${styles['deck-view']}`}>
+        <div className={`${styles['title-card']}`}>
+          <div className={`${styles['title-text']}`}>
             <h1>{deck.title}</h1>
             <p>{deck.description}</p>
           </div>
-          <div className="control-buttons">
+          <div className={`${styles['control-buttons']}`}>
             <Link className="button" to={`/view/${deck.id}/1`}>
-              <span className="comment-count">
+              <span className={`${styles['comment-count']}`}>
                 Play Deck
               </span>
             </Link>
             <Link className="button" to={`/view/${deck.id}/1`}>
-              <span className="comment-count">
+              <span className={`${styles['comment-count']}`}>
                 Edit Details
               </span>
             </Link>
             {/*<Link className="button" to={`/edit/${deck.id}/1`}>
-              <span className="comment-count">
+              <span className={`${styles['comment-count']}`}>
                 Edit
               </span>
             </Link>*/}

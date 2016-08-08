@@ -19,7 +19,6 @@ import DeckAdd from './components/DeckAdd';
 
 const store = configureStore({});
 const history = syncHistoryWithStore(browserHistory, store);
-console.log(css);
 const router = (
   <Provider store={store}>
     <Router history={history}>

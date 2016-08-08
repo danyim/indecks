@@ -1,0 +1,37 @@
+@import '../_variables';
+.deck-navigator
+  flex-direction row
+  justify-content space-between
+  max-width pageWidth
+  div
+    margin 0.25rem 1.0rem
+  p
+    font-size 1.5rem
+    margin 0
+  strong
+    color blue
+    margin-right 5px
+  &:hover
+    .remove-comment
+      opacity 1
+
+.left
+  flex 0 0 20%
+.right
+  flex 0 0 20%
+
+.deck-nav-controls
+  display inline-block
+  text-align center
+  flex-basis 30%
+  flex-direction row
+  justify-content center
+  align-items center
+  .button, a, button
+    font-size 1.5rem
+    border none
+
+.deck-nav-links, .deck-nav-count,
+    color darken(offwhite, 30%)
+    font-size 1.5rem
+    font-weight bold

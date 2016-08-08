@@ -1,10 +1,11 @@
 import { pushState } from 'react-router-redux';
 import * as types from './actionTypes';
 
-export function addCard(card, deckId) {
+export function addCard(title, answer, deckId) {
   return {
     type: types.ADD_CARD,
-    card,
+    title,
+    answer,
     deckId
   }
 }

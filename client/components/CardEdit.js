@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
+import styles from '../styles/components/CardEdit';
 
 const CardEdit = React.createClass({
   title: null,
@@ -26,6 +27,7 @@ const CardEdit = React.createClass({
       this.cardIndex,
       this.deckId
     );
+    browserHistory.push(`/view/${this.deckId}/${this.cardIndex}`)
   },
   render() {
     const { title = '', answer = '' } = this.props.card;
@@ -33,10 +35,10 @@ const CardEdit = React.createClass({
     this.cardIndex = this.props.cardIndex;
 
     return (
-      <figure className="grid-figure">
+      <figure className={`grid-figure ${styles['grid-figure']}`}>
         <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
           <input type="text" className="large-input" name="title" ref="title" placeholder="Title" defaultValue={title} />
-          <textarea type="text" className="mono" name="answer" ref="answer" placeholder="Answer (Markdown)" defaultValue={answer} rows="4" />
+          <textarea type="text" className="mono" name="answer" ref="answer" placeholder="Answer (Markdown)" defaultValue={answer} rows="6" />
           <button type="submit" className="button">Save</button>
         </form>
       </figure>
