@@ -2,6 +2,7 @@
 @import '_variables.styl'
 @import '_typography.styl'
 @import '_animations.styl'
+@import 'components/*'
 
 pageWidth = 1200px
 contentMargin = 2rem
@@ -69,6 +70,11 @@ main.main-container
     flex-direction row
     justify-content center
     flex-wrap wrap
+    .grid-figure
+      // This would be nice to have if it didn't bleed into the single cards
+      transition all 0.1s ease-out
+      &:hover
+        transform scale(1.03,1.03)
   .deck-view
     width calc(100% - 5rem * 2)
     max-width pageWidth
@@ -81,10 +87,11 @@ main.main-container
       background-color white
       border-bottom 5px solid black
       margin 0 1rem 2rem 0
-      padding 2rem
+      padding 4rem 2rem 2rem 2rem
       // border-radius 1.0rem
       flex-direction row
       .title-text
+        margin-top 2rem
         flex-grow 1
       .control-buttons
         width 25%
@@ -115,12 +122,6 @@ footer
   padding 2rem
   border 1px solid lightgray
   background white
-  // Multiple stacks
-  // box-shadow \
-  //   3px 3px 0 1px lighten(black, 97%),\
-  //   4px 4px 0 1px lighten(black, 91%),\
-  //   8px 8px 0 1px lighten(black, 96%),\
-  //   9px 9px 0 1px lighten(black, 90%)
   position relative
   .card-title h1
     font-size 2.4rem
@@ -137,6 +138,7 @@ footer
   box-shadow 7px 7px 6px 1px rgba(0,0,0,0.05)
   max-width pageWidth
   background white
+  transition all 0.1s ease-out
   .grid-figure
     box-shadow none
     margin 0 2rem 0 0

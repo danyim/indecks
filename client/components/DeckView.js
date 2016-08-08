@@ -17,8 +17,12 @@ const DeckView = React.createClass({
     }
     return v;
   },
-  CardEdit(deckId, i) {
+  handleEditCard(deckId, i) {
     browserHistory.push(`/edit/${deckId}/${i + 1}`);
+  },
+  handleRemoveDeck(deckId) {
+    this.props.removeDeck(deckId);
+    browserHistory.push(`/`);
   },
   render() {
     const { deckId } = this.props.params;
@@ -63,7 +67,7 @@ const DeckView = React.createClass({
                 exportFile={() =>  JSON.stringify(deck, this.mdReplacer, 2)}
               */
              exportFile={() => JSON.stringify(deck, null, 2)} />
-            <a className="button button-delete" onClick={() => this.props.removeDeck(deck.id)}>
+            <a className="button button-delete" onClick={() => this.handleRemoveDeck(deck.id)}>
                 Delete Deck
             </a>
           </div>
@@ -72,7 +76,7 @@ const DeckView = React.createClass({
         <div className="wrap-row">
           {
             deck.cards.map((c, i) =>
-              <Card card={c} key={i} handleOnClick={() => this.CardEdit(deckId, i)} />
+              <Card card={c} key={i} handleOnClick={() => this.handleEditCard(deckId, i)} />
             )
           }
         </div>

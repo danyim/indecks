@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, browserHistory} from 'react-router';
 import KeyBinding from 'react-keybinding-component';
 import Deck from './Deck';
+import CardCount from './CardCount';
 
 const DeckNavigator = React.createClass({
   mode: null,
@@ -55,7 +56,9 @@ const DeckNavigator = React.createClass({
       <div className="deck-navigator">
         <KeyBinding onKey={ e => this.handleKeyDown(e) } />
 
-        <div className="deck-nav-count">{cardIndex} of {this.maxCardIndex}</div>
+        <div className="deck-nav-count">
+          <CardCount current={cardIndex} max={this.maxCardIndex} />
+        </div>
         <div className="deck-nav-controls">
           <button className="button" ref={this.inputLoaded} onClick={this.prevCard} disabled={this.props.cardIndex > 1 ? false : true}>Previous</button>
           <button className="button">Shuffle</button>
