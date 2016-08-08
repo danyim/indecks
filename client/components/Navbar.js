@@ -47,10 +47,10 @@ const Navbar = React.createClass({
     }
     else {
       addLink = (
-        <a href="javascript:void(0);" disabled><i className="fa fa-plus-square-o add-icon"></i></a>
+        <a href="javascript:void(0);" disabled><i className={styles['add-icon'] + ' fa fa-plus-square-o'}></i></a>
       );
       listLink = (
-        <a href="javascript:void(0);" disabled><i className="fa fa-navicon grid-icon"></i></a>
+        <a href="javascript:void(0);" disabled><i className={styles['grid-icon'] + ' fa fa-navicon'}></i></a>
       );
     }
 
@@ -68,7 +68,6 @@ const Navbar = React.createClass({
       listLink = list;
     });
 
-    console.log(styles);
     return (
       <nav className={styles['nav-container']}>
         <div className={styles['nav-outer-container']}>
