@@ -43,11 +43,50 @@ contentMargin = 2rem
     .card-title h1
       font-size 2.4rem
       cursor pointer
-    // .card-count
-      // text-transform uppercase
-      // font-size 1.2rem
-      // font-weight bold
 
+  /*
+    Buttons
+  */
+
+  .control-buttons
+    width 100%
+    flex-direction row
+    justify-content space-between
+    .button
+      margin-right 1rem
+
+
+  button, .button
+    border 2px solid lightgrey
+    background none
+    flex-basis 48%
+    display inline-block
+    line-height 2
+    text-decoration none
+    padding 5px
+    text-align center
+    color blue
+    transition all 0.2s
+    box-sizing padding-box
+    cursor pointer
+    &:hover, &:focus
+      border-color blue
+      outline 0
+    &[disabled]
+      color #BBB
+    &[disabled]:hover
+      border-color none
+
+  .button-delete
+    color red
+    &:hover, &:focus
+      border-color red
+
+
+
+
+
+//////////////////////////////////////
 main.main-container
   flex-grow 1
   flex-direction row
@@ -158,43 +197,6 @@ footer
     font-size 3rem
 
 
-/*
-  Buttons
-*/
-
-.control-buttons
-  width 100%
-  flex-direction row
-  justify-content space-between
-  .button
-    margin-right 1rem
-
-
-button, .button
-  border 2px solid lightgrey
-  background none
-  flex-basis 48%
-  display inline-block
-  line-height 2
-  text-decoration none
-  padding 5px
-  text-align center
-  color blue
-  transition all 0.2s
-  box-sizing padding-box
-  cursor pointer
-  &:hover, &:focus
-    border-color blue
-    outline 0
-  &[disabled]
-    color #BBB
-  &[disabled]:hover
-    border-color none
-
-.button-delete
-  color red
-  &:hover, &:focus
-    border-color red
 
 .drop
   width 100%

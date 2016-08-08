@@ -11,46 +11,46 @@ const Navbar = React.createClass({
     if(path === '/') {
       // @/
       addLink = (
-        <Link to="/add" title="Add deck"><i className="fa fa-plus-square-o add-icon"></i></Link>
+        <Link to="/add" title="Add deck"><i className="fa fa-plus-square-o"></i></Link>
       );
       listLink = (
-        //<Link to={`/`} title="View decks"><i className="fa fa-navicon grid-icon"></i></Link>
-        <a href="javascript:void(0);" disabled><i className="fa fa-navicon grid-icon"></i></a>
+        //<Link to={`/`} title="View decks"><i className={`${styles['fa fa-navicon grid-icon']}`}></i></Link>
+        <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
       );
     }
     else if(routeComponents[0] === 'view' && routeComponents.length === 2) {
       // @/view/:deckId
       addLink = (
-        <Link to={`/add/${routeComponents[1]}`} title="Add card"><i className="fa fa-plus-square-o add-icon"></i></Link>
+        <Link to={`/add/${routeComponents[1]}`} title="Add card"><i className="fa fa-plus-square-o"></i></Link>
       );
       listLink = (
-        <Link to={`/`} title="View decks"><i className="fa fa-navicon grid-icon"></i></Link>
+        <Link to={`/`} title="View decks"><i className="fa fa-navicon"></i></Link>
       );
     }
     else if(routeComponents[0] === 'add' && routeComponents.length === 2) {
       // @/add/:deckId
       addLink = (
-        <Link to={`/add/${routeComponents[1]}`} title="Add card"><i className="fa fa-plus-square-o add-icon"></i></Link>
+        <Link to={`/add/${routeComponents[1]}`} title="Add card"><i className="fa fa-plus-square-o"></i></Link>
       );
       listLink = (
-        <Link to={`/view/${routeComponents[1]}`} title="View cards"><i className="fa fa-navicon grid-icon"></i></Link>
+        <Link to={`/view/${routeComponents[1]}`} title="View cards"><i className="fa fa-navicon"></i></Link>
       );
     }
     else if(routeComponents[0] === 'view' && routeComponents.length === 3) {
       // @/view/:deckId/:cardId
       addLink = (
-        <Link to={`/add/${routeComponents[1]}`} title="Add card"><i className="fa fa-plus-square-o add-icon"></i></Link>
+        <Link to={`/add/${routeComponents[1]}`} title="Add card"><i className="fa fa-plus-square-o"></i></Link>
       );
       listLink = (
-        <Link to={`/view/${routeComponents[1]}`} title="View cards"><i className="fa fa-navicon grid-icon"></i></Link>
+        <Link to={`/view/${routeComponents[1]}`} title="View cards"><i className="fa fa-navicon"></i></Link>
       );
     }
     else {
       addLink = (
-        <a href="javascript:void(0);" disabled><i className={styles['add-icon'] + ' fa fa-plus-square-o'}></i></a>
+        <a href="javascript:void(0);" disabled><i className="fa fa-plus-square-o"></i></a>
       );
       listLink = (
-        <a href="javascript:void(0);" disabled><i className={styles['grid-icon'] + ' fa fa-navicon'}></i></a>
+        <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
       );
     }
 
