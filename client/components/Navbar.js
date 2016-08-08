@@ -45,6 +45,15 @@ const Navbar = React.createClass({
         <Link to={`/view/${routeComponents[1]}`} title="View cards"><i className="fa fa-navicon"></i></Link>
       );
     }
+    else if(routeComponents[0] === 'add' && routeComponents.length === 1) {
+      // @/add
+      addLink = (
+        <a href="javascript:void(0);" disabled><i className="fa fa-plus-square-o"></i></a>
+      );
+      listLink = (
+        <Link to={`/`} title="View decks"><i className="fa fa-navicon"></i></Link>
+      );
+    }
     else {
       addLink = (
         <a href="javascript:void(0);" disabled><i className="fa fa-plus-square-o"></i></a>

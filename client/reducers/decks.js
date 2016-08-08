@@ -3,21 +3,41 @@
 //  2. copy of the current state
 
 function decks(state = [], action) {
-  let deckIndex;
+  let deckIndex, newCard, newDeck, deck, adjCardIndex
   switch(action.type) {
     case 'ADD_CARD':
-      return state;
+      deckIndex = state.findIndex(v => v.id === action.deckId);
+      if(deckIndex === -1) return state;
+      deck = state[deckIndex];
+      newCard = {
+        title: action.title,
+        answer: action.answer
+      };
+      const cards = [...deck.cards];
+      cards.push(newCard);
+
+      newDeck = {
+        ...deck,
+        cards: cards
+      };
+
+      return [
+        ...state.splice(0, deckIndex),
+        newDeck,
+        ...state.splice(deckIndex + 1),
+      ];
     case 'EDIT_CARD':
       deckIndex = state.findIndex(v => v.id === action.deckId);
+      if(deckIndex === -1) return state;
       // console.log('editing card', state, action, card, 'deckindex', deckIndex);
       // The card index coming in isn't 0-based and also a string, so convert
-      const adjCardIndex = parseInt(action.cardIndex) - 1;
-      const deck = state[deckIndex];
-      const newCard = Object.assign({}, deck.cards[adjCardIndex]);
+      adjCardIndex = parseInt(action.cardIndex) - 1;
+      deck = state[deckIndex];
+      newCard = Object.assign({}, deck.cards[adjCardIndex]);
       newCard.title = action.title;
       newCard.answer = action.answer;
 
-      const newDeck = {
+      newDeck = {
         ...deck,
         cards: [
           ...deck.cards.splice(0, adjCardIndex),
@@ -31,8 +51,6 @@ function decks(state = [], action) {
         newDeck,
         ...state.splice(deckIndex + 1),
       ];
-
-      // return state;
     case 'REMOVE_CARD':
       return state;
     case 'ADD_DECK':

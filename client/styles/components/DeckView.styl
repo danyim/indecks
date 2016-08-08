@@ -3,9 +3,9 @@
 .deck-view
   width calc(100% - 5rem * 2)
   max-width pageWidth
-  .grid-figure
-    flex-basis calc(50% - 2rem)
-    margin 0 1rem 2rem 0rem
+  // .grid-figure
+  //   flex-basis calc(50% - 2rem)
+  //   margin 0 1rem 2rem 0rem
 .title-card
   border 1px solid lightgrey
   background-color white
@@ -14,9 +14,17 @@
   padding 2rem
   padding-top 4rem
   flex-direction row
+  flex-wrap wrap
 .title-text
   margin-top 2rem
-  flex-grow 1
+  flex 1 1 75%
+  text-overflow ellipsis
+  *
+    margin-right 2rem
+    flex 1 1 auto
 .control-buttons
   width 25%
   flex-direction column
+  flex 1 0 25%
+  button
+    flex 0 0 auto

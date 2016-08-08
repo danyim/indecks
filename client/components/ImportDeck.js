@@ -73,7 +73,7 @@ const ImportDeck = React.createClass({
 
     return (
       <section className={`${styles['deck-import']}`}>
-        <figure className={`grid-figure ${styles['grid-figure']}`}>
+        <div className={`${styles['grid-figure']}`}>
           <aside className={`${styles['figure-box']}`}>
             <div className={`${styles['symbol-container']}`}>
               <i className={`fa fa-list-alt fa-3 ${styles['symbol']}`}></i>
@@ -99,7 +99,7 @@ const ImportDeck = React.createClass({
               <button type="button" className="button" onClick={() => this.handleLoadSample()}>Load Sample Decks</button>
             </div>
           </form>
-        </figure>
+        </div>
       </section>
     );
   }

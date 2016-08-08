@@ -14,7 +14,7 @@ const DeckEdit = React.createClass({
     return (
       <section className="single">
         <CardEdit card={deck.cards[cardIndex - 1]} cardIndex={cardIndex} deckId={deck.id} {...this.props} />
-        <DeckNavigator deck={deck} cardIndex={parseInt(cardIndex)} mode={mode} />
+        {/*<DeckNavigator deck={deck} cardIndex={parseInt(cardIndex)} mode={mode} />*/}
       </section>
     )
   }

@@ -41,12 +41,10 @@ const Card = React.createClass({
       <figure className={`grid-figure ${styles['grid-figure']}`}>
         <div onClick={this.props.handleOnClick || null}>
           <h1 className={`${styles['card-title']}`} dangerouslySetInnerHTML={this.convertToMarkdown(card.title, true)} />
-          {/*<h1>{card.title}</h1>*/}
         </div>
 
         <figcaption>
           <span dangerouslySetInnerHTML={this.convertToMarkdown(card.answer)} />
-          {/*<pre>{card.answer}</pre>*/}
         </figcaption>
       </figure>
     );

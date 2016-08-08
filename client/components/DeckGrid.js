@@ -1,6 +1,5 @@
 import React from 'react';
 import Deck from './Deck';
-import AddDeck from './AddDeck';
 import styles from '../styles/components/DeckGrid';
 
 const DeckGrid = React.createClass({

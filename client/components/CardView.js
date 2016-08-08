@@ -3,7 +3,22 @@ import Card from './Card';
 import DeckNavigator from './DeckNavigator';
 import styles from '../styles/components/CardView';
 
-const CardView = React.createClass({
+class CardView extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.handleFlip = this.handleFlip.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({ flipped: false });
+  }
+
+  handleFlip(flipped = true) {
+    console.log('flippin, now it\'s', flipped);
+    this.setState({ flipped: flipped });
+  }
+
   render() {
     const { deckId, cardIndex } = this.props.params;
     // index of the deck
@@ -14,11 +29,11 @@ const CardView = React.createClass({
 
     return (
       <section className="single">
-        <Card card={deck.cards[cardIndex - 1]} />
-        <DeckNavigator deck={deck} cardIndex={parseInt(cardIndex)} mode={mode} />
+        <Card card={deck.cards[cardIndex - 1]} flipped={false} />
+        <DeckNavigator deck={deck} cardIndex={parseInt(cardIndex)} mode={mode} flipped={this.flipped} handleFlip={this.handleFlip} />
       </section>
     )
   }
-});
+}
 
 export default CardView;
