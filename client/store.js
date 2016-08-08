@@ -1,5 +1,4 @@
 import { applyMiddleware, createStore, compose } from 'redux';
-import { browserHistory } from 'react-router';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 
