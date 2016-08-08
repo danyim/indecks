@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
+import styles from '../styles/components/Navbar';
 
 const Navbar = React.createClass({
   routeParser(path) {
@@ -67,19 +68,20 @@ const Navbar = React.createClass({
       listLink = list;
     });
 
+    console.log(styles);
     return (
-      <nav className="nav-container">
-        <div className="nav-outer-container">
-          <div className="nav-inner-container">
-            <span className="nav-left">
+      <nav className={styles['nav-container']}>
+        <div className={styles['nav-outer-container']}>
+          <div className={styles['nav-inner-container']}>
+            <span className={styles['nav-left']}>
               <div className="rounded-button">
                 {addLink}
               </div>
             </span>
             <h1>
-              <Link to="/">in<span className="title-bold">decks</span></Link>
+              <Link to="/">in<span className={styles['title-bold']}>decks</span></Link>
             </h1>
-            <span className="nav-right">
+            <span className={styles['nav-right']}>
               <div className="rounded-button">
                 {listLink}
               </div>

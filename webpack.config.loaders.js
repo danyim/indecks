@@ -12,8 +12,8 @@ const loaderConfig = [
     include: path.join(__dirname, 'client'),
     // loader: 'style!css!stylus'
     // TODO: Get local scoping to work
-    // loader: 'style!css?module&localIdentName=[local]---[hash:base64:5]!postcss!stylus'
-    loader: 'style!css!postcss!stylus'
+    loader: 'style!css?module&localIdentName=[local]---[hash:base64:5]!postcss!stylus'
+    // loader: 'style!css!postcss!stylus'
   },
   {
     test: /\.(png|jpg)$/,
