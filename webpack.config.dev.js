@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var loaders = require('./webpack.config.loaders');
 var autoPrefixer = require('autoprefixer');
+var poststylus = require('poststylus');
 
 var definePlugin = new webpack.DefinePlugin({
   __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true'))
@@ -29,5 +30,10 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.styl']
   },
-  postcss: [autoPrefixer({ browsers: ['last 2 versions'] })]
+  // postcss: [autoPrefixer({ browsers: ['last 2 versions'] })],
+  stylus: {
+    use: [
+      poststylus([ autoPrefixer({ browsers: ['last 2 versions'] }) ])
+    ]
+  }
 };
