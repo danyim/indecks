@@ -7,27 +7,46 @@
 pageWidth = 1200px
 contentMargin = 2rem
 
-html, body
-  height 100%
+:global
+  html, body
+    height 100%
 
-body
-  background offwhite
+  body
+    background offwhite
 
-.wrap-row
-  flex-wrap wrap
-  flex-direction row
+  .wrap-row
+    flex-wrap wrap
+    flex-direction row
 
-.rounded-button
-  border 1px solid lightgray
-  border-radius 0.3rem
-  padding 0.3rem 0.7rem
-  a
-    color black
-  a[disabled]
-    color gray
-    cursor not-allowed
-  a.hidden
-    visibility hidden
+  .rounded-button
+    border 1px solid lightgray
+    border-radius 0.3rem
+    padding 0.3rem 0.7rem
+    a
+      color black
+    a[disabled]
+      color gray
+      cursor not-allowed
+    a.hidden
+      visibility hidden
+
+  .grid-figure
+    flex-direction row
+    flex-basis calc(33.333% - 2rem)
+    flex-grow 1
+    flex-shrink 0
+    margin 0 1rem 2rem 1rem
+    padding 2rem
+    border 1px solid lightgray
+    background white
+    position relative
+    .card-title h1
+      font-size 2.4rem
+      cursor pointer
+    // .card-count
+      // text-transform uppercase
+      // font-size 1.2rem
+      // font-weight bold
 
 main.main-container
   flex-grow 1
@@ -36,20 +55,6 @@ main.main-container
   justify-content center
   section
     margin-top contentMargin
-  .deck-grid
-    width calc(100% - 5rem * 2)
-    max-width pageWidth
-    margin inherit 5rem 2rem 5rem
-    flex-grow 1
-    flex-shrink 0
-    flex-direction row
-    justify-content center
-    flex-wrap wrap
-    .grid-figure
-      // This would be nice to have if it didn't bleed into the single cards
-      transition all 0.1s ease-out
-      &:hover
-        transform scale(1.03,1.03)
   .deck-view
     width calc(100% - 5rem * 2)
     max-width pageWidth
@@ -88,26 +93,8 @@ footer
     font-size 1.3rem
     color lighten(lightgray, 10%);
 
-.grid-figure
-  flex-direction row
-  flex-basis calc(33.333% - 2rem)
-  flex-grow 1
-  flex-shrink 0
-  margin 0 1rem 2rem 1rem
-  padding 2rem
-  border 1px solid lightgray
-  background white
-  position relative
-  .card-title h1
-    font-size 2.4rem
-    cursor pointer
-  // .card-count
-    // text-transform uppercase
-    // font-size 1.2rem
-    // font-weight bold
-
 .single-card
-  @extends .grid-figure
+  // @extends .grid-figure
   width 700px
   // Single stack
   box-shadow 7px 7px 6px 1px rgba(0,0,0,0.05)
