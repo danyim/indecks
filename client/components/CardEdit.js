@@ -19,9 +19,18 @@ const CardEdit = React.createClass({
   handleChangeAnswer(e) {
 
   },
+
+  handleDelete(cardIndex, deckId) {
+    this.props.removeCard(
+      cardIndex,
+      deckId
+    );
+    browserHistory.push(`/view/${this.deckId}`)
+  },
+
   handleSubmit(e) {
     e.preventDefault();
-    this.props.CardEdit(
+    this.props.editCard(
       this.refs.title.value,
       this.refs.answer.value,
       this.cardIndex,
@@ -39,7 +48,8 @@ const CardEdit = React.createClass({
         <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
           <input type="text" className="large-input" name="title" ref="title" placeholder="Title" defaultValue={title} />
           <textarea type="text" className="mono" name="answer" ref="answer" placeholder="Answer (Markdown)" defaultValue={answer} rows="6" />
-          <button type="submit" className="button">Save</button>
+          <button type="submit" className="button">Save Card</button>
+          <button type="button" className="button button-delete" onClick={() => this.handleDelete(this.cardIndex, this.deckId)}>Remove from Deck</button>
         </form>
       </figure>
     );

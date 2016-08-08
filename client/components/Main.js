@@ -5,7 +5,7 @@ import Navbar from './Navbar'
 const Main = React.createClass({
   render() {
     return (
-      <section>
+      <div>
         <Navbar />
         <main className="main-container">
           { React.cloneElement(this.props.children, this.props)}
@@ -13,9 +13,7 @@ const Main = React.createClass({
         <footer>
           <p>dyim_2016</p>
         </footer>
-        {/*
-        */}
-      </section>
+      </div>
     )
   }
 });

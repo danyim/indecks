@@ -166,7 +166,7 @@ const samples = [
    {
       id: "ZYXSAD",
       title: "React/Redux Study",
-      description: "Material for studying basic concepts of the React/Redux framework",
+      description: "Material for studying basic concepts of the React/Redux framework.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       url: "https://scontent.cdninstagram.com/hphotos-xap1/t51.2885-15/e35/12552326_495932673919321_1443393332_n.jpg",
       cards: [
          {

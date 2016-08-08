@@ -33,7 +33,11 @@ const DeckView = React.createClass({
     const deck = this.props.decks[i];
     const mode = 'view';
 
-    // const convertFn = this.convertToJSON.bind(this);
+    const emptyMsg = (() => {
+      if(deck.cards.length === 0 ) {
+        return <p>Click the + button on the top right to add a card</p>
+      }
+    })()
 
     return (
       <section className={`${styles['deck-view']}`}>
@@ -80,6 +84,7 @@ const DeckView = React.createClass({
               <Card card={c} key={i} handleOnClick={() => this.handleEditCard(deckId, i)} />
             )
           }
+          {emptyMsg}
         </div>
       </section>
     )

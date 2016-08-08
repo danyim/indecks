@@ -10,7 +10,7 @@ export function addCard(title, answer, deckId) {
   }
 }
 
-export function CardEdit(title, answer, cardIndex, deckId) {
+export function editCard(title, answer, cardIndex, deckId) {
   return {
     type: types.EDIT_CARD,
     title,

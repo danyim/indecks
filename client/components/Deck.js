@@ -23,24 +23,25 @@ const Deck = React.createClass({
           <p><code>{deck.id}</code></p>
           <p>URL: <a href={deck.url}>Link</a></p>
           */}
-          <p className={`${styles['card-count']}`}>{deck.cards.length} cards</p>
+          <p>{deck.cards.length} cards</p>
           <p>{deck.description}</p>
-          <div className="control-buttons">
-            <Link className="button" to={`/view/${deck.id}/1`}>
-              <span className="comment-count">
-                View
-              </span>
-            </Link>
-            <Link className="button" to={`/edit/${deck.id}/1`}>
-              <span className="comment-count">
-                Edit
-              </span>
-            </Link>
-            <a className="button button-delete" onClick={() => this.props.removeDeck(deck.id)}>
-                Delete
-            </a>
-          </div>
         </figcaption>
+
+        <div className={`control-buttons ${styles['control-buttons']}`}>
+          <Link className="button" to={`/view/${deck.id}/1`}>
+            <span className="comment-count">
+              View
+            </span>
+          </Link>
+          {/*<Link className="button" to={`/edit/${deck.id}/1`}>
+            <span className="comment-count">
+              Edit
+            </span>
+          </Link>*/}
+          <a className="button button-delete" onClick={() => this.props.removeDeck(deck.id)}>
+              Delete
+          </a>
+        </div>
       </figure>
     );
   }

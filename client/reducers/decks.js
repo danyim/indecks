@@ -52,7 +52,24 @@ function decks(state = [], action) {
         ...state.splice(deckIndex + 1),
       ];
     case 'REMOVE_CARD':
-      return state;
+      deckIndex = state.findIndex(v => v.id === action.deckId);
+      if(deckIndex === -1) return state;
+      // The card index coming in isn't 0-based and also a string, so convert
+      adjCardIndex = parseInt(action.cardIndex) - 1;
+      deck = state[deckIndex];
+      newDeck = {
+        ...deck,
+        cards: [
+          ...deck.cards.splice(0, adjCardIndex),
+          ...deck.cards.splice(adjCardIndex + 1)
+        ]
+      };
+
+      return [
+        ...state.splice(0, deckIndex),
+        newDeck,
+        ...state.splice(deckIndex + 1),
+      ];
     case 'ADD_DECK':
       const jsonDeck = Object.assign({}, action.deck);
       return [
