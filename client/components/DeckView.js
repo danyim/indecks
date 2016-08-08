@@ -35,7 +35,7 @@ const DeckView = React.createClass({
 
     const emptyMsg = (() => {
       if(deck.cards.length === 0 ) {
-        return <p>Click the + button on the top right to add a card</p>
+        return <p>Click the + button on the top left to add a card</p>
       }
     })()
 
@@ -78,7 +78,7 @@ const DeckView = React.createClass({
           </div>
         </div>
 
-        <div className="wrap-row">
+        <div className={`wrap-row ${styles['grid']}`}>
           {
             deck.cards.map((c, i) =>
               <Card card={c} key={i} handleOnClick={() => this.handleEditCard(deckId, i)} />

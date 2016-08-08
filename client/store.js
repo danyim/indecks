@@ -15,7 +15,7 @@ export default function configureStore (initialState = {}, debug = __DEV__)  {
   const createStoreWithMiddleware = applyMiddleware(...middlewares);
 
   let decksCombined;
-  decksCombined = [...decks, ...samples]; // Comment this out for release
+  // decksCombined = [...decks, ...samples]; // Comment this out for release
   initialState = {
     config,
     decks: decksCombined || []
