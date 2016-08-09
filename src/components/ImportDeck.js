@@ -6,17 +6,17 @@ import Remarkable from 'remarkable';
 import samples from '../data/samples'
 import styles from '../styles/components/ImportDeck';
 
-const ImportDeck = React.createClass({
+class ImportDeck extends React.Component {
   generateRandomString(length = 8) {
     const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let result = '';
     for (let i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
     return result;
-  },
+  }
 
   navigateToAddDeck(deckId) {
     browserHistory.push(`/add`);
-  },
+  }
 
   handleDrop(files) {
     const file = files[0];
@@ -40,7 +40,7 @@ const ImportDeck = React.createClass({
       // console.log('complete!', resultJson);
     }
     reader.readAsText(file);
-  },
+  }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -53,7 +53,7 @@ const ImportDeck = React.createClass({
     });
 
     browserHistory.push(`/view/${id}`);
-  },
+  }
 
   handleLoadSample() {
     let sampleDeck;
@@ -63,7 +63,7 @@ const ImportDeck = React.createClass({
       this.props.addDeck(sampleDeck);
     }
     browserHistory.push(`/`);
-  },
+  }
 
   render() {
     const deck = {
@@ -103,6 +103,6 @@ const ImportDeck = React.createClass({
       </section>
     );
   }
-})
+}
 
 export default ImportDeck;

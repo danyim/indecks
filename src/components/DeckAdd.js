@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import styles from '../styles/components/DeckAdd';
 
-const DeckAdd = React.createClass({
+class DeckAdd extends React.Component {
   handleSubmit(e, deckId) {
     e.preventDefault();
     this.props.addCard(
@@ -11,7 +11,8 @@ const DeckAdd = React.createClass({
       deckId
     );
     browserHistory.push(`/view/${deckId}`);
-  },
+  }
+
   render() {
     const { deckId } = this.props.params;
 
@@ -27,6 +28,6 @@ const DeckAdd = React.createClass({
       </section>
     );
   }
-})
+}
 
 export default DeckAdd;

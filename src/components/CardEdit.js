@@ -3,11 +3,14 @@ import { Link, browserHistory } from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import styles from '../styles/components/CardEdit';
 
-const CardEdit = React.createClass({
-  title: null,
-  answer: null,
-  cardIndex: null,
-  deckId: null,
+class CardEdit extends React.Component {
+  constructor(props) {
+    super(props);
+    this.title = null;
+    this.answer = null;
+    this.cardIndex = null;
+    this.deckId = null;
+  }
 
   // Not sure if this is the right path...
   // The text fields are not updating
@@ -15,15 +18,16 @@ const CardEdit = React.createClass({
     // this.setState({
     //   deck
     // })
-  },
+  }
+
   handleChangeAnswer(e) {
 
-  },
+  }
 
   checkIfDirty() {
     const card = this.props.card;
     return (this.refs.title.value !== card.title || this.refs.answer.value !== card.answer);
-  },
+  }
 
   handleCancel() {
     if(this.checkIfDirty()) {
@@ -34,7 +38,7 @@ const CardEdit = React.createClass({
     else {
       browserHistory.push(`/view/${this.deckId}/${this.cardIndex}`);
     }
-  },
+  }
 
   handleDelete(cardIndex, deckId) {
     if(confirm('Are you sure?')) {
@@ -44,7 +48,7 @@ const CardEdit = React.createClass({
       );
       browserHistory.push(`/view/${this.deckId}`);
     }
-  },
+  }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -55,7 +59,8 @@ const CardEdit = React.createClass({
       this.deckId
     );
     browserHistory.push(`/view/${this.deckId}/${this.cardIndex}`)
-  },
+  }
+
   render() {
     const { title = '', answer = '' } = this.props.card;
     this.deckId = this.props.deckId || this.params.deckId;
@@ -74,6 +79,6 @@ const CardEdit = React.createClass({
       </figure>
     );
   }
-})
+}
 
 export default CardEdit;

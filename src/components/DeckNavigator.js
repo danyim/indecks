@@ -7,29 +7,32 @@ import FrontBack from './FrontBack';
 import classNames from 'classnames';
 import styles from '../styles/components/DeckNavigator';
 
-const DeckNavigator = React.createClass({
-  mode: null,
-  maxCardIndex: null,
+class DeckNavigator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.mode = null;
+    this.maxCardIndex = null;
+  }
 
   handleNextCard() {
     if(this.props.cardIndex < this.maxCardIndex) {
       browserHistory.push(`/${this.mode}/${this.props.deck.id}/${this.props.cardIndex + 1}`);
     }
-  },
+  }
 
   handlePrevCard() {
     if(this.props.cardIndex > 1) {
       browserHistory.push(`/${this.mode}/${this.props.deck.id}/${this.props.cardIndex - 1}`);
     }
-  },
+  }
 
   handleEditCard() {
     browserHistory.push(`/edit/${this.props.deck.id}/${this.props.cardIndex}`);
-  },
+  }
 
   handleToggleShuffle() {
     this.props.toggleShuffle();
-  },
+  }
 
   handleKeyDown(e) {
     // Left arrow
@@ -43,7 +46,7 @@ const DeckNavigator = React.createClass({
     if(e.keyCode === 69) {
       this.handleEditCard();
     }
-  },
+  }
 
   handleFlip(i) {
     console.log('flippin', i);
@@ -52,7 +55,7 @@ const DeckNavigator = React.createClass({
         flippedIndex: i
       }
     });
-  },
+  }
 
   render() {
     const { cardIndex, deck, mode } = this.props;
@@ -108,13 +111,12 @@ const DeckNavigator = React.createClass({
       */}
       </div>
     )
-  },
-
-  propTypes: {
-    cardIndex: React.PropTypes.number
   }
-});
+}
 
 
+DeckNavigator.propTypes = {
+  cardIndex: React.PropTypes.number
+};
 
 export default DeckNavigator;

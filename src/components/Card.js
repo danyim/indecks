@@ -4,7 +4,7 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Remarkable from 'remarkable';
 import styles from '../styles/components/Card';
 
-const Card = React.createClass({
+class Card extends React.Component {
   // // Simplified markdown parser supporting bold, italics, and inline code
   // convertToSimplifiedMarkdown(plaintext = '') {
   //   let return = '';
@@ -24,7 +24,8 @@ const Card = React.createClass({
   //   }
   //   const rawMarkup = md.render(plaintext);
   //   return { __html: rawMarkup };
-  // },
+  // }
+
   convertToMarkdown(plaintext = '', removeParaTags = false) {
     const md = new Remarkable();
     let rawMarkup = md.render(plaintext);
@@ -33,7 +34,8 @@ const Card = React.createClass({
       rawMarkup = rawMarkup.replace('</p>', '');
     }
     return { __html: rawMarkup };
-  },
+  }
+
   render() {
     const { card } = this.props;
 
@@ -49,6 +51,6 @@ const Card = React.createClass({
       </figure>
     );
   }
-})
+}
 
 export default Card;

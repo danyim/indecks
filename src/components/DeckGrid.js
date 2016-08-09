@@ -2,7 +2,7 @@ import React from 'react';
 import Deck from './Deck';
 import styles from '../styles/components/DeckGrid';
 
-const DeckGrid = React.createClass({
+class DeckGrid extends React.Component {
   render() {
     const emptyMsg = (() => {
       if(this.props.decks.length === 0 ) {
@@ -19,6 +19,6 @@ const DeckGrid = React.createClass({
       </section>
     )
   }
-});
+}
 
 export default DeckGrid;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../styles/components/CardCount';
 
-const CardCount = React.createClass({
+class CardCount extends React.Component {
   render() {
     const { current, max } = this.props;
     return (
@@ -12,6 +12,6 @@ const CardCount = React.createClass({
       </div>
     );
   }
-});
+}
 
 export default CardCount;

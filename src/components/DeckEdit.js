@@ -2,7 +2,7 @@ import React from 'react';
 import CardEdit from './CardEdit';
 import DeckNavigator from './DeckNavigator';
 
-const DeckEdit = React.createClass({
+class DeckEdit extends React.Component {
   render() {
     const { deckId, cardIndex } = this.props.params;
     // index of the deck
@@ -18,6 +18,6 @@ const DeckEdit = React.createClass({
       </section>
     )
   }
-});
+}
 
 export default DeckEdit;

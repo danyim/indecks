@@ -3,17 +3,20 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreator';
 import Main from './Main';
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     config: state.config,
     decks: state.decks
   }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(actionCreators, dispatch);
 }
 
-const App = connect(mapStateToProps, mapDispatchToProps)(Main);
+const App = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Main);
 
 export default App;

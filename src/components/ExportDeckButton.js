@@ -1,26 +1,11 @@
 import React from 'react';
 
-const ExportDeckButton = React.createClass({
+class ExportDeckButton extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  propTypes: {
-    filename: React.PropTypes.string,
-    label: React.PropTypes.string,
-    style: React.PropTypes.object,
-    className: React.PropTypes.string,
-    // exportFile: React.PropTypes.function,
-  },
-
-  getDefaultProps() {
-    return {
-      filename: 'file.txt',
-      label: 'Save',
-      style: { margin: '5px 5px 0px 0px', textDecoration: 'underline', color: 'blue', cursor: 'pointer' },
-      exportFile: () => {}
-    }
-  },
-
-  handleDownloadClick: function(event) {
-
+  handleDownloadClick(event) {
     function magicDownload(text, fileName){
       var blob = new Blob([text], {
         type: 'text/csv;charset=utf8;'
@@ -50,9 +35,9 @@ const ExportDeckButton = React.createClass({
       magicDownload(text, this.props.filename)
     }
 
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <button style={ this.props.style }
         className={ this.props.className }
@@ -61,7 +46,22 @@ const ExportDeckButton = React.createClass({
       </button>
     );
   }
-})
+}
 
+ExportDeckButton.propTypes = {
+  filename: React.PropTypes.string,
+  label: React.PropTypes.string,
+  style: React.PropTypes.object,
+  className: React.PropTypes.string,
+  // exportFile: React.PropTypes.function,
+};
+
+
+ExportDeckButton.defaultProps = {
+  filename: 'file.txt',
+  label: 'Save',
+  style: { margin: '5px 5px 0px 0px', textDecoration: 'underline', color: 'blue', cursor: 'pointer' },
+  exportFile: () => {}
+};
 
 export default ExportDeckButton

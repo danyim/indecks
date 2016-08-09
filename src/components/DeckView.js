@@ -6,7 +6,7 @@ import ExportDeckButton from './ExportDeckButton'
 import slug from 'slug';
 import styles from '../styles/components/DeckView';
 
-const DeckView = React.createClass({
+class DeckView extends React.Component {
   // Parses all the cards of a deck object and performs a special replacement
   mdReplacer(k, v) {
     if(k === 'cards') {
@@ -17,18 +17,18 @@ const DeckView = React.createClass({
       return cards;
     }
     return v;
-  },
+  }
 
   handleEditCard(deckId, i) {
     browserHistory.push(`/edit/${deckId}/${i + 1}`);
-  },
+  }
 
   handleRemoveDeck(deckId) {
     if(confirm('Are you sure you want to delete this deck?')) {
       this.props.removeDeck(deckId);
       browserHistory.push(`/`);
     }
-  },
+  }
 
   render() {
     const { deckId } = this.props.params;
@@ -94,6 +94,6 @@ const DeckView = React.createClass({
       </section>
     )
   }
-});
+}
 
 export default DeckView;

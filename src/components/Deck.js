@@ -3,16 +3,16 @@ import { Link, browserHistory } from 'react-router';
 import styles from '../styles/components/Deck';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
-const Deck = React.createClass({
+class Deck extends React.Component {
   handleRemoveDeck(deckId) {
     if(confirm('Are you sure you want to delete this deck?')) {
       this.props.removeDeck(deckId);
     }
-  },
+  }
 
   navigateToDeck(deckId) {
     browserHistory.push(`/view/${deckId}`);
-  },
+  }
 
   render() {
     const { deck, i } = this.props;
@@ -51,6 +51,6 @@ const Deck = React.createClass({
       </figure>
     );
   }
-})
+}
 
 export default Deck;

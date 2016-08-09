@@ -6,6 +6,7 @@ class FrontBack extends React.Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     const { flipped } = this.props;
     const front = {};

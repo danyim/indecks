@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import styles from '../styles/components/Navbar';
 
-const Navbar = React.createClass({
+class Navbar extends React.Component {
   routeParser(path) {
     let addLink, listLink;
     const routeComponents = path.split('/').filter(v => v !== '');
@@ -66,7 +66,8 @@ const Navbar = React.createClass({
     return {
       addLink, listLink
     };
-  },
+  }
+
   render() {
     let addLink, listLink;
     const routeParser = this.routeParser;
@@ -99,6 +100,6 @@ const Navbar = React.createClass({
       </nav>
     )
   }
-});
+}
 
 export default Navbar;
