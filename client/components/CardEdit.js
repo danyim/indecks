@@ -20,12 +20,30 @@ const CardEdit = React.createClass({
 
   },
 
+  checkIfDirty() {
+    const card = this.props.card;
+    return (this.refs.title.value !== card.title || this.refs.answer.value !== card.answer);
+  },
+
+  handleCancel() {
+    if(this.checkIfDirty()) {
+      if(confirm('Are you sure? You have unsaved changes.')) {
+        browserHistory.push(`/view/${this.deckId}`);
+      }
+    }
+    else {
+      browserHistory.push(`/view/${this.deckId}/${this.cardIndex}`);
+    }
+  },
+
   handleDelete(cardIndex, deckId) {
-    this.props.removeCard(
-      cardIndex,
-      deckId
-    );
-    browserHistory.push(`/view/${this.deckId}`)
+    if(confirm('Are you sure?')) {
+      this.props.removeCard(
+        cardIndex,
+        deckId
+      );
+      browserHistory.push(`/view/${this.deckId}`);
+    }
   },
 
   handleSubmit(e) {
@@ -46,10 +64,12 @@ const CardEdit = React.createClass({
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`}>
         <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
-          <input type="text" className="large-input" name="title" ref="title" placeholder="Title" defaultValue={title} />
-          <textarea type="text" className="mono" name="answer" ref="answer" placeholder="Answer (Markdown)" defaultValue={answer} rows="6" />
+          <textarea className="large-input" name="title" ref="title" placeholder="Title" defaultValue={title} rows="2" />
+          <textarea className="mono" name="answer" ref="answer" placeholder="Answer (Markdown)" defaultValue={answer} rows="6" />
+          <p><a>Preview Changes</a></p>
           <button type="submit" className="button">Save Card</button>
-          <button type="button" className="button button-delete" onClick={() => this.handleDelete(this.cardIndex, this.deckId)}>Remove from Deck</button>
+          <button type="button" className="button" onClick={() => this.handleCancel()}>Cancel</button>
+          <button type="button" className="button btn-delete" onClick={() => this.handleDelete(this.cardIndex, this.deckId)}>Remove from Deck</button>
         </form>
       </figure>
     );

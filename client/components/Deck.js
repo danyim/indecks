@@ -4,6 +4,12 @@ import styles from '../styles/components/Deck';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 const Deck = React.createClass({
+  handleRemoveDeck(deckId) {
+    if(confirm('Are you sure you want to delete this deck?')) {
+      this.props.removeDeck(deckId);
+    }
+  },
+
   navigateToDeck(deckId) {
     browserHistory.push(`/view/${deckId}`);
   },
@@ -38,7 +44,7 @@ const Deck = React.createClass({
               Edit
             </span>
           </Link>*/}
-          <a className="button button-delete" onClick={() => this.props.removeDeck(deck.id)}>
+          <a className="button btn-delete" onClick={() => this.handleRemoveDeck(deck.id)}>
               Delete
           </a>
         </div>

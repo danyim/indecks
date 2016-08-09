@@ -24,7 +24,7 @@ const ImportDeck = React.createClass({
     reader.onload = e => {
       const result = e.target.result;
       const resultJson = JSON.parse(result);
-
+      resultJson.id = this.generateRandomString(); // Generate a new ID regardless
       // Absolutely no validation of the JSON here...
       // We're trusting that the user is providing a indecks-produced deck json
       this.props.addDeck(resultJson);

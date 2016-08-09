@@ -48,3 +48,10 @@ export function shuffleDeck(deckId) {
     deckId
   }
 }
+
+export function toggleShuffle() {
+  return {
+    type: types.TOGGLE_SHUFFLE
+  }
+}
+

@@ -5,6 +5,7 @@ import Main from './Main';
 
 function mapStateToProps(state) {
   return {
+    config: state.config,
     decks: state.decks
   }
 }

@@ -18,13 +18,18 @@ const DeckView = React.createClass({
     }
     return v;
   },
+
   handleEditCard(deckId, i) {
     browserHistory.push(`/edit/${deckId}/${i + 1}`);
   },
+
   handleRemoveDeck(deckId) {
-    this.props.removeDeck(deckId);
-    browserHistory.push(`/`);
+    if(confirm('Are you sure you want to delete this deck?')) {
+      this.props.removeDeck(deckId);
+      browserHistory.push(`/`);
+    }
   },
+
   render() {
     const { deckId } = this.props.params;
     // index of the deck
@@ -72,7 +77,7 @@ const DeckView = React.createClass({
                 exportFile={() =>  JSON.stringify(deck, this.mdReplacer, 2)}
               */
              exportFile={() => JSON.stringify(deck, null, 2)} />
-            <a className="button button-delete" onClick={() => this.handleRemoveDeck(deck.id)}>
+            <a className="button btn-delete" onClick={() => this.handleRemoveDeck(deck.id)}>
                 Delete Deck
             </a>
           </div>

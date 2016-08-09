@@ -66,7 +66,11 @@
     &[disabled]:hover
       border-color none
 
-  .button-delete
+  .btn-inactive
+    color lightgrey
+  .btn-active
+    color green
+  .btn-delete
     color red
     &:hover, &:focus
       border-color red
@@ -91,10 +95,12 @@
       &:hover
         opacity 1
     textarea.mono
-      font-family 'Courier'
+      font-family Consolas, "Liberation Mono", Menlo, Courier, monospace;
+      font-size 1.5rem
+      line-height 18px
       // border 1px solid lightgrey
     .large-input
-      font-size 3rem
+      font-size 2.5rem
 
   main.main-container
     flex-grow 1
