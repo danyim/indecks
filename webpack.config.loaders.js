@@ -4,12 +4,12 @@ const loaderConfig = [
   {
     test: /\.js$/,
     loaders: ['babel'],
-    include: path.join(__dirname, 'client')
+    include: path.join(__dirname, 'src')
   },
   // CSS
   {
     test: /\.styl$/,
-    // include: path.join(__dirname, 'client'),
+    // include: path.join(__dirname, 'src'),
     // loader: 'style!css!stylus' // Original
     // TODO: Get local scoping to work
     loader: 'style?sourceMap!css?module&localIdentName=[local]---[hash:base64:5]!postcss!stylus'

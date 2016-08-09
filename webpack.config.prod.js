@@ -6,7 +6,7 @@ var autoPrefixer = require('autoprefixer');
 module.exports = {
   devtool: 'source-map',
   entry: [
-    './client/indecks'
+    './src/indecks'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
