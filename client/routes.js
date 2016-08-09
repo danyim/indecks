@@ -9,6 +9,9 @@ import DeckView from './components/DeckView';
 import DeckGrid from './components/DeckGrid';
 import DeckAdd from './components/DeckAdd';
 
+// import css
+import css from './styles/style.styl';
+
 const Routes = (
   <Route path="/" component={App}>
     <IndexRoute component={DeckGrid}></IndexRoute>

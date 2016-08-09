@@ -6,9 +6,6 @@ import { Provider } from 'react-redux';
 import Routes from './routes';
 import configureStore from './store';
 
-// import css
-import css from './styles/style.styl';
-
 const store = configureStore({});
 const history = syncHistoryWithStore(browserHistory, store);
 const router = (
