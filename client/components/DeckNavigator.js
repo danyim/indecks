@@ -4,7 +4,7 @@ import KeyBinding from 'react-keybinding-component';
 import Deck from './Deck';
 import CardCount from './CardCount';
 import FrontBack from './FrontBack';
-import classNames from 'classNames';
+import classNames from 'classnames';
 import styles from '../styles/components/DeckNavigator';
 
 const DeckNavigator = React.createClass({
