@@ -53,7 +53,7 @@ function decks(state = [], action) {
       ];
     case 'REMOVE_CARD':
       deckIndex = state.findIndex(v => v.id === action.deckId);
-      if(deckIndex === -1) return state;
+
       // The card index coming in isn't 0-based and also a string, so convert
       adjCardIndex = parseInt(action.cardIndex) - 1;
       deck = state[deckIndex];
@@ -79,6 +79,7 @@ function decks(state = [], action) {
       return state;
     case 'REMOVE_DECK':
       deckIndex = state.findIndex(v => v.id === action.deckId);
+      if(deckIndex === -1) return state;
       return [
         ...state.splice(0, deckIndex),
         ...state.splice(deckIndex + 1),

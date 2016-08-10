@@ -12,6 +12,9 @@ class DeckNavigator extends React.Component {
     super(props);
     this.mode = null;
     this.maxCardIndex = null;
+
+    this.handleNextCard = this.handleNextCard.bind(this);
+    this.handlePrevCard = this.handlePrevCard.bind(this);
   }
 
   handleNextCard() {

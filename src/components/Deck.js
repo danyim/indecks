@@ -4,9 +4,9 @@ import styles from '../styles/components/Deck';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Deck extends React.Component {
-  handleRemoveDeck(deckId) {
+  handleRemoveDeck(deckId, removeFn) {
     if(confirm('Are you sure you want to delete this deck?')) {
-      this.props.removeDeck(deckId);
+      removeFn(deckId);
     }
   }
 
@@ -44,7 +44,7 @@ class Deck extends React.Component {
               Edit
             </span>
           </Link>*/}
-          <a className="button btn-delete" onClick={() => this.handleRemoveDeck(deck.id)}>
+          <a className="button btn-delete" onClick={() => this.handleRemoveDeck(deck.id, this.props.removeDeck)}>
               Delete
           </a>
         </div>

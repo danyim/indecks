@@ -7,6 +7,10 @@ import slug from 'slug';
 import styles from '../styles/components/DeckView';
 
 class DeckView extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   // Parses all the cards of a deck object and performs a special replacement
   mdReplacer(k, v) {
     if(k === 'cards') {
@@ -23,9 +27,9 @@ class DeckView extends React.Component {
     browserHistory.push(`/edit/${deckId}/${i + 1}`);
   }
 
-  handleRemoveDeck(deckId) {
+  handleRemoveDeck(deckId, removeFn) {
     if(confirm('Are you sure you want to delete this deck?')) {
-      this.props.removeDeck(deckId);
+      removeFn(deckId);
       browserHistory.push(`/`);
     }
   }
@@ -53,20 +57,15 @@ class DeckView extends React.Component {
           </div>
           <div className={`${styles['control-buttons']}`}>
             <Link className="button" to={`/view/${deck.id}/1`}>
-              <span className={`${styles['comment-count']}`}>
+              <span>
                 Play Deck
               </span>
             </Link>
             <Link className="button" to={`/view/${deck.id}/1`}>
-              <span className={`${styles['comment-count']}`}>
+              <span>
                 Edit Details
               </span>
             </Link>
-            {/*<Link className="button" to={`/edit/${deck.id}/1`}>
-              <span className={`${styles['comment-count']}`}>
-                Edit
-              </span>
-            </Link>*/}
             <ExportDeckButton
               filename={`${slug(deck.title)}.json`}
               label="Export Deck (JSON)"
@@ -77,7 +76,7 @@ class DeckView extends React.Component {
                 exportFile={() =>  JSON.stringify(deck, this.mdReplacer, 2)}
               */
              exportFile={() => JSON.stringify(deck, null, 2)} />
-            <a className="button btn-delete" onClick={() => this.handleRemoveDeck(deck.id)}>
+            <a className="button btn-delete" onClick={() => this.handleRemoveDeck(deck.id, this.props.removeDeck)}>
                 Delete Deck
             </a>
           </div>
