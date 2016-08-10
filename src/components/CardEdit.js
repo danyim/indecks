@@ -10,6 +10,10 @@ class CardEdit extends React.Component {
     this.answer = null;
     this.cardIndex = null;
     this.deckId = null;
+
+    this.checkIfDirty = this.checkIfDirty.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   // Not sure if this is the right path...

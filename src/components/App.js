@@ -1,7 +1,24 @@
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
-import Main from './Main';
+import Navbar from './Navbar'
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <main className="main-container">
+          { React.cloneElement(this.props.children, this.props)}
+        </main>
+        <footer>
+          <p>dyim_2016</p>
+        </footer>
+      </div>
+    )
+  }
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -14,9 +31,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(actionCreators, dispatch);
 }
 
-const App = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Main);
-
-export default App;
+)(App);

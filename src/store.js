@@ -1,15 +1,14 @@
 import { applyMiddleware, createStore, compose } from 'redux';
+import rootReducer from './reducers/index';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
+const logger = createLogger();
+const middlewares = [thunk];
 
-// import the root reducer
-import rootReducer from './reducers/index';
+// Load starter data
 import config from './data/config';
 import decks from './data/decks';
 import samples from './data/samples';
-
-const logger = createLogger();
-const middlewares = [thunk];
 
 export default function configureStore (initialState = {}, debug = __DEV__)  {
   const createStoreWithMiddleware = applyMiddleware(...middlewares);

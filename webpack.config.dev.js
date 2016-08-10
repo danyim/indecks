@@ -12,7 +12,7 @@ module.exports = {
   devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client',
-    './src/indecks'
+    './src/index'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
