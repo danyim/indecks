@@ -11,6 +11,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 class Root extends React.Component {
   componentDidMount() {
+    // Call an action here if we need to fetch something as the app loads
     // store.dispatch(getPodcasts());
   }
 
