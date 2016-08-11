@@ -1,8 +1,8 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as configActionCreators from '../action-creators/config';
-import * as deckActionCreators from '../action-creators/decks';
+import * as cardActions from '../action-creators/card';
+import * as deckActions from '../action-creators/deck';
 import Navbar from './Navbar'
 
 class App extends React.Component {
@@ -11,7 +11,8 @@ class App extends React.Component {
       <div>
         <Navbar />
         <main className="main-container">
-          { React.cloneElement(this.props.children, this.props)}
+          {/* React.cloneElement(this.props.children, this.props) */}
+          {this.props.children}
         </main>
         <footer>
           <p>dyim_2016</p>
@@ -29,10 +30,11 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(Object.assign({}, configActionCreators, deckDctionCreators), dispatch);
+  return bindActionCreators(Object.assign({}, cardActions, deckActions), dispatch);
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(App);
+export default App;

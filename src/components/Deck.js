@@ -1,12 +1,17 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import styles from '../styles/components/Deck';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Deck extends React.Component {
-  handleRemoveDeck(deckId, removeFn) {
+  constructor (props) {
+    super(props)
+
+    this.handleRemoveDeck = this.handleRemoveDeck.bind(this);
+  }
+
+  handleRemoveDeck(deckId) {
     if(confirm('Are you sure you want to delete this deck?')) {
-      removeFn(deckId);
+      this.props.removeDeck(deckId);
     }
   }
 
@@ -16,7 +21,6 @@ class Deck extends React.Component {
 
   render() {
     const { deck, i } = this.props;
-    const post = {};
 
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`}>
@@ -39,12 +43,7 @@ class Deck extends React.Component {
               View
             </span>
           </Link>
-          {/*<Link className="button" to={`/edit/${deck.id}/1`}>
-            <span className="comment-count">
-              Edit
-            </span>
-          </Link>*/}
-          <a className="button btn-delete" onClick={() => this.handleRemoveDeck(deck.id, this.props.removeDeck)}>
+          <a className="button btn-delete" onClick={() => this.handleRemoveDeck(deck.id)}>
               Delete
           </a>
         </div>
@@ -52,5 +51,9 @@ class Deck extends React.Component {
     );
   }
 }
+
+Deck.propTypes = {
+};
+Deck.defaultProps = {};
 
 export default Deck;

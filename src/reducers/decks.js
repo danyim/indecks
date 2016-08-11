@@ -1,94 +1,101 @@
-// a reducer takes in two things:
-//  1. the action (info about what happened)
-//  2. copy of the current state
+import { ADD_CARD, EDIT_CARD, REMOVE_CARD, ADD_DECK, REMOVE_DECK, SHUFFLE_DECK } from '../actions';
+import { createReducer } from '../utils';
 
-function decks(state = [], action) {
-  let deckIndex, newCard, newDeck, deck, adjCardIndex
-  switch(action.type) {
-    case 'ADD_CARD':
-      deckIndex = state.findIndex(v => v.id === action.deckId);
-      if(deckIndex === -1) return state;
-      deck = state[deckIndex];
-      newCard = {
-        title: action.title,
-        answer: action.answer
-      };
-      const cards = [...deck.cards];
-      cards.push(newCard);
+const addCard = (state, {deckId, title, answer}) => {
+  const deckIndex = state.findIndex(v => v.id === deckId);
+  if(deckIndex === -1) return state;
+  deck = state[deckIndex];
+  newCard = {
+    title: title,
+    answer: answer
+  };
+  const cards = [...deck.cards];
+  cards.push(newCard);
 
-      newDeck = {
-        ...deck,
-        cards: cards
-      };
+  newDeck = {
+    ...deck,
+    cards: cards
+  };
 
-      return [
-        ...state.splice(0, deckIndex),
-        newDeck,
-        ...state.splice(deckIndex + 1),
-      ];
-    case 'EDIT_CARD':
-      deckIndex = state.findIndex(v => v.id === action.deckId);
-      if(deckIndex === -1) return state;
-      // console.log('editing card', state, action, card, 'deckindex', deckIndex);
-      // The card index coming in isn't 0-based and also a string, so convert
-      adjCardIndex = parseInt(action.cardIndex) - 1;
-      deck = state[deckIndex];
-      newCard = Object.assign({}, deck.cards[adjCardIndex]);
-      newCard.title = action.title;
-      newCard.answer = action.answer;
+  return [
+    ...state.slice(0, deckIndex),
+    newDeck,
+    ...state.slice(deckIndex + 1),
+  ];
+};
 
-      newDeck = {
-        ...deck,
-        cards: [
-          ...deck.cards.splice(0, adjCardIndex),
-          newCard,
-          ...deck.cards.splice(adjCardIndex + 1)
-        ]
-      };
+const editCard = (state, {deckId, cardIndex, title, answer}) => {
+  const deckIndex = state.findIndex(v => v.id === deckId);
+  if(deckIndex === -1) return state;
+  // The card index coming in isn't 0-based and also a string, so convert
+  const adjCardIndex = parseInt(cardIndex) - 1;
+  const deck = state[deckIndex];
+  const newCard = Object.assign({}, deck.cards[adjCardIndex]);
+  newCard.title = title;
+  newCard.answer = answer;
 
-      return [
-        ...state.splice(0, deckIndex),
-        newDeck,
-        ...state.splice(deckIndex + 1),
-      ];
-    case 'REMOVE_CARD':
-      deckIndex = state.findIndex(v => v.id === action.deckId);
+  newDeck = {
+    ...deck,
+    cards: [
+      ...deck.cards.slice(0, adjCardIndex),
+      newCard,
+      ...deck.cards.slice(adjCardIndex + 1)
+    ]
+  };
 
-      // The card index coming in isn't 0-based and also a string, so convert
-      adjCardIndex = parseInt(action.cardIndex) - 1;
-      deck = state[deckIndex];
-      newDeck = {
-        ...deck,
-        cards: [
-          ...deck.cards.splice(0, adjCardIndex),
-          ...deck.cards.splice(adjCardIndex + 1)
-        ]
-      };
+  return [
+    ...state.slice(0, deckIndex),
+    newDeck,
+    ...state.slice(deckIndex + 1),
+  ];
+};
 
-      return [
-        ...state.splice(0, deckIndex),
-        newDeck,
-        ...state.splice(deckIndex + 1),
-      ];
-    case 'ADD_DECK':
-      const jsonDeck = Object.assign({}, action.deck);
-      return [
-        ...state,
-        jsonDeck
-      ];
-      return state;
-    case 'REMOVE_DECK':
-      deckIndex = state.findIndex(v => v.id === action.deckId);
-      if(deckIndex === -1) return state;
-      return [
-        ...state.splice(0, deckIndex),
-        ...state.splice(deckIndex + 1),
-      ];
-    case 'SHUFFLE_DECK':
-      return state;
-    default:
-      return state;
-  }
-}
+const removeCard = (state, {deckId, cardIndex}) => {
+  const deckIndex = state.findIndex(v => v.id === deckId);
 
-export default decks;
+  // The card index coming in isn't 0-based and also a string, so convert
+  const adjCardIndex = parseInt(cardIndex) - 1;
+  const deck = state[deckIndex];
+  const newDeck = {
+    ...deck,
+    cards: [
+      ...deck.cards.slice(0, adjCardIndex),
+      ...deck.cards.slice(adjCardIndex + 1)
+    ]
+  };
+
+  return [
+    ...state.slice(0, deckIndex),
+    newDeck,
+    ...state.slice(deckIndex + 1),
+  ];
+};
+
+const addDeck = (state, {deck}) => {
+  return [
+    ...state,
+    Object.assign({}, deck)
+  ];
+};
+
+const removeDeck = (state, {deckId}) => {
+  const deckIndex = state.findIndex(v => v.id === deckId);
+  if(deckIndex === -1) return state;
+  return [
+    ...state.slice(0, deckIndex),
+    ...state.slice(deckIndex + 1),
+  ];
+};
+
+const shuffleDeck = (state) => state;
+
+const handlers = {
+  [ADD_CARD]: addCard,
+  [EDIT_CARD]: editCard,
+  [REMOVE_CARD]: removeCard,
+  [ADD_DECK]: addDeck,
+  [REMOVE_DECK]: removeDeck,
+  [SHUFFLE_DECK]: shuffleDeck
+};
+
+export default createReducer({}, handlers);

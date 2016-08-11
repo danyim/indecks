@@ -53,4 +53,7 @@ class Card extends React.Component {
   }
 }
 
+Card.defaultProps = {};
+Card.propTypes = {};
+
 export default Card;

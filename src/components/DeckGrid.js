@@ -4,11 +4,10 @@ import styles from '../styles/components/DeckGrid';
 
 class DeckGrid extends React.Component {
   render() {
-    const emptyMsg = (() => {
-      if(this.props.decks.length === 0 ) {
-        return <p>Click the + button on the top left to add a deck</p>
-      }
-    })()
+    const emptyMsg =
+      this.props.decks.length === 0 ?
+        <p>Click the + button on the top left to add a deck</p>
+        : '';
 
     return (
       <section className={`${styles['deck-grid']} wrap-row`}>
@@ -20,5 +19,8 @@ class DeckGrid extends React.Component {
     )
   }
 }
+
+DeckGrid.propTypes = {};
+DeckGrid.defaultProps = {};
 
 export default DeckGrid;
