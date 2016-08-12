@@ -18,19 +18,33 @@ class DeckNavigator extends React.Component {
     this.handlePrevCard = this.handlePrevCard.bind(this);
     this.handleReturnToDeck = this.handleReturnToDeck.bind(this);
     this.handleShuffleToggle = this.handleShuffleToggle.bind(this);
+    this.randomCardIndex = this.randomCardIndex.bind(this);
+  }
+
+  randomCardIndex() {
+    return Math.floor((Math.random() * this.maxCardIndex) + 1);
   }
 
   handleNextCard() {
-    if(this.props.cardIndex < this.maxCardIndex) {
+    if(this.props.cardIndex < this.maxCardIndex || this.props.config.shuffle === true) {
       this.props.handleFlip(false);
-      browserHistory.push(`/${this.mode}/${this.props.deck.id}/${this.props.cardIndex + 1}`);
+      let nextIndex = this.props.cardIndex + 1; // Going forwards
+      if(this.props.config.shuffle === true) {
+        nextIndex = this.randomCardIndex();
+      }
+
+      browserHistory.push(`/${this.mode}/${this.props.deck.id}/${nextIndex}`);
     }
   }
 
   handlePrevCard() {
-    if(this.props.cardIndex > 1) {
+    if(this.props.cardIndex > 1 || this.props.config.shuffle === true) {
       this.props.handleFlip(false);
-      browserHistory.push(`/${this.mode}/${this.props.deck.id}/${this.props.cardIndex - 1}`);
+      let nextIndex = this.props.cardIndex - 1; // Going backwards
+      if(this.props.config.shuffle === true) {
+        nextIndex = this.randomCardIndex();
+      }
+      browserHistory.push(`/${this.mode}/${this.props.deck.id}/${nextIndex}`);
     }
   }
 
@@ -102,11 +116,11 @@ class DeckNavigator extends React.Component {
           <FrontBack flipped={flipped} handleFlip={this.handleFlip} />
         </div>
         <div className={`${styles['deck-nav-controls']}`}>
-          <button className="button" ref={this.inputLoaded} onClick={this.handlePrevCard} disabled={this.props.cardIndex > 1 ? false : true}>
+          <button className="button" title="Previous Card" onClick={this.handlePrevCard} disabled={this.props.cardIndex > 1 || this.props.config.shuffle === true ? false : true}>
             <i className="fa fa-backward"></i>
           </button>
-          <button className={`button ${shuffle}`} onClick={this.handleShuffleToggle}><i className="fa fa-random"></i></button>
-          <button className="button" onClick={this.handleNextCard} disabled={this.props.cardIndex < this.maxCardIndex ? false : true}>
+          <button className={`button ${shuffle}`} title="Shuffle" onClick={this.handleShuffleToggle}><i className="fa fa-random"></i></button>
+          <button className="button" title="Next Card" onClick={this.handleNextCard} disabled={this.props.cardIndex < this.maxCardIndex || this.props.config.shuffle === true ? false : true}>
             <i className="fa fa-forward"></i>
           </button>
         </div>
