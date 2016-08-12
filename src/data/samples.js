@@ -89,7 +89,7 @@ const samples = [
             answer: "True, **WeakMaps** do not have a length"
          },
          {
-            title: "(T/F) Sets can have dupilcate values",
+            title: "(T/F) Sets can have duplicate values",
             answer: "False"
          },
          {
@@ -101,7 +101,7 @@ const samples = [
             answer: "True, **WeakMaps** do not have a length"
          },
          {
-            title: "(T/F) Sets can have dupilcate values",
+            title: "(T/F) Sets can have duplicate values",
             answer: "False"
          },
          {
@@ -113,7 +113,7 @@ const samples = [
             answer: "True, **WeakMaps** do not have a length"
          },
          {
-            title: "(T/F) Sets can have dupilcate values",
+            title: "(T/F) Sets can have duplicate values",
             answer: "False"
          },
          {
@@ -125,7 +125,7 @@ const samples = [
             answer: "True, **WeakMaps** do not have a length"
          },
          {
-            title: "(T/F) Sets can have dupilcate values",
+            title: "(T/F) Sets can have duplicate values",
             answer: "False"
          },
          {
@@ -137,7 +137,7 @@ const samples = [
             answer: "True, **WeakMaps** do not have a length"
          },
          {
-            title: "(T/F) Sets can have dupilcate values",
+            title: "(T/F) Sets can have duplicate values",
             answer: "False"
          },
          {
@@ -149,7 +149,7 @@ const samples = [
             answer: "True, **WeakMaps** do not have a length"
          },
          {
-            title: "(T/F) Sets can have dupilcate values",
+            title: "(T/F) Sets can have duplicate values",
             answer: "False"
          },
          {
@@ -161,7 +161,7 @@ const samples = [
             answer: "True, **WeakMaps** do not have a length"
          },
          {
-            title: "(T/F) Sets can have dupilcate values",
+            title: "(T/F) Sets can have duplicate values",
             answer: "False"
          },
          {
@@ -173,7 +173,7 @@ const samples = [
             answer: "True, **WeakMaps** do not have a length"
          },
          {
-            title: "(T/F) Sets can have dupilcate values",
+            title: "(T/F) Sets can have duplicate values",
             answer: "False"
          },
          {
@@ -185,7 +185,7 @@ const samples = [
             answer: "True, **WeakMaps** do not have a length"
          },
          {
-            title: "(T/F) Sets can have dupilcate values",
+            title: "(T/F) Sets can have duplicate values",
             answer: "False"
          },
          {
@@ -197,7 +197,7 @@ const samples = [
             answer: "True, **WeakMaps** do not have a length"
          },
          {
-            title: "(T/F) Sets can have dupilcate values",
+            title: "(T/F) Sets can have duplicate values",
             answer: "False"
          },
          {
@@ -209,7 +209,7 @@ const samples = [
             answer: "True, **WeakMaps** do not have a length"
          },
          {
-            title: "(T/F) Sets can have dupilcate values",
+            title: "(T/F) Sets can have duplicate values",
             answer: "False"
          },
          {
@@ -221,7 +221,7 @@ const samples = [
             answer: "True, **WeakMaps** do not have a length"
          },
          {
-            title: "(T/F) Sets can have dupilcate values",
+            title: "(T/F) Sets can have duplicate values",
             answer: "False"
          },
          {
@@ -233,7 +233,7 @@ const samples = [
             answer: "True, **WeakMaps** do not have a length"
          },
          {
-            title: "(T/F) Sets can have dupilcate values",
+            title: "(T/F) Sets can have duplicate values",
             answer: "False"
          }
       ]
