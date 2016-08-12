@@ -13,6 +13,7 @@ class DeckNavigator extends React.Component {
     this.mode = null;
     this.maxCardIndex = null;
 
+    this.handleAddCard = this.handleAddCard.bind(this);
     this.handleFlip = this.handleFlip.bind(this);
     this.handleNextCard = this.handleNextCard.bind(this);
     this.handlePrevCard = this.handlePrevCard.bind(this);
@@ -52,6 +53,10 @@ class DeckNavigator extends React.Component {
     this.props.handleFlip(flipped);
   }
 
+  handleAddCard() {
+    browserHistory.push(`/add/${this.props.deck.id}`);
+  }
+
   handleEditCard() {
     browserHistory.push(`/edit/${this.props.deck.id}/${this.props.cardIndex}`);
   }
@@ -80,9 +85,14 @@ class DeckNavigator extends React.Component {
     else if(e.keyCode === 83) { // s
       this.handleShuffleToggle();
     }
+    else if(e.keyCode === 65) { // a
+      this.handleAddCard();
+    }
     else if(e.keyCode === 32) { // space
       this.handleFlip();
     }
+
+    e.stopPropagation();
   }
 
   render() {

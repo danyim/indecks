@@ -18,20 +18,23 @@ class DeckAdd extends React.Component {
       card.answer,
       deckId
     );
-    browserHistory.push(`/view/${deckId}`);
+    // View the card immediately after saving
+    browserHistory.push(`/view/${deckId}/${this.props.deck.cards.length + 1}`);
   }
 
   render() {
     return (
       <section className="single">
-        <CardAdd deckId={this.props.deckId} handleSubmit={this.handleSubmit} />
+        <CardAdd {...this.props} handleSubmit={this.handleSubmit} />
       </section>
     );
   }
 }
 
-const mapStateToProps = ({}, ownProps) => {
+const mapStateToProps = ({decks}, ownProps) => {
+  const deckIndex = decks.findIndex(d => d.id === ownProps.params.deckId);
   return {
+    deck: decks[deckIndex],
     deckId: ownProps.params.deckId
   };
 };
