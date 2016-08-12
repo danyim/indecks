@@ -54,6 +54,15 @@ class Navbar extends React.Component {
         <Link to={`/`} title="View decks"><i className="fa fa-navicon"></i></Link>
       );
     }
+    else if(routeComponents[0] === 'edit' && routeComponents.length === 3) {
+      // @/edit/:deckId/:cardIndex
+      addLink = (
+        <a href="javascript:void(0);" disabled><i className="fa fa-plus-square-o"></i></a>
+      );
+      listLink = (
+        <Link to={`/view/${routeComponents[1]}`} title="View cards"><i className="fa fa-navicon"></i></Link>
+      );
+    }
     else {
       addLink = (
         <a href="javascript:void(0);" disabled><i className="fa fa-plus-square-o"></i></a>
