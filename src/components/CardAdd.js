@@ -35,8 +35,8 @@ class CardAdd extends React.Component {
 
 CardAdd.defaultProps = {};
 CardAdd.propTypes = {
-  addCard: React.PropTypes.func.isRequired,
-  deckId: React.PropTypes.string.isRequired
+  deckId: React.PropTypes.string.isRequired,
+  handleSubmit: React.PropTypes.func.isRequired
 };
 
 export default CardAdd;
