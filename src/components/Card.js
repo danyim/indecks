@@ -1,21 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import Remarkable from 'remarkable';
 import Markdown from './Markdown';
 import styles from '../styles/components/Card';
 
 class Card extends React.Component {
-  convertToMarkdown(plaintext = '', removeParaTags = false) {
-    const md = new Remarkable();
-    let rawMarkup = md.render(plaintext);
-    if(removeParaTags === true) {
-      rawMarkup = rawMarkup.replace('<p>', '');
-      rawMarkup = rawMarkup.replace('</p>', '');
-    }
-    return { __html: rawMarkup };
-  }
-
   render() {
     const { card, flipped } = this.props;
 
@@ -32,7 +21,7 @@ class Card extends React.Component {
           else {
             return (
               <figcaption>
-                <span dangerouslySetInnerHTML={this.convertToMarkdown(card.answer)} />
+                <Markdown text={card.answer} />
               </figcaption>
             );
           }
