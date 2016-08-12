@@ -2,30 +2,10 @@ import React from 'react';
 import { Link } from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Remarkable from 'remarkable';
+import Markdown from './Markdown';
 import styles from '../styles/components/Card';
 
 class Card extends React.Component {
-  // // Simplified markdown parser supporting bold, italics, and inline code
-  // convertToSimplifiedMarkdown(plaintext = '') {
-  //   let return = '';
-  //   const opStack = [];
-  //   for(let i = 0; i < plaintext.length; i++) {
-  //     const ch = plaintext[i];
-  //     // Check if we encountered a symbol
-  //     if(ch === '`' || ch === '*' || ch === `_`) {
-  //       if(opStack.find(ch) === null) {
-  //         opStack.push[i];
-  //       }
-  //       else {
-
-  //       }
-  //     }
-  //     return +=
-  //   }
-  //   const rawMarkup = md.render(plaintext);
-  //   return { __html: rawMarkup };
-  // }
-
   convertToMarkdown(plaintext = '', removeParaTags = false) {
     const md = new Remarkable();
     let rawMarkup = md.render(plaintext);
@@ -45,7 +25,7 @@ class Card extends React.Component {
           if(flipped === false) {
             return (
               <div onClick={this.props.handleOnClick || null}>
-                <h1 className={`${styles['card-title']}`} dangerouslySetInnerHTML={this.convertToMarkdown(card.title, true)} />
+                <Markdown className={`${styles['card-title']}`} text={card.title} removeParaTags={true} />
               </div>
             );
           }

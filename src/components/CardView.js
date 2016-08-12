@@ -8,6 +8,7 @@ class CardView extends React.Component {
     super(props);
     this.state = { flipped: false };
     this.handleFlip = this.handleFlip.bind(this);
+    this.handleShuffleToggle = this.handleShuffleToggle.bind(this);
   }
 
   handleFlip(flipped) {
@@ -19,6 +20,10 @@ class CardView extends React.Component {
     }
   }
 
+  handleShuffleToggle() {
+    this.props.toggleShuffle();
+  }
+
   render() {
     const { card, deck, config, cardIndex } = this.props;
     const mode = 'view';
@@ -26,7 +31,12 @@ class CardView extends React.Component {
     return (
       <section className="single">
         <Card card={card} flipped={this.state.flipped} />
-        <DeckNavigator deck={deck} cardIndex={cardIndex} mode={mode} flipped={this.state.flipped} handleFlip={this.handleFlip} />
+        <DeckNavigator deck={deck} cardIndex={cardIndex}
+          mode={mode}
+          flipped={this.state.flipped}
+          config={config}
+          handleFlip={this.handleFlip}
+          handleShuffleToggle={this.handleShuffleToggle} />
       </section>
     )
   }

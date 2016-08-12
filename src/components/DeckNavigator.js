@@ -16,6 +16,8 @@ class DeckNavigator extends React.Component {
     this.handleFlip = this.handleFlip.bind(this);
     this.handleNextCard = this.handleNextCard.bind(this);
     this.handlePrevCard = this.handlePrevCard.bind(this);
+    this.handleReturnToDeck = this.handleReturnToDeck.bind(this);
+    this.handleShuffleToggle = this.handleShuffleToggle.bind(this);
   }
 
   handleNextCard() {
@@ -40,8 +42,12 @@ class DeckNavigator extends React.Component {
     browserHistory.push(`/edit/${this.props.deck.id}/${this.props.cardIndex}`);
   }
 
-  handleToggleShuffle() {
-    this.props.toggleShuffle();
+  handleReturnToDeck() {
+    browserHistory.push(`/view/${this.props.deck.id}`);
+  }
+
+  handleShuffleToggle() {
+    this.props.handleShuffleToggle();
   }
 
   handleKeyDown(e) {
@@ -53,6 +59,12 @@ class DeckNavigator extends React.Component {
     }
     else if(e.keyCode === 69) { // e
       this.handleEditCard();
+    }
+    else if(e.keyCode === 68) { // d
+      this.handleReturnToDeck();
+    }
+    else if(e.keyCode === 83) { // s
+      this.handleShuffleToggle();
     }
     else if(e.keyCode === 32) { // space
       this.handleFlip();
@@ -78,12 +90,10 @@ class DeckNavigator extends React.Component {
       actionOnCard = <Link to={`/edit/${deck.id}/${cardIndex}`}>Edit card</Link>;
     }
 
-    // const shuffle = classNames({
-    //   'btn-active': (this.props.config.shuffle === true),
-    //   'btn-inactive': (this.props.config.shuffle !== true)
-    // });
-    // debugger;
-    let shuffle = '';
+    const shuffle = classNames({
+      'btn-active': (this.props.config.shuffle === true),
+      'btn-inactive': (this.props.config.shuffle !== true)
+    });
 
     return (
       <div className={`${styles['deck-navigator']}`}>
@@ -95,7 +105,7 @@ class DeckNavigator extends React.Component {
           <button className="button" ref={this.inputLoaded} onClick={this.handlePrevCard} disabled={this.props.cardIndex > 1 ? false : true}>
             <i className="fa fa-backward"></i>
           </button>
-          <button className={`button ${shuffle}`}><i className="fa fa-random"></i></button>
+          <button className={`button ${shuffle}`} onClick={this.handleShuffleToggle}><i className="fa fa-random"></i></button>
           <button className="button" onClick={this.handleNextCard} disabled={this.props.cardIndex < this.maxCardIndex ? false : true}>
             <i className="fa fa-forward"></i>
           </button>
@@ -109,10 +119,12 @@ class DeckNavigator extends React.Component {
 }
 
 DeckNavigator.propTypes = {
-  deck: React.PropTypes.object,
-  cardIndex: React.PropTypes.number,
-  handleFlip: React.PropTypes.func,
-  flipped: React.PropTypes.bool
+  deck: React.PropTypes.object.isRequired,
+  cardIndex: React.PropTypes.number.isRequired,
+  handleFlip: React.PropTypes.func.isRequired,
+  flipped: React.PropTypes.bool.isRequired,
+  config: React.PropTypes.object.isRequired,
+  handleShuffleToggle: React.PropTypes.func.isRequired
 };
 
 export default DeckNavigator;
