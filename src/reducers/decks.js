@@ -4,17 +4,15 @@ import { createReducer } from '../utils';
 const addCard = (state, {deckId, title, answer}) => {
   const deckIndex = state.findIndex(v => v.id === deckId);
   if(deckIndex === -1) return state;
-  deck = state[deckIndex];
-  newCard = {
+  const deck = state[deckIndex];
+  const newCard = {
     title: title,
     answer: answer
   };
-  const cards = [...deck.cards];
-  cards.push(newCard);
 
-  newDeck = {
+  const newDeck = {
     ...deck,
-    cards: cards
+    cards: [...deck.cards, newCard]
   };
 
   return [
@@ -34,7 +32,7 @@ const editCard = (state, {deckId, cardIndex, title, answer}) => {
   newCard.title = title;
   newCard.answer = answer;
 
-  newDeck = {
+  const newDeck = {
     ...deck,
     cards: [
       ...deck.cards.slice(0, adjCardIndex),

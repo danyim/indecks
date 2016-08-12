@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as deckActions from '../action-creators/deck';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Dropzone from 'react-dropzone';
 import Remarkable from 'remarkable';
@@ -7,8 +10,15 @@ import samples from '../data/samples'
 import styles from '../styles/components/ImportDeck';
 
 class ImportDeck extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleDrop = this.handleDrop.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLoadSample = this.handleLoadSample.bind(this);
+  }
+
   generateRandomString(length = 8) {
-    const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const chars = '0123456789abcdefABCDEFGHIJKLMNPQRSTUVWXYZ';
     let result = '';
     for (let i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
     return result;
@@ -66,11 +76,6 @@ class ImportDeck extends React.Component {
   }
 
   render() {
-    const deck = {
-      title: '1',
-      description: '2'
-    };
-
     return (
       <section className={`${styles['deck-import']}`}>
         <div className={`${styles['grid-figure']}`}>
@@ -105,4 +110,16 @@ class ImportDeck extends React.Component {
   }
 }
 
-export default ImportDeck;
+ImportDeck.defaultProps = {};
+ImportDeck.propTypes = {
+  addDeck: React.PropTypes.func.isRequired
+};
+
+const mapStateToProps = () => { return {} };
+const mapDispatchToProps = (dispatch) => bindActionCreators(deckActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ImportDeck);
+

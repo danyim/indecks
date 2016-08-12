@@ -16,21 +16,9 @@ class CardEdit extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // Not sure if this is the right path...
-  // The text fields are not updating
-  handleChangeTitle(e) {
-    // this.setState({
-    //   deck
-    // })
-  }
-
-  handleChangeAnswer(e) {
-
-  }
-
   checkIfDirty() {
-    const card = this.props.card;
-    return (this.refs.title.value !== card.title || this.refs.answer.value !== card.answer);
+    const { title, answer } = this.props.card;
+    return (this.refs.title.value !== title || this.refs.answer.value !== answer);
   }
 
   handleCancel() {
@@ -66,9 +54,10 @@ class CardEdit extends React.Component {
   }
 
   render() {
-    const { title = '', answer = '' } = this.props.card;
-    this.deckId = this.props.deckId || this.params.deckId;
-    this.cardIndex = this.props.cardIndex;
+    const { card, deckId, cardIndex } = this.props
+    const { title = '', answer = '' } = card;
+    this.deckId = deckId;
+    this.cardIndex = cardIndex;
 
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`}>
@@ -85,4 +74,13 @@ class CardEdit extends React.Component {
   }
 }
 
-export default CardEdit;
+CardEdit.defaultProps = {};
+CardEdit.propTypes = {
+  card: React.PropTypes.object.isRequired,
+  cardIndex: React.PropTypes.number.isRequired,
+  deckId: React.PropTypes.string.isRequired,
+  editCard: React.PropTypes.func.isRequired,
+  removeCard: React.PropTypes.func.isRequired
+};
+
+export default CardEdit

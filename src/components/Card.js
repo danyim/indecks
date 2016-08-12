@@ -66,7 +66,7 @@ Card.defaultProps = {
   flipped: false
 };
 Card.propTypes = {
-  card: React.PropTypes.object,
+  card: React.PropTypes.object.isRequired,
   flipped: React.PropTypes.bool
 };
 

@@ -1,33 +1,43 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as deckActions from '../action-creators/deck';
 import { Link, browserHistory } from 'react-router';
-import styles from '../styles/components/DeckAdd';
+import CardAdd from './CardAdd';
 
 class DeckAdd extends React.Component {
-  handleSubmit(e, deckId) {
-    e.preventDefault();
+  constructor(props) {
+    super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(deckId, card) {
     this.props.addCard(
-      this.refs.title.value,
-      this.refs.answer.value,
+      card.title,
+      card.answer,
       deckId
     );
     browserHistory.push(`/view/${deckId}`);
   }
 
   render() {
-    const { deckId } = this.props.params;
-
     return (
       <section className="single">
-        <figure className={`grid-figure ${styles['grid-figure']}`}>
-          <form ref="commentForm" className="edit-form" onSubmit={e => this.handleSubmit(e, deckId)}>
-            <input type="text" className="large-input" name="title" ref="title" placeholder="Title" />
-            <textarea type="text" className="mono" name="answer" ref="answer" placeholder="Answer (Markdown)" rows="4" />
-            <button type="submit" className="button">Save</button>
-          </form>
-        </figure>
+        <CardAdd deckId={this.props.deckId} handleSubmit={this.handleSubmit} />
       </section>
     );
   }
 }
 
-export default DeckAdd;
+const mapStateToProps = ({}, ownProps) => {
+  return {
+    deckId: ownProps.params.deckId
+  };
+};
+const mapDispatchToProps = (dispatch) => bindActionCreators(deckActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DeckAdd);

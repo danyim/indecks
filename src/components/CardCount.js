@@ -14,13 +14,10 @@ class CardCount extends React.Component {
   }
 }
 
-CardCount.defaultProps = {
-  current: 0,
-  max: 0
-};
+CardCount.defaultProps = {};
 CardCount.propTypes = {
-  current: React.PropTypes.number,
-  max: React.PropTypes.number
+  current: React.PropTypes.number.isRequired,
+  max: React.PropTypes.number.isRequired
 };
 
 export default CardCount;
