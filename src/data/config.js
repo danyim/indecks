@@ -1,6 +1,5 @@
 const config = {
-  shuffle: false,
-  AAAAtestValue: 'testing'
+  shuffle: false
 };
 
 export default config;

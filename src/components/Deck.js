@@ -3,29 +3,18 @@ import { Link, browserHistory } from 'react-router';
 import styles from '../styles/components/Deck';
 
 class Deck extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.handleRemoveDeck = this.handleRemoveDeck.bind(this);
-  }
-
-  handleRemoveDeck(deckId) {
-    if(confirm('Are you sure you want to delete this deck?')) {
-      this.props.removeDeck(deckId);
-    }
-  }
-
   navigateToDeck(deckId) {
     browserHistory.push(`/view/${deckId}`);
   }
 
   render() {
-    const { deck, i } = this.props;
+    const { deck } = this.props;
+    const { id: deckId } = deck;
 
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`}>
         <div>
-          <h1 className={`${styles['deck-title']}`} onClick={() => this.navigateToDeck(deck.id)}>{deck.title}</h1>
+          <h1 className={`${styles['deck-title']}`} onClick={() => this.navigateToDeck(deckId)}>{deck.title}</h1>
         </div>
 
         <figcaption>
@@ -38,12 +27,12 @@ class Deck extends React.Component {
         </figcaption>
 
         <div className={`control-buttons ${styles['control-buttons']}`}>
-          <Link className="button" to={`/view/${deck.id}/1`}>
+          <Link className="button" to={`/view/${deckId}/1`}>
             <span className="comment-count">
               View
             </span>
           </Link>
-          <a className="button btn-delete" onClick={() => this.handleRemoveDeck(deck.id)}>
+          <a className="button btn-delete" onClick={() => this.props.handleRemoveDeck(deckId)}>
               Delete
           </a>
         </div>
@@ -52,8 +41,7 @@ class Deck extends React.Component {
   }
 }
 
-Deck.propTypes = {
-};
+Deck.propTypes = {};
 Deck.defaultProps = {};
 
 export default Deck;

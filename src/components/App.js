@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as cardActions from '../action-creators/card';
+import * as configActions from '../action-creators/config';
 import * as deckActions from '../action-creators/deck';
 import Navbar from './Navbar'
 
@@ -30,7 +30,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(Object.assign({}, cardActions, deckActions), dispatch);
+  return bindActionCreators(Object.assign({}, configActions, deckActions), dispatch);
 }
 
 // export default connect(

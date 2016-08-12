@@ -13,20 +13,27 @@ class DeckNavigator extends React.Component {
     this.mode = null;
     this.maxCardIndex = null;
 
+    this.handleFlip = this.handleFlip.bind(this);
     this.handleNextCard = this.handleNextCard.bind(this);
     this.handlePrevCard = this.handlePrevCard.bind(this);
   }
 
   handleNextCard() {
     if(this.props.cardIndex < this.maxCardIndex) {
+      this.props.handleFlip(false);
       browserHistory.push(`/${this.mode}/${this.props.deck.id}/${this.props.cardIndex + 1}`);
     }
   }
 
   handlePrevCard() {
     if(this.props.cardIndex > 1) {
+      this.props.handleFlip(false);
       browserHistory.push(`/${this.mode}/${this.props.deck.id}/${this.props.cardIndex - 1}`);
     }
+  }
+
+  handleFlip(flipped) {
+    this.props.handleFlip(flipped);
   }
 
   handleEditCard() {
@@ -38,31 +45,23 @@ class DeckNavigator extends React.Component {
   }
 
   handleKeyDown(e) {
-    // Left arrow
-    if(e.keyCode === 37) {
+    if(e.keyCode === 37) { // <-
       this.handlePrevCard();
     }
-    // Right arrow
-    if(e.keyCode === 39) {
+    else if(e.keyCode === 39) { // ->
       this.handleNextCard();
     }
-    if(e.keyCode === 69) {
+    else if(e.keyCode === 69) { // e
       this.handleEditCard();
     }
-  }
-
-  handleFlip(i) {
-    console.log('flippin', i);
-    this.setState({
-      config: {
-        flippedIndex: i
-      }
-    });
+    else if(e.keyCode === 32) { // space
+      this.handleFlip();
+    }
   }
 
   render() {
-    const { cardIndex, deck, mode } = this.props;
-    this.maxCardIndex = this.props.deck.cards.length;
+    const { cardIndex, deck, mode, flipped } = this.props;
+    this.maxCardIndex = deck.cards.length;
 
     if(mode !== 'edit' && mode !== 'view') {
       throw Error('Mode is not edit or view');
@@ -90,7 +89,7 @@ class DeckNavigator extends React.Component {
       <div className={`${styles['deck-navigator']}`}>
         <KeyBinding onKey={ e => this.handleKeyDown(e) } />
         <div className={`${styles['left']}`}>
-          <FrontBack flipped={this.props.flipped} handleFlip={this.props.handleFlip} />
+          <FrontBack flipped={flipped} handleFlip={this.handleFlip} />
         </div>
         <div className={`${styles['deck-nav-controls']}`}>
           <button className="button" ref={this.inputLoaded} onClick={this.handlePrevCard} disabled={this.props.cardIndex > 1 ? false : true}>
@@ -104,22 +103,16 @@ class DeckNavigator extends React.Component {
         <div className={`${styles['right']}`}>
           <CardCount current={cardIndex} max={this.maxCardIndex} />
         </div>
-      {/*
-        <div className={`${styles['deck-nav-links']}`}>
-          {actionOnCard}
-        </div>
-        <div className={`${styles['deck-nav-links']}`}>
-          <Link to={`/`}>Back to decks</Link>
-        </div>
-      */}
       </div>
     )
   }
 }
 
-
 DeckNavigator.propTypes = {
-  cardIndex: React.PropTypes.number
+  deck: React.PropTypes.object,
+  cardIndex: React.PropTypes.number,
+  handleFlip: React.PropTypes.func,
+  flipped: React.PropTypes.bool
 };
 
 export default DeckNavigator;

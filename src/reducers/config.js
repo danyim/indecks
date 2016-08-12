@@ -1,16 +1,14 @@
+import { TOGGLE_SHUFFLE } from '../actions';
+import { createReducer } from '../utils';
+
 const toggleShuffle = (state, action) => {
   const newState = { ...state };
   newState.shuffle = !newState.shuffle;
   return newState;
 }
 
-function config(state = [], action) {
-  switch(action.type) {
-    case 'TOGGLE_SHUFFLE':
-      return toggleShuffle(state, action);
-    default:
-      return state;
-  }
-}
+const handlers = {
+  [TOGGLE_SHUFFLE]: toggleShuffle
+};
 
-export default config;
+export default createReducer({}, handlers);

@@ -37,23 +37,37 @@ class Card extends React.Component {
   }
 
   render() {
-    const { card } = this.props;
+    const { card, flipped } = this.props;
 
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`}>
-        <div onClick={this.props.handleOnClick || null}>
-          <h1 className={`${styles['card-title']}`} dangerouslySetInnerHTML={this.convertToMarkdown(card.title, true)} />
-        </div>
-
-        <figcaption>
-          <span dangerouslySetInnerHTML={this.convertToMarkdown(card.answer)} />
-        </figcaption>
+        {(() => {
+          if(flipped === false) {
+            return (
+              <div onClick={this.props.handleOnClick || null}>
+                <h1 className={`${styles['card-title']}`} dangerouslySetInnerHTML={this.convertToMarkdown(card.title, true)} />
+              </div>
+            );
+          }
+          else {
+            return (
+              <figcaption>
+                <span dangerouslySetInnerHTML={this.convertToMarkdown(card.answer)} />
+              </figcaption>
+            );
+          }
+        })()}
       </figure>
     );
   }
 }
 
-Card.defaultProps = {};
-Card.propTypes = {};
+Card.defaultProps = {
+  flipped: false
+};
+Card.propTypes = {
+  card: React.PropTypes.object,
+  flipped: React.PropTypes.bool
+};
 
 export default Card;

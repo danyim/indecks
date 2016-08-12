@@ -5,32 +5,28 @@ import styles from '../styles/components/CardView';
 
 class CardView extends React.Component {
   constructor (props) {
-    super(props)
-
+    super(props);
+    this.state = { flipped: false };
     this.handleFlip = this.handleFlip.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({ flipped: false });
-  }
-
-  handleFlip(flipped = true) {
-    console.log('flippin, now it\'s', flipped);
-    this.setState({ flipped: flipped });
+  handleFlip(flipped) {
+    if(flipped !== undefined) {
+      this.setState({ flipped: flipped });
+    }
+    else {
+      this.setState({ flipped: !this.state.flipped });
+    }
   }
 
   render() {
-    const { deckId, cardIndex } = this.props.params;
-    // index of the deck
-    const i = this.props.decks.findIndex((deck) => deck.id === deckId)
-    // get us the post
-    const deck = this.props.decks[i];
+    const { card, deck, config, cardIndex } = this.props;
     const mode = 'view';
 
     return (
       <section className="single">
-        <Card card={deck.cards[cardIndex - 1]} flipped={false} />
-        <DeckNavigator deck={deck} cardIndex={parseInt(cardIndex)} mode={mode} flipped={this.flipped} handleFlip={this.handleFlip} />
+        <Card card={card} flipped={this.state.flipped} />
+        <DeckNavigator deck={deck} cardIndex={cardIndex} mode={mode} flipped={this.state.flipped} handleFlip={this.handleFlip} />
       </section>
     )
   }

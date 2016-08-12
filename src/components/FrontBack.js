@@ -20,7 +20,11 @@ class FrontBack extends React.Component {
       <div className={styles.frontBack}>
         <span className={classNames(front)} onClick={() => this.props.handleFlip(false)}>FRONT</span>
         <span className={styles.separator}>|</span>
-        <span className={classNames(back)} onClick={() => this.props.handleFlip()}>BACK</span>
+        <span className={classNames(back)} onClick={() => this.props.handleFlip(true)}>BACK</span>
+        {/*
+        <span className={styles.separator}>|</span>
+        <span className={classNames(back)} onClick={() => this.props.handleFlip()}>FLIP</span>
+        */}
       </div>
     );
   }

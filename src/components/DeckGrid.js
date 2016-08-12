@@ -3,6 +3,17 @@ import Deck from './Deck';
 import styles from '../styles/components/DeckGrid';
 
 class DeckGrid extends React.Component {
+  constructor (props) {
+    super(props);
+    this.handleRemoveDeck = this.handleRemoveDeck.bind(this);
+  }
+
+  handleRemoveDeck(deckId) {
+    if(confirm('Are you sure you want to delete this deck?')) {
+      this.props.removeDeck(deckId);
+    }
+  }
+
   render() {
     const emptyMsg =
       this.props.decks.length === 0 ?
@@ -12,7 +23,7 @@ class DeckGrid extends React.Component {
     return (
       <section className={`${styles['deck-grid']} wrap-row`}>
         {this.props.decks.map((deck, i) =>
-          <Deck {...this.props} key={i} i={i} deck={deck} />
+          <Deck key={i} i={i} deck={deck} handleRemoveDeck={this.handleRemoveDeck} />
         )}
         {emptyMsg}
       </section>

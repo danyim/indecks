@@ -23,27 +23,13 @@ class DeckView extends React.Component {
     return v;
   }
 
-  handleEditCard(deckId, i) {
+  handleOnCardClick(deckId, i) {
     browserHistory.push(`/edit/${deckId}/${i + 1}`);
   }
 
-  handleRemoveDeck(deckId, removeFn) {
-    if(confirm('Are you sure you want to delete this deck?')) {
-      removeFn(deckId);
-      browserHistory.push(`/`);
-    }
-  }
-
   render() {
-    const { deckId } = this.props.params;
-    // index of the deck
-    const i = this.props.decks.findIndex((deck) => deck.id === deckId)
-    // get us the post
-    const deck = this.props.decks[i];
-    const mode = 'view';
-
     const emptyMsg = (() => {
-      if(deck.cards.length === 0 ) {
+      if(this.props.deck.cards.length === 0 ) {
         return <p>Click the + button on the top left to add a card</p>
       }
     })()
@@ -52,22 +38,22 @@ class DeckView extends React.Component {
       <section className={`${styles['deck-view']}`}>
         <div className={`${styles['title-card']}`}>
           <div className={`${styles['title-text']}`}>
-            <h1>{deck.title}</h1>
-            <p>{deck.description}</p>
+            <h1>{this.props.deck.title}</h1>
+            <p>{this.props.deck.description}</p>
           </div>
           <div className={`${styles['control-buttons']}`}>
-            <Link className="button" to={`/view/${deck.id}/1`}>
+            <Link className="button" to={`/view/${this.props.deck.id}/1`}>
               <span>
                 Play Deck
               </span>
             </Link>
-            <Link className="button" to={`/view/${deck.id}/1`}>
+            <Link className="button" to={`/view/${this.props.deck.id}/1`}>
               <span>
                 Edit Details
               </span>
             </Link>
             <ExportDeckButton
-              filename={`${slug(deck.title)}.json`}
+              filename={`${slug(this.props.deck.title)}.json`}
               label="Export Deck (JSON)"
               className="button"
               style={{}}
@@ -75,8 +61,8 @@ class DeckView extends React.Component {
                 // Use this if you want to use the replacer
                 exportFile={() =>  JSON.stringify(deck, this.mdReplacer, 2)}
               */
-             exportFile={() => JSON.stringify(deck, null, 2)} />
-            <a className="button btn-delete" onClick={() => this.handleRemoveDeck(deck.id, this.props.removeDeck)}>
+             exportFile={() => JSON.stringify(this.props.deck, null, 2)} />
+            <a className="button btn-delete" onClick={() => this.props.handleRemoveDeck(this.props.deck.id)}>
                 Delete Deck
             </a>
           </div>
@@ -84,8 +70,8 @@ class DeckView extends React.Component {
 
         <div className={`wrap-row ${styles['grid']}`}>
           {
-            deck.cards.map((c, i) =>
-              <Card card={c} key={i} handleOnClick={() => this.handleEditCard(deckId, i)} />
+            this.props.deck.cards.map((c, i) =>
+              <Card card={c} key={i} handleOnClick={() => this.handleOnCardClick(this.props.deck.id, i)} />
             )
           }
           {emptyMsg}
