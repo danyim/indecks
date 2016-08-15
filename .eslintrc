@@ -22,7 +22,10 @@
     "react/react-in-jsx-scope": 2
   },
   "plugins": [
-    "babel",
     "react"
-  ]
+  ],
+  "globals": {
+    "firebase": true,
+    "sinon": true
+  }
 }

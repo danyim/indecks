@@ -53,7 +53,6 @@
     "css-loader": "^0.23.1",
     "eslint": "^2.9.0",
     "eslint-config-airbnb": "^10.0.0",
-    "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-react": "^5.0.1",
     "expect": "^1.18.0",
     "expect-jsx": "^2.5.1",
