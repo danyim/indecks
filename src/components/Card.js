@@ -8,6 +8,14 @@ class Card extends React.Component {
   render() {
     const { card, flipped } = this.props;
 
+    let emptyAnswer;
+    if(card.answer === '') {
+      emptyAnswer =
+        <div className={`${styles['center']}`}>
+          <p className={`${styles['grey']}`}>No answer provided</p>
+        </div>;
+    }
+
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`}>
         {(() => {
@@ -22,6 +30,7 @@ class Card extends React.Component {
             return (
               <figcaption>
                 <Markdown text={card.answer} />
+                {emptyAnswer}
               </figcaption>
             );
           }

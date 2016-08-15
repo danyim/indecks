@@ -1,4 +1,215 @@
 const samples = [
+  {
+    "id": "WEVNB26J",
+    "title": "Front-End Interview Prep",
+    "description": "Typical interview questions for a front-end engineering position, focusing on Javascript concepts, ReactJS, HTML5, CSS3, and HTTP.",
+    "cards": [
+      {
+        "title": "What is a closure?",
+        "answer": ""
+      },
+      {
+        "title": "What is a callback?",
+        "answer": ""
+      },
+      {
+        "title": "What does IIFE stand for and what are its uses in practice?",
+        "answer": ""
+      },
+      {
+        "title": "How can you use scope a variable to keep a copy of i in a loop?",
+        "answer": ""
+      },
+      {
+        "title": "What is happens when you click a link to go to a website?",
+        "answer": ""
+      },
+      {
+        "title": "Describe the difference between classical inheritance vs prototypical inheritance",
+        "answer": ""
+      },
+      {
+        "title": "Difference between object-oriented programming vs functional",
+        "answer": ""
+      },
+      {
+        "title": "How can you tell what `this` is referencing at different points inside a function/class?",
+        "answer": ""
+      },
+      {
+        "title": "What is the difference between `<p>`, `<div>` and `<span>`?",
+        "answer": ""
+      },
+      {
+        "title": "What is the difference between CSS selectors: `.classA.classB`, `.classA .classB`, `.classA > .classB`",
+        "answer": ""
+      },
+      {
+        "title": "What is the difference between `x is undefined` and `x is not defined` error messages?",
+        "answer": ""
+      },
+      {
+        "title": "What does a `doctype` do?",
+        "answer": ""
+      },
+      {
+        "title": "Are there any problems with serving pages as `application/xhtml+xml`?",
+        "answer": ""
+      },
+      {
+        "title": "How do you serve a page with content in multiple languages?",
+        "answer": ""
+      },
+      {
+        "title": "What are `data-` attributes good for?",
+        "answer": ""
+      },
+      {
+        "title": "Describe the difference between a `cookie`, `sessionStorage` and `localStorage`.",
+        "answer": ""
+      },
+      {
+        "title": "Describe the difference between `<script>`, `<script async>` and `<script defer>`.",
+        "answer": ""
+      },
+      {
+        "title": "What is progressive rendering?",
+        "answer": ""
+      },
+      {
+        "title": "What is the difference between classes and IDs in CSS?",
+        "answer": ""
+      },
+      {
+        "title": "What's the difference between \"resetting\" and \"normalizing\" CSS? Which would you choose, and why?",
+        "answer": "Normalizing CSS **preserves useful defaults**, whereas resetting CSS unstyles virtually everything."
+      },
+      {
+        "title": "Explain CSS sprites, and how you would implement them on a page or site.",
+        "answer": ""
+      },
+      {
+        "title": "How do you optimize your webpages for print?",
+        "answer": ""
+      },
+      {
+        "title": "Describe pseudo-elements and discuss what they are used for.",
+        "answer": ""
+      },
+      {
+        "title": "What does `* { box-sizing: border-box; }` do? What are its advantages?",
+        "answer": ""
+      },
+      {
+        "title": "What's the difference between `inline` and `inline-block`?",
+        "answer": ""
+      },
+      {
+        "title": "What's the difference between a relative, fixed, absolute and statically positioned element?",
+        "answer": ""
+      },
+      {
+        "title": "The 'C' in CSS stands for Cascading. How is priority determined in assigning styles (a few examples)? How can you use this system to your advantage?",
+        "answer": ""
+      },
+      {
+        "title": "Explain event delegation in Javascript",
+        "answer": ""
+      },
+      {
+        "title": "Explain how `this` works in JavaScript",
+        "answer": ""
+      },
+      {
+        "title": "What's the difference between a variable that is: `null`, `undefined` or undeclared?",
+        "answer": ""
+      },
+      {
+        "title": "What is a closure, and how/why would you use one?",
+        "answer": ""
+      },
+      {
+        "title": "What's a typical use case for anonymous functions?",
+        "answer": ""
+      },
+      {
+        "title": "What's the difference between host objects and native objects?",
+        "answer": ""
+      },
+      {
+        "title": "What's the difference between `Function.call` and `Function.apply`?",
+        "answer": "They both require a context for the first argument (usually `null` or `this`). The two functions are nearly identical, however, `Function.apply` accepts an array of values for the second argument. `Function.call` accepts n arguments after the context."
+      },
+      {
+        "title": "Explain `Function.prototype.bind`",
+        "answer": ""
+      },
+      {
+        "title": "When would you use `document.write()`?",
+        "answer": ""
+      },
+      {
+        "title": "What's the difference between feature detection, feature inference, and using the UA string?",
+        "answer": ""
+      },
+      {
+        "title": "Explain Ajax in as much detail as possible.",
+        "answer": ""
+      },
+      {
+        "title": "Explain how JSONP works (and how it's not really Ajax).",
+        "answer": ""
+      },
+      {
+        "title": "Explain \"hoisting\".",
+        "answer": ""
+      },
+      {
+        "title": "What is the difference between `==` and `===`?",
+        "answer": ""
+      },
+      {
+        "title": "What is `\"use strict\";`? What are the advantages and disadvantages to using it?",
+        "answer": ""
+      },
+      {
+        "title": "Explain what a single page app is and how to make one SEO-friendly",
+        "answer": ""
+      },
+      {
+        "title": "In the Javascript event loop, what is the difference between call stack and task queue?",
+        "answer": ""
+      },
+      {
+        "title": "What are the differences between Long-Polling, Websockets and Server-Sent Events?",
+        "answer": ""
+      },
+      {
+        "title": "What are HTTP methods? List all HTTP methods that you know, and explain them.",
+        "answer": ""
+      },
+      {
+        "title": "Have you ever worked with retina graphics? If so, when and what techniques did you use?",
+        "answer": ""
+      },
+      {
+        "title": "Is there any reason you'd want to use translate() instead of absolute positioning, or vice-versa? And why?",
+        "answer": ""
+      },
+      {
+        "title": "What does `* { box-sizing: border-box; }` do? What are its advantages?",
+        "answer": ""
+      },
+      {
+        "title": "What are the different ways to visually hide content (and make it available only for screen readers)?",
+        "answer": ""
+      },
+      {
+        "title": "What's the primary difference between `Array.slice()` and `Array.splice()`?",
+        "answer": "`splice()` mutates the array, whereas `slice()` does not.\n\nAlso totally different in functionality: `splice(startIndex, numItems)` and `slice(startIndex, endIndex)`"
+      }
+    ]
+  },
    {
      "id": "j82ssosK",
      "title": "California DMV Prep",
