@@ -1,18 +1,27 @@
 @import '../_variables'
 
+// figure is added here to give precedence over the base grid-figure
 figure.grid-figure
-  min-height 250px
+  display flex
+  min-height 275px
   flex-direction column
+  justify-content: center
   figcaption
-    padding 0rem 2rem 2rem 2rem
+    padding 2rem 5rem
     li
       font-size 1.5rem
       line-height 1.5
 
 .card-title
   font-size 2.5rem
-  padding 2rem 2rem 1rem 2rem
+  padding 2rem 5rem
   cursor pointer
+
+@media (max-width: cardWidth)
+  figure.grid-figure figcaption
+    padding 2rem 2rem
+  .card-title
+    padding 2rem 2rem
 
 .center
   justify-content: center

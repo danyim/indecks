@@ -1,4 +1,16 @@
-.grid-figure
-  padding 2rem
+@import '../_variables'
+
+// figure is added here to give precedence over the base grid-figure
+figure.grid-figure
+  display flex
+  min-height 275px
+  flex-flow column nowrap
+  justify-content: center
+
+.control-buttons
+  flex: 0 0 auto
+  flex-flow: row nowrap
   button
-    margin-top 1rem
+    margin-left 1rem
+  button:first-child
+    margin-left 0rem

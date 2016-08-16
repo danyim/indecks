@@ -11,7 +11,7 @@ class App extends React.Component {
           {this.props.children}
         </main>
         <footer>
-          <p>dyim_2016</p>
+          <p>dyim_2016 | <a href="https://github.com/danyim/indecks" target="_blank"><i className="fa fa-github"></i></a></p>
         </footer>
       </div>
     )

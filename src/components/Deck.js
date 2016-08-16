@@ -28,13 +28,13 @@ class Deck extends React.Component {
 
         <div className={`control-buttons ${styles['control-buttons']}`}>
           <Link className="button" to={`/view/${deckId}/1`}>
-            <span className="comment-count">
-              View
-            </span>
+            Play Deck
           </Link>
+          {/*
           <a className="button btn-delete" onClick={() => this.props.handleRemoveDeck(deckId)}>
               Delete
           </a>
+          */}
         </div>
       </figure>
     );

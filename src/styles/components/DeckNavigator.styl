@@ -1,4 +1,5 @@
 @import '../_variables';
+
 .deck-navigator
   flex-direction row
   justify-content space-between
@@ -17,8 +18,23 @@
 
 .left
   flex 0 0 20%
+  flex-flow: column nowrap
+  justify-content: center
 .right
   flex 0 0 20%
+  flex-flow: column nowrap
+  justify-content: center
+
+@media (max-width: cardWidth)
+  .deck-navigator, .left, .right
+    flex-flow: column nowrap
+    align-items: center
+  .right
+    order: 1
+  .left
+    order: 2
+  .deck-navigator
+    order: 3
 
 .deck-nav-controls
   display inline-block
