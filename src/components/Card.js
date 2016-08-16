@@ -17,11 +17,11 @@ class Card extends React.Component {
     }
 
     return (
-      <figure className={`grid-figure ${styles['grid-figure']}`}>
+      <figure className={`grid-figure ${styles['grid-figure']}`} handleOnClick={this.props.handleOnClick}>
         {(() => {
           if(flipped === false) {
             return (
-              <div onClick={this.props.handleOnClick || null}>
+              <div>
                 <Markdown className={`${styles['card-title']}`} text={card.title} removeParaTags={true} />
               </div>
             );
@@ -29,7 +29,7 @@ class Card extends React.Component {
           else {
             return (
               <figcaption>
-                <Markdown text={card.answer} handleOnClick={this.props.handleOnClick} />
+                <Markdown text={card.answer} />
                 {emptyAnswer}
               </figcaption>
             );
