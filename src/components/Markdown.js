@@ -14,7 +14,7 @@ class Markdown extends React.Component {
 
   render() {
     return (
-      <span className={this.props.className}
+      <span className={this.props.className} onClick={this.props.handleOnClick}
         dangerouslySetInnerHTML={this.convertToMarkdown(this.props.text, this.props.removeParaTags)} />
     );
   }
@@ -23,12 +23,13 @@ class Markdown extends React.Component {
 Markdown.defaultProps = {
   className: '',
   removeParaTags: false,
-  text: '',
+  handleOnClick: null,
 };
 Markdown.propTypes = {
   className: React.PropTypes.string,
   removeParaTags: React.PropTypes.bool,
-  text: React.PropTypes.string,
+  text: React.PropTypes.string.isRequired,
+  handleOnClick: React.PropTypes.func
 };
 
 export default Markdown;

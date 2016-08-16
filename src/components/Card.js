@@ -29,7 +29,7 @@ class Card extends React.Component {
           else {
             return (
               <figcaption>
-                <Markdown text={card.answer} />
+                <Markdown text={card.answer} handleOnClick={this.props.handleOnClick} />
                 {emptyAnswer}
               </figcaption>
             );
@@ -41,11 +41,13 @@ class Card extends React.Component {
 }
 
 Card.defaultProps = {
-  flipped: false
+  flipped: false,
+  handleOnClick: null
 };
 Card.propTypes = {
   card: React.PropTypes.object.isRequired,
-  flipped: React.PropTypes.bool
+  flipped: React.PropTypes.bool,
+  handleOnClick: React.PropTypes.func
 };
 
 export default Card;

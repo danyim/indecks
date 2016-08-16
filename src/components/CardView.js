@@ -1,4 +1,5 @@
 import React from 'react';
+import Swipeable from 'react-swipeable';
 import Card from './Card';
 import DeckNavigator from './DeckNavigator';
 import styles from '../styles/components/CardView';
@@ -11,7 +12,7 @@ class CardView extends React.Component {
     this.handleShuffleToggle = this.handleShuffleToggle.bind(this);
   }
 
-  handleFlip(flipped) {
+  handleFlip(e, flipped) {
     if(flipped !== undefined) {
       this.setState({ flipped: flipped });
     }
@@ -30,7 +31,9 @@ class CardView extends React.Component {
 
     return (
       <section className="single">
-        <Card card={card} flipped={this.state.flipped} />
+        <Swipeable onSwipedUp={this.handleFlip}>
+          <Card card={card} flipped={this.state.flipped} handleOnClick={this.handleFlip} />
+        </Swipeable>
         <DeckNavigator deck={deck} cardIndex={cardIndex}
           mode={mode}
           flipped={this.state.flipped}

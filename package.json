@@ -30,6 +30,7 @@
     "react-router": "^2.4.0",
     "react-router-redux": "^4.0.4",
     "react-router-transitions": "^2.0.0",
+    "react-swipeable": "^3.5.1",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.4",
     "redbox-react": "^1.2.3",

@@ -28,7 +28,7 @@ class DeckNavigator extends React.Component {
 
   handleNextCard() {
     if(this.props.cardIndex < this.maxCardIndex || this.props.config.shuffle === true) {
-      this.props.handleFlip(false);
+      this.props.handleFlip(null, false);
       let nextIndex = this.props.cardIndex + 1; // Going forwards
       if(this.props.config.shuffle === true) {
         nextIndex = this.randomCardIndex();
@@ -40,7 +40,7 @@ class DeckNavigator extends React.Component {
 
   handlePrevCard() {
     if(this.props.cardIndex > 1 || this.props.config.shuffle === true) {
-      this.props.handleFlip(false);
+      this.props.handleFlip(null, false);
       let nextIndex = this.props.cardIndex - 1; // Going backwards
       if(this.props.config.shuffle === true) {
         nextIndex = this.randomCardIndex();
@@ -50,7 +50,7 @@ class DeckNavigator extends React.Component {
   }
 
   handleFlip(flipped) {
-    this.props.handleFlip(flipped);
+    this.props.handleFlip(null, flipped);
   }
 
   handleAddCard() {
