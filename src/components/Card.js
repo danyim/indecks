@@ -17,7 +17,7 @@ class Card extends React.Component {
     }
 
     return (
-      <figure className={`grid-figure ${styles['grid-figure']}`} handleOnClick={this.props.handleOnClick}>
+      <figure className={`grid-figure ${styles['grid-figure']}`} onClick={this.props.handleOnClick}>
         {(() => {
           if(flipped === false) {
             return (

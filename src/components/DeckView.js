@@ -40,6 +40,7 @@ class DeckView extends React.Component {
           <div className={`${styles['title-text']}`}>
             <h1>{this.props.deck.title}</h1>
             <p>{this.props.deck.description}</p>
+            <p><strong>{`${this.props.deck.cards.length} cards in this deck`}</strong></p>
           </div>
           <div className={`${styles['control-buttons']}`}>
             <Link className="button" to={`/view/${this.props.deck.id}/1`}>
