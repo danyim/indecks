@@ -5,6 +5,7 @@ An interactive index card study app built using React/Redux. Use it to study (cr
 
 ### Features
 - Minimalistic layout tailored for desktop and mobile on-the-go viewing
+  - Captures swipes on mobile for quickly navigating between cards
 - Markdown support for card contents
 - Import/export of decks via JSON
 - Keyboard shortcuts for quick navigation (see legend below)
@@ -25,5 +26,8 @@ An interactive index card study app built using React/Redux. Use it to study (cr
 ### Production Build
 1. Run `npm build` to create a distro folder and a bundle.js file.
 
-### Thanks
-Thanks to [this course by @wesbos](https://learnredux.com/) for seeding the project.
+### License
+  MIT
+
+### Links
+- Thanks to [this course by @wesbos](https://learnredux.com/) for providing the foundation for this project
