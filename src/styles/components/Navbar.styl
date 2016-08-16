@@ -35,8 +35,6 @@
 .nav-right
   font-size 2.2rem
 
-
-
 .rounded-button
   border 1px solid lightgrey
   border-radius 0.3rem
@@ -48,3 +46,12 @@
     cursor not-allowed
   a.hidden
     visibility hidden
+
+@media (max-width: cardWidth)
+  .nav-container, .nav-outer-container
+    height 45px
+  .nav-inner-container
+    padding 0.5rem 1.0rem
+  .rounded-button
+    border none
+    margin-top 0.3rem

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, browserHistory} from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import KeyBinding from 'react-keybinding-component';
 import Deck from './Deck';
 import CardCount from './CardCount';
