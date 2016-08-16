@@ -68,7 +68,6 @@ class CardView extends React.Component {
     return (
       <section className="single">
         <Swipeable
-          onSwipedUp={() => this.handleFlip()}
           onSwipedDown={this.handleEditCard}
           onSwipedLeft={this.handleNextCard}
           onSwipedRight={this.handlePrevCard}>
