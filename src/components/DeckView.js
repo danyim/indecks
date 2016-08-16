@@ -55,7 +55,7 @@ class DeckView extends React.Component {
             </Link>
             <ExportDeckButton
               filename={`${slug(this.props.deck.title)}.json`}
-              label="Export Deck (JSON)"
+              label="Export Deck"
               className="button"
               style={{}}
               /*
