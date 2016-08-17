@@ -8,6 +8,7 @@
     "test": "NODE_ENV=production mocha './tests/**/*.spec.js' --compilers js:babel-core/register",
     "clean": "rimraf dist",
     "start": "babel-node devServer.js",
+    "publish": "npm run clean && npm run build && mkdir dist/dist && mv dist/*.* dist/dist && cp index.html dist/index.html && gh-pages -d dist",
     "tunnel": "browser-sync start --proxy localhost:7770"
   },
   "repository": {

@@ -1,7 +1,7 @@
 # indecks
 An interactive index card study app built using React/Redux. Use it to study (cram?) for tests.
 
-[Live Link](http://indecks.s3-website-us-east-1.amazonaws.com/)
+[Live Link](https://danyim.github.io/indecks/)
 
 ### Features
 - Minimalistic layout tailored for desktop and mobile on-the-go viewing
@@ -19,11 +19,11 @@ An interactive index card study app built using React/Redux. Use it to study (cr
 - <kbd>s</kbd> - Toggle shuffle
 - <kbd>d</kbd> - Return to deck
 
-### Local Build
+### Build
+**Local**
 1. `npm install` to grab all the necessary dependencies.
 2. `npm start` and open [http://localhost:9406](http://localhost:9406) in your browser.
-
-### Production Build
+**Production**
 1. Run `npm build` to create a distro folder and a bundle.js file.
 
 ### License
