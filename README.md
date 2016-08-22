@@ -21,9 +21,12 @@ An interactive index card study app built using React/Redux. Use it to study (cr
 
 ### Build
 **Local**
+
 1. `npm install` to grab all the necessary dependencies.
 2. `npm start` and open [http://localhost:9406](http://localhost:9406) in your browser.
+
 **Production**
+
 1. Run `npm build` to create a distro folder and a bundle.js file.
 
 ### License
