@@ -1,3 +1,4 @@
+
 @import '../_variables'
 
 // figure is added here to give precedence over the base grid-figure
@@ -11,6 +12,16 @@ figure.grid-figure
   flex: 0 0 auto
   flex-flow: row nowrap
   button
-    margin-left 1rem
+    margin 0 0 0 1rem
   button:first-child
-    margin-left 0rem
+    margin 0
+
+@media (max-width: cardWidth)
+  .control-buttons
+    flex: 0 0 50%
+    flex-flow: column nowrap
+    align-content space-around
+    button
+      margin 0.6rem 0 0 0
+    button:first-child
+      margin 0
