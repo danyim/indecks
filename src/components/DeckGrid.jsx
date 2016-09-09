@@ -2,6 +2,10 @@ import React from 'react';
 import Deck from './Deck';
 import styles from '../styles/components/DeckGrid';
 
+const propTypes = {};
+
+const defaultProps = {};
+
 class DeckGrid extends React.Component {
   constructor (props) {
     super(props);
@@ -31,7 +35,7 @@ class DeckGrid extends React.Component {
   }
 }
 
-DeckGrid.propTypes = {};
-DeckGrid.defaultProps = {};
+DeckGrid.propTypes = propTypes;
+DeckGrid.defaultProps = defaultProps;
 
 export default DeckGrid;

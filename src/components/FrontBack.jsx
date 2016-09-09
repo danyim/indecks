@@ -2,6 +2,10 @@ import React from 'react';
 import classNames from 'classnames';
 import styles from '../styles/components/FrontBack';
 
+const propTypes = {};
+
+const defaultProps = {};
+
 class FrontBack extends React.Component {
   constructor(props) {
     super(props);
@@ -29,5 +33,8 @@ class FrontBack extends React.Component {
     );
   }
 }
+
+FrontBack.propTypes = propTypes;
+FrontBack.defaultProps = defaultProps;
 
 export default FrontBack;

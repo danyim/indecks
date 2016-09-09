@@ -9,6 +9,12 @@ import Remarkable from 'remarkable';
 import samples from '../data/samples'
 import styles from '../styles/components/ImportDeck';
 
+const propTypes = {
+  addDeck: React.PropTypes.func.isRequired
+};
+
+const defaultProps = {};
+
 class ImportDeck extends React.Component {
   constructor(props) {
     super(props);
@@ -110,10 +116,8 @@ class ImportDeck extends React.Component {
   }
 }
 
-ImportDeck.defaultProps = {};
-ImportDeck.propTypes = {
-  addDeck: React.PropTypes.func.isRequired
-};
+ImportDeck.propTypes = propTypes;
+ImportDeck.defaultProps = defaultProps;
 
 const mapStateToProps = () => { return {} };
 const mapDispatchToProps = (dispatch) => bindActionCreators(deckActions, dispatch);

@@ -2,6 +2,10 @@ import React from 'react';
 import CardEdit from './CardEdit';
 import DeckNavigator from './DeckNavigator';
 
+const propTypes = {};
+
+const defaultProps = {};
+
 class DeckEdit extends React.Component {
   render() {
     return (
@@ -12,7 +16,7 @@ class DeckEdit extends React.Component {
   }
 }
 
-DeckEdit.defaultProps = {};
-DeckEdit.propTypes = {};
+DeckEdit.propTypes = propTypes;
+DeckEdit.defaultProps = defaultProps;
 
 export default DeckEdit;

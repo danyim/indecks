@@ -5,6 +5,9 @@ import * as deckActions from '../action-creators/deck';
 import DeckEdit from './DeckEdit';
 import DeckNavigator from './DeckNavigator';
 
+const propTypes = {};
+const defaultProps = {};
+
 class DeckEditContainer extends React.Component {
   render() {
     const { deckId, cardIndex, card } = this.props;
@@ -15,8 +18,8 @@ class DeckEditContainer extends React.Component {
   }
 }
 
-DeckEditContainer.defaultProps = {};
-DeckEditContainer.propTypes = {};
+DeckEditContainer.propTypes = propTypes;
+DeckEditContainer.defaultProps = defaultProps;
 
 const mapStateToProps = ({decks}, ownProps) => {
   const { deckId, cardIndex } = ownProps.params;

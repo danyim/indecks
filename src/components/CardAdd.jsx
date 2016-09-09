@@ -3,6 +3,13 @@ import { findDOMNode } from 'react-dom';
 import { Link, browserHistory } from 'react-router';
 import styles from '../styles/components/CardAdd';
 
+const propTypes = {
+  deckId: React.PropTypes.string.isRequired,
+  handleSubmit: React.PropTypes.func.isRequired
+};
+
+const defaultProps = {};
+
 class CardAdd extends React.Component {
   constructor(props) {
     super(props);
@@ -52,10 +59,7 @@ class CardAdd extends React.Component {
   }
 }
 
-CardAdd.defaultProps = {};
-CardAdd.propTypes = {
-  deckId: React.PropTypes.string.isRequired,
-  handleSubmit: React.PropTypes.func.isRequired
-};
+CardAdd.propTypes = propTypes;
+CardAdd.defaultProps = defaultProps;
 
 export default CardAdd;

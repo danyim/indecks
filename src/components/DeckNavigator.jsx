@@ -7,6 +7,17 @@ import FrontBack from './FrontBack';
 import classNames from 'classnames';
 import styles from '../styles/components/DeckNavigator';
 
+const propTypes = {
+  deck: React.PropTypes.object.isRequired,
+  cardIndex: React.PropTypes.number.isRequired,
+  handleFlip: React.PropTypes.func.isRequired,
+  flipped: React.PropTypes.bool.isRequired,
+  config: React.PropTypes.object.isRequired,
+  handleShuffleToggle: React.PropTypes.func.isRequired
+};
+
+const defaultProps = {};
+
 class DeckNavigator extends React.Component {
   constructor(props) {
     super(props);
@@ -142,13 +153,7 @@ class DeckNavigator extends React.Component {
   }
 }
 
-DeckNavigator.propTypes = {
-  deck: React.PropTypes.object.isRequired,
-  cardIndex: React.PropTypes.number.isRequired,
-  handleFlip: React.PropTypes.func.isRequired,
-  flipped: React.PropTypes.bool.isRequired,
-  config: React.PropTypes.object.isRequired,
-  handleShuffleToggle: React.PropTypes.func.isRequired
-};
+DeckNavigator.propTypes = propTypes;
+DeckNavigator.defaultProps = defaultProps;
 
 export default DeckNavigator;

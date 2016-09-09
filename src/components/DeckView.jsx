@@ -6,6 +6,10 @@ import ExportDeckButton from './ExportDeckButton'
 import slug from 'slug';
 import styles from '../styles/components/DeckView';
 
+const propTypes = {};
+
+const defaultProps = {};
+
 class DeckView extends React.Component {
   constructor(props) {
     super(props);
@@ -81,5 +85,8 @@ class DeckView extends React.Component {
     )
   }
 }
+
+DeckView.propTypes = propTypes;
+DeckView.defaultProps = defaultProps;
 
 export default DeckView;

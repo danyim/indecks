@@ -1,5 +1,21 @@
 import React from 'react';
 
+const propTypes = {
+  filename: React.PropTypes.string,
+  label: React.PropTypes.string,
+  style: React.PropTypes.object,
+  className: React.PropTypes.string,
+  exportFile: React.PropTypes.func
+};
+
+const defaultProps = {
+  filename: 'file.txt',
+  label: 'Save',
+  style: { margin: '5px 5px 0px 0px', textDecoration: 'underline', color: 'blue', cursor: 'pointer' },
+  exportFile: () => {}
+};
+
+
 class ExportDeckButton extends React.Component {
   constructor(props) {
     super(props);
@@ -49,20 +65,7 @@ class ExportDeckButton extends React.Component {
   }
 }
 
-ExportDeckButton.propTypes = {
-  filename: React.PropTypes.string,
-  label: React.PropTypes.string,
-  style: React.PropTypes.object,
-  className: React.PropTypes.string,
-  exportFile: React.PropTypes.func
-};
-
-
-ExportDeckButton.defaultProps = {
-  filename: 'file.txt',
-  label: 'Save',
-  style: { margin: '5px 5px 0px 0px', textDecoration: 'underline', color: 'blue', cursor: 'pointer' },
-  exportFile: () => {}
-};
+ExportDeckButton.propTypes = propTypes;
+ExportDeckButton.defaultProps = defaultProps;
 
 export default ExportDeckButton

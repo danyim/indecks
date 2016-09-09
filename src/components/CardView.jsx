@@ -5,6 +5,10 @@ import Card from './Card';
 import DeckNavigator from './DeckNavigator';
 import styles from '../styles/components/CardView';
 
+const propTypes = {};
+
+const defaultProps = {};
+
 class CardView extends React.Component {
   constructor (props) {
     super(props);
@@ -83,5 +87,8 @@ class CardView extends React.Component {
     )
   }
 }
+
+CardView.propTypes = propTypes;
+CardView.defaultProps = defaultProps;
 
 export default CardView;

@@ -1,6 +1,13 @@
 import React from 'react';
 import styles from '../styles/components/CardCount';
 
+const propTypes = {
+  current: React.PropTypes.number.isRequired,
+  max: React.PropTypes.number.isRequired
+};
+
+const defaultProps = {};
+
 class CardCount extends React.Component {
   render() {
     const { current, max } = this.props;
@@ -14,10 +21,7 @@ class CardCount extends React.Component {
   }
 }
 
-CardCount.defaultProps = {};
-CardCount.propTypes = {
-  current: React.PropTypes.number.isRequired,
-  max: React.PropTypes.number.isRequired
-};
+CardCount.propTypes = propTypes;
+CardCount.defaultProps = defaultProps;
 
 export default CardCount;

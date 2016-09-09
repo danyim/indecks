@@ -2,6 +2,10 @@ import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import styles from '../styles/components/Deck';
 
+const propTypes = {};
+
+const defaultProps = {};
+
 class Deck extends React.Component {
   navigateToDeck(deckId) {
     browserHistory.push(`/view/${deckId}`);
@@ -41,7 +45,7 @@ class Deck extends React.Component {
   }
 }
 
-Deck.propTypes = {};
-Deck.defaultProps = {};
+Deck.propTypes = propTypes;
+Deck.defaultProps = defaultProps ;
 
 export default Deck;

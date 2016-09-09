@@ -2,6 +2,10 @@ import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import styles from '../styles/components/Navbar';
 
+const propTypes = {};
+
+const defaultProps = {};
+
 class Navbar extends React.Component {
   routeParser(path) {
     let addLink, listLink;
@@ -110,5 +114,8 @@ class Navbar extends React.Component {
     )
   }
 }
+
+Navbar.propTypes = propTypes;
+Navbar.defaultProps = defaultProps;
 
 export default Navbar;

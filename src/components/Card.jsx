@@ -4,6 +4,17 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Markdown from './Markdown';
 import styles from '../styles/components/Card';
 
+const propTypes = {
+  card: React.PropTypes.object.isRequired,
+  flipped: React.PropTypes.bool,
+  handleOnClick: React.PropTypes.func
+};
+
+const defaultProps = {
+  flipped: false,
+  handleOnClick: null
+};
+
 class Card extends React.Component {
   render() {
     const { card, flipped } = this.props;
@@ -40,14 +51,7 @@ class Card extends React.Component {
   }
 }
 
-Card.defaultProps = {
-  flipped: false,
-  handleOnClick: null
-};
-Card.propTypes = {
-  card: React.PropTypes.object.isRequired,
-  flipped: React.PropTypes.bool,
-  handleOnClick: React.PropTypes.func
-};
+Card.propTypes = propTypes;
+Card.defaultProps = defaultProps;
 
 export default Card;

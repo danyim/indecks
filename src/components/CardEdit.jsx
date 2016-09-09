@@ -3,6 +3,16 @@ import { Link, browserHistory } from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import styles from '../styles/components/CardEdit';
 
+const propTypes = {
+  card: React.PropTypes.object.isRequired,
+  cardIndex: React.PropTypes.number.isRequired,
+  deckId: React.PropTypes.string.isRequired,
+  editCard: React.PropTypes.func.isRequired,
+  removeCard: React.PropTypes.func.isRequired
+};
+
+const defaultProps = {};
+
 class CardEdit extends React.Component {
   constructor(props) {
     super(props);
@@ -77,13 +87,7 @@ class CardEdit extends React.Component {
   }
 }
 
-CardEdit.defaultProps = {};
-CardEdit.propTypes = {
-  card: React.PropTypes.object.isRequired,
-  cardIndex: React.PropTypes.number.isRequired,
-  deckId: React.PropTypes.string.isRequired,
-  editCard: React.PropTypes.func.isRequired,
-  removeCard: React.PropTypes.func.isRequired
-};
+CardEdit.propTypes = propTypes;
+CardEdit.defaultProps = defaultProps;
 
 export default CardEdit

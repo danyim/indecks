@@ -1,6 +1,19 @@
 import React from 'react';
 import Remarkable from 'remarkable';
 
+const propTypes = {
+  className: React.PropTypes.string,
+  removeParaTags: React.PropTypes.bool,
+  text: React.PropTypes.string.isRequired,
+  handleOnClick: React.PropTypes.func
+};
+
+const defaultProps = {
+  className: '',
+  removeParaTags: false,
+  handleOnClick: null,
+};
+
 class Markdown extends React.Component {
   convertToMarkdown(plaintext = '', removeParaTags = false) {
     const md = new Remarkable();
@@ -20,16 +33,7 @@ class Markdown extends React.Component {
   }
 }
 
-Markdown.defaultProps = {
-  className: '',
-  removeParaTags: false,
-  handleOnClick: null,
-};
-Markdown.propTypes = {
-  className: React.PropTypes.string,
-  removeParaTags: React.PropTypes.bool,
-  text: React.PropTypes.string.isRequired,
-  handleOnClick: React.PropTypes.func
-};
+Markdown.propTypes = propTypes;
+Markdown.defaultProps = defaultProps;
 
 export default Markdown;
