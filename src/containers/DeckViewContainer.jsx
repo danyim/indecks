@@ -28,10 +28,14 @@ class DeckViewContainer extends React.Component {
     const deck = this.props.decks[deckIndex];
 
     if(deck) {
-      return <DeckView deck={deck} handleRemoveDeck={this.handleRemoveDeck} />
+      return (
+        <DeckView deck={deck} handleRemoveDeck={this.handleRemoveDeck} />
+      );
     }
     else {
-      return <span>Deck not found</span>;
+      return (
+        <span>Deck not found</span>
+      );
     }
   }
 }

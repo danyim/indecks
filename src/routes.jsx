@@ -7,6 +7,7 @@ import DeckEditContainer from './containers/DeckEditContainer';
 import DeckGridContainer from './containers/DeckGridContainer';
 import DeckViewContainer from './containers/DeckViewContainer';
 import DeckAddContainer from './containers/DeckAddContainer';
+import SettingsContainer from './containers/SettingsContainer';
 import ImportDeck from './components/ImportDeck';
 
 const Routes = (
@@ -17,6 +18,7 @@ const Routes = (
     <Route path="/edit/:deckId/:cardIndex" component={DeckEditContainer} />
     <Route path="/view/:deckId/:cardIndex" component={CardViewContainer} />
     <Route path="/add" component={ImportDeck} />
+    <Route path="/settings" component={SettingsContainer} />
     <Route path="*" component={DeckGridContainer} />
   </Route>
 );

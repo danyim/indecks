@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as deckActions from '../action-creators/deck';
-import DeckGrid from '../components/DeckGrid';
+import Settings from '../components/Settings';
 
-class DeckGridContainer extends React.Component {
+class SettingsContainer extends React.Component {
   render() {
     return (
-      <DeckGrid {...this.props} />
+      <Settings {...this.props} />
     );
   }
 }
@@ -18,4 +18,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(deckActions, dispatc
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DeckGridContainer);
+)(SettingsContainer);

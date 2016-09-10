@@ -1,0 +1,64 @@
+@import '../_variables';
+
+.deck-view
+  width 100%
+  max-width pageWidth
+  // .grid-figure
+  //   flex-basis calc(50% - 2rem)
+  //   margin 0 1rem 2rem 0rem
+
+// Individual card styles
+.grid
+  justify-content center
+  figure
+    flex-basis calc(50% - 4rem)
+  // div > h1
+  //   width 550px
+  //   // white-space nowrap
+  //   overflow hidden
+  //   text-overflow ellipsis
+
+@media (max-width: cardWidth)
+  .grid figure
+    flex-basis calc(100% - 4rem)
+
+.title-card
+  border 1px solid lightgrey
+  background-color white
+  border-bottom 5px solid black
+  margin 0 1rem 2rem 1rem
+  padding 2rem
+  padding-top 4rem
+  flex-flow row wrap
+.title-text
+  margin-top 2rem
+  flex 1 1 75%
+  order 1
+  text-overflow ellipsis
+  *
+    margin-right 2rem
+    flex 1 1 auto
+.control-buttons
+  flex-flow column nowrap
+  flex-grow 1
+  order 2
+  transition all 0.2s ease-in
+  button, a
+    flex 1 0 calc(25% - 1rem)
+    margin-top 0.6rem
+  button:first-child, a:first-child
+    margin-top 0
+
+@media (max-width: cardWidth)
+  .title-card
+    flex-flow column nowrap
+    justify-content: center
+  .control-buttons
+    flex-flow row nowrap
+    button, a
+      flex 1 0 calc(25% - 2rem)
+      margin-top 0
+      margin-left 0.6rem
+    button:first-child, a:first-child
+      margin-left 0
+

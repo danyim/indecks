@@ -11,7 +11,9 @@ class CardViewContainer extends React.Component {
     const { card } = this.props;
     if(!card) return <span>Invalid card index</span>;
 
-    return <CardView {...this.props} />;
+    return (
+      <CardView {...this.props} />
+    );
   }
 }
 
