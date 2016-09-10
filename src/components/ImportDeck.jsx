@@ -116,7 +116,9 @@ class ImportDeck extends React.Component {
 ImportDeck.propTypes = propTypes;
 ImportDeck.defaultProps = defaultProps;
 
-const mapStateToProps = () => {};
+const mapStateToProps = () => {
+  return {};
+};
 const mapDispatchToProps = (dispatch) => bindActionCreators(deckActions, dispatch);
 
 export default connect(
