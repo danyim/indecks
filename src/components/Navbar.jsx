@@ -8,81 +8,107 @@ const defaultProps = {};
 
 class Navbar extends React.Component {
   routeParser(path) {
-    let addLink, listLink;
+    let addLink;
+    let listLink;
     const routeComponents = path.split('/').filter(v => v !== '');
 
-    // console.log('routeComponents', routeComponents);
-    if(path === '/') {
+    if (path === '/') {
       // @/
       addLink = (
-        <Link to="/add" title="Add deck"><i className="fa fa-plus-square-o"></i></Link>
+        <Link to="/add" title="Add deck">
+          <i className="fa fa-plus-square-o"></i>
+        </Link>
       );
-      listLink = (
-        //<Link to={`/`} title="View decks"><i className={`${styles['fa fa-navicon grid-icon']}`}></i></Link>
-        <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
-      );
+      listLink = null;
+      // listLink = (
+      //   //<Link to={`/`} title="View decks"><i className={`${styles['fa fa-navicon grid-icon']}`}></i></Link>
+      //   <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
+      // );
     }
-    else if(routeComponents[0] === 'view' && routeComponents.length === 2) {
+    else if (routeComponents[0] === 'view' && routeComponents.length === 2) {
       // @/view/:deckId
       addLink = (
-        <Link to={`/add/${routeComponents[1]}`} title="Add card"><i className="fa fa-plus-square-o"></i></Link>
+        <Link to={`/add/${routeComponents[1]}`} title="Add card">
+          <i className="fa fa-plus-square-o"></i>
+        </Link>
       );
       listLink = (
-        <Link to={`/`} title="View decks"><i className="fa fa-navicon"></i></Link>
+        <Link to={`/`} title="View decks">
+          <i className="fa fa-clone"></i>
+        </Link>
       );
     }
-    else if(routeComponents[0] === 'add' && routeComponents.length === 2) {
+    else if (routeComponents[0] === 'add' && routeComponents.length === 2) {
       // @/add/:deckId
       addLink = (
-        <Link to={`/add/${routeComponents[1]}`} title="Add card"><i className="fa fa-plus-square-o"></i></Link>
+        <Link to={`/add/${routeComponents[1]}`} title="Add card">
+          <i className="fa fa-plus-square-o"></i>
+        </Link>
       );
       listLink = (
-        <Link to={`/view/${routeComponents[1]}`} title="View cards"><i className="fa fa-navicon"></i></Link>
+        <Link to={`/view/${routeComponents[1]}`} title="View cards">
+          <i className="fa fa-square-o"></i>
+        </Link>
       );
     }
-    else if(routeComponents[0] === 'view' && routeComponents.length === 3) {
+    else if (routeComponents[0] === 'view' && routeComponents.length === 3) {
       // @/view/:deckId/:cardId
       addLink = (
-        <Link to={`/add/${routeComponents[1]}`} title="Add card"><i className="fa fa-plus-square-o"></i></Link>
+        <Link to={`/add/${routeComponents[1]}`} title="Add card">
+          <i className="fa fa-plus-square-o"></i>
+        </Link>
       );
       listLink = (
-        <Link to={`/view/${routeComponents[1]}`} title="View cards"><i className="fa fa-navicon"></i></Link>
+        <Link to={`/view/${routeComponents[1]}`} title="View cards">
+          <i className="fa fa-square-o"></i>
+        </Link>
       );
     }
-    else if(routeComponents[0] === 'add' && routeComponents.length === 1) {
+    else if (routeComponents[0] === 'add' && routeComponents.length === 1) {
       // @/add
       addLink = (
-        <a href="javascript:void(0);" disabled><i className="fa fa-plus-square-o"></i></a>
+        <a href="javascript:void(0);" disabled>
+          <i className="fa fa-plus-square-o"></i>
+        </a>
       );
       listLink = (
-        <Link to={`/`} title="View decks"><i className="fa fa-navicon"></i></Link>
+        <Link to={'/'} title="View decks"><i className="fa fa-th"></i></Link>
       );
     }
     else if(routeComponents[0] === 'edit' && routeComponents.length === 3) {
       // @/edit/:deckId/:cardIndex
       addLink = (
-        <a href="javascript:void(0);" disabled><i className="fa fa-plus-square-o"></i></a>
+        <a href="javascript:void(0);" disabled>
+          <i className="fa fa-plus-square-o"></i>
+        </a>
       );
       listLink = (
-        <Link to={`/view/${routeComponents[1]}`} title="View cards"><i className="fa fa-navicon"></i></Link>
+        <Link to={`/view/${routeComponents[1]}`} title="View cards">
+          <i className="fa fa-square-o"></i>
+        </Link>
       );
     }
     else {
       addLink = (
-        <a href="javascript:void(0);" disabled><i className="fa fa-plus-square-o"></i></a>
+        <a href="javascript:void(0);" disabled>
+          <i className="fa fa-plus-square-o"></i>
+        </a>
       );
-      listLink = (
-        <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
-      );
+      listLink = null;
+      // listLink = (
+      //   <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
+      // );
     }
 
     return {
-      addLink, listLink
+      addLink,
+      listLink
     };
   }
 
   render() {
-    let addLink, listLink;
+    let addLink;
+    let listLink;
     const routeParser = this.routeParser;
 
     browserHistory.listen(function(ev) {
@@ -111,7 +137,7 @@ class Navbar extends React.Component {
           </div>
         </div>
       </nav>
-    )
+    );
   }
 }
 

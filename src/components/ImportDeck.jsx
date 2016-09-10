@@ -1,12 +1,10 @@
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as deckActions from '../action-creators/deck';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Dropzone from 'react-dropzone';
-import Remarkable from 'remarkable';
-import samples from '../data/samples'
+import * as deckActions from '../action-creators/deck';
+import samples from '../data/samples';
 import styles from '../styles/components/ImportDeck';
 
 const propTypes = {
@@ -30,10 +28,6 @@ class ImportDeck extends React.Component {
     return result;
   }
 
-  navigateToAddDeck(deckId) {
-    browserHistory.push(`/add`);
-  }
-
   handleDrop(files) {
     const file = files[0];
     const reader = new FileReader();
@@ -54,7 +48,7 @@ class ImportDeck extends React.Component {
       // this.setState({unprocessed: result, processed: markup});
       // console.log('complete!', result, markup, resultJson);
       // console.log('complete!', resultJson);
-    }
+    };
     reader.readAsText(file);
   }
 
@@ -62,7 +56,7 @@ class ImportDeck extends React.Component {
     e.preventDefault();
     const id = this.generateRandomString();
     this.props.addDeck({
-      id: id,
+      id,
       title: this.refs.title.value,
       description: this.refs.description.value,
       cards: []
@@ -73,7 +67,7 @@ class ImportDeck extends React.Component {
 
   handleLoadSample() {
     let sampleDeck;
-    for(let d of samples) {
+    for (const d of samples) {
       sampleDeck = { ...d };
       sampleDeck.id = this.generateRandomString();
       this.props.addDeck(sampleDeck);
@@ -91,8 +85,11 @@ class ImportDeck extends React.Component {
             </div>
           </aside>
           <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
-            <input type="text" className="large-input" name="title" ref="title" placeholder="Deck Title" maxLength="30" />
-            <textarea type="text" name="description" ref="description" placeholder="Description" rows="3" />
+            <input type="text" className="large-input"
+              name="title" ref="title"
+              placeholder="Deck Title" maxLength="30" />
+            <textarea type="text" name="description"
+              ref="description" placeholder="Description" rows="3" />
             <Dropzone
               onDrop={this.handleDrop}
               className={`${styles['drop']}`}
@@ -119,7 +116,7 @@ class ImportDeck extends React.Component {
 ImportDeck.propTypes = propTypes;
 ImportDeck.defaultProps = defaultProps;
 
-const mapStateToProps = () => { return {} };
+const mapStateToProps = () => {};
 const mapDispatchToProps = (dispatch) => bindActionCreators(deckActions, dispatch);
 
 export default connect(

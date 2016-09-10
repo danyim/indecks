@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as deckActions from '../action-creators/deck';
-import DeckEdit from './DeckEdit';
-import DeckNavigator from './DeckNavigator';
+import DeckEdit from '../components/DeckEdit';
+import DeckNavigator from '../components/DeckNavigator';
 
 const propTypes = {};
 const defaultProps = {};

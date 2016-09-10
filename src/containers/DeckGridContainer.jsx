@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as deckActions from '../action-creators/deck';
-import DeckGrid from './DeckGrid';
+import DeckGrid from '../components/DeckGrid';
 
 class DeckGridContainer extends React.Component {
   render() {

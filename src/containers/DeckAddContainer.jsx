@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { browserHistory } from 'react-router';
 import * as deckActions from '../action-creators/deck';
-import { Link, browserHistory } from 'react-router';
-import CardAdd from './CardAdd';
+import CardAdd from '../components/CardAdd';
 
-class DeckAdd extends React.Component {
+const propTypes = {
+  deck: React.PropTypes.object.isRequired,
+  addCard: React.PropTypes.func.isRequired
+};
+
+const defaultProps = {};
+
+class DeckAddContainer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -31,7 +38,10 @@ class DeckAdd extends React.Component {
   }
 }
 
-const mapStateToProps = ({decks}, ownProps) => {
+DeckAddContainer.propTypes = propTypes;
+DeckAddContainer.defaultProps = defaultProps;
+
+const mapStateToProps = ({ decks }, ownProps) => {
   const deckIndex = decks.findIndex(d => d.id === ownProps.params.deckId);
   return {
     deck: decks[deckIndex],
@@ -43,4 +53,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(deckActions, dispatc
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DeckAdd);
+)(DeckAddContainer);

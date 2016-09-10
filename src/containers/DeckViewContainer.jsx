@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as deckActions from '../action-creators/deck';
 import { Link, browserHistory } from 'react-router';
-import DeckView from './DeckView';
+import DeckView from '../components/DeckView';
 
 class DeckViewContainer extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class DeckViewContainer extends React.Component {
     const { deckId } = this.props.params;
 
     // Derive the deck index
-    const deckIndex = this.props.decks.findIndex((deck) => deck.id === deckId);
+    const deckIndex = this.props.decks.findIndex(deck => deck.id === deckId);
     // Get the deck
     const deck = this.props.decks[deckIndex];
 

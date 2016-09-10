@@ -32,18 +32,17 @@ class CardEdit extends React.Component {
   }
 
   handleCancel() {
-    if(this.checkIfDirty()) {
-      if(confirm('Are you sure? You have unsaved changes.')) {
+    if (this.checkIfDirty()) {
+      if (confirm('Are you sure? You have unsaved changes.')) {
         browserHistory.push(`/view/${this.deckId}`);
       }
-    }
-    else {
+    } else {
       browserHistory.push(`/view/${this.deckId}/${this.cardIndex}`);
     }
   }
 
   handleDelete(cardIndex, deckId) {
-    if(confirm('Are you sure?')) {
+    if (confirm('Are you sure?')) {
       this.props.removeCard(
         cardIndex,
         deckId
@@ -60,11 +59,11 @@ class CardEdit extends React.Component {
       this.cardIndex,
       this.deckId
     );
-    browserHistory.push(`/view/${this.deckId}/${this.cardIndex}`)
+    browserHistory.push(`/view/${this.deckId}/${this.cardIndex}`);
   }
 
   render() {
-    const { card, deckId, cardIndex } = this.props
+    const { card, deckId, cardIndex } = this.props;
     const { title = '', answer = '' } = card;
     this.deckId = deckId;
     this.cardIndex = cardIndex;
@@ -74,7 +73,7 @@ class CardEdit extends React.Component {
         <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
           <textarea className="large-input" name="title" ref="title" placeholder="Title" defaultValue={title} rows="2" />
           <textarea className="mono" name="answer" ref="answer" placeholder="Answer (Markdown)" defaultValue={answer} rows="6" />
-          <p><a>Preview Changes</a></p>
+          { /* <p><a>Preview Changes</a></p> */ }
 
           <div className={`${styles['control-buttons']}`}>
             <button type="submit" className="button">Save Card</button>

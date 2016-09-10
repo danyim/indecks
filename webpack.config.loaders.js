@@ -2,7 +2,7 @@ var path = require('path');
 
 const loaderConfig = [
   {
-    test: /\.js$/,
+    test: /\.jsx?$/,
     loaders: ['babel'],
     include: path.join(__dirname, 'src')
   },

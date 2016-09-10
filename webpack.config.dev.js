@@ -28,7 +28,7 @@ module.exports = {
     loaders
   },
   resolve: {
-    extensions: ['', '.js', '.styl']
+    extensions: ['', '.js', '.jsx', '.styl']
   },
   // postcss: [autoPrefixer({ browsers: ['last 2 versions'] })],
   stylus: {

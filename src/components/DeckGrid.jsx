@@ -2,18 +2,21 @@ import React from 'react';
 import Deck from './Deck';
 import styles from '../styles/components/DeckGrid';
 
-const propTypes = {};
+const propTypes = {
+  decks: React.PropTypes.array.isRequired,
+  removeDeck: React.PropTypes.func.isRequired,
+};
 
 const defaultProps = {};
 
 class DeckGrid extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.handleRemoveDeck = this.handleRemoveDeck.bind(this);
   }
 
   handleRemoveDeck(deckId) {
-    if(confirm('Are you sure you want to delete this deck?')) {
+    if (confirm('Are you sure you want to delete this deck?')) {
       this.props.removeDeck(deckId);
     }
   }
@@ -21,7 +24,7 @@ class DeckGrid extends React.Component {
   render() {
     const emptyMsg =
       this.props.decks.length === 0 ?
-        <p>Click the + button on the top left to add a deck</p>
+        <p className="center">Click the + button on the top left to add a deck</p>
         : '';
 
     return (
@@ -31,7 +34,7 @@ class DeckGrid extends React.Component {
         )}
         {emptyMsg}
       </section>
-    )
+    );
   }
 }
 

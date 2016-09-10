@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as deckActions from '../action-creators/deck';
 import * as configActions from '../action-creators/config';
-import CardView from './CardView';
+import CardView from '../components/CardView';
 import styles from '../styles/components/CardView';
 
 class CardViewContainer extends React.Component {
