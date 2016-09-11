@@ -3,35 +3,39 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as deckActions from '../action-creators/deck';
 import DeckEdit from '../components/DeckEdit';
-import DeckNavigator from '../components/DeckNavigator';
 
-const propTypes = {};
+const propTypes = {
+  cards: React.PropTypes.array.isRequired,
+  deck: React.PropTypes.object.isRequired,
+  deckId: React.PropTypes.string.isRequired
+};
 const defaultProps = {};
 
 class DeckEditContainer extends React.Component {
   render() {
-    const { deckId, cardIndex, card } = this.props;
+    const { cards, deck, deckId } = this.props;
 
     return (
-      <DeckEdit {...this.props} />
-    )
+      <DeckEdit cards={cards} deck={deck} deckId={deckId} />
+    );
   }
 }
 
 DeckEditContainer.propTypes = propTypes;
 DeckEditContainer.defaultProps = defaultProps;
 
-const mapStateToProps = ({decks}, ownProps) => {
-  const { deckId, cardIndex } = ownProps.params;
+const mapStateToProps = ({ decks }, ownProps) => {
+  const { deckId } = ownProps.params;
   // Find the deck based on the property
   const deckIndex = decks.findIndex(d => d.id === deckId);
   return {
-    card: decks[deckIndex].cards[cardIndex - 1],
-    deckId: deckId,
-    cardIndex: parseInt(cardIndex)
+    cards: decks[deckIndex].cards,
+    deck: decks[deckIndex],
+    deckId
   };
 };
-const mapDispatchToProps = (dispatch) => bindActionCreators(deckActions, dispatch);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(deckActions, dispatch);
 
 export default connect(
   mapStateToProps,

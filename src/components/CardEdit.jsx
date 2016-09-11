@@ -69,19 +69,21 @@ class CardEdit extends React.Component {
     this.cardIndex = cardIndex;
 
     return (
-      <figure className={`grid-figure ${styles['grid-figure']}`}>
-        <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
-          <textarea className="large-input" name="title" ref="title" placeholder="Title" defaultValue={title} rows="2" />
-          <textarea className="mono" name="answer" ref="answer" placeholder="Answer (Markdown)" defaultValue={answer} rows="6" />
-          { /* <p><a>Preview Changes</a></p> */ }
+      <section className="single">
+        <figure className={`grid-figure ${styles['grid-figure']}`}>
+          <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
+            <textarea className="large-input" name="title" ref="title" placeholder="Title" defaultValue={title} rows="2" />
+            <textarea className="mono" name="answer" ref="answer" placeholder="Answer (Markdown)" defaultValue={answer} rows="6" />
+            { /* <p><a>Preview Changes</a></p> */ }
 
-          <div className={`${styles['control-buttons']}`}>
-            <button type="submit" className="button">Save Card</button>
-            <button type="button" className="button" onClick={() => this.handleCancel()}>Cancel</button>
-            <button type="button" className="button btn-delete" onClick={() => this.handleDelete(this.cardIndex, this.deckId)}>Remove from Deck</button>
-          </div>
-        </form>
-      </figure>
+            <div className={`${styles['control-buttons']}`}>
+              <button type="submit" className="button">Save Card</button>
+              <button type="button" className="button" onClick={() => this.handleCancel()}>Cancel</button>
+              <button type="button" className="button btn-delete" onClick={() => this.handleDelete(this.cardIndex, this.deckId)}>Remove from Deck</button>
+            </div>
+          </form>
+        </figure>
+      </section>
     );
   }
 }

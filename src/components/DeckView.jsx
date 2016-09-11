@@ -52,7 +52,7 @@ class DeckView extends React.Component {
                 Play Deck
               </span>
             </Link>
-            <Link className="button" to={`/view/${this.props.deck.id}/1`}>
+            <Link className="button" to={`/edit/${this.props.deck.id}`}>
               <span>
                 Edit Details
               </span>
