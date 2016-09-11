@@ -7,16 +7,24 @@ import DeckEdit from '../components/DeckEdit';
 const propTypes = {
   cards: React.PropTypes.array.isRequired,
   deck: React.PropTypes.object.isRequired,
-  deckId: React.PropTypes.string.isRequired
+  deckId: React.PropTypes.string.isRequired,
+  editCard: React.PropTypes.func.isRequired,
+  removeCard: React.PropTypes.func.isRequired
 };
 const defaultProps = {};
 
 class DeckEditContainer extends React.Component {
   render() {
-    const { cards, deck, deckId } = this.props;
+    const { cards, deck, deckId, editCard, removeCard } = this.props;
 
     return (
-      <DeckEdit cards={cards} deck={deck} deckId={deckId} />
+      <DeckEdit
+        cards={cards}
+        deck={deck}
+        deckId={deckId}
+        editCard={editCard}
+        removeCard={removeCard}
+      />
     );
   }
 }
