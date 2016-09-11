@@ -5,7 +5,7 @@ const toggleShuffle = (state, action) => {
   const newState = { ...state };
   newState.shuffle = !newState.shuffle;
   return newState;
-}
+};
 
 const handlers = {
   [TOGGLE_SHUFFLE]: toggleShuffle

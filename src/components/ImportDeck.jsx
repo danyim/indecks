@@ -31,14 +31,35 @@ class ImportDeck extends React.Component {
   handleDrop(files) {
     const file = files[0];
     const reader = new FileReader();
+    const addToDeck = inputDeck => {
+      const deck = { ...inputDeck };
+      deck.id = this.generateRandomString(); // Generate a new ID regardless
+      // Absolutely no validation of the JSON here...
+      // We're trusting that the user is providing a indecks-produced deck json
+      this.props.addDeck(deck);
+    };
+
     reader.onload = e => {
       const result = e.target.result;
       const resultJson = JSON.parse(result);
-      resultJson.id = this.generateRandomString(); // Generate a new ID regardless
-      // Absolutely no validation of the JSON here...
-      // We're trusting that the user is providing a indecks-produced deck json
-      this.props.addDeck(resultJson);
-      browserHistory.push(`/view/${resultJson.id}`);
+      if (Array.isArray(resultJson)) {
+        // Trying to import multiple decks
+        for (const d of resultJson) {
+          addToDeck(d);
+        }
+        // Navigate to the deck grid view
+        browserHistory.push(`/`);
+      } else {
+        // Add the single deck
+        addToDeck(resultJson);
+        // Navigate to the newly imported deck
+        browserHistory.push(`/view/${resultJson.id}`);
+      }
+      // resultJson.id = this.generateRandomString(); // Generate a new ID regardless
+      // // Absolutely no validation of the JSON here...
+      // // We're trusting that the user is providing a indecks-produced deck json
+      // this.props.addDeck(resultJson);
+
       // TODO: Parse the contents of the card descriptions into Markdown
       // for(let card of resultJson.cards) {
 
@@ -116,9 +137,7 @@ class ImportDeck extends React.Component {
 ImportDeck.propTypes = propTypes;
 ImportDeck.defaultProps = defaultProps;
 
-const mapStateToProps = () => {
-  return {};
-};
+const mapStateToProps = () => ({});
 const mapDispatchToProps = (dispatch) => bindActionCreators(deckActions, dispatch);
 
 export default connect(

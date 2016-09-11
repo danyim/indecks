@@ -19,11 +19,13 @@ class Navbar extends React.Component {
           <i className="fa fa-plus-square-o"></i>
         </Link>
       );
-      listLink = null;
-      // listLink = (
-      //   //<Link to={`/`} title="View decks"><i className={`${styles['fa fa-navicon grid-icon']}`}></i></Link>
-      //   <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
-      // );
+      // listLink = null;
+      listLink = (
+        <Link to={`/settings`} title="Settings">
+          <i className="fa fa-cog"></i>
+        </Link>
+        // <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
+      );
     }
     else if (routeComponents[0] === 'view' && routeComponents.length === 2) {
       // @/view/:deckId

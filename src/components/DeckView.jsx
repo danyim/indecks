@@ -34,7 +34,7 @@ class DeckView extends React.Component {
   render() {
     const emptyMsg = (() => {
       if(this.props.deck.cards.length === 0 ) {
-        return <p>Click the + button on the top left to add a card</p>
+        return <p className="center">Click the + button on the top left to add a card</p>
       }
     })()
 

@@ -4,21 +4,21 @@ export function addDeck(deck) {
   return {
     type: types.ADD_DECK,
     deck
-  }
+  };
 }
 
 export function removeDeck(deckId) {
   return {
     type: types.REMOVE_DECK,
     deckId
-  }
+  };
 }
 
 export function shuffleDeck(deckId) {
   return {
     type: types.SHUFFLE_DECK,
     deckId
-  }
+  };
 }
 
 
@@ -28,7 +28,7 @@ export function addCard(title, answer, deckId) {
     title,
     answer,
     deckId
-  }
+  };
 }
 
 export function editCard(title, answer, cardIndex, deckId) {
@@ -38,7 +38,7 @@ export function editCard(title, answer, cardIndex, deckId) {
     answer,
     cardIndex,
     deckId
-  }
+  };
 }
 
 export function removeCard(cardIndex, deckId) {
@@ -46,5 +46,11 @@ export function removeCard(cardIndex, deckId) {
     type: types.REMOVE_CARD,
     cardIndex,
     deckId
-  }
+  };
+}
+
+export function removeAllDecks() {
+  return {
+    type: types.REMOVE_ALL_DECKS
+  };
 }

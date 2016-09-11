@@ -11,10 +11,14 @@ const propTypes = {
 const defaultProps = {
   filename: 'file.txt',
   label: 'Save',
-  style: { margin: '5px 5px 0px 0px', textDecoration: 'underline', color: 'blue', cursor: 'pointer' },
+  style: {
+    margin: '5px 5px 0px 0px',
+    textDecoration: 'underline',
+    color: 'blue',
+    cursor: 'pointer'
+  },
   exportFile: () => {}
 };
-
 
 class ExportDeckButton extends React.Component {
   constructor(props) {
@@ -23,7 +27,7 @@ class ExportDeckButton extends React.Component {
     this.handleDownloadClick = this.handleDownloadClick.bind(this);
   }
 
-  magicDownload(text, fileName){
+  magicDownload(text, fileName) {
     const blob = new Blob([text], {
       type: 'text/csv;charset=utf8;'
     });
@@ -43,22 +47,24 @@ class ExportDeckButton extends React.Component {
 
   handleDownloadClick(event) {
     const fileType = event.target.innerText;
-    const text = this.props.exportFile(fileType)
+    const text = this.props.exportFile(fileType);
 
     if (text instanceof Promise) {
       text.then(
         result => this.magicDownload(result, this.props.filename)
-      )
+      );
     } else {
-      this.magicDownload(text, this.props.filename)
+      this.magicDownload(text, this.props.filename);
     }
   }
 
   render() {
     return (
-      <button style={ this.props.style }
-        className={ this.props.className }
-        onClick={ this.handleDownloadClick }>
+      <button
+        style={this.props.style}
+        className={this.props.className}
+        onClick={this.handleDownloadClick}
+      >
         {this.props.label}
       </button>
     );
@@ -68,4 +74,4 @@ class ExportDeckButton extends React.Component {
 ExportDeckButton.propTypes = propTypes;
 ExportDeckButton.defaultProps = defaultProps;
 
-export default ExportDeckButton
+export default ExportDeckButton;
