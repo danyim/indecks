@@ -13,13 +13,15 @@ An interactive index card study app built using React/Redux. Use it to study and
 - _Google authentication & user data with a Firebase backend (**Coming soon**)_
 
 ### Keyboard Shortcuts
-- <kbd>RARROW</kbd> - Next Card
-- <kbd>LARROW</kbd> - Previous Card
-- <kbd>a</kbd> - Add a card
-- <kbd>e</kbd> - Edit card
-- <kbd>SPACE</kbd> - Flip card
-- <kbd>s</kbd> - Toggle shuffle
-- <kbd>d</kbd> - Return to deck
+| Key | Function |
+| --- | -------- |
+| <kbd>RARROW</kbd> | Next Card |
+| <kbd>LARROW</kbd> | Previous Card |
+| <kbd>A</kbd> | Add a card |
+| <kbd>E</kbd> | Edit card |
+| <kbd>SPACE</kbd> | Flip card |
+| <kbd>S</kbd> | Toggle shuffle |
+| <kbd>D</kbd> | Return to deck |
 
 ### Build
 **Local**
