@@ -1,5 +1,5 @@
 # indecks
-An interactive index card study app built using React/Redux. Use it to study (cram?) for tests.
+An interactive index card study app built using React/Redux. Use it to study and/or cram for tests on a desktop or a mobile device.
 
 [Live Link](https://danyim.github.io/indecks/)
 
@@ -8,7 +8,9 @@ An interactive index card study app built using React/Redux. Use it to study (cr
   - Captures swipes on mobile for quickly navigating between cards
 - Markdown support for card contents
 - Import/export of decks via JSON
+- Data persistence through local storage
 - Keyboard shortcuts for quick navigation (see legend below)
+- _Google authentication & user data with a Firebase backend (**Coming soon**)_
 
 ### Keyboard Shortcuts
 - <kbd>RARROW</kbd> - Next Card
@@ -29,8 +31,8 @@ An interactive index card study app built using React/Redux. Use it to study (cr
 
 1. Run `npm build` to create a distro folder and a bundle.js file.
 
+### Thanks
+Thanks to [this course](https://learnredux.com/) by @wesbos for providing the early foundation for this project
+
 ### License
   MIT
-
-### Links
-- Thanks to [this course by @wesbos](https://learnredux.com/) for providing the foundation for this project
