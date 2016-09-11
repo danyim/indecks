@@ -34,7 +34,7 @@ export default function configureStore(initialState = {}, debug = __DEV__) {
   }
 
   let decksCombined = null;
-  // decksCombined = [...decks, ...samples]; // Comment this out for release
+  decksCombined = [...decks, ...samples]; // Comment this out for release
   initialState = {
     config,
     decks: decksCombined || [],

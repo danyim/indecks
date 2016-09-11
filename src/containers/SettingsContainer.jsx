@@ -17,7 +17,8 @@ class SettingsContainer extends React.Component {
       <Settings
         deckCount={this.props.deckCount}
         removeAllDecks={this.props.removeAllDecks}
-        {...this.props} />
+        {...this.props}
+      />
     );
   }
 }
