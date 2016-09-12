@@ -6,6 +6,14 @@ export function addDeck(deck) {
     deck
   };
 }
+export function editDeck(deckId, title, description) {
+  return {
+    type: types.EDIT_DECK,
+    deckId,
+    title,
+    description
+  };
+}
 
 export function removeDeck(deckId) {
   return {

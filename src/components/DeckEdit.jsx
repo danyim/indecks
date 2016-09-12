@@ -1,4 +1,5 @@
 import React from 'react';
+import DeckEditDeckForm from './DeckEditDeckForm';
 import styles from '../styles/components/DeckEdit';
 
 const propTypes = {
@@ -6,7 +7,9 @@ const propTypes = {
   deck: React.PropTypes.object.isRequired,
   deckId: React.PropTypes.string.isRequired,
   editCard: React.PropTypes.func.isRequired,
-  removeCard: React.PropTypes.func.isRequired
+  removeCard: React.PropTypes.func.isRequired,
+  editDeck: React.PropTypes.func.isRequired,
+  form: React.PropTypes.object.isRequired
 };
 
 const defaultProps = {};
@@ -16,6 +19,7 @@ class DeckEdit extends React.Component {
     super(props);
     this.handleDeleteCard = this.handleDeleteCard.bind(this);
     this.handleUpdateCard = this.handleUpdateCard.bind(this);
+    this.handleDeckDetailSubmit = this.handleDeckDetailSubmit.bind(this);
   }
 
   handleDeleteCard(index, deckId) {
@@ -27,27 +31,45 @@ class DeckEdit extends React.Component {
     this.props.editCard(card.title, card.description, index, deckId);
   }
 
+  handleDeckDetailSubmit(e) {
+    e.preventDefault();
+    this.props.editDeck(
+      this.props.deckId,
+      this.props.form.deckEditDeck.values.title,
+      this.props.form.deckEditDeck.values.description);
+  }
+
   render() {
     const { cards, deck, deckId } = this.props;
+    const deckFormInitialValues = {
+      title: deck.title,
+      description: deck.description
+    };
 
     return (
       <section className={`${styles['deck-edit']}`}>
         <div className={`${styles['card']}`}>
           <section className={`${styles['title-section']}`}>
-            <textarea
-              className="large-input"
-              name="title" ref="title"
-              placeholder="Deck Title"
-              defaultValue={deck.title}
-              rows="1"
+            <DeckEditDeckForm
+              initialValues={deckFormInitialValues}
+              handleSubmit={this.handleDeckDetailSubmit}
             />
-            <textarea
-              className="mono"
-              name="answer" ref="answer"
-              placeholder="Deck Description"
-              defaultValue={deck.description}
-              rows="4"
-            />
+            {
+            // <textarea
+            //   className="large-input"
+            //   name="title" ref="title"
+            //   placeholder="Deck Title"
+            //   defaultValue={deck.title}
+            //   rows="1"
+            // />
+            // <textarea
+            //   className="mono"
+            //   name="answer" ref="answer"
+            //   placeholder="Deck Description"
+            //   defaultValue={deck.description}
+            //   rows="4"
+            // />
+            }
           </section>
           <section className={`${styles['card-section']}`}>
             {cards.map((card, i) =>

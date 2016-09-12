@@ -9,13 +9,16 @@ const propTypes = {
   deck: React.PropTypes.object.isRequired,
   deckId: React.PropTypes.string.isRequired,
   editCard: React.PropTypes.func.isRequired,
-  removeCard: React.PropTypes.func.isRequired
+  removeCard: React.PropTypes.func.isRequired,
+  editDeck: React.PropTypes.func.isRequired,
+  form: React.PropTypes.object.isRequired
 };
 const defaultProps = {};
 
 class DeckEditContainer extends React.Component {
   render() {
-    const { cards, deck, deckId, editCard, removeCard } = this.props;
+    const { cards, deck, deckId,
+      editCard, removeCard, editDeck, form } = this.props;
 
     return (
       <DeckEdit
@@ -24,6 +27,8 @@ class DeckEditContainer extends React.Component {
         deckId={deckId}
         editCard={editCard}
         removeCard={removeCard}
+        editDeck={editDeck}
+        form={form}
       />
     );
   }
@@ -32,14 +37,15 @@ class DeckEditContainer extends React.Component {
 DeckEditContainer.propTypes = propTypes;
 DeckEditContainer.defaultProps = defaultProps;
 
-const mapStateToProps = ({ decks }, ownProps) => {
+const mapStateToProps = ({ decks, form }, ownProps) => {
   const { deckId } = ownProps.params;
   // Find the deck based on the property
   const deckIndex = decks.findIndex(d => d.id === deckId);
   return {
     cards: decks[deckIndex].cards,
     deck: decks[deckIndex],
-    deckId
+    deckId,
+    form
   };
 };
 const mapDispatchToProps = (dispatch) =>

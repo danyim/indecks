@@ -1,4 +1,5 @@
-import { ADD_CARD, EDIT_CARD, REMOVE_CARD, ADD_DECK, REMOVE_DECK, SHUFFLE_DECK, REMOVE_ALL_DECKS } from '../actions';
+import { ADD_CARD, EDIT_CARD, REMOVE_CARD, ADD_DECK,
+  EDIT_DECK, REMOVE_DECK, SHUFFLE_DECK, REMOVE_ALL_DECKS } from '../actions';
 import { createReducer } from '../utils';
 
 const addCard = (state, { deckId, title, answer }) => {
@@ -22,11 +23,11 @@ const addCard = (state, { deckId, title, answer }) => {
   ];
 };
 
-const editCard = (state, {deckId, cardIndex, title, answer}) => {
+const editCard = (state, { deckId, cardIndex, title, answer }) => {
   const deckIndex = state.findIndex(v => v.id === deckId);
   if (deckIndex === -1) return state;
   // The card index coming in isn't 0-based and also a string, so convert
-  const adjCardIndex = parseInt(cardIndex) - 1;
+  const adjCardIndex = parseInt(cardIndex, 10) - 1;
   const deck = state[deckIndex];
   const newCard = Object.assign({}, deck.cards[adjCardIndex]);
   newCard.title = title;
@@ -52,7 +53,7 @@ const removeCard = (state, {deckId, cardIndex}) => {
   const deckIndex = state.findIndex(v => v.id === deckId);
 
   // The card index coming in isn't 0-based and also a string, so convert
-  const adjCardIndex = parseInt(cardIndex) - 1;
+  const adjCardIndex = parseInt(cardIndex, 10) - 1;
   const deck = state[deckIndex];
   const newDeck = {
     ...deck,
@@ -76,9 +77,22 @@ const addDeck = (state, { deck }) => {
   ];
 };
 
+const editDeck = (state, { deckId, title, description }) => {
+  const deckIndex = state.findIndex(v => v.id === deckId);
+  if (deckIndex === -1) return state;
+  const deck = { ...state[deckIndex] };
+  deck.title = title;
+  deck.description = description;
+  return [
+    ...state.slice(0, deckIndex),
+    deck,
+    ...state.slice(deckIndex + 1),
+  ];
+};
+
 const removeDeck = (state, { deckId }) => {
   const deckIndex = state.findIndex(v => v.id === deckId);
-  if(deckIndex === -1) return state;
+  if (deckIndex === -1) return state;
   return [
     ...state.slice(0, deckIndex),
     ...state.slice(deckIndex + 1),
@@ -87,15 +101,14 @@ const removeDeck = (state, { deckId }) => {
 
 const shuffleDeck = (state) => state;
 
-const removeAllDecks = state => {
-  return [];
-};
+const removeAllDecks = () => [];
 
 const handlers = {
   [ADD_CARD]: addCard,
   [EDIT_CARD]: editCard,
   [REMOVE_CARD]: removeCard,
   [ADD_DECK]: addDeck,
+  [EDIT_DECK]: editDeck,
   [REMOVE_DECK]: removeDeck,
   [SHUFFLE_DECK]: shuffleDeck,
   [REMOVE_ALL_DECKS]: removeAllDecks
