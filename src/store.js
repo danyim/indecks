@@ -17,7 +17,7 @@ const envMiddlewares = {
 /**
  * Applies reducers, middleware, and enhancers to the store
  * @param  {Object} initialState Initial state when the app loads
- * @param  {Boolean} debug       Flag for debug mode or not
+ * @param  {Boolean} debug       Flag for debug mode
  * @return {Object}              A store object for Redux
  */
 export default function configureStore(initialState = {}, debug = __DEV__) {
@@ -34,7 +34,8 @@ export default function configureStore(initialState = {}, debug = __DEV__) {
   }
 
   let decksCombined = null;
-  decksCombined = [...decks, ...samples]; // Comment this out for release
+  // decksCombined = [...decks, ...samples]; // Comment this out for release
+  // decksCombined = [...samples]; // Comment this out for release
   initialState = {
     config,
     decks: decksCombined || [],
@@ -46,7 +47,11 @@ export default function configureStore(initialState = {}, debug = __DEV__) {
     storeEnhancers
   );
 
-  persistStore(store);
+  persistStore(store, {
+    blacklist: ['routing', 'form']
+  }, x => {
+    return console.log('state?', store.getState())
+  });
 
   // TODO: Does this belong here or in root.js?
   if (module.hot) {
