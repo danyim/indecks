@@ -4,12 +4,13 @@ import Remarkable from 'remarkable';
 const propTypes = {
   className: React.PropTypes.string,
   removeParaTags: React.PropTypes.bool,
-  text: React.PropTypes.string.isRequired,
+  text: React.PropTypes.string,
   handleOnClick: React.PropTypes.func
 };
 
 const defaultProps = {
   className: '',
+  text: '',
   removeParaTags: false,
   handleOnClick: null,
 };
