@@ -6,7 +6,10 @@ import ExportDeckButton from './ExportDeckButton';
 import slug from 'slug';
 import styles from '../styles/components/DeckView';
 
-const propTypes = {};
+const propTypes = {
+  deck: React.PropTypes.object.isRequired,
+  handleRemoveDeck: React.PropTypes.func.isRequired
+};
 
 const defaultProps = {};
 
@@ -33,10 +36,11 @@ class DeckView extends React.Component {
 
   render() {
     const emptyMsg = (() => {
-      if(this.props.deck.cards.length === 0 ) {
+      if (this.props.deck.cards.length === 0) {
         return <p className="center">Click the + button on the top left to add a card</p>
       }
-    })()
+      return null;
+    })();
 
     return (
       <section className={`${styles['deck-view']}`}>
@@ -66,7 +70,8 @@ class DeckView extends React.Component {
                 // Use this if you want to use the replacer
                 exportFile={() =>  JSON.stringify(deck, this.mdReplacer, 2)}
               */
-             exportFile={() => JSON.stringify(this.props.deck, null, 2)} />
+             exportFile={() => JSON.stringify(this.props.deck, null, 2)}
+            />
             <a className="button btn-delete" onClick={() => this.props.handleRemoveDeck(this.props.deck.id)}>
                 Delete Deck
             </a>
@@ -82,7 +87,7 @@ class DeckView extends React.Component {
           {emptyMsg}
         </div>
       </section>
-    )
+    );
   }
 }
 
