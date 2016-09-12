@@ -18,7 +18,7 @@ class Markdown extends React.Component {
   convertToMarkdown(plaintext = '', removeParaTags = false) {
     const md = new Remarkable();
     let rawMarkup = md.render(plaintext);
-    if(removeParaTags === true) {
+    if (removeParaTags === true) {
       rawMarkup = rawMarkup.replace('<p>', '');
       rawMarkup = rawMarkup.replace('</p>', '');
     }
@@ -27,8 +27,13 @@ class Markdown extends React.Component {
 
   render() {
     return (
-      <span className={this.props.className} onClick={this.props.handleOnClick}
-        dangerouslySetInnerHTML={this.convertToMarkdown(this.props.text, this.props.removeParaTags)} />
+      <span
+        className={this.props.className}
+        onClick={this.props.handleOnClick}
+        dangerouslySetInnerHTML={
+          this.convertToMarkdown(this.props.text, this.props.removeParaTags)
+        }
+      />
     );
   }
 }

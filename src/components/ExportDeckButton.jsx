@@ -3,6 +3,7 @@ import React from 'react';
 const propTypes = {
   filename: React.PropTypes.string,
   label: React.PropTypes.string,
+  disabled: React.PropTypes.bool,
   style: React.PropTypes.object,
   className: React.PropTypes.string,
   exportFile: React.PropTypes.func
@@ -11,6 +12,7 @@ const propTypes = {
 const defaultProps = {
   filename: 'file.txt',
   label: 'Save',
+  disabled: false,
   style: {
     margin: '5px 5px 0px 0px',
     textDecoration: 'underline',
@@ -64,6 +66,7 @@ class ExportDeckButton extends React.Component {
         style={this.props.style}
         className={this.props.className}
         onClick={this.handleDownloadClick}
+        disabled={this.props.disabled}
       >
         {this.props.label}
       </button>

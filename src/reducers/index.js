@@ -8,7 +8,7 @@ import decks from './decks';
 const reducers = {
   config,
   decks,
-  form: formReducer, // TODO: Still using this? What's come of it?
+  form: formReducer,
   routing: routerReducer
 };
 

@@ -5,12 +5,17 @@ import Card from './Card';
 import DeckNavigator from './DeckNavigator';
 import styles from '../styles/components/CardView';
 
-const propTypes = {};
+const propTypes = {
+  card: React.PropTypes.object.isRequired,
+  deck: React.PropTypes.object.isRequired,
+  config: React.PropTypes.object.isRequired,
+  cardIndex: React.PropTypes.number.isRequired
+};
 
 const defaultProps = {};
 
 class CardView extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = { flipped: false };
 
@@ -26,10 +31,10 @@ class CardView extends React.Component {
   }
 
   handleNextCard() {
-    if(this.props.cardIndex < this.props.deck.cards.length || this.props.config.shuffle === true) {
+    if (this.props.cardIndex < this.props.deck.cards.length || this.props.config.shuffle === true) {
       this.handleFlip(null, false);
       let nextIndex = this.props.cardIndex + 1; // Going forwards
-      if(this.props.config.shuffle === true) {
+      if (this.props.config.shuffle === true) {
         nextIndex = this.randomCardIndex();
       }
 
@@ -38,10 +43,10 @@ class CardView extends React.Component {
   }
 
   handlePrevCard() {
-    if(this.props.cardIndex > 1 || this.props.config.shuffle === true) {
+    if (this.props.cardIndex > 1 || this.props.config.shuffle === true) {
       this.handleFlip(null, false);
       let nextIndex = this.props.cardIndex - 1; // Going backwards
-      if(this.props.config.shuffle === true) {
+      if (this.props.config.shuffle === true) {
         nextIndex = this.randomCardIndex();
       }
       browserHistory.push(`/view/${this.props.deck.id}/${nextIndex}`);
@@ -53,10 +58,9 @@ class CardView extends React.Component {
   }
 
   handleFlip(e, flipped) {
-    if(flipped !== undefined) {
-      this.setState({ flipped: flipped });
-    }
-    else {
+    if (flipped !== undefined) {
+      this.setState({ flipped });
+    } else {
       this.setState({ flipped: !this.state.flipped });
     }
   }

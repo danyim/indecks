@@ -36,7 +36,7 @@
     "react-transform-hmr": "^1.0.4",
     "redbox-react": "^1.2.3",
     "redux": "^3.5.2",
-    "redux-form": "^5.3.2",
+    "redux-form": "^6.0.2",
     "redux-logger": "^2.6.1",
     "redux-persist": "^3.5.0",
     "redux-thunk": "^2.1.0",

@@ -17,7 +17,8 @@ class Settings extends React.Component {
   }
 
   removeAllDecks(count) {
-    if (confirm(`Are you sure you want to delete all ${count} decks? This is a permanent action.`)) {
+    if (confirm(`Are you sure you want to delete all ${count} decks? ` +
+      'This action is permanent.')) {
       this.props.removeAllDecks();
     }
   }
@@ -28,13 +29,15 @@ class Settings extends React.Component {
     const renderDeleteAll = deckCount === 0 ?
       <button
         className="btn-delete"
-        disabled="disabled">
+        disabled="disabled"
+      >
         Delete all decks from local storage
       </button>
       :
       <button
         className="btn-delete"
-        onClick={() => this.removeAllDecks(deckCount)}>
+        onClick={() => this.removeAllDecks(deckCount)}
+      >
         Delete all {deckCount} deck(s) from local storage
       </button>;
 
@@ -50,11 +53,13 @@ class Settings extends React.Component {
                 local storage.
               </p>
               <ExportDeckButton
-                filename={`indecks.json`}
+                filename="indecks.json"
                 label="Download all decks as JSON"
                 className="button"
+                disabled={deckCount === 0}
                 style={{}}
-                exportFile={() => JSON.stringify(this.props.decks, null, 2)} />
+                exportFile={() => JSON.stringify(this.props.decks, null, 2)}
+              />
               {renderDeleteAll}
             </section>
           </div>

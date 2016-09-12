@@ -16,36 +16,37 @@ const defaultProps = {
 };
 
 class Card extends React.Component {
+  renderEmpty() {
+    <div className={`${styles['center']}`}>
+      <p className={`${styles['grey']}`}>No answer provided</p>
+    </div>;
+  }
+
+  renderMarkdown() {
+    const { card, flipped } = this.props;
+    if(flipped === false) {
+      return (
+        <div>
+          <Markdown className={`${styles['card-title']}`} text={card.title} removeParaTags={true} />
+        </div>
+      );
+    }
+    else {
+      return (
+        <figcaption>
+          <Markdown text={card.answer} />
+          {card.answer === '' ? this.renderEmpty() : null}
+        </figcaption>
+      );
+    }
+  }
+
   render() {
     const { card, flipped } = this.props;
 
-    let emptyAnswer;
-    if(card.answer === '') {
-      emptyAnswer =
-        <div className={`${styles['center']}`}>
-          <p className={`${styles['grey']}`}>No answer provided</p>
-        </div>;
-    }
-
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`} onClick={this.props.handleOnClick}>
-        {(() => {
-          if(flipped === false) {
-            return (
-              <div>
-                <Markdown className={`${styles['card-title']}`} text={card.title} removeParaTags={true} />
-              </div>
-            );
-          }
-          else {
-            return (
-              <figcaption>
-                <Markdown text={card.answer} />
-                {emptyAnswer}
-              </figcaption>
-            );
-          }
-        })()}
+        {this.renderMarkdown()}
       </figure>
     );
   }

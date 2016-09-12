@@ -49,8 +49,6 @@ export default function configureStore(initialState = {}, debug = __DEV__) {
 
   persistStore(store, {
     blacklist: ['routing', 'form']
-  }, x => {
-    return console.log('state?', store.getState())
   });
 
   // TODO: Does this belong here or in root.js?

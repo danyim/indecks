@@ -10,12 +10,13 @@ const propTypes = {
   deckId: React.PropTypes.string.isRequired,
   editCard: React.PropTypes.func.isRequired,
   removeCard: React.PropTypes.func.isRequired,
+  form: React.PropTypes.object.isRequired,
 };
 const defaultProps = {};
 
 class CardEditContainer extends React.Component {
   render() {
-    const { deckId, cardIndex, card, editCard, removeCard } = this.props;
+    const { deckId, cardIndex, card, editCard, removeCard, form } = this.props;
 
     return (
       <CardEdit
@@ -24,6 +25,7 @@ class CardEditContainer extends React.Component {
         deckId={deckId}
         editCard={editCard}
         removeCard={removeCard}
+        form={form}
       />
     );
   }
@@ -32,14 +34,15 @@ class CardEditContainer extends React.Component {
 CardEditContainer.propTypes = propTypes;
 CardEditContainer.defaultProps = defaultProps;
 
-const mapStateToProps = ({ decks }, ownProps) => {
+const mapStateToProps = ({ decks, form }, ownProps) => {
   const { deckId, cardIndex } = ownProps.params;
   // Find the deck based on the property
   const deckIndex = decks.findIndex(d => d.id === deckId);
   return {
     card: decks[deckIndex].cards[cardIndex - 1],
     deckId,
-    cardIndex: parseInt(cardIndex, 10)
+    cardIndex: parseInt(cardIndex, 10),
+    form
   };
 };
 const mapDispatchToProps = (dispatch) => bindActionCreators(deckActions, dispatch);

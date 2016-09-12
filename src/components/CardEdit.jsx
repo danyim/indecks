@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
+import CardEditForm from './CardEditForm';
 import styles from '../styles/components/CardEdit';
 
 const propTypes = {
@@ -8,7 +9,8 @@ const propTypes = {
   cardIndex: React.PropTypes.number.isRequired,
   deckId: React.PropTypes.string.isRequired,
   editCard: React.PropTypes.func.isRequired,
-  removeCard: React.PropTypes.func.isRequired
+  removeCard: React.PropTypes.func.isRequired,
+  form: React.PropTypes.object.isRequired
 };
 
 const defaultProps = {};
@@ -16,28 +18,27 @@ const defaultProps = {};
 class CardEdit extends React.Component {
   constructor(props) {
     super(props);
-    this.title = null;
-    this.answer = null;
-    this.cardIndex = null;
-    this.deckId = null;
 
     this.checkIfDirty = this.checkIfDirty.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   checkIfDirty() {
     const { title, answer } = this.props.card;
-    return (this.refs.title.value !== title || this.refs.answer.value !== answer);
+    return (
+      this.props.form.cardEdit.values.cardTitle !== title
+      || this.props.form.cardEdit.values.cardAnswer !== answer);
   }
 
   handleCancel() {
     if (this.checkIfDirty()) {
       if (confirm('Are you sure? You have unsaved changes.')) {
-        browserHistory.push(`/view/${this.deckId}`);
+        browserHistory.push(`/view/${this.props.deckId}`);
       }
     } else {
-      browserHistory.push(`/view/${this.deckId}/${this.cardIndex}`);
+      browserHistory.push(`/view/${this.props.deckId}/${this.props.cardIndex}`);
     }
   }
 
@@ -47,41 +48,43 @@ class CardEdit extends React.Component {
         cardIndex,
         deckId
       );
-      browserHistory.push(`/view/${this.deckId}`);
+      browserHistory.push(`/view/${this.props.deckId}`);
     }
   }
 
   handleSubmit(e) {
     e.preventDefault();
     this.props.editCard(
-      this.refs.title.value,
-      this.refs.answer.value,
-      this.cardIndex,
-      this.deckId
+      this.props.form.cardEdit.values.cardTitle,
+      this.props.form.cardEdit.values.cardAnswer,
+      this.props.cardIndex,
+      this.props.deckId
     );
-    browserHistory.push(`/view/${this.deckId}/${this.cardIndex}`);
+    browserHistory.push(`/view/${this.props.deckId}/${this.props.cardIndex}`);
   }
 
   render() {
     const { card, deckId, cardIndex } = this.props;
     const { title = '', answer = '' } = card;
-    this.deckId = deckId;
-    this.cardIndex = cardIndex;
+
+    const initialValues = {
+      cardTitle: title,
+      cardAnswer: answer
+    };
 
     return (
       <section className="single">
         <figure className={`grid-figure ${styles['grid-figure']}`}>
-          <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
-            <textarea className="large-input" name="title" ref="title" placeholder="Title" defaultValue={title} rows="2" />
-            <textarea className="mono" name="answer" ref="answer" placeholder="Answer (Markdown)" defaultValue={answer} rows="6" />
-            { /* <p><a>Preview Changes</a></p> */ }
-
-            <div className={`${styles['control-buttons']}`}>
-              <button type="submit" className="button">Save Card</button>
-              <button type="button" className="button" onClick={() => this.handleCancel()}>Cancel</button>
-              <button type="button" className="button btn-delete" onClick={() => this.handleDelete(this.cardIndex, this.deckId)}>Remove from Deck</button>
-            </div>
-          </form>
+          <CardEditForm
+            deckId={deckId}
+            cardIndex={cardIndex}
+            title={title}
+            answer={answer}
+            initialValues={initialValues}
+            handleSubmit={this.handleSubmit}
+            handleDelete={this.handleDelete}
+            handleCancel={this.handleCancel}
+          />
         </figure>
       </section>
     );
@@ -91,4 +94,4 @@ class CardEdit extends React.Component {
 CardEdit.propTypes = propTypes;
 CardEdit.defaultProps = defaultProps;
 
-export default CardEdit
+export default CardEdit;
