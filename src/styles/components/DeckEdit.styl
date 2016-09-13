@@ -58,14 +58,19 @@
   flex 1 0
   padding 1.5rem
 
+$button-height = 4.0rem
+
 .card-actions
   // align-self: flex-end
-  flex 0 0 30px
+  flex 0 0 $button-height
   padding 0
+  display flex
+  flex-flow row nowrap
   button
-    min-height 30px
+    flex 1 0
+    min-height $button-height
     margin 0
-    padding 0
+    padding 1.0rem
     border-radius 0
     border: 1px solid lightgrey
     box-sizing: border-box

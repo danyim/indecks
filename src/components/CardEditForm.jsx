@@ -9,6 +9,7 @@ const propTypes = {
   deckId: React.PropTypes.string.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
   handleDelete: React.PropTypes.func.isRequired,
+  handleCancel: React.PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -18,21 +19,13 @@ const defaultProps = {
 
 const fields = ['cardTitle', 'cardAnswer'];
 
-const renderTitleField = (field) => (
-  <div className="input-row">
-    <input {...field.input} type="text"/>
-    {field.meta.touched && field.meta.error &&
-     <span className="error">{field.meta.error}</span>}
-  </div>
-)
-
 class CardEditForm extends React.Component {
   render() {
-    const { title, answer, deckId, cardIndex, handleSubmit,
+    const { deckId, cardIndex, handleSubmit,
       handleDelete, handleCancel } = this.props;
 
     return (
-      <form ref="commentForm" className="edit-form" onSubmit={handleSubmit}>
+      <form className="edit-form" onSubmit={handleSubmit}>
         <Field
           name="cardTitle"
           component="textarea"
@@ -53,7 +46,13 @@ class CardEditForm extends React.Component {
 
         <div className={`${styles['control-buttons']}`}>
           <button type="submit" className="button">Save Card</button>
-          <button type="button" className="button" onClick={() => handleCancel()}>Cancel</button>
+          <button
+            type="button"
+            className="button"
+            onClick={() => handleCancel()}
+          >
+            Cancel
+          </button>
           <button
             type="button"
             className="button btn-delete"

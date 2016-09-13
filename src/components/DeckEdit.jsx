@@ -1,4 +1,5 @@
 import React from 'react';
+import DeckEditCardForm from './DeckEditCardForm';
 import DeckEditDeckForm from './DeckEditDeckForm';
 import styles from '../styles/components/DeckEdit';
 
@@ -19,16 +20,27 @@ class DeckEdit extends React.Component {
     super(props);
     this.handleDeleteCard = this.handleDeleteCard.bind(this);
     this.handleUpdateCard = this.handleUpdateCard.bind(this);
+    this.handleCardDetailSubmit = this.handleCardDetailSubmit.bind(this);
     this.handleDeckDetailSubmit = this.handleDeckDetailSubmit.bind(this);
   }
 
-  handleDeleteCard(index, deckId) {
-    this.props.removeCard(index, deckId);
+  handleDeleteCard(cardIndex, deckId) {
+    this.props.removeCard(cardIndex, deckId);
   }
 
   handleUpdateCard(index, deckId, card) {
-    // console.log(`updating card @${index}`);
-    this.props.editCard(card.title, card.description, index, deckId);
+    console.log(`updating card with "${card.title}" and "${card.description}"`);
+    this.props.editCard(card.title, card.description, index + 1, deckId);
+  }
+
+  handleCardDetailSubmit(e, cardIndex) {
+    debugger;
+    e.preventDefault();
+    this.props.editCard(
+      this.props.form.deckEditCard.values.title,
+      this.props.form.deckEditCard.values.answer,
+      cardIndex,
+      this.props.deckId);
   }
 
   handleDeckDetailSubmit(e) {
@@ -54,48 +66,17 @@ class DeckEdit extends React.Component {
               initialValues={deckFormInitialValues}
               handleSubmit={this.handleDeckDetailSubmit}
             />
-            {
-            // <textarea
-            //   className="large-input"
-            //   name="title" ref="title"
-            //   placeholder="Deck Title"
-            //   defaultValue={deck.title}
-            //   rows="1"
-            // />
-            // <textarea
-            //   className="mono"
-            //   name="answer" ref="answer"
-            //   placeholder="Deck Description"
-            //   defaultValue={deck.description}
-            //   rows="4"
-            // />
-            }
           </section>
           <section className={`${styles['card-section']}`}>
             {cards.map((card, i) =>
-              <figure key={i}>
-                <div className={`${styles['card-content']}`}>
-                  <input
-                    type="text"
-                    placeholder="Card title"
-                    value={card.title}
-                    onChange={() => this.handleUpdateCard(i, deckId, card)}
-                  />
-                  <textarea
-                    placeholder="Card answer"
-                    value={card.answer}
-                    onChange={() => this.handleUpdateCard(i, deckId, card)}
-                  />
-                </div>
-                <div className={`${styles['card-actions']}`}>
-                  <button
-                    className="btn-delete"
-                    onClick={() => this.handleDeleteCard(i, deckId)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </figure>
+              <DeckEditCardForm
+                key={i}
+                cardIndex={i + 1}
+                deckId={deckId}
+                initialValues={{ title: card.title, answer: card.answer }}
+                handleSubmit={this.handleCardDetailSubmit}
+                handleDeleteCard={this.handleDeleteCard}
+              />
             )}
           </section>
         </div>
