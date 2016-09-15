@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import styles from '../styles/components/CardEdit';
 
 const propTypes = {
-  handleSubmit: React.PropTypes.func.isRequired
+  handleDeckSubmit: React.PropTypes.func.isRequired
 };
 
 const defaultProps = {};
@@ -12,10 +12,10 @@ const fields = ['title', 'description'];
 
 class DeckEditDeckForm extends React.Component {
   render() {
-    const { handleSubmit } = this.props;
+    const { handleDeckSubmit } = this.props;
 
     return (
-      <form className="edit-form" onSubmit={handleSubmit}>
+      <form className="edit-form" onSubmit={handleDeckSubmit}>
         <Field
           name="title"
           component="textarea"

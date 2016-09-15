@@ -64,7 +64,7 @@ class DeckEdit extends React.Component {
           <section className={`${styles['title-section']}`}>
             <DeckEditDeckForm
               initialValues={deckFormInitialValues}
-              handleSubmit={this.handleDeckDetailSubmit}
+              handleDetailSubmit={this.handleDeckDetailSubmit}
             />
           </section>
           <section className={`${styles['card-section']}`}>
@@ -74,7 +74,7 @@ class DeckEdit extends React.Component {
                 cardIndex={i + 1}
                 deckId={deckId}
                 initialValues={{ title: card.title, answer: card.answer }}
-                handleSubmit={this.handleCardDetailSubmit}
+                handleCardSubmit={this.handleCardDetailSubmit}
                 handleDeleteCard={this.handleDeleteCard}
               />
             )}

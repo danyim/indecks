@@ -6,9 +6,10 @@ const propTypes = {
   cardIndex: React.PropTypes.number.isRequired,
   deckId: React.PropTypes.string.isRequired,
   handleDeleteCard: React.PropTypes.func.isRequired,
-  handleSubmit: React.PropTypes.func.isRequired,
+  handleCardSubmit: React.PropTypes.func.isRequired,
   pristine: React.PropTypes.bool,
   submitting: React.PropTypes.bool,
+  key: React.PropTypes.number.isRequired
 };
 
 const defaultProps = {};
@@ -18,21 +19,21 @@ const fields = ['title', 'answer'];
 class DeckEditCardForm extends React.Component {
   render() {
     const { cardIndex, deckId, handleDeleteCard,
-      handleSubmit, pristine, submitting } = this.props;
+      handleCardSubmit, pristine, submitting } = this.props;
 
     return (
       <figure>
         <div className={`${styles['card-content']}`}>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleCardSubmit}>
             <Field
-              name={`card[${cardIndex}].title`}
+              name={`title`}
               component="input"
               type="text"
               rows="1"
               placeholder="Card Title"
             />
             <Field
-              name={`card[${cardIndex}].answer`}
+              name={`answer`}
               component="textarea"
               type="text"
               className="mono"
@@ -64,6 +65,6 @@ DeckEditCardForm.propTypes = propTypes;
 DeckEditCardForm.defaultProps = defaultProps;
 
 export default reduxForm({
-  form: 'deckEditCard',
+  form: `deckEditCardwhat`,
   fields
 })(DeckEditCardForm);
