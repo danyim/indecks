@@ -64,7 +64,11 @@ class DeckEditCardForm extends React.Component {
 DeckEditCardForm.propTypes = propTypes;
 DeckEditCardForm.defaultProps = defaultProps;
 
+// TODO: Need to figure out a way to enumerate this form so that we can track it individually when it updates
+// !! One idea: increase the scope of DeckEditCardForm to encompass all cards
+// shown in the deck view instead of a single card, then only one
+// <form> tag reequired and we can enumerate the fields using name='title[whatever]' etc.
 export default reduxForm({
-  form: `deckEditCardwhat`,
+  form: `deckEditCard`,
   fields
 })(DeckEditCardForm);
