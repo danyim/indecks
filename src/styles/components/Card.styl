@@ -5,7 +5,7 @@ figure.grid-figure
   display flex
   min-height 275px
   flex-direction column
-  justify-content: center
+  justify-content: flex-start
   figcaption
     padding 2rem 5rem
     li
@@ -30,3 +30,18 @@ figure.grid-figure
     color lightgray
     font-weight bold
     text-align center
+
+.no-answer
+  font-size: 2rem;
+  color: lightgray
+  // padding: 2rem 2.5rem 1rem 2.5rem
+  align-self: flex-end
+  *
+    position: absolute
+    bottom: 1.5rem
+    right: 1.5rem
+
+.card-contents
+  flex: 1 0
+  display: flex
+  justify-content: center

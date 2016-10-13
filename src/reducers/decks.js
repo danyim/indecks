@@ -24,7 +24,6 @@ const addCard = (state, { deckId, title, answer }) => {
 };
 
 const editCard = (state, { deckId, cardIndex, title, answer }) => {
-  debugger;
   const deckIndex = state.findIndex(v => v.id === deckId);
   if (deckIndex === -1) return state;
   // The card index coming in isn't 0-based and also a string, so convert

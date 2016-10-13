@@ -1,6 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
+import KeyBinding from 'react-keybinding-component';
 import CardEditForm from './CardEditForm';
 import styles from '../styles/components/CardEdit';
 
@@ -32,9 +33,17 @@ class CardEdit extends React.Component {
       || this.props.form.cardEdit.values.cardAnswer !== answer);
   }
 
+  handleKeyDown(e) {
+    if(e.keyCode === 27) { // escape
+      this.handleCancel();
+    }
+
+    e.stopPropagation();
+  }
+
   handleCancel() {
     if (this.checkIfDirty()) {
-      if (confirm('Are you sure? You have unsaved changes.')) {
+      if (confirm('Are you sure you want to cancel? You have unsaved changes that will be lost.')) {
         browserHistory.push(`/view/${this.props.deckId}`);
       }
     } else {
@@ -75,6 +84,7 @@ class CardEdit extends React.Component {
     return (
       <section className="single">
         <figure className={`grid-figure ${styles['grid-figure']}`}>
+          <KeyBinding onKey={ e => this.handleKeyDown(e) } />
           <CardEditForm
             deckId={deckId}
             cardIndex={cardIndex}
