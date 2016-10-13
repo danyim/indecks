@@ -41,11 +41,23 @@ class Card extends React.Component {
     }
   }
 
+  renderHasAnswerIcon(card) {
+    if(!(card && card.answer && card.answer.trim() !== '')) {
+      return (
+        <div className={`${styles['no-answer']}`} title="This card has no answer">
+          <i className="fa fa-exclamation-circle"></i>
+        </div>
+      );
+    }
+    return;
+  }
+
   render() {
     const { card, flipped } = this.props;
 
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`} onClick={this.props.handleOnClick}>
+        {this.renderHasAnswerIcon(card)}
         {this.renderMarkdown()}
       </figure>
     );
