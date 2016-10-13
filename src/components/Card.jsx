@@ -17,9 +17,12 @@ const defaultProps = {
 
 class Card extends React.Component {
   renderEmpty() {
-    <div className={`${styles['center']}`}>
-      <p className={`${styles['grey']}`}>No answer provided</p>
-    </div>;
+    console.log('attempting to render empty');
+    return (
+      <div className={`${styles['center']}`}>
+        <p className={`${styles['grey']}`}>No answer provided</p>
+      </div>
+    );
   }
 
   renderMarkdown() {
