@@ -60,8 +60,10 @@ class Card extends React.Component {
 
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`} onClick={this.props.handleOnClick}>
+        <div className={`${styles['card-contents']}`}>
+          {this.renderMarkdown()}
+        </div>
         {this.renderHasAnswerIcon(card)}
-        {this.renderMarkdown()}
       </figure>
     );
   }
