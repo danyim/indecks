@@ -8,7 +8,8 @@ import samples from '../data/samples';
 import styles from '../styles/components/ImportDeck';
 
 const propTypes = {
-  addDeck: React.PropTypes.func.isRequired
+  addDeck: React.PropTypes.func.isRequired,
+  handleCancel: React.PropTypes.func
 };
 
 const defaultProps = {};
@@ -19,6 +20,7 @@ class ImportDeck extends React.Component {
     this.handleDrop = this.handleDrop.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLoadSample = this.handleLoadSample.bind(this);
+    this.renderCancelButton = this.renderCancelButton.bind(this);
   }
 
   generateRandomString(length = 8) {
@@ -96,6 +98,23 @@ class ImportDeck extends React.Component {
     browserHistory.push(`/`);
   }
 
+  renderCancelButton() {
+    if (this.props.handleCancel) {
+      return (
+        <div>
+          <button
+            type="button"
+            className="button btn-delete"
+            onClick={() => this.props.handleCancel()}
+          >
+            Cancel
+          </button>
+        </div>
+      );
+    }
+    return;
+  }
+
   render() {
     return (
       <section className={`${styles['deck-import']}`}>
@@ -106,6 +125,7 @@ class ImportDeck extends React.Component {
             </div>
           </aside>
           <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
+            <h3>Add/Import Deck</h3>
             <input type="text" className="large-input"
               name="title" ref="title"
               placeholder="Deck Title" maxLength="30" />
@@ -127,6 +147,7 @@ class ImportDeck extends React.Component {
             <div>
               <button type="button" className="button" onClick={() => this.handleLoadSample()}>Load Sample Decks</button>
             </div>
+            {this.renderCancelButton()}
           </form>
         </div>
       </section>

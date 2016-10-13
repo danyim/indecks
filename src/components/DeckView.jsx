@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from './Card';
-import DeckNavigator from './DeckNavigator';
 import { Link, browserHistory } from 'react-router';
 import ExportDeckButton from './ExportDeckButton';
 import slug from 'slug';

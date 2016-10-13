@@ -3,10 +3,14 @@
 .deck-import
   max-width pageWidth
 .grid-figure
-  padding 2rem
-  background-color white
-  border 1px solid lightgrey
+  // background-color white
+  // padding 2rem
+  // border 1px solid lightgrey
   flex-direction row
+  form
+    padding: 0
+    h3
+      margin-top: 0
 
 .figure-box
   flex 1 0 33.33%
@@ -37,3 +41,8 @@
   border 1px solid green
 .drop-reject
   border 1px solid red
+
+
+@media (max-width: cardWidth)
+  .grid-figure aside
+    display: none
