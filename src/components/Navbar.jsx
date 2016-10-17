@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link, browserHistory } from 'react-router';
 import ImportDeck from './ImportDeck';
+import ImportDeckContainer from '../containers/ImportDeckContainer';
 import SettingsContainer from '../containers/SettingsContainer';
 import styles from '../styles/components/Navbar';
 
@@ -104,7 +105,7 @@ class Navbar extends React.Component {
         onRequestClose={this.closeImportDeckModal}
         className={`${styles['modal-import-deck']}`}
       >
-        <ImportDeck handleClose={this.closeImportDeckModal} />
+        <ImportDeckContainer handleClose={this.closeImportDeckModal} />
       </Modal>
     );
   }
