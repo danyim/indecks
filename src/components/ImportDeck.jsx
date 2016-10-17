@@ -119,13 +119,13 @@ class ImportDeck extends React.Component {
     return (
       <section className={`${styles['deck-import']}`}>
         <div className={`${styles['grid-figure']}`}>
+          <h3>Add/Import Deck</h3>
           <aside className={`${styles['figure-box']}`}>
             <div className={`${styles['symbol-container']}`}>
               <i className={`fa fa-list-alt fa-3 ${styles['symbol']}`}></i>
             </div>
           </aside>
           <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
-            <h3>Add/Import Deck</h3>
             <input type="text" className="large-input"
               name="title" ref="title"
               placeholder="Deck Title" maxLength="30" />

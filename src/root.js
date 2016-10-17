@@ -18,8 +18,7 @@ class Root extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Router history={history} routes={Routes}>
-        </Router>
+        <Router history={history} routes={Routes} />
       </Provider>
     );
   }

@@ -2,7 +2,6 @@ import React from 'react';
 import Modal from 'react-modal';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link, browserHistory } from 'react-router';
-import ImportDeck from './ImportDeck';
 import ImportDeckContainer from '../containers/ImportDeckContainer';
 import SettingsContainer from '../containers/SettingsContainer';
 import styles from '../styles/components/Navbar';
@@ -48,8 +47,8 @@ class Navbar extends React.Component {
     if (path === '/') {
       // @/
       // addLink = this.renderLink('/add', 'Add deck', 'fa-plus-square-o');
-      addLink = this.renderModal(this.openImportDeckModal, 'fa-plus-square-o');
-      listLink = this.renderModal(this.openSettingsModal, 'fa-cog');
+      addLink = this.renderModalLink(this.openImportDeckModal, 'fa-plus-square-o');
+      listLink = this.renderModalLink(this.openSettingsModal, 'fa-cog');
       // listLink = this.renderLink('/settings', 'Settings', 'fa-cog');
       // <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
     } else if (routeComponents[0] === 'view' && routeComponents.length === 2) {
@@ -118,17 +117,11 @@ class Navbar extends React.Component {
     );
   }
 
-  renderModal(openModalFn, faClassName) {
+  renderModalLink(openModalFn, faClassName) {
     return (
-      <ReactCSSTransitionGroup
-        transitionName="modal-anim"
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={300}
-      >
-        <a onClick={openModalFn} className="pointer">
-          <i className={`fa ${faClassName}`} />
-        </a>
-      </ReactCSSTransitionGroup>
+      <a onClick={openModalFn} className="pointer">
+        <i className={`fa ${faClassName}`} />
+      </a>
     );
   }
 
@@ -145,7 +138,7 @@ class Navbar extends React.Component {
     let listLink;
     const routeParser = this.routeParser;
 
-    browserHistory.listen(function(ev) {
+    browserHistory.listen(ev => {
       const { addLink: add, listLink: list } = routeParser(ev.pathname);
       addLink = add;
       listLink = list;
