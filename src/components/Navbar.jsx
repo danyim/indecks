@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link, browserHistory } from 'react-router';
 import ImportDeck from './ImportDeck';
 import styles from '../styles/components/Navbar';
@@ -80,7 +81,7 @@ class Navbar extends React.Component {
         onRequestClose={this.closeImportDeckModal}
         className={`${styles['modal-import-deck']}`}
       >
-        <ImportDeck handleCancel={this.closeImportDeckModal} />
+        <ImportDeck handleClose={this.closeImportDeckModal} />
       </Modal>
     );
   }
@@ -95,9 +96,15 @@ class Navbar extends React.Component {
 
   renderModal(openModalFn, faClassName) {
     return (
-      <a onClick={openModalFn}>
-        <i className={`fa ${faClassName}`} />
-      </a>
+      <ReactCSSTransitionGroup
+        transitionName="modal-anim"
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={300}
+      >
+        <a onClick={openModalFn} className="pointer">
+          <i className={`fa ${faClassName}`} />
+        </a>
+      </ReactCSSTransitionGroup>
     );
   }
 

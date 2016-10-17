@@ -9,7 +9,7 @@ import styles from '../styles/components/ImportDeck';
 
 const propTypes = {
   addDeck: React.PropTypes.func.isRequired,
-  handleCancel: React.PropTypes.func
+  handleClose: React.PropTypes.func
 };
 
 const defaultProps = {};
@@ -54,6 +54,8 @@ class ImportDeck extends React.Component {
       } else {
         // Add the single deck
         addToDeck(resultJson);
+        // Close the modal
+        this.props.handleClose();
         // Navigate to the newly imported deck
         browserHistory.push(`/view/${resultJson.id}`);
       }
@@ -85,6 +87,8 @@ class ImportDeck extends React.Component {
       cards: []
     });
 
+    // Close the modal
+    this.props.handleClose();
     browserHistory.push(`/view/${id}`);
   }
 
@@ -99,13 +103,13 @@ class ImportDeck extends React.Component {
   }
 
   renderCancelButton() {
-    if (this.props.handleCancel) {
+    if (this.props.handleClose) {
       return (
         <div>
           <button
             type="button"
             className="button btn-delete"
-            onClick={() => this.props.handleCancel()}
+            onClick={() => this.props.handleClose()}
           >
             Cancel
           </button>
