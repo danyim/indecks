@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link, browserHistory } from 'react-router';
 import ImportDeck from './ImportDeck';
+import SettingsContainer from '../containers/SettingsContainer';
 import styles from '../styles/components/Navbar';
 
 const propTypes = {};
@@ -15,6 +16,8 @@ class Navbar extends React.Component {
 
     this.openImportDeckModal = this.openImportDeckModal.bind(this);
     this.closeImportDeckModal = this.closeImportDeckModal.bind(this);
+    this.openSettingsModal = this.openSettingsModal.bind(this);
+    this.closeSettingsModal = this.closeSettingsModal.bind(this);
     this.routeParser = this.routeParser.bind(this);
 
     this.state = { isImportDeckModalOpen: false };
@@ -28,6 +31,14 @@ class Navbar extends React.Component {
     this.setState({ isImportDeckModalOpen: false });
   }
 
+  openSettingsModal() {
+    this.setState({ isSettingsModalOpen: true });
+  }
+
+  closeSettingsModal() {
+    this.setState({ isSettingsModalOpen: false });
+  }
+
   routeParser(path) {
     let addLink;
     let listLink;
@@ -37,8 +48,8 @@ class Navbar extends React.Component {
       // @/
       // addLink = this.renderLink('/add', 'Add deck', 'fa-plus-square-o');
       addLink = this.renderModal(this.openImportDeckModal, 'fa-plus-square-o');
-      // listLink = null;
-      listLink = this.renderLink('/settings', 'Settings', 'fa-cog');
+      listLink = this.renderModal(this.openSettingsModal, 'fa-cog');
+      // listLink = this.renderLink('/settings', 'Settings', 'fa-cog');
       // <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
     } else if (routeComponents[0] === 'view' && routeComponents.length === 2) {
       // @/view/:deckId
@@ -72,6 +83,18 @@ class Navbar extends React.Component {
       addLink,
       listLink
     };
+  }
+
+  renderSettingsModal() {
+    return (
+      <Modal
+        isOpen={this.state.isSettingsModalOpen}
+        onRequestClose={this.closeSettingsModal}
+        className={`${styles['modal-import-deck']}`}
+      >
+        <SettingsContainer handleClose={this.closeSettingsModal} />
+      </Modal>
+    );
   }
 
   renderImportDeckModal() {
@@ -145,6 +168,7 @@ class Navbar extends React.Component {
               </div>
             </span>
             {this.renderImportDeckModal()}
+            {this.renderSettingsModal()}
           </div>
         </div>
       </nav>
