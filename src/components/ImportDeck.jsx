@@ -1,9 +1,6 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import Dropzone from 'react-dropzone';
-import * as deckActions from '../action-creators/deck';
 import samples from '../data/samples';
 import styles from '../styles/components/ImportDeck';
 
@@ -50,7 +47,7 @@ class ImportDeck extends React.Component {
           addToDeck(d);
         }
         // Navigate to the deck grid view
-        browserHistory.push(`/`);
+        browserHistory.push('/');
       } else {
         // Add the single deck
         addToDeck(resultJson);
@@ -99,7 +96,7 @@ class ImportDeck extends React.Component {
       sampleDeck.id = this.generateRandomString();
       this.props.addDeck(sampleDeck);
     }
-    browserHistory.push(`/`);
+    browserHistory.push('/');
   }
 
   renderCancelButton() {
@@ -116,7 +113,6 @@ class ImportDeck extends React.Component {
         </div>
       );
     }
-    return;
   }
 
   render() {
@@ -162,11 +158,4 @@ class ImportDeck extends React.Component {
 ImportDeck.propTypes = propTypes;
 ImportDeck.defaultProps = defaultProps;
 
-const mapStateToProps = () => ({});
-const mapDispatchToProps = (dispatch) => bindActionCreators(deckActions, dispatch);
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ImportDeck);
-
+export default ImportDeck;
