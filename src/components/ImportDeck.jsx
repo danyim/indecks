@@ -9,7 +9,9 @@ const propTypes = {
   handleClose: React.PropTypes.func
 };
 
-const defaultProps = {};
+const defaultProps = {
+  handleClose: () => {}
+};
 
 class ImportDeck extends React.Component {
   constructor(props) {
@@ -96,6 +98,9 @@ class ImportDeck extends React.Component {
       sampleDeck.id = this.generateRandomString();
       this.props.addDeck(sampleDeck);
     }
+
+    // Close the modal
+    this.props.handleClose();
     browserHistory.push('/');
   }
 
@@ -113,6 +118,7 @@ class ImportDeck extends React.Component {
         </div>
       );
     }
+    return null;
   }
 
   render() {
