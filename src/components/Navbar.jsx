@@ -4,6 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link, browserHistory } from 'react-router';
 import ImportDeckContainer from '../containers/ImportDeckContainer';
 import SettingsContainer from '../containers/SettingsContainer';
+import KeyListener from './KeyListener';
 import styles from '../styles/components/Navbar';
 
 const propTypes = {};
@@ -20,7 +21,21 @@ class Navbar extends React.Component {
     this.closeSettingsModal = this.closeSettingsModal.bind(this);
     this.routeParser = this.routeParser.bind(this);
 
-    this.state = { isImportDeckModalOpen: false };
+    this.state = {
+      isImportDeckModalOpen: false,
+      isSettingsModalOpen: false
+    };
+
+    this.handlers = [
+      {
+        keyCode: 73, // 'i'
+        action: this.openImportDeckModal
+      },
+      {
+        keyCode: 188, // ','
+        action: this.openSettingsModal
+      }
+    ];
   }
 
   openImportDeckModal() {
@@ -165,6 +180,7 @@ class Navbar extends React.Component {
             {this.renderSettingsModal()}
           </div>
         </div>
+        <KeyListener handlers={this.handlers} />
       </nav>
     );
   }

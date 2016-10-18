@@ -132,7 +132,11 @@ class DeckNavigator extends React.Component {
 
     return (
       <div className={`${styles['deck-navigator']}`}>
-        <KeyBinding onKey={ e => this.handleKeyDown(e) } />
+        <KeyBinding
+          onKey={e => this.handleKeyDown(e)}
+          preventInputConflict={true}
+          preventPropagation={true}
+        />
         <div className={`${styles['left']}`}>
           <FrontBack flipped={flipped} handleFlip={this.handleFlip} />
         </div>
