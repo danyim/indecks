@@ -1,6 +1,5 @@
 import React from 'react';
 import Modal from 'react-modal';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link, browserHistory } from 'react-router';
 import ImportDeckContainer from '../containers/ImportDeckContainer';
 import SettingsContainer from '../containers/SettingsContainer';
