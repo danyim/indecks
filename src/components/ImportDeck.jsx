@@ -125,7 +125,7 @@ class ImportDeck extends React.Component {
     return (
       <section className={`${styles['deck-import']}`}>
         <div className={`${styles['grid-figure']}`}>
-          <h3>Add/Import Deck</h3>
+          <h2 className={`${styles['header']}`}>Add/Import Deck</h2>
           <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
             <input type="text" className="large-input"
               name="title" ref="title"

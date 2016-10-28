@@ -42,28 +42,23 @@ class Settings extends React.Component {
       </button>;
 
     return (
-      <section className={`${styles['settings-view']}`}>
-        <figure className="grid-figure">
-          <div className={`${styles['settings-card']}`}>
-            <h1>Settings</h1>
-
-            <section className={`${styles['settings-section']}`}>
-              <p>
-                The decks you create are automatically saved to your browser's
-                local storage.
-              </p>
-              <ExportDeckButton
-                filename="indecks.json"
-                label="Download all decks as JSON"
-                className="button"
-                disabled={deckCount === 0}
-                style={{}}
-                exportFile={() => JSON.stringify(this.props.decks, null, 2)}
-              />
-              {renderDeleteAll}
-            </section>
-          </div>
-        </figure>
+      <section className={`${styles['settings-card']}`}>
+        <h2 className={`${styles['header']}`}>Settings</h2>
+        <section className={`${styles['settings-section']}`}>
+          <p>
+            The decks you create are automatically saved to your browser's
+            local storage.
+          </p>
+          <ExportDeckButton
+            filename="indecks.json"
+            label="Download all decks as JSON"
+            className="button"
+            disabled={deckCount === 0}
+            style={{}}
+            exportFile={() => JSON.stringify(this.props.decks, null, 2)}
+          />
+          {renderDeleteAll}
+        </section>
       </section>
     );
   }
