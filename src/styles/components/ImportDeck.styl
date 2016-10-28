@@ -2,6 +2,8 @@
 
 .deck-import
   max-width pageWidth
+  h4
+    margin 0 0 1rem 0
 
 .grid-figure
   flex-direction column
@@ -24,3 +26,32 @@
   border 1px solid green
 .drop-reject
   border 1px solid red
+
+.or-bar
+  hr
+    border: 0
+    border-bottom: 1px solid darken(lightgrey, 10%)
+    padding 0
+    margin 2rem 0
+    width 100%
+    outline: 0
+    animation-name: growWidth
+    animation-duration: 3s
+  p
+    font-size: 1.2rem
+    text-transform: uppercase
+    position absolute
+    top calc(2.0rem - 0.8rem);
+    left: 50%
+    transform: translate(-50%, 0%) !important
+    color darken(lightgrey, 10%)
+    background-color: white
+    margin: 0
+    padding: 0 0.6rem
+
+@keyframes growWidth
+    from
+      width: 30%
+    to
+      width: 100%
+

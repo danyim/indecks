@@ -127,11 +127,20 @@ class ImportDeck extends React.Component {
         <div className={`${styles['grid-figure']}`}>
           <h2 className={`${styles['header']}`}>Add/Import Deck</h2>
           <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
+            <h4>Create a new deck</h4>
             <input type="text" className="large-input"
               name="title" ref="title"
               placeholder="Deck Title" maxLength="30" />
             <textarea type="text" name="description"
               ref="description" placeholder="Description" rows="3" />
+            <div>
+              <button type="submit" className="button">Create Deck</button>
+            </div>
+            <div className={`${styles['or-bar']}`}>
+              <hr />
+              <p>or</p>
+            </div>
+            <h4>Import an existing deck</h4>
             <Dropzone
               onDrop={this.handleDrop}
               className={`${styles['drop']}`}
@@ -139,15 +148,17 @@ class ImportDeck extends React.Component {
               rejectClassName={`${styles['drop-reject']}`}
               multiple={false}
               accept="application/json">
-              <p>(Optional) Drop your deck JSON here</p>
+              <p>Click here to import or drag and drop the deck JSON here</p>
             </Dropzone>
-            <br /><br />
-            <div>
-              <button type="submit" className="button">Create</button>
+            <div className={`${styles['or-bar']}`}>
+              <hr />
+              <p>or</p>
             </div>
+            <h4>Use samples</h4>
             <div>
               <button type="button" className="button" onClick={() => this.handleLoadSample()}>Load Sample Decks</button>
             </div>
+            <br /><br />
             {this.renderCancelButton()}
           </form>
         </div>
