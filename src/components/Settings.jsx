@@ -42,9 +42,9 @@ class Settings extends React.Component {
       </button>;
 
     return (
-      <section className={`${styles['settings-card']}`}>
+      <section className={`${styles['settings']}`}>
         <h2 className={`${styles['header']}`}>Settings</h2>
-        <section className={`${styles['settings-section']}`}>
+        <div className={`${styles['settings-content']}`}>
           <p>
             The decks you create are automatically saved to your browser's
             local storage.
@@ -58,7 +58,7 @@ class Settings extends React.Component {
             exportFile={() => JSON.stringify(this.props.decks, null, 2)}
           />
           {renderDeleteAll}
-        </section>
+        </div>
       </section>
     );
   }

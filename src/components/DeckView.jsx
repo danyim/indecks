@@ -45,7 +45,7 @@ class DeckView extends React.Component {
   }
 
   validateDescription(text) {
-    return text.trim() !== '';
+    return text.trim() !== '' && text.length > 0 && text.length < 300;
   }
 
   validateTitle(text) {
@@ -78,13 +78,14 @@ class DeckView extends React.Component {
               validate={this.validateTitle}
               classLoading="loading"
               classInvalid="invalid" />
-            <RIEInput
+            <RIETextArea
               value={this.props.deck.description}
               change={this.handleEditDeckDetails}
               propName="description"
               className="paragraph editable m-t"
               minLength="1"
               maxLength="300"
+              rows="6"
               validate={this.validateDescription}
               classLoading="loading"
               classInvalid="invalid"
