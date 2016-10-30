@@ -34,7 +34,6 @@ class DeckEdit extends React.Component {
   }
 
   handleCardDetailSubmit(e, cardIndex) {
-    debugger;
     e.preventDefault();
     this.props.editCard(
       this.props.form.deckEditCard.values.title,
@@ -44,6 +43,7 @@ class DeckEdit extends React.Component {
   }
 
   handleDeckDetailSubmit(e) {
+    debugger;
     e.preventDefault();
     this.props.editDeck(
       this.props.deckId,

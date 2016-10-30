@@ -1,9 +1,10 @@
 import React from 'react';
+import InlineEdit from 'react-inline-edit';
 import { Field, reduxForm } from 'redux-form';
-import styles from '../styles/components/CardEdit';
+import styles from '../styles/components/DeckEdit';
 
 const propTypes = {
-  handleDeckSubmit: React.PropTypes.func.isRequired
+  handleDetailSubmit: React.PropTypes.func.isRequired
 };
 
 const defaultProps = {};
@@ -11,29 +12,70 @@ const defaultProps = {};
 const fields = ['title', 'description'];
 
 class DeckEditDeckForm extends React.Component {
+  // constructor(props) {
+  //   super(props);
+  // }
+
+  handleEditDescription(data) {
+    console.log('description changed', data);
+  }
+
+  handleEditTitle(data) {
+    console.log('title changed', data);
+  }
+
+  validateDescription(text) {
+    return text.trim() !== '';
+  }
+
+  validateTitle(text) {
+    return text.length > 0 && text.length < 160;
+  }
+
   render() {
-    const { handleDeckSubmit } = this.props;
+    const { handleDetailSubmit } = this.props;
 
     return (
-      <form className="edit-form" onSubmit={handleDeckSubmit}>
-        <Field
-          name="title"
-          component="textarea"
-          type="text"
-          className="large-input"
-          rows="1"
-          placeholder="Deck Title"
+      <div>
+        Inline:
+        <InlineEdit
+          validate={this.validateTitle}
+          change={this.handleEditTitle}
+          paramName="title"
+          placeholder="Add a deck title"
+          defaultValue="This is the default value for the title"
+          minLength="1"
+          maxLength="160"
         />
-        <Field
-          name="description"
-          component="textarea"
-          type="text"
+        <InlineEdit
+          validate={this.validateDescription}
+          change={this.handleEditDescription}
+          paramName="description"
+          placeholder="Add a description for the deck (Markdown supported)"
+          defaultValue="This is the default value for the description"
           className="mono"
-          rows="4"
-          placeholder="Deck Description"
+          maxLength="500"
         />
-        <button type="submit">Save</button>
-      </form>
+        <form className="edit-form" onSubmit={handleDetailSubmit}>
+          <Field
+            name="title"
+            component="textarea"
+            type="text"
+            className="large-input"
+            rows="1"
+            placeholder="Deck Title"
+          />
+          <Field
+            name="description"
+            component="textarea"
+            type="text"
+            className="mono"
+            rows="4"
+            placeholder="Deck Description"
+          />
+          <button type="submit">Save</button>
+        </form>
+      </div>
     );
   }
 }

@@ -5,6 +5,12 @@ import * as deckActions from '../action-creators/deck';
 import { Link, browserHistory } from 'react-router';
 import DeckView from '../components/DeckView';
 
+const propTypes = {
+  decks: React.PropTypes.array.isRequired,
+  editDeck: React.PropTypes.func.isRequired
+};
+const defaultProps = {};
+
 class DeckViewContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +35,11 @@ class DeckViewContainer extends React.Component {
 
     if(deck) {
       return (
-        <DeckView deck={deck} handleRemoveDeck={this.handleRemoveDeck} />
+        <DeckView
+          deck={deck}
+          handleRemoveDeck={this.handleRemoveDeck}
+          handleEditDeck={this.props.editDeck}
+        />
       );
     }
     else {
@@ -39,6 +49,9 @@ class DeckViewContainer extends React.Component {
     }
   }
 }
+
+DeckViewContainer.propTypes = propTypes;
+DeckViewContainer.defaultProps = defaultProps;
 
 const mapStateToProps = ({decks, config}) => ({decks, config});
 const mapDispatchToProps = (dispatch) => bindActionCreators(deckActions, dispatch);

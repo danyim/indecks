@@ -20,7 +20,7 @@ class Card extends React.Component {
     console.log('attempting to render empty');
     return (
       <div className={`${styles['center']}`}>
-        <p className={`${styles['grey']}`}>No answer provided</p>
+        <p className={`${styles['grey']}`}>This card does not have an answer yet</p>
       </div>
     );
   }
@@ -48,7 +48,7 @@ class Card extends React.Component {
     if(!(card && card.answer && card.answer.trim() !== '')) {
       return (
         <div className={`${styles['no-answer']}`} title="This card has no answer">
-          <i className="fa fa-exclamation-circle"></i>
+          <div>No answer</div>
         </div>
       );
     }
