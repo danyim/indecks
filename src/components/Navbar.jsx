@@ -86,7 +86,7 @@ class Navbar extends React.Component {
       addLink = this.renderNoAction();
       listLink = this.renderLink(`/view/${routeComponents[1]}`, 'View cards', 'fa-square-o');
     } else {
-      addLink = this.renderNoAction();
+      addLink = this.renderModalLink(this.openImportDeckModal, 'fa-plus-square-o');
       listLink = null;
       // listLink = (
       //   <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
