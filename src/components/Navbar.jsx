@@ -4,53 +4,59 @@ import { Link, browserHistory } from 'react-router';
 import ImportDeckContainer from '../containers/ImportDeckContainer';
 import SettingsContainer from '../containers/SettingsContainer';
 import KeyListener from './KeyListener';
+import ShortcutHelper from './ShortcutHelper';
 import styles from '../styles/components/Navbar';
 
 const propTypes = {};
 
 const defaultProps = {};
 
+const modalTypes = ['SETTINGS', 'IMPORT', 'SHORTCUTS'];
+
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.openImportDeckModal = this.openImportDeckModal.bind(this);
-    this.closeImportDeckModal = this.closeImportDeckModal.bind(this);
-    this.openSettingsModal = this.openSettingsModal.bind(this);
-    this.closeSettingsModal = this.closeSettingsModal.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     this.routeParser = this.routeParser.bind(this);
 
+    // TODO: Perhaps shortcut logic should be moved out into its own component
+    // outside of the NavBar? It's only here because the NavBar is global.
     this.state = {
-      isImportDeckModalOpen: false,
-      isSettingsModalOpen: false
+      openModals: {
+        SETTINGS: false,
+        IMPORT: false,
+        SHORTCUTS: false
+      }
     };
 
     this.handlers = [
       {
         keyCode: 73, // 'i'
-        action: this.openImportDeckModal
+        action: this.openModal.bind(this, 'IMPORT')
       },
       {
-        keyCode: 188, // ','
-        action: this.openSettingsModal
+        keyCode: 188, // ',' comma
+        action: this.openModal.bind(this, 'SETTINGS')
+      },
+      {
+        keyCode: 191, // '/' forward slash
+        action: this.openModal.bind(this, 'SHORTCUTS')
       }
     ];
   }
 
-  openImportDeckModal() {
-    this.setState({ isImportDeckModalOpen: true });
+  closeModal(modalType) {
+    const { openModals } = this.state;
+    openModals[modalType] = false;
+    this.setState(openModals);
   }
 
-  closeImportDeckModal() {
-    this.setState({ isImportDeckModalOpen: false });
-  }
-
-  openSettingsModal() {
-    this.setState({ isSettingsModalOpen: true });
-  }
-
-  closeSettingsModal() {
-    this.setState({ isSettingsModalOpen: false });
+  openModal(modalType) {
+    const { openModals } = this.state;
+    openModals[modalType] = true;
+    this.setState(openModals);
   }
 
   routeParser(path) {
@@ -61,8 +67,8 @@ class Navbar extends React.Component {
     if (path === '/') {
       // @/
       // addLink = this.renderLink('/add', 'Add deck', 'fa-plus-square-o');
-      addLink = this.renderModalLink(this.openImportDeckModal, 'fa-plus-square-o');
-      listLink = this.renderModalLink(this.openSettingsModal, 'fa-cog');
+      addLink = this.renderModalLink(this.closeModal.bind(this, 'IMPORT'), 'fa-plus-square-o');
+      listLink = this.renderModalLink(this.closeModal.bind(this, 'SETTINGS'), 'fa-cog');
       // listLink = this.renderLink('/settings', 'Settings', 'fa-cog');
       // <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
     } else if (routeComponents[0] === 'view' && routeComponents.length === 2) {
@@ -86,7 +92,7 @@ class Navbar extends React.Component {
       addLink = this.renderNoAction();
       listLink = this.renderLink(`/view/${routeComponents[1]}`, 'View cards', 'fa-square-o');
     } else {
-      addLink = this.renderModalLink(this.openImportDeckModal, 'fa-plus-square-o');
+      addLink = this.renderModalLink(this.closeModal.bind(this, 'IMPORT'), 'fa-plus-square-o');
       listLink = null;
       // listLink = (
       //   <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
@@ -99,26 +105,38 @@ class Navbar extends React.Component {
     };
   }
 
-  renderSettingsModal() {
+  renderImportDeckModal() {
     return (
       <Modal
-        isOpen={this.state.isSettingsModalOpen}
-        onRequestClose={this.closeSettingsModal}
+        isOpen={this.state.openModals.IMPORT}
+        onRequestClose={this.closeModal.bind(this, 'IMPORT')}
         className={`${styles['modal-import-deck']}`}
       >
-        <SettingsContainer handleClose={this.closeSettingsModal} />
+        <ImportDeckContainer handleClose={this.closeModal.bind(this, 'IMPORT')} />
       </Modal>
     );
   }
 
-  renderImportDeckModal() {
+  renderShortcutsModal() {
     return (
       <Modal
-        isOpen={this.state.isImportDeckModalOpen}
-        onRequestClose={this.closeImportDeckModal}
+        isOpen={this.state.openModals.SHORTCUTS ? this.state.openModals.SHORTCUTS : null}
+        onRequestClose={this.closeModal.bind(this, 'SHORTCUTS')}
         className={`${styles['modal-import-deck']}`}
       >
-        <ImportDeckContainer handleClose={this.closeImportDeckModal} />
+        <ShortcutHelper handleClose={this.closeModal.bind(this, 'SHORTCUTS')} />
+      </Modal>
+    );
+  }
+
+  renderSettingsModal() {
+    return (
+      <Modal
+        isOpen={this.state.openModals.SETTINGS ? this.state.openModals.SETTINGS : null}
+        onRequestClose={this.closeModal.bind(this, 'SETTINGS')}
+        className={`${styles['modal-import-deck']}`}
+      >
+        <SettingsContainer handleClose={this.closeModal.bind(this, 'SETTINGS')} />
       </Modal>
     );
   }
@@ -176,6 +194,7 @@ class Navbar extends React.Component {
               </div>
             </span>
             {this.renderImportDeckModal()}
+            {this.renderShortcutsModal()}
             {this.renderSettingsModal()}
           </div>
         </div>
