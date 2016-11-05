@@ -67,8 +67,8 @@ class Navbar extends React.Component {
     if (path === '/') {
       // @/
       // addLink = this.renderLink('/add', 'Add deck', 'fa-plus-square-o');
-      addLink = this.renderModalLink(this.closeModal.bind(this, 'IMPORT'), 'fa-plus-square-o');
-      listLink = this.renderModalLink(this.closeModal.bind(this, 'SETTINGS'), 'fa-cog');
+      addLink = this.renderModalLink(this.openModal.bind(this, 'IMPORT'), 'fa-plus-square-o');
+      listLink = this.renderModalLink(this.openModal.bind(this, 'SETTINGS'), 'fa-cog');
       // listLink = this.renderLink('/settings', 'Settings', 'fa-cog');
       // <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
     } else if (routeComponents[0] === 'view' && routeComponents.length === 2) {
@@ -92,7 +92,7 @@ class Navbar extends React.Component {
       addLink = this.renderNoAction();
       listLink = this.renderLink(`/view/${routeComponents[1]}`, 'View cards', 'fa-square-o');
     } else {
-      addLink = this.renderModalLink(this.closeModal.bind(this, 'IMPORT'), 'fa-plus-square-o');
+      addLink = this.renderModalLink(this.openModal.bind(this, 'IMPORT'), 'fa-plus-square-o');
       listLink = null;
       // listLink = (
       //   <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
