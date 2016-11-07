@@ -55,29 +55,31 @@
   right: 0px;
   bottom: 0px;
 
-.modal-body
-  width: 75%;
-  max-width: 700px;
+.modal-content
+  width: 75%
+  max-width: 700px
   background-color: white
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) !important;
+  position: absolute
+  top: 50%
+  left: 50%
+  right: auto
+  bottom: auto
+  margin-right: -50%
+  transform: translate(-50%, -50%) !important
   border: 1px solid black
   padding: 4rem
   transition: all 0.2s
 
 @media (max-width: cardWidth)
-  .modal-body
+  .modal-content
     width: 95%
-    background-color: white
-    position: absolute;
-    top: 2%;
-    left: 50%;
-    transform: translate(-50%, 1%) !important;
-    border: 1px solid black
+    position: inherit
+    top: 2%
+    left: 50%
+    transform: translate(-50%, 1%) !important
     padding: 2rem
-    transition: all 0.2s
+    overflow: scroll
+    height: 95%
 
 @media (max-width: cardWidth)
   .nav-container, .nav-outer-container

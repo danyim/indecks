@@ -21,6 +21,7 @@ class ShortcutHelper extends React.Component {
           <p><kbd>&larr;</kbd> - Previous card</p>
           <p><kbd>&rarr;</kbd> - Next card</p>
           <p><kbd>SPACE</kbd> - Flip card</p>
+          <p><kbd>A</kbd> - Add a card to the current deck</p>
           <p><kbd>E</kbd> - Edit card contents</p>
           <p><kbd>D</kbd> - Return to the deck</p>
         </div>

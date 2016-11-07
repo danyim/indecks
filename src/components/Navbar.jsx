@@ -110,7 +110,7 @@ class Navbar extends React.Component {
       <Modal
         isOpen={this.state.openModals.IMPORT}
         onRequestClose={this.closeModal.bind(this, 'IMPORT')}
-        className={`${styles['modal-body']}`}
+        className={`${styles['modal-content']}`}
         overlayClassName={`${styles['modal-overlay']}`}
       >
         <ImportDeckContainer handleClose={this.closeModal.bind(this, 'IMPORT')} />
@@ -123,7 +123,7 @@ class Navbar extends React.Component {
       <Modal
         isOpen={this.state.openModals.SHORTCUTS ? this.state.openModals.SHORTCUTS : null}
         onRequestClose={this.closeModal.bind(this, 'SHORTCUTS')}
-        className={`${styles['modal-body']}`}
+        className={`${styles['modal-content']}`}
         overlayClassName={`${styles['modal-overlay']}`}
       >
         <ShortcutHelper handleClose={this.closeModal.bind(this, 'SHORTCUTS')} />
@@ -136,7 +136,7 @@ class Navbar extends React.Component {
       <Modal
         isOpen={this.state.openModals.SETTINGS ? this.state.openModals.SETTINGS : null}
         onRequestClose={this.closeModal.bind(this, 'SETTINGS')}
-        className={`${styles['modal-body']}`}
+        className={`${styles['modal-content']}`}
         overlayClassName={`${styles['modal-overlay']}`}
       >
         <SettingsContainer handleClose={this.closeModal.bind(this, 'SETTINGS')} />
