@@ -6,11 +6,13 @@ import styles from '../styles/components/Card';
 
 const propTypes = {
   card: React.PropTypes.object.isRequired,
+  className: React.PropTypes.string,
   flipped: React.PropTypes.bool,
   handleOnClick: React.PropTypes.func
 };
 
 const defaultProps = {
+  className: '',
   flipped: false,
   handleOnClick: null
 };
@@ -56,10 +58,10 @@ class Card extends React.Component {
   }
 
   render() {
-    const { card, flipped } = this.props;
+    const { card, flipped, className } = this.props;
 
     return (
-      <figure className={`grid-figure ${styles['grid-figure']}`} onClick={this.props.handleOnClick}>
+      <figure className={`grid-figure ${styles['grid-figure']} ${className}`} onClick={this.props.handleOnClick}>
         <div className={`${styles['card-contents']}`}>
           {this.renderMarkdown()}
         </div>

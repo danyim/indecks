@@ -138,6 +138,7 @@ class DeckView extends React.Component {
                 handleOnClick={
                   () => this.handleOnCardClick(this.props.deck.id, i)
                 }
+                className="testing"
               />
             )
           }
