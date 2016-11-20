@@ -12,11 +12,50 @@
   justify-content center
   figure
     flex-basis calc(50% - 4rem)
+    transition: all 0.2s
   // div > h1
   //   width 550px
   //   // white-space nowrap
   //   overflow hidden
   //   text-overflow ellipsis
+
+.card-contents
+  > div:first-child  // Targets the <div className="card-contents">
+    opacity: 1
+    transition all 0.2s
+    background-color: rgba(255, 255, 255, 1)
+  &:hover > div:first-child
+    opacity: .17
+    background-color: rgba(0, 0, 0, 0.5)
+
+.card-overlay
+  position: absolute
+  top: 0
+  left: 0
+  height: 100%
+  width: 100%
+  transition all 0.2s
+  opacity: 0
+  &:hover
+    opacity: 1
+
+.hover-actions-container
+  height: 100%
+  align-items: center
+  justify-content: center
+
+.hover-actions
+  flex-direction: row
+  opacity: 1
+  color: red
+  .hover-button
+    display: inline-block
+    background-color: white
+    box-shadow: 1 1 0 0 black
+    margin-left: 1rem
+    :nth-child(-n+1)
+      margin-left: 0
+
 
 @media (max-width: cardWidth)
   .grid figure

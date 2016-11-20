@@ -9,6 +9,7 @@ import styles from '../styles/components/DeckView';
 const propTypes = {
   deck: React.PropTypes.object.isRequired,
   handleEditDeck: React.PropTypes.func.isRequired,
+  handleRemoveCard: React.PropTypes.func.isRequired,
   handleRemoveDeck: React.PropTypes.func.isRequired
 };
 
@@ -31,6 +32,24 @@ class DeckView extends React.Component {
       return cards;
     }
     return v;
+  }
+
+  handleCardView(deckId, i) {
+    browserHistory.push(`/view/${deckId}/${i + 1}`);
+  }
+
+  handleCardEdit(deckId, i) {
+    browserHistory.push(`/edit/${deckId}/${i + 1}`);
+  }
+
+  handleCardDelete(deckId, i) {
+    if (confirm('Are you sure?')) {
+      this.props.handleRemoveCard(
+        i + 1, // expects a cardIndex, which is 1-based
+        deckId
+      );
+      browserHistory.push(`/view/${deckId}`);
+    }
   }
 
   handleOnCardClick(deckId, i) {
@@ -135,11 +154,39 @@ class DeckView extends React.Component {
               <Card
                 card={c}
                 key={i}
-                handleOnClick={
-                  () => this.handleOnCardClick(this.props.deck.id, i)
-                }
-                className="testing"
-              />
+                className={`${styles['card-contents']}`}
+              >
+                <div className={`${styles['card-overlay']}`}>
+                  <div className={`${styles['hover-actions-container']}`}>
+                    <div className={`${styles['hover-actions']}`}>
+                      <button
+                        onClick={
+                          () => this.handleCardView(this.props.deck.id, i)
+                        }
+                        className={`${styles['hover-button']}`}
+                      >
+                        View
+                      </button>
+                      <button
+                        onClick={
+                          () => this.handleCardEdit(this.props.deck.id, i)
+                        }
+                        className={`${styles['hover-button']}`}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={
+                          () => this.handleCardDelete(this.props.deck.id, i)
+                        }
+                        className={`btn-delete ${styles['hover-button']}`}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </Card>
             )
           }
           {emptyMsg}

@@ -39,6 +39,7 @@ class DeckViewContainer extends React.Component {
           deck={deck}
           handleRemoveDeck={this.handleRemoveDeck}
           handleEditDeck={this.props.editDeck}
+          handleRemoveCard={this.props.removeCard}
         />
       );
     }

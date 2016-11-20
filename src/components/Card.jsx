@@ -31,9 +31,7 @@ class Card extends React.Component {
     const { card, flipped } = this.props;
     if(flipped === false) {
       return (
-        <div>
-          <Markdown className={`${styles['card-title']}`} text={card.title} removeParaTags={true} />
-        </div>
+        <Markdown className={`${styles['card-title']}`} text={card.title} removeParaTags={true} />
       );
     }
     else {
@@ -66,6 +64,7 @@ class Card extends React.Component {
           {this.renderMarkdown()}
         </div>
         {this.renderHasAnswerIcon(card)}
+        {this.props.children}
       </figure>
     );
   }
