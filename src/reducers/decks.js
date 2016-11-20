@@ -1,4 +1,4 @@
-import { ADD_CARD, EDIT_CARD, REMOVE_CARD, ADD_DECK,
+import { ADD_CARD, DUPLICATE_CARD, EDIT_CARD, MOVE_CARD, REMOVE_CARD, ADD_DECK,
   EDIT_DECK, REMOVE_DECK, SHUFFLE_DECK, REMOVE_ALL_DECKS } from '../actions';
 import { createReducer } from '../utils';
 
@@ -10,6 +10,25 @@ const addCard = (state, { deckId, title, answer }) => {
     title,
     answer
   };
+
+  const newDeck = {
+    ...deck,
+    cards: [...deck.cards, newCard]
+  };
+
+  return [
+    ...state.slice(0, deckIndex),
+    newDeck,
+    ...state.slice(deckIndex + 1),
+  ];
+};
+
+const duplicateCard = (state, { deckId, cardIndex }) => {
+  const deckIndex = state.findIndex(v => v.id === deckId);
+  if (deckIndex === -1) return state;
+  const adjCardIndex = parseInt(cardIndex, 10) - 1;
+  const deck = state[deckIndex];
+  const newCard = Object.assign({}, deck.cards[adjCardIndex]);
 
   const newDeck = {
     ...deck,
@@ -47,6 +66,10 @@ const editCard = (state, { deckId, cardIndex, title, answer }) => {
     newDeck,
     ...state.slice(deckIndex + 1),
   ];
+};
+
+const moveCard = (state, {sourceDeckId, destDeckId, cardIndex}) => {
+  return state; // TODO: finish this implementation
 };
 
 const removeCard = (state, {deckId, cardIndex}) => {
@@ -105,7 +128,9 @@ const removeAllDecks = () => [];
 
 const handlers = {
   [ADD_CARD]: addCard,
+  [DUPLICATE_CARD]: duplicateCard,
   [EDIT_CARD]: editCard,
+  [MOVE_CARD]: moveCard,
   [REMOVE_CARD]: removeCard,
   [ADD_DECK]: addDeck,
   [EDIT_DECK]: editDeck,

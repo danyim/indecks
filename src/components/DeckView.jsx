@@ -8,6 +8,7 @@ import styles from '../styles/components/DeckView';
 
 const propTypes = {
   deck: React.PropTypes.object.isRequired,
+  handleDuplicateCard: React.PropTypes.func.isRequired,
   handleEditDeck: React.PropTypes.func.isRequired,
   handleRemoveCard: React.PropTypes.func.isRequired,
   handleRemoveDeck: React.PropTypes.func.isRequired
@@ -36,6 +37,17 @@ class DeckView extends React.Component {
 
   handleCardView(deckId, i) {
     browserHistory.push(`/view/${deckId}/${i + 1}`);
+  }
+
+  handleCardDuplicate(deckId, i) {
+    this.props.handleDuplicateCard(
+      i + 1, // expects a cardIndex, which is 1-based
+      deckId
+    );
+  }
+
+  handleCardMove(deckId, i) {
+    // TODO: Some implementation here
   }
 
   handleCardEdit(deckId, i) {
@@ -183,6 +195,27 @@ class DeckView extends React.Component {
                       >
                         Delete
                       </button>
+                    </div>
+
+                    <div className={`${styles['hover-actions']}`}>
+                      <button
+                        onClick={
+                          () => this.handleCardDuplicate(this.props.deck.id, i)
+                        }
+                        className={`${styles['hover-button']}`}
+                      >
+                        Duplicate
+                      </button>
+                      {/*
+                      <button
+                        onClick={
+                          () => this.handleCardMove(this.props.deck.id, i)
+                        }
+                        className={`${styles['hover-button']}`}
+                      >
+                        Copy To..
+                      </button>
+                      */}
                     </div>
                   </div>
                 </div>

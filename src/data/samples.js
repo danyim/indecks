@@ -2,7 +2,7 @@ const samples = [
   {
     "id": "WEVNB26J",
     "title": "Front-End Interview Prep",
-    "description": "Typical interview questions for a front-end engineering position, with a focus on: Javascript, ReactJS, HTML5, CSS3, and HTTP.",
+    "description": "Potential interview questions for a modern front-end engineering position with a focus on: Javascript/ES6, ReactJS, HTML5, and CSS3.",
     "cards": [
       {
         "title": "What is a closure?",
@@ -211,6 +211,14 @@ const samples = [
       {
         "title": "What features does the new HTTP2 protocol provide?",
         "answer": "- Header compression\n- Multiplexed connections (and therefore more than one concurrent connections)\n- Binary, not textual"
+      },
+      {
+        title: "`typeof [DOMElement]` yields...",
+        answer: "Node"
+      },
+      {
+        title: "(T/F) WeakMaps have a length property",
+        answer: "True, **WeakMaps** do not have a length"
       }
     ]
   },
@@ -290,26 +298,9 @@ const samples = [
      ]
    },
    {
-      id: "ABCDEFG",
-      title: "ES6",
-      description: "New keywords and concepts from ES6",
-      url: "https://scontent.cdninstagram.com/hphotos-xap1/t51.2885-15/e35/12552326_495932673919321_1443393332_n.jpg",
-      cards: [
-         {
-            title: "`typeof [DOMElement]` yields...",
-            answer: "Node"
-         },
-         {
-            title: "(T/F) WeakMaps have a length property",
-            answer: "True, **WeakMaps** do not have a length"
-         }
-      ]
-   },
-   {
       id: "ZYXSAD",
       title: "React/Redux Study",
       description: "Material for studying basic concepts of the React/Redux framework.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      url: "https://scontent.cdninstagram.com/hphotos-xap1/t51.2885-15/e35/12552326_495932673919321_1443393332_n.jpg",
       cards: [
          {
             title: "React is the ____ in MVC",

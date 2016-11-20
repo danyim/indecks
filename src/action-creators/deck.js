@@ -39,6 +39,14 @@ export function addCard(title, answer, deckId) {
   };
 }
 
+export function duplicateCard(cardIndex, deckId) {
+  return {
+    type: types.DUPLICATE_CARD,
+    cardIndex,
+    deckId
+  };
+}
+
 export function editCard(title, answer, cardIndex, deckId) {
   return {
     type: types.EDIT_CARD,
@@ -46,6 +54,15 @@ export function editCard(title, answer, cardIndex, deckId) {
     answer,
     cardIndex,
     deckId
+  };
+}
+
+export function moveCard(cardIndex, sourceDeckId, destDeckId) {
+  return {
+    type: types.MOVE_CARD,
+    cardIndex,
+    sourceDeckId,
+    destDeckId
   };
 }
 

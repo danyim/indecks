@@ -108,7 +108,7 @@ class Navbar extends React.Component {
   renderImportDeckModal() {
     return (
       <Modal
-        isOpen={this.state.openModals.IMPORT}
+        isOpen={this.state.openModals.IMPORT ? this.state.openModals.IMPORT : null}
         onRequestClose={this.closeModal.bind(this, 'IMPORT')}
         className={`${styles['modal-content']}`}
         overlayClassName={`${styles['modal-overlay']}`}
