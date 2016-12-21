@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import CardEditContainer from './CardEditContainer';
 import ImportDeckContainer from './ImportDeckContainer';
 import SettingsContainer from './SettingsContainer';
 import KeyListener from '../components/KeyListener';
@@ -12,7 +13,7 @@ const propTypes = {
 
 const defaultProps = {};
 
-const modalTypes = ['SETTINGS', 'IMPORT', 'SHORTCUTS'];
+const modalTypes = ['SETTINGS', 'IMPORT', 'SHORTCUTS', 'CARDEDIT'];
 
 /**
  * This container controls all the global modals and their associated keyboard
@@ -25,18 +26,21 @@ class ModalContainer extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
 
-    this.state = {
-      openModals: {
-        SETTINGS: false,
-        IMPORT: false,
-        SHORTCUTS: false
-      }
-    };
+    // Sets the initial state of all modal types in the const above as false
+    this.state = { openModals: {} };
+    modalTypes.map(modalType => {
+      this.state.openModals[modalType] = false;
+    });
 
+    // Keyboard shortcut handlers
     this.handlers = [
       {
         keyCode: 73, // 'i'
         action: this.openModal.bind(this, 'IMPORT')
+      },
+      {
+        keyCode: 74, // 'j'
+        action: this.openModal.bind(this, 'CARDEDIT')
       },
       {
         keyCode: 188, // ',' comma
@@ -61,10 +65,23 @@ class ModalContainer extends React.Component {
     this.setState(openModals);
   }
 
+  renderCardEditModal() {
+    return (
+      <Modal
+        isOpen={this.state.openModals['CARDEDIT'] ? this.state.openModals['CARDEDIT'] : false}
+        onRequestClose={this.closeModal.bind(this, 'CARDEDIT')}
+        className={`${styles['modal-content']}`}
+        overlayClassName={`${styles['modal-overlay']}`}
+      >
+        <CardEditContainer handleClose={this.closeModal.bind(this, 'CARDEDIT')} />
+      </Modal>
+    );
+  }
+
   renderImportDeckModal() {
     return (
       <Modal
-        isOpen={this.state.openModals.IMPORT ? this.state.openModals.IMPORT : false}
+        isOpen={this.state.openModals['IMPORT'] ? this.state.openModals['IMPORT'] : false}
         onRequestClose={this.closeModal.bind(this, 'IMPORT')}
         className={`${styles['modal-content']}`}
         overlayClassName={`${styles['modal-overlay']}`}
@@ -77,7 +94,7 @@ class ModalContainer extends React.Component {
   renderShortcutsModal() {
     return (
       <Modal
-        isOpen={this.state.openModals.SHORTCUTS ? this.state.openModals.SHORTCUTS : false}
+        isOpen={this.state.openModals['SHORTCUTS'] ? this.state.openModals['SHORTCUTS'] : false}
         onRequestClose={this.closeModal.bind(this, 'SHORTCUTS')}
         className={`${styles['modal-content']}`}
         overlayClassName={`${styles['modal-overlay']}`}
@@ -90,7 +107,7 @@ class ModalContainer extends React.Component {
   renderSettingsModal() {
     return (
       <Modal
-        isOpen={this.state.openModals.SETTINGS ? this.state.openModals.SETTINGS : false}
+        isOpen={this.state.openModals['SETTINGS'] ? this.state.openModals['SETTINGS'] : false}
         onRequestClose={this.closeModal.bind(this, 'SETTINGS')}
         className={`${styles['modal-content']}`}
         overlayClassName={`${styles['modal-overlay']}`}
@@ -103,15 +120,15 @@ class ModalContainer extends React.Component {
   renderModal(component, alias) {
    return (
       <Modal
-        isOpen={this.state.openModals.SETTINGS ? this.state.openModals.SETTINGS : false}
-        onRequestClose={this.closeModal.bind(this, 'SETTINGS')}
+        isOpen={this.state.openModals[alias] ? this.state.openModals[alias] : false}
+        onRequestClose={this.closeModal.bind(this, alias)}
         className={`${styles['modal-content']}`}
         overlayClassName={`${styles['modal-overlay']}`}
       >
         {
           // FIgure out how to parameterize the rendering of components
         }
-        <SettingsContainer handleClose={this.closeModal.bind(this, 'SETTINGS')} />
+        <component handleClose={this.closeModal.bind(this, alias)} />
       </Modal>
     );
   }
@@ -119,9 +136,19 @@ class ModalContainer extends React.Component {
   render() {
     return (
       <div>
+        {this.renderCardEditModal()}
         {this.renderImportDeckModal()}
         {this.renderShortcutsModal()}
         {this.renderSettingsModal()}
+
+        {
+          // Uncomment these once you figure out how to parameterize components
+          // in renderModal
+          // this.renderModal(CardEditContainer, 'CARDEDIT')
+          // this.renderModal(ImportDeckContainer, 'IMPORT')
+          // this.renderModal(ShortcutHelper, 'SHORTCUTS')
+          // this.renderModal(SettingsContainer, 'SETTINGS')
+        }
         <KeyListener handlers={this.handlers} />
         {
         // TODO: Figure out how to add a prop to the child components
