@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import createLogger from 'redux-logger';
-// TODO: Not really using this until we interface with a backend
+// TODO: Not really using thunk until we interface with a backend
 import thunk from 'redux-thunk';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import rootReducer from './reducers/index';
@@ -10,8 +10,8 @@ import samples from './data/samples';
 
 const logger = createLogger();
 const envMiddlewares = {
-  dev: [thunk, logger],
-  prod: [thunk]
+  dev: [logger], // thunk would go in here
+  prod: [] // thunk would go in here
 };
 
 /**
@@ -47,8 +47,9 @@ export default function configureStore(initialState = {}, debug = __DEV__) {
     storeEnhancers
   );
 
+  // Loads state from local storage
   persistStore(store, {
-    blacklist: ['routing', 'form']
+    blacklist: ['routing', 'form'] // Except these objects
   });
 
   // TODO: Does this belong here or in root.js?
