@@ -167,6 +167,7 @@ class DeckView extends React.Component {
                 card={c}
                 key={i}
                 className={`${styles['card-contents']}`}
+                trimOverflow={true}
               >
                 <div className={`${styles['card-overlay']}`}>
                   <div className={`${styles['hover-actions-container']}`}>

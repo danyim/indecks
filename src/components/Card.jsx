@@ -8,16 +8,30 @@ const propTypes = {
   card: React.PropTypes.object.isRequired,
   className: React.PropTypes.string,
   flipped: React.PropTypes.bool,
-  handleOnClick: React.PropTypes.func
+  handleOnClick: React.PropTypes.func,
+  trimOverflow: React.PropTypes.bool
 };
 
 const defaultProps = {
   className: '',
   flipped: false,
-  handleOnClick: null
+  handleOnClick: null,
+  trimOverflow: false
 };
 
+const TITLE_MAX_CHAR_LEN = 125;
+
 class Card extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.trimOverflowTitle.bind(this, this.trimOverflowTitle);
+  }
+
+  trimOverflowTitle(text) {
+    return this.props.trimOverflow ? `${text.substr(0, TITLE_MAX_CHAR_LEN)}...` : text;
+  }
+
   renderEmpty() {
     console.log('attempting to render empty');
     return (
@@ -31,7 +45,7 @@ class Card extends React.Component {
     const { card, flipped } = this.props;
     if(flipped === false) {
       return (
-        <Markdown className={`${styles['card-title']}`} text={card.title} />
+        <Markdown className={`${styles['card-title']}`} text={this.trimOverflowTitle(card.title)} />
       );
     }
     else {
