@@ -109,6 +109,11 @@ class DeckView extends React.Component {
               validate={this.validateTitle}
               classLoading="loading"
               classInvalid="invalid" />
+            <p>
+              <strong>
+                {`${this.props.deck.cards.length} cards`}
+              </strong>
+            </p>
             <RIETextArea
               value={this.props.deck.description}
               change={this.handleEditDeckDetails}
@@ -121,11 +126,6 @@ class DeckView extends React.Component {
               classLoading="loading"
               classInvalid="invalid"
             />
-            <p>
-              <strong>
-                {`${this.props.deck.cards.length} cards in this deck`}
-              </strong>
-            </p>
           </div>
           <div className={`${styles['control-buttons']}`}>
             <Link className="button" to={`/view/${this.props.deck.id}/1`}>

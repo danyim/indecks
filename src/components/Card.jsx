@@ -29,7 +29,7 @@ class Card extends React.Component {
   }
 
   trimOverflowTitle(text) {
-    return this.props.trimOverflow ? `${text.substr(0, TITLE_MAX_CHAR_LEN)}...` : text;
+    return this.props.trimOverflow && text.length > TITLE_MAX_CHAR_LEN ? `${text.substr(0, TITLE_MAX_CHAR_LEN)}...` : text;
   }
 
   renderEmpty() {

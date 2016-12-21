@@ -14,7 +14,7 @@ class CardCount extends React.Component {
     return (
       <div className={styles.cardCount}>
         <span className={styles.current}>{current}</span>
-        <span className={styles.separator}>/</span>
+        <span className={styles.separator}></span>
         <span className={styles.max}>{max}</span>
       </div>
     );
