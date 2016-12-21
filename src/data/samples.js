@@ -1,28 +1,27 @@
 const samples = [
   {
-    "id": "WEVNB26J",
     "title": "Front-End Interview Prep",
     "description": "Potential interview questions for a modern front-end engineering position with a focus on: Javascript/ES6, ReactJS, HTML5, and CSS3.",
     "cards": [
       {
         "title": "What is a closure?",
-        "answer": ""
+        "answer": "A closure is when a function is bound to its calling function and has access to the variables in the parent scope.\n\nCommon example:\n\n**Write a for loop that creates a list of functions that spit out the current number of the iteration**\n\n```\nfunction iterate(k) {\n    var funcs = [];\n    for(var i = 0; i < k; i++) {\n      (function(num) {\n        funcs.push(function() {\n          return num;\n        });\n      })(i);\n    }\n    return funcs;\n  }\n\n  const test = f(4);\n  console.log(test[0]()); // 0\n  console.log(test[1]()); // 1\n  console.log(test[2]()); // 2\n  console.log(test[3]()); // 3\n```"
       },
       {
         "title": "What is a callback?",
-        "answer": ""
+        "answer": "A callback function is a reference to a function that is called after a certain action is complete. Used heavily for handling AJAX requests in the past.\n\n\n**Example**\n\n```\nvar a = function() {\n  console.log('a called');\n};\nvar b = function(callback) {\n  setTimeout(200, callback);\n};\n\nb(a);\n'a is called' will appear after 200 ms\n```"
       },
       {
         "title": "What does IIFE stand for and what are its uses in practice?",
+        "answer": "An IIFE stands for an **I**mmediately **I**nvokable **F**unction **E**xpression, which looks like the following:\n\n```\n(someFunction())();\n```\n\nIIFEs are useful for preventing variables from leaking into the global scope. It is also useful for nullifying closures by introducing an artificially empty scope."
+      },
+      {
+        "title": "How can you use the scope of a variable to keep a copy of `i` in a loop?",
         "answer": ""
       },
       {
-        "title": "How can you use scope a variable to keep a copy of i in a loop?",
-        "answer": ""
-      },
-      {
-        "title": "What is happens when you click a link to go to a website?",
-        "answer": ""
+        "title": "Explain in as much detail as you can about what happens when you click a link in your browser to go to a website",
+        "answer": "- Browser interprets what's written in the URL and sends a GET request\n- Lower in the stack, your computer will check if the outgoing host is an alias in the /etc/hosts file and redirects as necessary\n- DNS servers will try to lookup the domain name for an IP. If not cached, the request will the forwarded to the top-level DNS servers\n- After resolving the destination IP, the server will process the HTTP GET request and return a payload\n- Browser will process the payload and start to render the page\n- Browser will process all the subrequests (CSS, images, Javascript) from the payload and send GET requests separately"
       },
       {
         "title": "Describe the difference between classical inheritance vs prototypical inheritance",
@@ -38,11 +37,11 @@ const samples = [
       },
       {
         "title": "What is the difference between `<p>`, `<div>` and `<span>`?",
-        "answer": ""
+        "answer": "`<p>` is a block-level paragraph tag, used for marking paragraphs of text\n`<span>` is an inline element, used for separating content in the same line\n`<div>` is a nondescript block-level element, used for separating content at a block level"
       },
       {
         "title": "What is the difference between CSS selectors: `.classA.classB`, `.classA .classB`, `.classA > .classB`",
-        "answer": ""
+        "answer": "`.classA.classB`\nSelect elements that contain **classA** and also **classB**\n\n`.classA .classB`\nSelect elements of **classB** who are descendants of **classA** (with anything in between)\n\n`.classA > .classB`\nSelect elements of **classB** who are **direct** descendants of **classA** (with nothing in between)"
       },
       {
         "title": "What is the difference between `x is undefined` and `x is not defined` error messages?",
@@ -50,7 +49,7 @@ const samples = [
       },
       {
         "title": "What does a `doctype` do?",
-        "answer": ""
+        "answer": "A doctype tells the browser against which specification of HTML to render the page\n"
       },
       {
         "title": "Are there any problems with serving pages as `application/xhtml+xml`?",
@@ -78,7 +77,7 @@ const samples = [
       },
       {
         "title": "What is the difference between classes and IDs in CSS?",
-        "answer": ""
+        "answer": "Classes can be combined and inherited. IDs are unique and overrule classes."
       },
       {
         "title": "What's the difference between \"resetting\" and \"normalizing\" CSS? Which would you choose, and why?",
@@ -86,7 +85,7 @@ const samples = [
       },
       {
         "title": "Explain CSS sprites, and how you would implement them on a page or site",
-        "answer": ""
+        "answer": "CSS sprites is a method for reducing the total number of HTTP requests on a page, particularly for image assets. You can combine a set of small images (usually icons) into a single file (usually PNG because it's lossless) and serve it with a single request to the server. The CSS will then \"cut\" the larger images into smaller ones.\n"
       },
       {
         "title": "How do you optimize your webpages for print?",
@@ -94,7 +93,7 @@ const samples = [
       },
       {
         "title": "Describe pseudo-elements and discuss what they are used for",
-        "answer": ""
+        "answer": "Psuedo-elements in CSS are for algorithmically selecting elements.\n\n```\n:first-child\n:nth-element[x]\n```"
       },
       {
         "title": "What does `* { box-sizing: border-box; }` do? What are its advantages?",
@@ -213,17 +212,16 @@ const samples = [
         "answer": "- Header compression\n- Multiplexed connections (and therefore more than one concurrent connections)\n- Binary, not textual"
       },
       {
-        title: "`typeof [DOMElement]` yields...",
-        answer: "Node"
+        "title": "`typeof [DOMElement]` yields...",
+        "answer": "Node"
       },
       {
-        title: "(T/F) WeakMaps have a length property",
-        answer: "True, **WeakMaps** do not have a length"
+        "title": "(T/F) WeakMaps have a length property",
+        "answer": "True, **WeakMaps** do not have a length"
       }
     ]
   },
    {
-     "id": "j82ssosK",
      "title": "California DMV Prep",
      "description": "Questions and answers that will help prepare for the California DMV drivers' license exam.",
      "cards": [
@@ -298,7 +296,6 @@ const samples = [
      ]
    },
    {
-      id: "ZYXSAD",
       title: "React/Redux Study",
       description: "Material for studying basic concepts of the React/Redux framework.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       cards: [
