@@ -1,24 +1,23 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import ImportDeckContainer from './ImportDeckContainer';
 import SettingsContainer from './SettingsContainer';
 import KeyListener from '../components/KeyListener';
 import ShortcutHelper from '../components/ShortcutHelper';
-import * as deckActions from '../action-creators/deck';
 // import Settings from '../components/Settings';
 import styles from '../styles/components/Navbar';
 
 const propTypes = {
-  // deckCount: React.PropTypes.number.isRequired,
-  // removeAllDecks: React.PropTypes.func.isRequired
 };
 
 const defaultProps = {};
 
 const modalTypes = ['SETTINGS', 'IMPORT', 'SHORTCUTS'];
 
+/**
+ * This container controls all the global modals and their associated keyboard
+ * shortcuts
+ */
 class ModalContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -101,6 +100,22 @@ class ModalContainer extends React.Component {
     );
   }
 
+  renderModal(component, alias) {
+   return (
+      <Modal
+        isOpen={this.state.openModals.SETTINGS ? this.state.openModals.SETTINGS : false}
+        onRequestClose={this.closeModal.bind(this, 'SETTINGS')}
+        className={`${styles['modal-content']}`}
+        overlayClassName={`${styles['modal-overlay']}`}
+      >
+        {
+          // FIgure out how to parameterize the rendering of components
+        }
+        <SettingsContainer handleClose={this.closeModal.bind(this, 'SETTINGS')} />
+      </Modal>
+    );
+  }
+
   render() {
     return (
       <div>
@@ -108,6 +123,10 @@ class ModalContainer extends React.Component {
         {this.renderShortcutsModal()}
         {this.renderSettingsModal()}
         <KeyListener handlers={this.handlers} />
+        {
+        // TODO: Figure out how to add a prop to the child components
+        }
+        {this.props.children}
       </div>
     );
   }
@@ -116,14 +135,4 @@ class ModalContainer extends React.Component {
 ModalContainer.propTypes = propTypes;
 ModalContainer.defaultProps = defaultProps;
 
-const mapStateToProps = () => {
-  return {};
-};
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ModalContainer);
+export default ModalContainer;

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import ImportDeckContainer from '../containers/ImportDeckContainer';
-import ModalContainer from '../containers/ModalContainer';
 import SettingsContainer from '../containers/SettingsContainer';
 import ShortcutHelper from './ShortcutHelper';
 import styles from '../styles/components/Navbar';
@@ -119,7 +118,6 @@ class Navbar extends React.Component {
             </span>
           </div>
         </div>
-        <ModalContainer />
       </nav>
     );
   }
