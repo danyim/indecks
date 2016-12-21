@@ -1,9 +1,8 @@
 import React from 'react';
-import Modal from 'react-modal';
 import { Link, browserHistory } from 'react-router';
 import ImportDeckContainer from '../containers/ImportDeckContainer';
+import ModalContainer from '../containers/ModalContainer';
 import SettingsContainer from '../containers/SettingsContainer';
-import KeyListener from './KeyListener';
 import ShortcutHelper from './ShortcutHelper';
 import styles from '../styles/components/Navbar';
 
@@ -11,52 +10,11 @@ const propTypes = {};
 
 const defaultProps = {};
 
-const modalTypes = ['SETTINGS', 'IMPORT', 'SHORTCUTS'];
-
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
     this.routeParser = this.routeParser.bind(this);
-
-    // TODO: Perhaps shortcut logic should be moved out into its own component
-    // outside of the NavBar? It's only here because the NavBar is global.
-    this.state = {
-      openModals: {
-        SETTINGS: false,
-        IMPORT: false,
-        SHORTCUTS: false
-      }
-    };
-
-    this.handlers = [
-      {
-        keyCode: 73, // 'i'
-        action: this.openModal.bind(this, 'IMPORT')
-      },
-      {
-        keyCode: 188, // ',' comma
-        action: this.openModal.bind(this, 'SETTINGS')
-      },
-      {
-        keyCode: 191, // '/' forward slash
-        action: this.openModal.bind(this, 'SHORTCUTS')
-      }
-    ];
-  }
-
-  closeModal(modalType) {
-    const { openModals } = this.state;
-    openModals[modalType] = false;
-    this.setState(openModals);
-  }
-
-  openModal(modalType) {
-    const { openModals } = this.state;
-    openModals[modalType] = true;
-    this.setState(openModals);
   }
 
   routeParser(path) {
@@ -67,8 +25,8 @@ class Navbar extends React.Component {
     if (path === '/') {
       // @/
       // addLink = this.renderLink('/add', 'Add deck', 'fa-plus-square-o');
-      addLink = this.renderModalLink(this.openModal.bind(this, 'IMPORT'), 'fa-plus-square-o');
-      listLink = this.renderModalLink(this.openModal.bind(this, 'SETTINGS'), 'fa-cog');
+      // addLink = this.renderModalLink(this.openModal.bind(this, 'IMPORT'), 'fa-plus-square-o');
+      // listLink = this.renderModalLink(this.openModal.bind(this, 'SETTINGS'), 'fa-cog');
       // listLink = this.renderLink('/settings', 'Settings', 'fa-cog');
       // <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
     } else if (routeComponents[0] === 'view' && routeComponents.length === 2) {
@@ -105,45 +63,6 @@ class Navbar extends React.Component {
     };
   }
 
-  renderImportDeckModal() {
-    return (
-      <Modal
-        isOpen={this.state.openModals.IMPORT ? this.state.openModals.IMPORT : false}
-        onRequestClose={this.closeModal.bind(this, 'IMPORT')}
-        className={`${styles['modal-content']}`}
-        overlayClassName={`${styles['modal-overlay']}`}
-      >
-        <ImportDeckContainer handleClose={this.closeModal.bind(this, 'IMPORT')} />
-      </Modal>
-    );
-  }
-
-  renderShortcutsModal() {
-    return (
-      <Modal
-        isOpen={this.state.openModals.SHORTCUTS ? this.state.openModals.SHORTCUTS : false}
-        onRequestClose={this.closeModal.bind(this, 'SHORTCUTS')}
-        className={`${styles['modal-content']}`}
-        overlayClassName={`${styles['modal-overlay']}`}
-      >
-        <ShortcutHelper handleClose={this.closeModal.bind(this, 'SHORTCUTS')} />
-      </Modal>
-    );
-  }
-
-  renderSettingsModal() {
-    return (
-      <Modal
-        isOpen={this.state.openModals.SETTINGS ? this.state.openModals.SETTINGS : false}
-        onRequestClose={this.closeModal.bind(this, 'SETTINGS')}
-        className={`${styles['modal-content']}`}
-        overlayClassName={`${styles['modal-overlay']}`}
-      >
-        <SettingsContainer handleClose={this.closeModal.bind(this, 'SETTINGS')} />
-      </Modal>
-    );
-  }
-
   renderLink(url, title, faClassName) {
     return (
       <Link to={url} title={title}>
@@ -173,6 +92,8 @@ class Navbar extends React.Component {
     let listLink;
     const routeParser = this.routeParser;
 
+    // Determines from the path which icons to display and their destination
+    // when clicked
     browserHistory.listen(ev => {
       const { addLink: add, listLink: list } = routeParser(ev.pathname);
       addLink = add;
@@ -196,12 +117,9 @@ class Navbar extends React.Component {
                 {listLink}
               </div>
             </span>
-            {this.renderImportDeckModal()}
-            {this.renderShortcutsModal()}
-            {this.renderSettingsModal()}
           </div>
         </div>
-        <KeyListener handlers={this.handlers} />
+        <ModalContainer />
       </nav>
     );
   }
