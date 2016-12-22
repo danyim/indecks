@@ -52,6 +52,7 @@ class CardEditForm extends React.Component {
         </h1>
         <hr />
         <Markdown
+          className={`${styles['card-answer']}`}
           text={this.props.formValues.values.cardAnswer}
         />
       </div>
@@ -81,9 +82,11 @@ class CardEditForm extends React.Component {
           placeholder="Answer (Markdown)"
         />
 
-        <p className="pointer m-t">
-          <a onClick={() => this.togglePreview()}>Preview</a>
-        </p>
+        <div className={`${styles['preview']}`}>
+          <p className="pointer m-t" onClick={() => this.togglePreview()}>
+            Preview [{this.state.showPreview ? '-' : '+'}]
+          </p>
+        </div>
         {this.renderPreview()}
 
         <div className={`${styles['control-buttons']}`}>

@@ -4,7 +4,7 @@ const samples = [
     "description": "Potential interview questions for a modern front-end engineering position with a focus on: Javascript/ES6, ReactJS, HTML5, and CSS3.",
     "cards": [
       {
-        "title": "What is a closure?",
+        "title": "What is a closure in Javascript?",
         "answer": "A closure is when a function is bound to its calling function and has access to the variables in the parent scope.\n\nCommon example:\n\n**Write a for loop that creates a list of functions that spit out the current number of the iteration**\n\n```\nfunction iterate(k) {\n    var funcs = [];\n    for(var i = 0; i < k; i++) {\n      (function(num) {\n        funcs.push(function() {\n          return num;\n        });\n      })(i);\n    }\n    return funcs;\n  }\n\n  const test = f(4);\n  console.log(test[0]()); // 0\n  console.log(test[1]()); // 1\n  console.log(test[2]()); // 2\n  console.log(test[3]()); // 3\n```"
       },
       {
@@ -37,7 +37,7 @@ const samples = [
       },
       {
         "title": "What is the difference between `<p>`, `<div>` and `<span>`?",
-        "answer": "`<p>` is a block-level paragraph tag, used for marking paragraphs of text\n`<span>` is an inline element, used for separating content in the same line\n`<div>` is a nondescript block-level element, used for separating content at a block level"
+        "answer": "`<p>` is a block-level paragraph tag, used for marking paragraphs of text\n\n`<span>` is an inline element, used for separating content in the same line\n\n`<div>` is a nondescript block-level element, used for separating content at a block level"
       },
       {
         "title": "What is the difference between CSS selectors: `.classA.classB`, `.classA .classB`, `.classA > .classB`",
@@ -61,11 +61,11 @@ const samples = [
       },
       {
         "title": "What are `data-` attributes good for?",
-        "answer": ""
+        "answer": "`data-` attributes allow you to add non-standard attributes to a DOM element that can be accessed through JS."
       },
       {
         "title": "Describe the difference between a `cookie`, `sessionStorage` and `localStorage`",
-        "answer": ""
+        "answer": "A **cookie** is a set of values stored on the browser for a specific domain with an expiry.\n\nHTML5's **sessionStorage** is a set of values stored on the browser for a session, meaning if refreshed, the storage will be cleared\n\nHTML5's **localStorage** is similar to a cookie except it does not expire.\n\n\n#### Look up difference between cookie and local storage"
       },
       {
         "title": "Describe the difference between `<script>`, `<script async>` and `<script defer>`",
@@ -77,7 +77,7 @@ const samples = [
       },
       {
         "title": "What is the difference between classes and IDs in CSS?",
-        "answer": "Classes can be combined and inherited. IDs are unique and overrule classes."
+        "answer": "Multiple CSS classes can be combined together and can follow a inheritance pattern. \n\nIDs in CSS are unique and its rules take precedence over classes."
       },
       {
         "title": "What's the difference between \"resetting\" and \"normalizing\" CSS? Which would you choose, and why?",
@@ -85,7 +85,7 @@ const samples = [
       },
       {
         "title": "Explain CSS sprites, and how you would implement them on a page or site",
-        "answer": "CSS sprites is a method for reducing the total number of HTTP requests on a page, particularly for image assets. You can combine a set of small images (usually icons) into a single file (usually PNG because it's lossless) and serve it with a single request to the server. The CSS will then \"cut\" the larger images into smaller ones.\n"
+        "answer": "Employing CSS sprites is a method for reducing the total number of HTTP requests on a page, particularly for small image assets. \n\nYou can combine a set of small images (usually icons) into a single file (usually PNG because it's lossless) and serve it with a single request to the server. The CSS will then \"cut\" the larger images into smaller ones.\n"
       },
       {
         "title": "How do you optimize your webpages for print?",
@@ -105,11 +105,11 @@ const samples = [
       },
       {
         "title": "What's the difference between a relative, fixed, absolute and statically positioned element?",
-        "answer": ""
+        "answer": "**`position: relative`**\n\nModifies the position of the DOM element relative to its original placement on the page\n\n**`position: absolute`**\n\nPositions the DOM element relative to the parent container and removes it from the flow of the page. Scrollable.\n\n\n**`position: fixed`**\n\nPositions the DOM element relative to the parent container and removes it from the flow of the page. Unscrollable.\n\n**`position: static`**\n\nPlaces the DOM element relative to the **viewport** and places the element out of the flow of the page (not affected by scrolling)\n\n---\n\n#### TODO: Look up CSS specs to get exact definitions; refine exact difference between static/fixed"
       },
       {
         "title": "The 'C' in CSS stands for Cascading. How is priority determined in assigning styles (a few examples)? How can you use this system to your advantage?",
-        "answer": ""
+        "answer": "CSS is a rule-based system that evaluates selectors top-to-bottom. Certain selectors take precedence over others when evaluating the ruleset.\n\nPrecedence is as follows:\n- IDs, e.g. `#myUniqueContainer { background-color: red; }`\n- Classes, e.g. `.large { font-size: 3.0rem; } .small { font-size: 1.0rem; }`\n- Elements, e.g. `a { text-decoration: underline; }`\n- Pseudo-elements, e.g. `a:hover { text-decoration: none; font-weight: bold; }`\n"
       },
       {
         "title": "Explain event delegation in Javascript",
@@ -121,7 +121,7 @@ const samples = [
       },
       {
         "title": "What's the difference between a variable that is: `null`, `undefined` or undeclared?",
-        "answer": ""
+        "answer": "A **null** variable is a variable that has been defined and has been given an explicit value of `null`\n\nAn `undefined` variable is a variable that has been defined but has not yet been given a value\n\nAn **undeclared** variable is a variable name that was attempted to be read but was not defined in the current scope."
       },
       {
         "title": "What is a closure, and how/why would you use one?",
@@ -136,7 +136,7 @@ const samples = [
         "answer": "**Native objects** are objects that are specified in the ECMAScript standard. **Host objects** are objects provided by the environment, either the browser or V8 (Node)\n\n# Examples\nNative objects: Object (constructor), Date, Math, parseInt, eval, string methods like indexOf and replace, array methods, ...\n\nHost objects (assuming browser environment): window, document, location, history, XMLHttpRequest, setTimeout, getElementsByTagName, querySelectorAll, ..."
       },
       {
-        "title": "What's the difference between `Function.call` and `Function.apply`?",
+        "title": "What's the difference between `Function.prototype.call` and `Function.prototype.apply`?",
         "answer": "They both require a context for the first argument (usually `null` or `this`). The two functions are nearly identical, however, `Function.apply` accepts an array of values for the second argument. `Function.call` accepts n arguments after the context."
       },
       {
@@ -152,28 +152,28 @@ const samples = [
         "answer": ""
       },
       {
-        "title": "Explain Ajax in as much detail as possible",
+        "title": "Explain AJAX in as much detail as possible",
         "answer": ""
       },
       {
-        "title": "Explain how JSONP works (and how it's not really Ajax)",
+        "title": "Explain how JSONP works (and how it's not really AJAX)",
         "answer": "JSONP - JSON with padding\n\nAllows for bypassing of cross-domain policies by injecting the request URL in a `<script>` tag instead of calling `XMLHttpRequest`.\nThis is functionality provided by jQuery"
       },
       {
         "title": "Explain \"hoisting\"",
-        "answer": ""
+        "answer": "In Javascript, functions are \"hoisted\" to the top of the scope. For example, a function that is defined near the bottom of the code can be called from the top.\n\n```\na()\n\nfunction a() {\n  console.log('this works');\n}\n\nconsole.log(b); // Error: b not defined\n\nvar b = 'but this does not';\n```"
       },
       {
         "title": "What is the difference between `==` and `===`?",
-        "answer": ""
+        "answer": "**Double equals (==)** is a value equality operator that infers the type of the operands and returns true if and only if their inferred values match\n\n**Triple equals (===)** is a type and value equality operator that returns true if and only if both match"
       },
       {
         "title": "What is `\"use strict\";`? What are the advantages and disadvantages to using it?",
-        "answer": ""
+        "answer": "`\"use strict\";` is a way to tell the browser's Javascript interpreter to use a stricter specification of Javascript/ECMAScript for the scope of code where this is declared\n\n**Advantages**\n- Throws more errors that help identify potentially buggy code\n- Placing this everywhere means you're writing code that runs against a standard spec of Javascript, reducing the number of browser-specific errors\n\n**Disadvantages**\n- Ugly to write everywhere\n- Can't just put into legacy Javascript\n"
       },
       {
         "title": "Explain what a single page app is and how to make one SEO-friendly",
-        "answer": ""
+        "answer": "A single-page app, or SPA, is a web app that loads all of its content on the initial load of the page or with AJAX requests. This naturally doesn't work well with search engine crawlers, so some methods to make a SPA SEO-friendly would be to offer an alternative site for the engines to crawl through"
       },
       {
         "title": "In the Javascript event loop, what is the difference between call stack and task queue?",
@@ -185,7 +185,7 @@ const samples = [
       },
       {
         "title": "What are HTTP methods? List all HTTP methods that you know, and explain them",
-        "answer": ""
+        "answer": "- GET - Gets a resource\n- PUT - Puts a new resource on the server\n- POST - Updates a resource on the server\n- DELETE - Deletes a resource on the server\n- PATCH - Updates a subset of a resource on the server\n \n..."
       },
       {
         "title": "Have you ever worked with retina graphics? If so, when and what techniques did you use?",
@@ -221,94 +221,94 @@ const samples = [
       }
     ]
   },
-   {
-     "title": "California DMV Prep",
-     "description": "Questions and answers that will help prepare for the California DMV drivers' license exam.",
-     "cards": [
-       {
-         "title": "A police officer stops you because he suspects you are DUI. You refuse to take a chemical test. What happens now?",
-         "answer": "If an officer suspects that you are under the influence of drugs, the officer can legally require you to take a blood or urine test. Drivers who refuse these tests are subject to longer driver license suspensions and revocations."
-       },
-       {
-         "title": "In California, it is illegal for any person under the age of 21 to operate a motor vehicle if their Blood Alcohol Concentration is at or higher than what?",
-         "answer": "Under California law, it is illegal for any person under the age of 21 to operate a motor vehicle with a BAC of **0.01% or higher**."
-       },
-       {
-         "title": "When two vehicles meet on a steep road where neither vehicle can pass, the vehicle _______ must yield the right of way by backing up.",
-         "answer": "When two vehicles meet on a steep road where neither vehicle can pass, it is the vehicle **pointing downhill** that should yield the right of way by backing up, because the vehicle facing downhill has the greater amount of control when backing up."
-       },
-       {
-         "title": "If you receive too many negligent driver points, the DMV will do what?",
-         "answer": "In the event that you receive too many negligent driver points, the DMV will either place you on probation for one year with an included six-month suspension, or revoke your driving privilege altogether.\n\n_[Page, 93. Suspension or Revocation by the DMV, Administrative, California Drivers Handbook]_"
-       },
-       {
-         "title": "*Which of the following driving rules must you obey?",
-         "answer": "When driving, there are additional rules to follow. Some include turning on your headlights within 30 minutes after sunset, leaving them on until thirty minutes before sunrise. Another is to always dim your lights to low within 500 feet of a vehicle coming towards you, or within 300 feet of a vehicle you are following. It is also important to drive as far to the right as possible on narrow mountain roads, honking your horn if visibility is lower than 200 feet\n\n_[Page, 90,91. Things You Must Do, Additional Driving Laws/ Rules, California Drivers Handbook]_"
-       },
-       {
-         "title": "The Mature Driver Program is an eight-hour course for drivers of what age?",
-         "answer": "The Mature Driver Program is an eight-hour course for drivers aged 55 years or older.\n\n_[Page, 18,19. Mature Driver Program, Miscellaneous Licensing Information, California Drivers Handbook]_"
-       },
-       {
-         "title": "What is the DMV's standard vision requirement?",
-         "answer": "The DMV's standard vision requirement is 20/40 for drivers with or without corrective vision. If you do not meet this requirement, you must set up an appointment with a vision specialist.\n\n_[Page, 16. Vision, Miscellaneous Licensing Information, California Drivers Handbook]_"
-       },
-       {
-         "title": "A white painted curb means",
-         "answer": "Loading zone for passengers or mail only"
-       },
-       {
-         "title": "To avoid last minute moves, you should be looking down the road to where your vehicle will be in about _______ seconds.",
-         "answer": "10 to 15 seconds"
-       },
-       {
-         "title": "To turn left from a multilane one-way street onto a one-way street, you should turn from:",
-         "answer": "The lane closest to the left curb."
-       },
-       {
-         "title": "Unless otherwise posted the speed limit in a residential district is ___ mph.",
-         "answer": "25"
-       },
-       {
-         "title": "When can you drive in a bike lane?",
-         "answer": "When you are within 200 feet of a cross street where you plan to turn right."
-       },
-       {
-         "title": "With a Class C drivers license a person may drive",
-         "answer": "A 3-axle vehicle if the Gross Vehicle Weight is less than 6,000 pounds.\n\nWith a valid Class C license you may drive:\n- any 2-axle vehicle with a Gross Vehicle Weight Rating (GVWR) of 26,000 lbs. or less.\n- any 3-axle vehicle weighing 6,000 lbs. or less gross.\n- any house car 40 feet or less.\n- a vanpool vehicle, designed to carry more than 10 but no more than 15 persons including the driver. The driver must have a valid medical certification on file with DMV and carry a valid medical card. The driver must also have a signed certification stating he/she has not been convicted of reckless driving, drunk driving, or hit-and-run in the last five years."
-       },
-       {
-         "title": "When two vehicles from different directions arrive at the same time at a four-way stop, which one should be given the right-of-way?",
-         "answer": "The vehicle approaching from the right.\n\nYield to the vehicle that arrives first, or to the vehicle on your right if it reaches the intersection at the same time as you."
-       },
-       {
-         "title": "To avoid tailgating, use the ___ second rule",
-         "answer": "**3 second rule**\n\nThe three-second rule refers to a following distance. Many drivers follow too closely (tailgate) and are not able to see as far ahead as they should because the vehicle ahead blocks their view. To avoid tailgating, use the three-second rule. \n\nIn some situations, you should allow a four-second or more cushion."
-       },
-       {
-         "title": "What is considered a \"standard drink\"?",
-         "answer": "A standard drink is defined as **12 ounces of beer, 5 ounces of wine, or 1.5 ounces of 80-proof distilled spirits**, all of which contain the same amount of alcohol."
-       },
-       {
-         "title": "Parking close to the driveway entrance to a fire station is allowed, if you keep the following distance from the driveway",
-         "answer": "More than 15 feet.\n\nThe law states: do not park within 15 feet of a fire hydrant or a fire station driveway."
-       }
-     ]
-   },
-   {
-      title: "React/Redux Study",
-      description: "Material for studying basic concepts of the React/Redux framework.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      cards: [
-         {
-            title: "React is the ____ in MVC",
-            answer: "View"
-         },
-         {
-            title: "What is the mandatory function for a React Component?",
-            answer: "render()\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n#quis nostrud \nexercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-         }
-      ]
-   }
+  {
+    "title": "California DMV: Drivers' License Exam Prep",
+    "description": "Questions and answers that will help prepare for the California DMV drivers' license exam.",
+    "cards": [
+      {
+        "title": "A police officer stops you because he suspects you are DUI. You refuse to take a chemical test. What happens now?",
+        "answer": "If an officer suspects that you are under the influence of drugs, the officer can legally require you to take a blood or urine test. Drivers who refuse these tests are subject to longer driver license suspensions and revocations."
+      },
+      {
+        "title": "In California, it is illegal for any person under the age of 21 to operate a motor vehicle if their Blood Alcohol Concentration is at or higher than what?",
+        "answer": "Under California law, it is illegal for any person under the age of 21 to operate a motor vehicle with a BAC of **0.01% or higher**."
+      },
+      {
+        "title": "When two vehicles meet on a steep road where neither vehicle can pass, the vehicle _______ must yield the right of way by backing up.",
+        "answer": "When two vehicles meet on a steep road where neither vehicle can pass, it is the vehicle **pointing downhill** that should yield the right of way by backing up, because the vehicle facing downhill has the greater amount of control when backing up."
+      },
+      {
+        "title": "If you receive too many negligent driver points, the DMV will do what?",
+        "answer": "In the event that you receive too many negligent driver points, the DMV will either place you on probation for one year with an included six-month suspension, or revoke your driving privilege altogether.\n\n_[Page, 93. Suspension or Revocation by the DMV, Administrative, California Drivers Handbook]_"
+      },
+      {
+        "title": "*Which of the following driving rules must you obey?",
+        "answer": "When driving, there are additional rules to follow. Some include turning on your headlights within 30 minutes after sunset, leaving them on until thirty minutes before sunrise. Another is to always dim your lights to low within 500 feet of a vehicle coming towards you, or within 300 feet of a vehicle you are following. It is also important to drive as far to the right as possible on narrow mountain roads, honking your horn if visibility is lower than 200 feet\n\n_[Page, 90,91. Things You Must Do, Additional Driving Laws/ Rules, California Drivers Handbook]_"
+      },
+      {
+        "title": "The Mature Driver Program is an eight-hour course for drivers of what age?",
+        "answer": "The Mature Driver Program is an eight-hour course for drivers aged 55 years or older.\n\n_[Page, 18,19. Mature Driver Program, Miscellaneous Licensing Information, California Drivers Handbook]_"
+      },
+      {
+        "title": "What is the DMV's standard vision requirement?",
+        "answer": "The DMV's standard vision requirement is 20/40 for drivers with or without corrective vision. If you do not meet this requirement, you must set up an appointment with a vision specialist.\n\n_[Page, 16. Vision, Miscellaneous Licensing Information, California Drivers Handbook]_"
+      },
+      {
+        "title": "A white painted curb means",
+        "answer": "Loading zone for passengers or mail only"
+      },
+      {
+        "title": "To avoid last minute moves, you should be looking down the road to where your vehicle will be in about _______ seconds.",
+        "answer": "10 to 15 seconds"
+      },
+      {
+        "title": "To turn left from a multilane one-way street onto a one-way street, you should turn from:",
+        "answer": "The lane closest to the left curb."
+      },
+      {
+        "title": "Unless otherwise posted the speed limit in a residential district is ___ mph.",
+        "answer": "25"
+      },
+      {
+        "title": "When can you drive in a bike lane?",
+        "answer": "When you are within 200 feet of a cross street where you plan to turn right."
+      },
+      {
+        "title": "With a Class C drivers license a person may drive",
+        "answer": "A 3-axle vehicle if the Gross Vehicle Weight is less than 6,000 pounds.\n\nWith a valid Class C license you may drive:\n- any 2-axle vehicle with a Gross Vehicle Weight Rating (GVWR) of 26,000 lbs. or less.\n- any 3-axle vehicle weighing 6,000 lbs. or less gross.\n- any house car 40 feet or less.\n- a vanpool vehicle, designed to carry more than 10 but no more than 15 persons including the driver. The driver must have a valid medical certification on file with DMV and carry a valid medical card. The driver must also have a signed certification stating he/she has not been convicted of reckless driving, drunk driving, or hit-and-run in the last five years."
+      },
+      {
+        "title": "When two vehicles from different directions arrive at the same time at a four-way stop, which one should be given the right-of-way?",
+        "answer": "The vehicle approaching from the right.\n\nYield to the vehicle that arrives first, or to the vehicle on your right if it reaches the intersection at the same time as you."
+      },
+      {
+        "title": "To avoid tailgating, use the ___ second rule",
+        "answer": "**3 second rule**\n\nThe three-second rule refers to a following distance. Many drivers follow too closely (tailgate) and are not able to see as far ahead as they should because the vehicle ahead blocks their view. To avoid tailgating, use the three-second rule. \n\nIn some situations, you should allow a four-second or more cushion."
+      },
+      {
+        "title": "What is considered a \"standard drink\"?",
+        "answer": "A standard drink is defined as **12 ounces of beer, 5 ounces of wine, or 1.5 ounces of 80-proof distilled spirits**, all of which contain the same amount of alcohol."
+      },
+      {
+        "title": "Parking close to the driveway entrance to a fire station is allowed, if you keep the following distance from the driveway",
+        "answer": "More than 15 feet.\n\nThe law states: do not park within 15 feet of a fire hydrant or a fire station driveway."
+      }
+    ]
+  },
+  {
+    "title": "React/Redux Study",
+    "description": "Material for studying basic concepts of the React/Redux framework.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "cards": [
+      {
+        "title": "React is the ____ in MVC",
+        "answer": "View"
+      },
+      {
+        "title": "What is the mandatory function for a React Component?",
+        "answer": "render()\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n#quis nostrud \nexercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      }
+    ]
+  }
 ];
 
 export default samples;
