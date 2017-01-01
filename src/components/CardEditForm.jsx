@@ -44,12 +44,10 @@ class CardEditForm extends React.Component {
     }
     return (
       <div className={`${styles['preview-pane']}`}>
-        <h1>
-          <Markdown
-            className={`${styles['card-title']}`}
-            text={this.props.formValues.values.cardTitle}
-          />
-        </h1>
+        <Markdown
+          className={`${styles['card-title']}`}
+          text={this.props.formValues.values.cardTitle}
+        />
         <hr />
         <Markdown
           className={`${styles['card-answer']}`}
