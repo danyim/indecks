@@ -8,10 +8,15 @@
     font-size: 14px
     font-size: 1.4rem
 
+  @media (max-width: cardWidth)
+    html
+      font-size 55.5% // Scale the font down for the mobile view, although this
+                      // will ruin the 1:1 with px/rem
+
   h1, .large
-    font-size: 5rem
-    margin: 0
-    padding: 0
+    font-size 4.0rem
+    margin 0
+    padding 0
     font-weight bold
   h2
     font-size: 3.0rem
@@ -26,6 +31,14 @@
     text-decoration none
     &:hover, &:active, &:visited
       text-decoration none
+
+
+  textarea.mono, code
+    font-family Consolas, "Liberation Mono", Menlo, Courier, monospace
+    font-size 1.5rem
+    line-height 1.5
+  code
+    font-size inherit
 
   button, .button
     font-size 1.5rem

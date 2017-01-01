@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import Markdown from './Markdown';
 import styles from '../styles/components/CardEdit';
 
 const propTypes = {
@@ -7,6 +8,7 @@ const propTypes = {
   answer: React.PropTypes.string,
   cardIndex: React.PropTypes.number.isRequired,
   deckId: React.PropTypes.string.isRequired,
+  formValues: React.PropTypes.object.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
   handleDelete: React.PropTypes.func.isRequired,
   handleCancel: React.PropTypes.func.isRequired,
@@ -20,6 +22,43 @@ const defaultProps = {
 const fields = ['cardTitle', 'cardAnswer'];
 
 class CardEditForm extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.renderPreview.bind(this, this.renderPreview);
+
+    this.state = {
+      showPreview: false
+    }
+  }
+
+  togglePreview() {
+    const currState = this.state;
+    currState.showPreview = !currState.showPreview;
+    this.setState(currState);
+  }
+
+  renderPreview() {
+    if(!this.state.showPreview) {
+      return '';
+    }
+    return (
+      <div className={`${styles['preview-pane']}`}>
+        <h1>
+          <Markdown
+            className={`${styles['card-title']}`}
+            text={this.props.formValues.values.cardTitle}
+          />
+        </h1>
+        <hr />
+        <Markdown
+          className={`${styles['card-answer']}`}
+          text={this.props.formValues.values.cardAnswer}
+        />
+      </div>
+    );
+  }
+
   render() {
     const { deckId, cardIndex, handleSubmit,
       handleDelete, handleCancel } = this.props;
@@ -42,7 +81,13 @@ class CardEditForm extends React.Component {
           rows="6"
           placeholder="Answer (Markdown)"
         />
-        { /* <p><a>Preview Changes</a></p> */ }
+
+        <div className={`${styles['preview']}`}>
+          <p className="pointer m-t" onClick={() => this.togglePreview()}>
+            Preview [{this.state.showPreview ? '-' : '+'}]
+          </p>
+        </div>
+        {this.renderPreview()}
 
         <div className={`${styles['control-buttons']}`}>
           <button type="submit" className="button">Save Card</button>

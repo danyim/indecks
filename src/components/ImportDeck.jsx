@@ -78,6 +78,11 @@ class ImportDeck extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
+    if(this.refs.title.value.trim() === '') {
+      return false;
+    }
+
     const id = this.generateRandomString();
     this.props.addDeck({
       id,

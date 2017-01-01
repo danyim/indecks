@@ -90,6 +90,7 @@ class CardEdit extends React.Component {
             cardIndex={cardIndex}
             title={title}
             answer={answer}
+            formValues={this.props.form.cardEdit}
             initialValues={initialValues}
             handleSubmit={this.handleSubmit}
             handleDelete={this.handleDelete}
