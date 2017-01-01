@@ -2,8 +2,9 @@ import React from 'react';
 import Card from './Card';
 import { RIEInput, RIETextArea } from 'riek';
 import { Link, browserHistory } from 'react-router';
-import ExportDeckButton from './ExportDeckButton';
 import slug from 'slug';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import ExportDeckButton from './ExportDeckButton';
 import styles from '../styles/components/DeckView';
 
 const propTypes = {
@@ -161,68 +162,74 @@ class DeckView extends React.Component {
         </div>
 
         <div className={`wrap-row ${styles['grid']}`}>
-          {
-            this.props.deck.cards.map((c, i) =>
-              <Card
-                card={c}
-                key={i}
-                className={`${styles['card-contents']}`}
-                trimOverflow={true}
-              >
-                <div className={`${styles['card-overlay']}`}>
-                  <div className={`${styles['hover-actions-container']}`}>
-                    <div className={`${styles['hover-actions']}`}>
-                      <button
-                        onClick={
-                          () => this.handleCardView(this.props.deck.id, i)
-                        }
-                        className={`${styles['hover-button']}`}
-                      >
-                        View
-                      </button>
-                      <button
-                        onClick={
-                          () => this.handleCardEdit(this.props.deck.id, i)
-                        }
-                        className={`${styles['hover-button']}`}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={
-                          () => this.handleCardDelete(this.props.deck.id, i)
-                        }
-                        className={`btn-delete ${styles['hover-button']}`}
-                      >
-                        Delete
-                      </button>
-                    </div>
+          <ReactCSSTransitionGroup
+            className="block"
+            transitionName="example"
+            transitionEnterTimeout={700}
+            transitionLeaveTimeout={700}>
+            {
+              this.props.deck.cards.map((c, i) =>
+                <Card
+                  card={c}
+                  key={i}
+                  className={`${styles['card-contents']}`}
+                  trimOverflow={true}
+                >
+                  <div className={`${styles['card-overlay']}`}>
+                    <div className={`${styles['hover-actions-container']}`}>
+                      <div className={`${styles['hover-actions']}`}>
+                        <button
+                          onClick={
+                            () => this.handleCardView(this.props.deck.id, i)
+                          }
+                          className={`${styles['hover-button']}`}
+                        >
+                          View
+                        </button>
+                        <button
+                          onClick={
+                            () => this.handleCardEdit(this.props.deck.id, i)
+                          }
+                          className={`${styles['hover-button']}`}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={
+                            () => this.handleCardDelete(this.props.deck.id, i)
+                          }
+                          className={`btn-delete ${styles['hover-button']}`}
+                        >
+                          Delete
+                        </button>
+                      </div>
 
-                    <div className={`${styles['hover-actions']}`}>
-                      <button
-                        onClick={
-                          () => this.handleCardDuplicate(this.props.deck.id, i)
-                        }
-                        className={`${styles['hover-button']}`}
-                      >
-                        Duplicate
-                      </button>
-                      {/*
-                      <button
-                        onClick={
-                          () => this.handleCardMove(this.props.deck.id, i)
-                        }
-                        className={`${styles['hover-button']}`}
-                      >
-                        Copy To..
-                      </button>
-                      */}
+                      <div className={`${styles['hover-actions']}`}>
+                        <button
+                          onClick={
+                            () => this.handleCardDuplicate(this.props.deck.id, i)
+                          }
+                          className={`${styles['hover-button']}`}
+                        >
+                          Duplicate
+                        </button>
+                        {/*
+                        <button
+                          onClick={
+                            () => this.handleCardMove(this.props.deck.id, i)
+                          }
+                          className={`${styles['hover-button']}`}
+                        >
+                          Copy To..
+                        </button>
+                        */}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Card>
-            )
-          }
+                </Card>
+              )
+            }
+          </ReactCSSTransitionGroup>
           {emptyMsg}
         </div>
       </section>

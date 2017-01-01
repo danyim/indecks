@@ -17,6 +17,26 @@
       opacity: 0.00
       transform: scale(0.7)
 
+
+  .example-enter
+    opacity: 0.01
+    background-color: red
+
+  .example-enter.example-enter-active
+    opacity: 1
+    transition: 500ms ease-in
+    background-color: white
+
+  .example-leave
+    opacity: 1
+    background-color: white
+
+  .example-leave.example-leave-active
+    opacity: 0.01
+    transition: 300ms ease-in
+    background-color: red
+
+
 // offset variable gets tacked for centering in addition to the scaling
 
 // offsets = translateX(-50%) translateY(-50%)
@@ -36,18 +56,18 @@
 
 // .example-enter
 //   opacity: 0.01
-// }
+//
 
 // .example-enter.example-enter-active
 //   opacity: 1
 //   transition: opacity 500ms ease-in
-// }
+//
 
 // .example-leave
 //   opacity: 1
-// }
+//
 
 // .example-leave.example-leave-active
 //   opacity: 0.01
 //   transition: opacity 300ms ease-in
-// }
+//

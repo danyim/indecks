@@ -1,5 +1,6 @@
 import React from 'react';
 import Deck from './Deck';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import styles from '../styles/components/DeckGrid';
 
 const propTypes = {
@@ -29,9 +30,15 @@ class DeckGrid extends React.Component {
 
     return (
       <section className={`${styles['deck-grid']} wrap-row`}>
-        {this.props.decks.map((deck, i) =>
-          <Deck key={i} i={i} deck={deck} handleRemoveDeck={this.handleRemoveDeck} />
-        )}
+        <ReactCSSTransitionGroup
+          className="inherit"
+          transitionName="example"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+          {this.props.decks.map((deck, i) =>
+            <Deck key={i} i={i} deck={deck} handleRemoveDeck={this.handleRemoveDeck} />
+          )}
+        </ReactCSSTransitionGroup>
         {emptyMsg}
       </section>
     );
