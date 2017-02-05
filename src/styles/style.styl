@@ -4,36 +4,36 @@
 @import '_animations.styl'
 // @import 'components/*'
 
-:global
+:global // @stylint ignore
   html, body
-    height 100%
+    height: 100%
   body
-    background offwhite
+    background: offwhite
   .center
     margin: 0 auto
   .pointer
     cursor: pointer
 
   .m-t
-    margin-top 1.0rem
+    margin-top: 1.0rem
   .m-b
-    margin-bottom 1.0rem
+    margin-bottom: 1.0rem
 
   .wrap-row
-    flex-wrap wrap
-    flex-direction row
-    justify-content space-between
+    flex-wrap: wrap
+    flex-direction: row
+    justify-content: space-between
 
   .grid-figure
-    flex-flow row wrap
-    flex-basis calc(33.333% - 2rem)
-    flex-grow 1
-    flex-shrink 0
-    margin 0 1rem 2rem 1rem
+    flex-flow: row wrap
+    flex-basis: calc(33.333% - 2rem)
+    flex-grow: 1
+    flex-shrink: 0
+    margin: 0 1rem 2rem 1rem
     // padding 2rem
-    border 1px solid lightgrey
-    background white
-    position relative
+    border: 1px solid lightgrey
+    background: white
+    position: relative
 
   ul
     margin-before: 0.5rem
@@ -45,27 +45,27 @@
   //     right: 0
   //     font-size: 2.0rem
   //     font-weight: normal
-  //     content 'Editable'
+  //     content: 'Editable'
   //     background-color: red
   //     padding: 2rem 0
 
   // For inline editable fields
   .invalid
-    border 1px solid darken(red, 20%)
+    border: 1px solid darken(red, 20%)
 
   @media (max-width: cardWidth)
     .grid-figure
-      flex-basis calc(100% - 2rem)
-      margin 0 1rem .5rem 1rem
+      flex-basis: calc(100% - 2rem)
+      margin: 0 1rem .5rem 1rem
 
   .single
-    max-width cardWidth
-    min-width cardWidth
+    max-width: cardWidth
+    min-width: cardWidth
     flex-shrink: 0
 
   .single .grid-figure
     // Single stack
-    box-shadow 7px 7px 6px 1px rgba(0,0,0,0.05)
+    box-shadow: 7px 7px 6px 1px rgba(0,0,0,0.05)
 
   @media (max-width: cardWidth)
     .single
@@ -76,69 +76,69 @@
     Buttons
   */
   .control-buttons
-    width 100%
-    flex-flow row wrap
+    width: 100%
+    flex-flow: row wrap
     .button
-      flex-grow 1
-      margin-right 1rem
+      flex-grow: 1
+      margin-right: 1rem
 
   button, .button
-    border 2px solid lightgrey
-    border-radius 0.5rem
-    background none
-    flex-basis 48%
-    display inline-block
+    border: 2px solid lightgrey
+    border-radius: 0.5rem
+    background: none
+    flex-basis: 48%
+    display: inline-block
     // line-height 2
-    text-decoration none
-    padding 0.90rem 0.75rem
-    margin 0.50rem 0
-    text-align center
-    color blue
-    transition all 0.2s
-    box-sizing padding-box
-    cursor pointer
-    user-select none // Disallow selection of button text
+    text-decoration: none
+    padding: 0.90rem 0.75rem
+    margin: 0.50rem 0
+    text-align: center
+    color: blue
+    transition: all 0.2s
+    box-sizing: padding-box
+    cursor: pointer
+    user-select: none // Disallow selection of button text
     &:hover, &:focus
-      border-color blue
-      outline 0
+      border-color: blue
+      outline: 0
     &[disabled]
-      color lightgrey
+      color: lightgrey
       cursor: not-allowed
     &[disabled]:hover
-      border-color lightgrey
+      border-color: lightgrey
 
   .btn-inactive
-    color lightgrey
+    color: lightgrey
   .btn-active
-    color green
+    color: green
   .btn-delete
-    color red
+    color: red
     &:hover, &:focus
-      border-color red
+      border-color: red
 
   /*
     Forms
   */
   .edit-form
-    padding 2rem 2rem
-    display flex
-    flex 1 0 auto
-    flex-flow column nowrap
-    justify-content space-between
+    padding: 2rem 2rem
+    display: flex
+    flex: 1 0 auto
+    flex-flow: column nowrap
+    justify-content: space-between
   input, textarea
-    width 100%
-    border 0
-    font-size 1.4rem
-    padding 1rem 0
-    border-bottom 1px solid lightgrey
-    outline none
-    resize vertical
-    transition all 0.2s
-    opacity 0.6
+    width: 100%
+    border: 0
+    font-size: 1.4rem
+    padding: 1rem 0
+    border-bottom: 1px solid lightgrey
+    outline: none
+    resize: vertical
+    transition: all 0.2s
+    opacity: 0.6
     &:hover
-      opacity 1
+      opacity: 1
   .large-input
-    font-size 2.5rem
+    font-size: 2.5rem
 
   // Taken from https://github.com/michaelhue/keyscss/blob/master/keys.css
   kbd
@@ -176,26 +176,26 @@
     overflow: hidden
 
   main.main-container
-    flex-grow 1
-    flex-direction row
-    order 2
-    justify-content center
+    flex-grow: 1
+    flex-direction: row
+    order: 2
+    justify-content: center
     section
-      margin-top contentMargin
+      margin-top: contentMargin
 
   @media (max-width: cardWidth)
     main.main-container section
-      margin-top 0.4rem
+      margin-top: 0.4rem
 
   footer
-    order 3
-    display flex
-    flex-direction row
-    justify-content center
+    order: 3
+    display: flex
+    flex-direction: row
+    justify-content: center
     p, a, a:active, a:hover, a:visited
-      font-size 1.3rem
-      color lighten(lightgrey, 10%)
+      font-size: 1.3rem
+      color: lighten(lightgrey, 10%)
 
   @media (max-width: cardWidth)
     footer
-      display none
+      display: none

@@ -1,35 +1,35 @@
 @import '../_variables';
 
 .cardCount
-  display inline-block
-  text-align right
-  color grey
+  display: inline-block
+  text-align: right
+  color: grey
   // All the other font sizes are in em, which means this value
   // will determine the scale
-  font-size 0.8rem
+  font-size: .8rem
 
 .current
-  color blue
-  font 400 3em 'Dosis'
-  position relative
-  top -0.5em
-  right 0em
+  color: blue
+  font: 400 3em 'Dosis'
+  position :relative
+  top: -.5em
+  right: 0
 
 .separator:after
-  font 200 4em 'Dosis'
-  content "/"
+  font: 200 4em 'Dosis'
+  content: "/"
 
 .max
-  font 200 1.5em 'Dosis'
-  position relative
-  top -0.5em
+  font: 200 1.5em 'Dosis'
+  position: relative
+  top: -.5em
 
 @media (max-width: cardWidth)
   .current, .separator:after, .max
     font-size: 3em
-    top 0
-    right 0
+    top: 0
+    right: 0
   .separator:after
-    content "|"
-    margin 0 1.0rem
+    content: "|"
+    margin: 0 1.0rem
 

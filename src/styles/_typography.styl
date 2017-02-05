@@ -1,23 +1,23 @@
-:global
+:global // @stylint ignore
   html
-    font-size 62.5%
+    font-size: 62.5%
   body
-    -webkit-font-smoothing antialiased
-    -moz-osx-font-smoothing grayscale
-    font-family 'Helvetica', sans-serif
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+    font-family: 'Helvetica', sans-serif
     font-size: 14px
     font-size: 1.4rem
 
   @media (max-width: cardWidth)
     html
-      font-size 55.5% // Scale the font down for the mobile view, although this
+      font-size: 55.5% // Scale the font down for the mobile view, although this
                       // will ruin the 1:1 with px/rem
 
   h1, .large
-    font-size 4.0rem
-    margin 0
-    padding 0
-    font-weight bold
+    font-size: 4.0rem
+    margin: 0
+    padding: 0
+    font-weight: bold
   h2
     font-size: 3.0rem
   h3
@@ -26,32 +26,32 @@
     font-size: 2.0rem
 
   a
-    color blue
-    font-weight bold
-    text-decoration none
+    color: blue
+    font-weight: bold
+    text-decoration: none
     &:hover, &:active, &:visited
-      text-decoration none
+      text-decoration: none
 
 
   textarea.mono, code
-    font-family Consolas, "Liberation Mono", Menlo, Courier, monospace
-    font-size 1.5rem
-    line-height 1.5
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace
+    font-size: 1.5rem
+    line-height: 1.5
   code
-    font-size inherit
+    font-size: inherit
 
   button, .button
-    font-size 1.5rem
-    font-weight bold
+    font-size: 1.5rem
+    font-weight: bold
 
   p, .paragraph
-    font-size 1.6rem
-    line-height 1.5
+    font-size: 1.6rem
+    line-height: 1.5
 
   footer
     .credit
-      font-size 1.0rem
-      color lighten(gray, 85%)
+      font-size: 1.0rem
+      color: lighten(gray, 85%)
 
   /* latin */
   @font-face {
