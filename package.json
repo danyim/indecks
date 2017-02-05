@@ -11,7 +11,9 @@
     "start": "babel-node devServer.js",
     "publish:git": "npm run build && mkdir dist/dist && mv dist/*.* dist/dist && cp index.html dist/index.html && sed -e 's/\\/dist/dist/g' dist/index.html > dist/index.html.tmp && mv dist/index.html.tmp dist/index.html && gh-pages -d dist",
     "tunnel": "browser-sync start --proxy localhost:7770",
-    "lint": "node_modules/.bin/eslint tests/js src --ext .jsx"
+    "lint:js": "eslint tests/js src --ext .jsx",
+    "lint:styles": "stylint src/styles/**/*.styl",
+    "watch:lint": "npm-run-all --parallel lint:* -- --watch"
   },
   "repository": {
     "type": "git",
@@ -74,12 +76,14 @@
     "expect-jsx": "^2.5.1",
     "jest": "^18.1.0",
     "mocha": "^2.5.3",
+    "npm-run-all": "^4.0.1",
     "postcss-loader": "^0.9.1",
     "poststylus": "^0.2.3",
     "react-addons-test-utils": "^15.4.2",
     "riek": "^1.0.5",
     "rimraf": "^2.5.2",
     "style-loader": "^0.13.1",
+    "stylint": "^1.5.9",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.1.2",
     "url-loader": "^0.5.7",
