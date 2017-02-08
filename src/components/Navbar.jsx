@@ -5,7 +5,7 @@ import ImportDeckContainer from '../containers/ImportDeckContainer';
 import SettingsContainer from '../containers/SettingsContainer';
 import KeyListener from './KeyListener';
 import ShortcutHelper from './ShortcutHelper';
-import styles from '../styles/components/Navbar';
+import styles from '../styles/components/Navbar'; // eslint-disable-line
 
 const propTypes = {};
 
@@ -112,6 +112,7 @@ class Navbar extends React.Component {
         onRequestClose={this.closeModal.bind(this, 'IMPORT')}
         className={`${styles['modal-content']}`}
         overlayClassName={`${styles['modal-overlay']}`}
+        contentLabel="Import Deck"
       >
         <ImportDeckContainer handleClose={this.closeModal.bind(this, 'IMPORT')} />
       </Modal>
@@ -125,6 +126,7 @@ class Navbar extends React.Component {
         onRequestClose={this.closeModal.bind(this, 'SHORTCUTS')}
         className={`${styles['modal-content']}`}
         overlayClassName={`${styles['modal-overlay']}`}
+        contentLabel="Keyboard Shortcuts"
       >
         <ShortcutHelper handleClose={this.closeModal.bind(this, 'SHORTCUTS')} />
       </Modal>
@@ -138,6 +140,7 @@ class Navbar extends React.Component {
         onRequestClose={this.closeModal.bind(this, 'SETTINGS')}
         className={`${styles['modal-content']}`}
         overlayClassName={`${styles['modal-overlay']}`}
+        contentLabel="Settings"
       >
         <SettingsContainer handleClose={this.closeModal.bind(this, 'SETTINGS')} />
       </Modal>
