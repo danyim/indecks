@@ -51,8 +51,8 @@
     "redux-thunk": "^2.1.0",
     "remarkable": "^1.6.2",
     "reselect": "^2.5.3",
-    "slug": "^0.9.1",
-    "stylint": "^1.5.9"
+    "riek": "^1.0.7",
+    "slug": "^0.9.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
@@ -71,8 +71,9 @@
     "enzyme": "^2.7.1",
     "eslint": "^3.5.0",
     "eslint-config-airbnb": "^10.0.1",
+    "eslint-import-resolver-webpack": "^0.8.1",
     "eslint-plugin-babel": "^4.0.1",
-    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.1",
     "eslint-plugin-react": "^6.2.0",
     "expect": "^1.18.0",
@@ -83,9 +84,9 @@
     "postcss-loader": "^0.9.1",
     "poststylus": "^0.2.3",
     "react-addons-test-utils": "^15.4.2",
-    "riek": "^1.0.5",
     "rimraf": "^2.5.2",
     "style-loader": "^0.13.1",
+    "stylint": "^1.5.9",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.1.2",
     "url-loader": "^0.5.7",

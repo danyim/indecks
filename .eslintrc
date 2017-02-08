@@ -14,7 +14,9 @@
     "babel/new-cap": 1,
     "babel/no-await-in-loop": 1,
     "comma-dangle": 0,
+    "dot-notation": 1,
     "generator-star-spacing": 1,
+    "keyword-spacing": 0,
     "object-shorthand": 1,
     "quotes": [2, "single"],
     "react/jsx-uses-react": 2,
@@ -24,10 +26,14 @@
   },
   "plugins": [
     "babel",
-    "react"
+    "react",
+    "import"
   ],
   "globals": {
     "firebase": true,
     "sinon": true
+  },
+  "settings": {
+    "import/resolver": "webpack"
   }
 }
