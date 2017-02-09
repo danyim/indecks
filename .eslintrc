@@ -1,12 +1,46 @@
 {
-  "extends": "airbnb",
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true
-  },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "es6": true
+  },
+
+  "plugins": [
+    "babel",
+    "react",
+    "jsx-a11y"
+  ],
+
+  "extends": [
+    "airbnb",
+    "plugin:jsx-a11y/recommended",
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "ecmaFeatures": {
+    "arrowFunctions": true,
+    "binaryLiterals": true,
+    "blockBindings": true,
+    "classes": true,
+    "defaultParams": true,
+    "destructuring": true,
+    "forOf": true,
+    "generators": true,
+    "modules": true,
+    "objectLiteralComputedProperties": true,
+    "objectLiteralDuplicateProperties": true,
+    "objectLiteralShorthandMethods": true,
+    "objectLiteralShorthandProperties": true,
+    "octalLiterals": true,
+    "regexUFlag": true,
+    "regexYFlag": true,
+    "spread": true,
+    "superInFunctions": true,
+    "templateStrings": true,
+    "unicodeCodePointEscapes": true,
+    "globalReturn": true,
+    "jsx": true
   },
   "parser": "babel-eslint",
   "rules": {
@@ -15,6 +49,8 @@
     "babel/no-await-in-loop": 1,
     "comma-dangle": 0,
     "dot-notation": 1,
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
     "generator-star-spacing": 1,
     "keyword-spacing": 0,
     "object-shorthand": 1,
@@ -24,11 +60,6 @@
     "react/react-in-jsx-scope": 2,
     "strict": [2, "never"]
   },
-  "plugins": [
-    "babel",
-    "react",
-    "import"
-  ],
   "globals": {
     "firebase": true,
     "sinon": true
