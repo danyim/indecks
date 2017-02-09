@@ -7,7 +7,7 @@ const propTypes = {
 
 const defaultProps = {};
 
-const App = (props) => (
+const App = props => (
   <div>
     <Navbar />
     <main className="main-container">

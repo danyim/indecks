@@ -32,7 +32,7 @@ class ImportDeck extends React.Component {
   handleDrop(files) {
     const file = files[0];
     const reader = new FileReader();
-    const addToDeck = inputDeck => {
+    const addToDeck = (inputDeck) => {
       const deck = { ...inputDeck };
       deck.id = this.generateRandomString(); // Generate a new ID regardless
       // Absolutely no validation of the JSON here...
@@ -40,7 +40,7 @@ class ImportDeck extends React.Component {
       this.props.addDeck(deck);
     };
 
-    reader.onload = e => {
+    reader.onload = (e) => {
       const result = e.target.result;
       const resultJson = JSON.parse(result);
       if (Array.isArray(resultJson)) {
