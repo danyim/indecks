@@ -7,7 +7,8 @@ const propTypes = {
   className: React.PropTypes.string,
   flipped: React.PropTypes.bool,
   handleOnClick: React.PropTypes.func,
-  trimOverflow: React.PropTypes.bool
+  trimOverflow: React.PropTypes.bool,
+  children: React.PropTypes.node
 };
 
 const defaultProps = {
@@ -36,7 +37,9 @@ class Card extends React.Component {
     // console.log('attempting to render empty');
     return (
       <div className={`${styles['center']}`}>
-        <p className={`${styles['grey']}`}>This card does not have an answer yet</p>
+        <p className={`${styles['grey']}`}>
+          This card does not have an answer yet
+        </p>
       </div>
     );
   }
@@ -64,13 +67,17 @@ class Card extends React.Component {
         </div>
       );
     }
+    return null;
   }
 
   render() {
     const { card, className } = this.props;
 
     return (
-      <figure className={`grid-figure ${styles['grid-figure']} ${className}`} onClick={this.props.handleOnClick}>
+      <figure
+        className={`grid-figure ${styles['grid-figure']} ${className}`}
+        onClick={this.props.handleOnClick}
+      >
         <div className={`${styles['card-contents']}`}>
           {this.renderMarkdown()}
         </div>

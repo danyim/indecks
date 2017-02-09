@@ -176,7 +176,7 @@ class Navbar extends React.Component {
     let listLink;
     const routeParser = this.routeParser;
 
-    browserHistory.listen(ev => {
+    browserHistory.listen((ev) => {
       const { addLink: add, listLink: list } = routeParser(ev.pathname);
       addLink = add;
       listLink = list;

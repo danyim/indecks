@@ -9,7 +9,8 @@ const propTypes = {
   card: React.PropTypes.object.isRequired,
   deck: React.PropTypes.object.isRequired,
   config: React.PropTypes.object.isRequired,
-  cardIndex: React.PropTypes.number.isRequired
+  cardIndex: React.PropTypes.number.isRequired,
+  toggleShuffle: React.PropTypes.func.isRequired
 };
 
 const defaultProps = {};
@@ -78,17 +79,20 @@ class CardView extends React.Component {
         <Swipeable
           onSwipedDown={this.handleEditCard}
           onSwipedLeft={this.handleNextCard}
-          onSwipedRight={this.handlePrevCard}>
+          onSwipedRight={this.handlePrevCard}
+        >
           <Card card={card} flipped={this.state.flipped} handleOnClick={this.handleFlip} />
         </Swipeable>
-        <DeckNavigator deck={deck} cardIndex={cardIndex}
+        <DeckNavigator
+          deck={deck} cardIndex={cardIndex}
           mode={mode}
           flipped={this.state.flipped}
           config={config}
           handleFlip={this.handleFlip}
-          handleShuffleToggle={this.handleShuffleToggle} />
+          handleShuffleToggle={this.handleShuffleToggle}
+        />
       </section>
-    )
+    );
   }
 }
 

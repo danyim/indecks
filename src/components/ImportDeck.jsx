@@ -152,7 +152,8 @@ class ImportDeck extends React.Component {
               activeClassName={`${styles['drop-active']}`}
               rejectClassName={`${styles['drop-reject']}`}
               multiple={false}
-              accept="application/json">
+              accept="application/json"
+            >
               <p>Click here to import or drag and drop the deck JSON here</p>
             </Dropzone>
             <div className={`${styles['or-bar']}`}>
@@ -161,7 +162,12 @@ class ImportDeck extends React.Component {
             </div>
             <h4>Use samples</h4>
             <div>
-              <button type="button" className="button" onClick={() => this.handleLoadSample()}>Load Sample Decks</button>
+              <button
+                type="button" className="button"
+                onClick={() => this.handleLoadSample()}
+              >
+                Load Sample Decks
+              </button>
             </div>
             <br /><br />
             {this.renderCancelButton()}

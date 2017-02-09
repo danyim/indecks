@@ -29,7 +29,7 @@ class CardEditForm extends React.Component {
 
     this.state = {
       showPreview: false
-    }
+    };
   }
 
   togglePreview() {

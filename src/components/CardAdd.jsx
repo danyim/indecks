@@ -1,15 +1,16 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
-import { Link, browserHistory } from 'react-router';
 import styles from '../styles/components/CardAdd';
 
 const propTypes = {
   deckId: React.PropTypes.string.isRequired,
-  handleSubmit: React.PropTypes.func.isRequired
+  handleSubmit: React.PropTypes.func.isRequired,
+  history: React.PropTypes.object.isRequired
 };
 
 const defaultProps = {};
 
+// TODO: Remove all the refs in this component
 class CardAdd extends React.Component {
   constructor(props) {
     super(props);
@@ -18,12 +19,12 @@ class CardAdd extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     // This happens a little too fast. If you get to this view via keyboard
     // shortcut, the focus event fires before the keyup and writes the value
     // into the field. Adding a 100ms delay prevents this from happening.
     setTimeout(() => {
-      findDOMNode(this.refs.title).focus()
+      findDOMNode(this.refs.title).focus();
     }, 100);
   }
 
@@ -45,9 +46,18 @@ class CardAdd extends React.Component {
 
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`}>
-        <form ref="commentForm" className="edit-form" onSubmit={e => this.handleSubmit(e, deckId)}>
-          <input type="text" className="large-input" name="title" ref="title" placeholder="Title" />
-          <textarea type="text" className="mono" name="answer" ref="answer" placeholder="Answer (Markdown)" rows="4" />
+        <form
+          ref="commentForm" className="edit-form"
+          onSubmit={(e) => this.handleSubmit(e, deckId)}
+        >
+          <input
+            type="text" className="large-input" name="title"
+            ref="title" placeholder="Title"
+          />
+          <textarea
+            type="text" className="mono" name="answer"
+            ref="answer" placeholder="Answer (Markdown)" rows="4"
+          />
 
           <div className={`${styles['control-buttons']}`}>
             <button type="submit" className="button">Save</button>

@@ -1,9 +1,9 @@
 import React from 'react';
-import Card from './Card';
 import { RIEInput, RIETextArea } from 'riek';
 import { Link, browserHistory } from 'react-router';
-import ExportDeckButton from './ExportDeckButton';
 import slug from 'slug';
+import Card from './Card';
+import ExportDeckButton from './ExportDeckButton';
 import styles from '../styles/components/DeckView';
 
 const propTypes = {
@@ -108,7 +108,8 @@ class DeckView extends React.Component {
               maxLength="160"
               validate={this.validateTitle}
               classLoading="loading"
-              classInvalid="invalid" />
+              classInvalid="invalid"
+            />
             <p>
               <strong>
                 {`${this.props.deck.cards.length} cards`}

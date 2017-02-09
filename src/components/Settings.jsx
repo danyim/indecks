@@ -27,19 +27,23 @@ class Settings extends React.Component {
     const { deckCount } = this.props;
 
     const renderDeleteAll = deckCount === 0 ?
-      <button
-        className="btn-delete"
-        disabled="disabled"
-      >
-        Delete all decks from local storage
-      </button>
+      (
+        <button
+          className="btn-delete"
+          disabled="disabled"
+        >
+          Delete all decks from local storage
+        </button>
+      )
       :
-      <button
-        className="btn-delete"
-        onClick={() => this.removeAllDecks(deckCount)}
-      >
-        Delete all {deckCount} deck(s) from local storage
-      </button>;
+      (
+        <button
+          className="btn-delete"
+          onClick={() => this.removeAllDecks(deckCount)}
+        >
+          Delete all {deckCount} deck(s) from local storage
+        </button>
+      );
 
     return (
       <section className={`${styles['settings']}`}>

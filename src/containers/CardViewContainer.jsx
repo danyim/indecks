@@ -44,12 +44,12 @@ CardViewContainer.defaultProps = defaultProps;
 const mapStateToProps = ({ decks, config }, ownProps) => {
   const { deckId, cardIndex } = ownProps.params;
   // Find the deck based on the property
-  const deckIndex = decks.findIndex(d => d.id === deckId);
+  const deckIndex = decks.findIndex((d) => d.id === deckId);
   return {
     card: decks[deckIndex].cards.length > 0 ? decks[deckIndex].cards[cardIndex - 1] : null,
     deck: decks[deckIndex],
     config,
-    cardIndex: parseInt(cardIndex)
+    cardIndex: parseInt(cardIndex, 10)
   };
 };
 const mapDispatchToProps = (dispatch) =>
