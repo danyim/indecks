@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as deckActions from '../action-creators/deck';
-import * as configActions from '../action-creators/config';
+import * as deckActions from '../redux/modules/decks';
+import * as configActions from '../redux/modules/config';
 import CardView from '../components/CardView';
 
 const propTypes = {
