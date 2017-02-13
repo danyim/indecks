@@ -7,13 +7,11 @@
 
   "plugins": [
     "babel",
-    "react",
-    "jsx-a11y"
+    "react"
   ],
 
   "extends": [
     "airbnb",
-    "plugin:jsx-a11y/recommended",
     "eslint:recommended",
     "plugin:import/errors",
     "plugin:import/warnings"
