@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import KeyBinding from 'react-keybinding-component';
+import classNames from 'classnames';
 import CardCount from './CardCount';
 import FrontBack from './FrontBack';
-import classNames from 'classnames';
 import styles from '../styles/components/DeckNavigator';
 
 const propTypes = {
@@ -111,12 +111,12 @@ class DeckNavigator extends React.Component {
       this.mode = mode;
     }
 
-    let actionOnCard;
-    if(mode === 'edit') {
-      actionOnCard = <Link to={`/view/${deck.id}/${cardIndex}`}>View card</Link>;
-    } else if(mode === 'view') {
-      actionOnCard = <Link to={`/edit/${deck.id}/${cardIndex}`}>Edit card</Link>;
-    }
+    // let actionOnCard;
+    // if(mode === 'edit') {
+    //   actionOnCard = <Link to={`/view/${deck.id}/${cardIndex}`}>View card</Link>;
+    // } else if(mode === 'view') {
+    //   actionOnCard = <Link to={`/edit/${deck.id}/${cardIndex}`}>Edit card</Link>;
+    // }
 
     const shuffle = classNames({
       'btn-active': (this.props.config.shuffle === true),

@@ -27,9 +27,9 @@ class DeckView extends React.Component {
   mdReplacer(k, v) {
     if(k === 'cards') {
       const cards = [...v];
-      for(let card of cards) {
+      // for(let card of cards) {
         // card.description = 'This is a test';
-      }
+      // }
       return cards;
     }
     return v;
@@ -46,9 +46,9 @@ class DeckView extends React.Component {
     );
   }
 
-  handleCardMove(deckId, i) {
-    // TODO: Some implementation here
-  }
+  // handleCardMove(deckId, i) {
+  //   // TODO: Some implementation here
+  // }
 
   handleCardEdit(deckId, i) {
     browserHistory.push(`/edit/${deckId}/${i + 1}`);
@@ -107,6 +107,7 @@ class DeckView extends React.Component {
               minLength="1"
               maxLength="160"
               validate={this.validateTitle}
+              placeholder="Click here to add a title"
               classLoading="loading"
               classInvalid="invalid"
             />
@@ -124,6 +125,7 @@ class DeckView extends React.Component {
               maxLength="300"
               rows="6"
               validate={this.validateDescription}
+              placeholder="Click here to add a description"
               classLoading="loading"
               classInvalid="invalid"
             />
@@ -134,13 +136,6 @@ class DeckView extends React.Component {
                 Play Deck
               </span>
             </Link>
-            {/*
-              <Link className="button" to={`/edit/${this.props.deck.id}`}>
-                <span>
-                  Edit Details
-                </span>
-              </Link>
-            */}
             <ExportDeckButton
               filename={`${slug(this.props.deck.title)}.json`}
               label="Export Deck"

@@ -15,7 +15,8 @@ const defaultProps = {
   className: '',
   flipped: false,
   handleOnClick: null,
-  trimOverflow: false
+  trimOverflow: false,
+  children: null
 };
 
 const TITLE_MAX_CHAR_LEN = 125;

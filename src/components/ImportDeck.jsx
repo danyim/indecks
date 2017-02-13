@@ -20,6 +20,12 @@ class ImportDeck extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLoadSample = this.handleLoadSample.bind(this);
     this.renderCancelButton = this.renderCancelButton.bind(this);
+
+    // Default values for the edit fields
+    this.state = {
+      title: '',
+      description: '',
+    };
   }
 
   generateRandomString(length = 8) {
@@ -27,6 +33,12 @@ class ImportDeck extends React.Component {
     let result = '';
     for (let i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
     return result;
+  }
+
+  handleChange(event, key) {
+    const state = { ...this.state };
+    state[key] = event.target.value;
+    this.setState(state);
   }
 
   handleDrop(files) {
@@ -79,15 +91,15 @@ class ImportDeck extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    if(this.refs.title.value.trim() === '') {
+    if(this.state.title.trim() === '' ) {
       return false;
     }
 
     const id = this.generateRandomString();
     this.props.addDeck({
       id,
-      title: this.refs.title.value,
-      description: this.refs.description.value,
+      title: this.state.title,
+      description: this.state.description,
       cards: []
     });
 
@@ -131,16 +143,18 @@ class ImportDeck extends React.Component {
       <section className={`${styles['deck-import']}`}>
         <div className={`${styles['grid-figure']}`}>
           <h2 className={`${styles.header}`}>Add/Import Deck</h2>
-          <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
+          <form className="edit-form" onSubmit={this.handleSubmit}>
             <h4>Create a new deck</h4>
             <input
               type="text" className="large-input"
-              name="title" ref="title"
+              name="title"
               placeholder="Deck Title" maxLength="30"
+              onChange={e => this.handleChange(e, 'title')}
             />
             <textarea
               type="text" name="description"
-              ref="description" placeholder="Description" rows="3"
+              placeholder="Description" rows="3"
+              onChange={e => this.handleChange(e, 'description')}
             />
             <div>
               <button type="submit" className="button">Create Deck</button>

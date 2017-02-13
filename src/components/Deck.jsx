@@ -22,9 +22,10 @@ class Deck extends React.Component {
         <div>
           <h1
             className={`${styles['deck-title']}`}
-            onClick={() => this.navigateToDeck(deckId)}
           >
-            {deck.title}
+            <a onClick={() => this.navigateToDeck(deckId)}>
+              {deck.title}
+            </a>
           </h1>
         </div>
 

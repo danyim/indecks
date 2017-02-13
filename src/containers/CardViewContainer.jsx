@@ -32,7 +32,7 @@ const CardViewContainer = (props) => {
   }
 
   return (
-    <CardView {...this.props} />
+    <CardView {...props} />
   );
 };
 
