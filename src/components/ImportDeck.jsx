@@ -133,11 +133,15 @@ class ImportDeck extends React.Component {
           <h2 className={`${styles['header']}`}>Add/Import Deck</h2>
           <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
             <h4>Create a new deck</h4>
-            <input type="text" className="large-input"
+            <input
+              type="text" className="large-input"
               name="title" ref="title"
-              placeholder="Deck Title" maxLength="30" />
-            <textarea type="text" name="description"
-              ref="description" placeholder="Description" rows="3" />
+              placeholder="Deck Title" maxLength="30"
+            />
+            <textarea
+              type="text" name="description"
+              ref="description" placeholder="Description" rows="3"
+            />
             <div>
               <button type="submit" className="button">Create Deck</button>
             </div>

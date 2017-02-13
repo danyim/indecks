@@ -11,17 +11,15 @@ const propTypes = {
 
 const defaultProps = {};
 
-class SettingsContainer extends React.Component {
-  render() {
-    return (
-      <Settings
-        deckCount={this.props.deckCount}
-        removeAllDecks={this.props.removeAllDecks}
-        {...this.props}
-      />
-    );
-  }
-}
+const SettingsContainer = (props) => {
+  return (
+    <Settings
+      deckCount={props.deckCount}
+      removeAllDecks={props.removeAllDecks}
+      {...props}
+    />
+  );
+};
 
 SettingsContainer.propTypes = propTypes;
 SettingsContainer.defaultProps = defaultProps;
@@ -32,7 +30,7 @@ const mapStateToProps = ({ decks }) => {
     deckCount: decks.length
   };
 };
-const mapDispatchToProps = (dispatch) =>
+const mapDispatchToProps = dispatch =>
   bindActionCreators(deckActions, dispatch);
 
 export default connect(

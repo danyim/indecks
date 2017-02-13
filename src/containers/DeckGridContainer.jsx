@@ -5,24 +5,21 @@ import * as deckActions from '../action-creators/deck';
 import DeckGrid from '../components/DeckGrid';
 
 const propTypes = {
-  decks: React.PropTypes.array.isRequired,
-  removeDeck: React.PropTypes.func.isRequired,
+  decks: React.PropTypes.array.isRequired
 };
 
 const defaultProps = {};
 
-class DeckGridContainer extends React.Component {
-  render() {
-    if(!Array.isArray(this.props.decks)) {
-      return <span>Error loading decks</span>;
-    }
-    else {
-      return (
-        <DeckGrid {...this.props} />
-      );
-    }
+const DeckGridContainer = (props) => {
+  if(!Array.isArray(props.decks)) {
+    return <span>Error loading decks</span>;
   }
-}
+  else {
+    return (
+      <DeckGrid {...props} />
+    );
+  }
+};
 
 DeckGridContainer.propTypes = propTypes;
 DeckGridContainer.defaultProps = defaultProps;

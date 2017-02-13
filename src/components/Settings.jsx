@@ -50,7 +50,7 @@ class Settings extends React.Component {
         <h2 className={`${styles['header']}`}>Settings</h2>
         <div className={`${styles['settings-content']}`}>
           <p>
-            The decks you create are automatically saved to your browser's
+            The decks you create are automatically saved to your browser&apos;s
             local storage.
           </p>
           <ExportDeckButton

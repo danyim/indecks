@@ -15,24 +15,22 @@ const propTypes = {
 };
 const defaultProps = {};
 
-class DeckEditContainer extends React.Component {
-  render() {
-    const { cards, deck, deckId,
-      editCard, removeCard, editDeck, form } = this.props;
+const DeckEditContainer = (props) => {
+  const { cards, deck, deckId,
+    editCard, removeCard, editDeck, form } = props;
 
-    return (
-      <DeckEdit
-        cards={cards}
-        deck={deck}
-        deckId={deckId}
-        editCard={editCard}
-        removeCard={removeCard}
-        editDeck={editDeck}
-        form={form}
-      />
-    );
-  }
-}
+  return (
+    <DeckEdit
+      cards={cards}
+      deck={deck}
+      deckId={deckId}
+      editCard={editCard}
+      removeCard={removeCard}
+      editDeck={editDeck}
+      form={form}
+    />
+  );
+};
 
 DeckEditContainer.propTypes = propTypes;
 DeckEditContainer.defaultProps = defaultProps;

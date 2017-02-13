@@ -306,6 +306,10 @@ const samples = [
       {
         "title": "What is the mandatory function for a React Component?",
         "answer": "render()\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n#quis nostrud \nexercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      },
+      {
+        "title": "What is the difference between `React.Component` and `React.PureComponent`?",
+        "answer": "They are exactly the same except in a `PureComponent`, the `shouldComponentUpdate()` will only perform a shallow check of the state.\n\n[Source](https://facebook.github.io/react/docs/react-api.html#react.purecomponent)"
       }
     ]
   }

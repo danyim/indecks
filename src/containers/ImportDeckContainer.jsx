@@ -5,21 +5,19 @@ import * as deckActions from '../action-creators/deck';
 import ImportDeck from '../components/ImportDeck';
 
 const propTypes = {
-  addDeck: React.PropTypes.func.isRequired,
-  handleClose: React.PropTypes.func
+  // addDeck: React.PropTypes.func.isRequired,
+  // handleClose: React.PropTypes.func
 };
 
 const defaultProps = {};
 
-class ImportDeckContainer extends React.Component {
-  render() {
-    return (
-      <ImportDeck
-        {...this.props}
-      />
-    );
-  }
-}
+const ImportDeckContainer = (props) => {
+  return (
+    <ImportDeck
+      {...props}
+    />
+  );
+};
 
 ImportDeckContainer.propTypes = propTypes;
 ImportDeckContainer.defaultProps = defaultProps;

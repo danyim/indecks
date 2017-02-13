@@ -13,30 +13,28 @@ const propTypes = {
 
 const defaultProps = {};
 
-class CardViewContainer extends React.Component {
-  render() {
-    const { card, deck } = this.props;
-    if (deck.cards.length === 0) {
-      return (
-        <p className="center">
-          No cards have been added to this deck. Click the + on the top left to
-          add a card.
-        </p>
-      );
-    }
-    if (!card) {
-      return (
-        <p className="center">
-          Invalid card index
-        </p>
-      );
-    }
-
+const CardViewContainer = (props) => {
+  const { card, deck } = props;
+  if (deck.cards.length === 0) {
     return (
-      <CardView {...this.props} />
+      <p className="center">
+        No cards have been added to this deck. Click the + on the top left to
+        add a card.
+      </p>
     );
   }
-}
+  if (!card) {
+    return (
+      <p className="center">
+        Invalid card index
+      </p>
+    );
+  }
+
+  return (
+    <CardView {...this.props} />
+  );
+};
 
 CardViewContainer.propTypes = propTypes;
 CardViewContainer.defaultProps = defaultProps;
