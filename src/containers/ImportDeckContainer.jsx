@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as deckActions from '../action-creators/deck';
+import * as deckActions from '../redux/modules/decks';
 import ImportDeck from '../components/ImportDeck';
 
 const propTypes = {

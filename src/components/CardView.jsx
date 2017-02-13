@@ -60,7 +60,7 @@ class CardView extends React.Component {
 
   handleFlip(e, flipped) {
     if (flipped !== undefined) {
-      this.setState({ flipped });
+      this.setState({ flipped: true });
     } else {
       this.setState({ flipped: !this.state.flipped });
     }

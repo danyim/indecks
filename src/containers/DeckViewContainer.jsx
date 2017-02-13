@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
-import * as deckActions from '../action-creators/deck';
+import * as deckActions from '../redux/modules/decks';
 import DeckView from '../components/DeckView';
 
 const propTypes = {
