@@ -1,12 +1,12 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import createLogger from 'redux-logger';
 // TODO: Not really using thunk until we interface with a backend
-import thunk from 'redux-thunk';
+// import thunk from 'redux-thunk';
 import { persistStore, autoRehydrate } from 'redux-persist';
-import rootReducer from './reducers/index';
+import rootReducer from './redux/index';
 import config from './data/config';
-import decks from './data/decks';
-import samples from './data/samples';
+// import decks from './data/decks';
+// import samples from './data/samples';
 
 const logger = createLogger();
 const envMiddlewares = {
@@ -55,8 +55,8 @@ export default function configureStore(initialState = {}, debug = __DEV__) {
   // TODO: Does this belong here or in root.js?
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept('./reducers', () => {
-      const nextRootReducer = require('./reducers/index');
+    module.hot.accept('./redux', () => {
+      const nextRootReducer = require('./redux/index');
       store.replaceReducer(nextRootReducer);
     });
   }

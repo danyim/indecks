@@ -8,7 +8,7 @@
     "test": "node_modules/karma/bin/karma start tests/karma.conf.js --single-run",
     "test:watch": "node_modules/karma/bin/karma start tests/karma.conf.js",
     "clean": "rimraf dist",
-    "start": "babel-node devServer.js",
+    "start": "node devServer.js",
     "publish:git": "npm run build && mkdir dist/dist && mv dist/*.* dist/dist && cp index.html dist/index.html && sed -e 's/\\/dist/dist/g' dist/index.html > dist/index.html.tmp && mv dist/index.html.tmp dist/index.html && gh-pages -d dist",
     "tunnel": "browser-sync start --proxy localhost:7770",
     "lint": "npm-run-all --parallel lint:*",
