@@ -12,7 +12,7 @@ const propTypes = {
   moveCard: React.PropTypes.func.isRequired,
   removeCard: React.PropTypes.func.isRequired,
   removeDeck: React.PropTypes.func.isRequired,
-  params: React.PropTypes.obj.isRequired
+  params: React.PropTypes.object.isRequired
 };
 const defaultProps = {};
 
