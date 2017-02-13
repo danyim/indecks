@@ -1,3 +1,9 @@
+/**
+ * Navbar badly needs a refactor. Currently it is handling all global shortcuts
+ * and is the base component for the global modals to bind to, but technically
+ * those modals should be separated from here.
+ */
+
 import React from 'react';
 import Modal from 'react-modal';
 import { Link, browserHistory } from 'react-router';
@@ -5,13 +11,13 @@ import ImportDeckContainer from '../containers/ImportDeckContainer';
 import SettingsContainer from '../containers/SettingsContainer';
 import KeyListener from './KeyListener';
 import ShortcutHelper from './ShortcutHelper';
-import styles from '../styles/components/Navbar'; // eslint-disable-line
+import styles from '../styles/components/Navbar';
 
 const propTypes = {};
 
 const defaultProps = {};
 
-const modalTypes = ['SETTINGS', 'IMPORT', 'SHORTCUTS'];
+// const modalTypes = ['SETTINGS', 'IMPORT', 'SHORTCUTS'];
 
 class Navbar extends React.Component {
   constructor(props) {

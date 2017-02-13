@@ -84,8 +84,10 @@ class DeckView extends React.Component {
   }
 
   render() {
+    const { deck } = this.props;
+
     const emptyMsg = (() => {
-      if (this.props.deck.cards.length === 0) {
+      if (deck.cards.length === 0) {
         return (
           <p className="center">
             Click the + button on the top left to add a card
@@ -100,7 +102,7 @@ class DeckView extends React.Component {
         <div className={`${styles['title-card']}`}>
           <div className={`${styles['title-text']}`}>
             <RIEInput
-              value={this.props.deck.title}
+              value={deck.title}
               change={this.handleEditDeckDetails}
               propName="title"
               className="large editable"
@@ -113,11 +115,11 @@ class DeckView extends React.Component {
             />
             <p>
               <strong>
-                {`${this.props.deck.cards.length} cards`}
+                {`${deck.cards.length} cards`}
               </strong>
             </p>
             <RIETextArea
-              value={this.props.deck.description}
+              value={deck.description}
               change={this.handleEditDeckDetails}
               propName="description"
               className="paragraph editable m-t"
@@ -131,13 +133,13 @@ class DeckView extends React.Component {
             />
           </div>
           <div className={`${styles['control-buttons']}`}>
-            <Link className="button" to={`/view/${this.props.deck.id}/1`}>
+            <Link className="button" to={`/view/${deck.id}/1`}>
               <span>
                 Play Deck
               </span>
             </Link>
             <ExportDeckButton
-              filename={`${slug(this.props.deck.title)}.json`}
+              filename={`${slug(deck.title)}.json`}
               label="Export Deck"
               className="button"
               style={{}}
@@ -145,11 +147,11 @@ class DeckView extends React.Component {
                 // Use this if you want to use the replacer
                 exportFile={() =>  JSON.stringify(deck, this.mdReplacer, 2)}
               */
-              exportFile={() => JSON.stringify(this.props.deck, null, 2)}
+              exportFile={() => JSON.stringify(deck, null, 2)}
             />
             <a
               className="button btn-delete"
-              onClick={() => this.props.handleRemoveDeck(this.props.deck.id)}
+              onClick={() => this.props.handleRemoveDeck(deck.id)}
             >
                 Delete Deck
             </a>
@@ -158,10 +160,10 @@ class DeckView extends React.Component {
 
         <div className={`wrap-row ${styles.grid}`}>
           {
-            this.props.deck.cards.map((c, i) =>
+            deck.cards.map((c, i) =>
               <Card
                 card={c}
-                key={i}
+                key={`card_${deck.id}__${c.index}`}
                 className={`${styles['card-contents']}`}
                 trimOverflow
               >
@@ -170,7 +172,7 @@ class DeckView extends React.Component {
                     <div className={`${styles['hover-actions']}`}>
                       <button
                         onClick={
-                          () => this.handleCardView(this.props.deck.id, i)
+                          () => this.handleCardView(deck.id, i)
                         }
                         className={`${styles['hover-button']}`}
                       >
@@ -178,7 +180,7 @@ class DeckView extends React.Component {
                       </button>
                       <button
                         onClick={
-                          () => this.handleCardEdit(this.props.deck.id, i)
+                          () => this.handleCardEdit(deck.id, i)
                         }
                         className={`${styles['hover-button']}`}
                       >
@@ -186,7 +188,7 @@ class DeckView extends React.Component {
                       </button>
                       <button
                         onClick={
-                          () => this.handleCardDelete(this.props.deck.id, i)
+                          () => this.handleCardDelete(deck.id, i)
                         }
                         className={`btn-delete ${styles['hover-button']}`}
                       >
@@ -197,7 +199,7 @@ class DeckView extends React.Component {
                     <div className={`${styles['hover-actions']}`}>
                       <button
                         onClick={
-                          () => this.handleCardDuplicate(this.props.deck.id, i)
+                          () => this.handleCardDuplicate(deck.id, i)
                         }
                         className={`${styles['hover-button']}`}
                       >
@@ -206,7 +208,7 @@ class DeckView extends React.Component {
                       {/*
                       <button
                         onClick={
-                          () => this.handleCardMove(this.props.deck.id, i)
+                          () => this.handleCardMove(deck.id, i)
                         }
                         className={`${styles['hover-button']}`}
                       >

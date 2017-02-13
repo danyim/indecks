@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import * as deckActions from '../action-creators/deck';
 import * as configActions from '../action-creators/config';
 import CardView from '../components/CardView';
-import styles from '../styles/components/CardView';
 
 const propTypes = {
   card: React.PropTypes.object.isRequired,

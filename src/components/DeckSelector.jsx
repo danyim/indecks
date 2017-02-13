@@ -2,11 +2,11 @@ import React from 'react';
 import styles from '../styles/components/DeckSelector';
 
 const propTypes = {
-  decks: React.PropTypes.array.isRequired,
-  excludedDeckIds: React.PropTypes.array,
-  maxSelected: React.PropTypes.number.isRequired,
-  minSelected: React.PropTypes.number.isRequired,
-  handleOnSelected: React.PropTypes.func.isRequired
+  // decks: React.PropTypes.array.isRequired,
+  // excludedDeckIds: React.PropTypes.array,
+  // maxSelected: React.PropTypes.number.isRequired,
+  // minSelected: React.PropTypes.number.isRequired,
+  // handleOnSelected: React.PropTypes.func.isRequired
 };
 
 const defaultProps = {

@@ -1,3 +1,7 @@
+/**
+ * This component is not being used. Deprecated and should be deleted later.
+ */
+
 // import React from 'react';
 // import DeckEditCardForm from './DeckEditCardForm';
 // import DeckEditDeckForm from './DeckEditDeckForm';

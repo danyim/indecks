@@ -3,7 +3,7 @@ import Swipeable from 'react-swipeable';
 import { browserHistory } from 'react-router';
 import Card from './Card';
 import DeckNavigator from './DeckNavigator';
-import styles from '../styles/components/CardView';
+// import styles from '../styles/components/CardView'; // Not used, uncomment later
 
 const propTypes = {
   card: React.PropTypes.object.isRequired,

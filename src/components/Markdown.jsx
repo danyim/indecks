@@ -25,7 +25,7 @@ class Markdown extends React.Component {
       <div
         className={this.props.className}
         onClick={this.props.handleOnClick}
-        dangerouslySetInnerHTML={
+        dangerouslySetInnerHTML={ // eslint-disable-line
           this.convertToMarkdown(this.props.text)
         }
       />

@@ -30,7 +30,11 @@ class DeckGrid extends React.Component {
     return (
       <section className={`${styles['deck-grid']} wrap-row`}>
         {this.props.decks.map((deck, i) =>
-          <Deck key={i} i={i} deck={deck} handleRemoveDeck={this.handleRemoveDeck} />
+          <Deck
+            key={`deck_${deck.id}`}
+            i={i} deck={deck}
+            handleRemoveDeck={this.handleRemoveDeck}
+          />
         )}
         {emptyMsg}
       </section>

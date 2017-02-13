@@ -1,3 +1,7 @@
+/**
+ * This component is not being used. Deprecated and should be deleted later.
+ */
+
 // import React from 'react';
 // import InlineEdit from 'react-inline-edit';
 // import { Field, reduxForm } from 'redux-form';

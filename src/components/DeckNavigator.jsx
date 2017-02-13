@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import KeyBinding from 'react-keybinding-component';
 import classNames from 'classnames';
 import CardCount from './CardCount';

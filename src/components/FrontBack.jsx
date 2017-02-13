@@ -12,26 +12,29 @@ const defaultProps = {};
 const FrontBack = (props) => {
   const { flipped } = props;
   const front = {};
-  front[`${styles.front}`] = true;
-  front[`${styles.active}`] = !flipped;
+  front[styles.front] = true;
+  front[styles.active] = !flipped;
   const back = {};
-  back[`${styles.back}`] = true;
-  back[`${styles.active}`] = flipped;
+  back[styles.back] = true;
+  back[styles.active] = flipped;
 
   return (
     <div className={styles.frontBack}>
-      <span
+      <a
+        tabIndex="0"
         className={classNames(front)}
-        onClick={() => this.props.handleFlip(false)}
+        onClick={() => props.handleFlip(false)}
       >
         FRONT
-      </span>
+      </a>
       <span className={styles.separator}>|</span>
-      <span className={classNames(back)} onClick={() => this.props.handleFlip(true)}>BACK</span>
-      {/*
-      <span className={styles.separator}>|</span>
-      <span className={classNames(back)} onClick={() => this.props.handleFlip()}>FLIP</span>
-      */}
+      <a
+        tabIndex="-1"
+        className={classNames(back)}
+        onClick={() => props.handleFlip(true)}
+      >
+        BACK
+      </a>
     </div>
   );
 };
