@@ -24,7 +24,7 @@ class KeyListener extends React.Component {
   }
 
   handleKeyDown(e) {
-    this.props.handlers.forEach(h => {
+    this.props.handlers.forEach((h) => {
       if (h && h.keyCode && h.action && h.keyCode === e.keyCode) {
         h.action();
       }
@@ -35,8 +35,8 @@ class KeyListener extends React.Component {
     return (
       <KeyBinding
         onKey={e => this.handleKeyDown(e)}
-        preventInputConflict={true}
-        preventPropagation={true}
+        preventInputConflict
+        preventPropagation
       />
     );
   }

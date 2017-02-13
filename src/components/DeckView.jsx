@@ -161,14 +161,14 @@ class DeckView extends React.Component {
           </div>
         </div>
 
-        <div className={`wrap-row ${styles['grid']}`}>
+        <div className={`wrap-row ${styles.grid}`}>
           {
             this.props.deck.cards.map((c, i) =>
               <Card
                 card={c}
                 key={i}
                 className={`${styles['card-contents']}`}
-                trimOverflow={true}
+                trimOverflow
               >
                 <div className={`${styles['card-overlay']}`}>
                   <div className={`${styles['hover-actions-container']}`}>

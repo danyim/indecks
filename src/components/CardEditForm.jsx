@@ -80,7 +80,7 @@ class CardEditForm extends React.Component {
           placeholder="Answer (Markdown)"
         />
 
-        <div className={`${styles['preview']}`}>
+        <div className={`${styles.preview}`}>
           <p className="pointer m-t" onClick={() => this.togglePreview()}>
             Preview [{this.state.showPreview ? '-' : '+'}]
           </p>

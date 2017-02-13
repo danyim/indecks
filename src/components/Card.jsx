@@ -36,8 +36,8 @@ class Card extends React.Component {
   renderEmpty() {
     // console.log('attempting to render empty');
     return (
-      <div className={`${styles['center']}`}>
-        <p className={`${styles['grey']}`}>
+      <div className={`${styles.center}`}>
+        <p className={`${styles.grey}`}>
           This card does not have an answer yet
         </p>
       </div>

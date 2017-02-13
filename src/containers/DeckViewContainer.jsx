@@ -61,7 +61,7 @@ DeckViewContainer.propTypes = propTypes;
 DeckViewContainer.defaultProps = defaultProps;
 
 const mapStateToProps = ({decks, config}) => ({decks, config});
-const mapDispatchToProps = (dispatch) => bindActionCreators(deckActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(deckActions, dispatch);
 
 export default connect(
   mapStateToProps,

@@ -6,7 +6,7 @@ const defaultProps = {};
 
 const ShortcutHelper = () => (
   <section className={`${styles['shotcut-helper']}`}>
-    <h2 className={`${styles['header']}`}>Keyboard Shortcuts</h2>
+    <h2 className={`${styles.header}`}>Keyboard Shortcuts</h2>
     <div className={`${styles['settings-content']}`}>
       <h4>Global</h4>
       <p><kbd>I</kbd> - Add/Import Deck</p>

@@ -48,7 +48,7 @@ class CardAdd extends React.Component {
       <figure className={`grid-figure ${styles['grid-figure']}`}>
         <form
           ref="commentForm" className="edit-form"
-          onSubmit={(e) => this.handleSubmit(e, deckId)}
+          onSubmit={e => this.handleSubmit(e, deckId)}
         >
           <input
             type="text" className="large-input" name="title"

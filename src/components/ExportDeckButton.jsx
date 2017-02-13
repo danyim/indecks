@@ -53,7 +53,7 @@ class ExportDeckButton extends React.Component {
 
     if (text instanceof Promise) {
       text.then(
-        (result) => this.magicDownload(result, this.props.filename)
+        result => this.magicDownload(result, this.props.filename)
       );
     } else {
       this.magicDownload(text, this.props.filename);

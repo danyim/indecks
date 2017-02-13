@@ -130,7 +130,7 @@ class ImportDeck extends React.Component {
     return (
       <section className={`${styles['deck-import']}`}>
         <div className={`${styles['grid-figure']}`}>
-          <h2 className={`${styles['header']}`}>Add/Import Deck</h2>
+          <h2 className={`${styles.header}`}>Add/Import Deck</h2>
           <form ref="commentForm" className="edit-form" onSubmit={this.handleSubmit}>
             <h4>Create a new deck</h4>
             <input
@@ -152,7 +152,7 @@ class ImportDeck extends React.Component {
             <h4>Import an existing deck</h4>
             <Dropzone
               onDrop={this.handleDrop}
-              className={`${styles['drop']}`}
+              className={`${styles.drop}`}
               activeClassName={`${styles['drop-active']}`}
               rejectClassName={`${styles['drop-reject']}`}
               multiple={false}

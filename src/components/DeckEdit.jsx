@@ -60,7 +60,7 @@ class DeckEdit extends React.Component {
 
     return (
       <section className={`${styles['deck-edit']}`}>
-        <div className={`${styles['card']}`}>
+        <div className={`${styles.card}`}>
           <section className={`${styles['title-section']}`}>
             <DeckEditDeckForm
               initialValues={deckFormInitialValues}

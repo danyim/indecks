@@ -12,11 +12,11 @@ const defaultProps = {};
 const FrontBack = (props) => {
   const { flipped } = props;
   const front = {};
-  front[`${styles['front']}`] = true;
-  front[`${styles['active']}`] = !flipped;
+  front[`${styles.front}`] = true;
+  front[`${styles.active}`] = !flipped;
   const back = {};
-  back[`${styles['back']}`] = true;
-  back[`${styles['active']}`] = flipped;
+  back[`${styles.back}`] = true;
+  back[`${styles.active}`] = flipped;
 
   return (
     <div className={styles.frontBack}>

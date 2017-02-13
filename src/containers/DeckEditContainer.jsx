@@ -46,7 +46,7 @@ const mapStateToProps = ({ decks, form }, ownProps) => {
     form
   };
 };
-const mapDispatchToProps = (dispatch) =>
+const mapDispatchToProps = dispatch =>
   bindActionCreators(deckActions, dispatch);
 
 export default connect(

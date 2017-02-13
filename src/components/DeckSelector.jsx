@@ -28,7 +28,7 @@ const DeckSelector = () => {
   return (
     <div>
       <p>Yo, motherfucker, here are your decks:</p>
-      {decks.map((x) =>
+      {decks.map(x =>
         <div className={`${styles['deck-list-item']}`}>
           deck Id: {x.deckId}
         </div>

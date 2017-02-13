@@ -42,7 +42,7 @@ CardViewContainer.defaultProps = defaultProps;
 const mapStateToProps = ({ decks, config }, ownProps) => {
   const { deckId, cardIndex } = ownProps.params;
   // Find the deck based on the property
-  const deckIndex = decks.findIndex((d) => d.id === deckId);
+  const deckIndex = decks.findIndex(d => d.id === deckId);
   return {
     card: decks[deckIndex].cards.length > 0 ? decks[deckIndex].cards[cardIndex - 1] : null,
     deck: decks[deckIndex],
@@ -50,7 +50,7 @@ const mapStateToProps = ({ decks, config }, ownProps) => {
     cardIndex: parseInt(cardIndex, 10)
   };
 };
-const mapDispatchToProps = (dispatch) =>
+const mapDispatchToProps = dispatch =>
   bindActionCreators(Object.assign({}, deckActions, configActions), dispatch);
 
 export default connect(

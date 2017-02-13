@@ -83,7 +83,7 @@ class CardEdit extends React.Component {
     return (
       <section className="single">
         <figure className={`grid-figure ${styles['grid-figure']}`}>
-          <KeyBinding onKey={(e) => this.handleKeyDown(e)} />
+          <KeyBinding onKey={e => this.handleKeyDown(e)} />
           <CardEditForm
             deckId={deckId}
             cardIndex={cardIndex}

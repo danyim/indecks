@@ -46,8 +46,8 @@ class Settings extends React.Component {
       );
 
     return (
-      <section className={`${styles['settings']}`}>
-        <h2 className={`${styles['header']}`}>Settings</h2>
+      <section className={`${styles.settings}`}>
+        <h2 className={`${styles.header}`}>Settings</h2>
         <div className={`${styles['settings-content']}`}>
           <p>
             The decks you create are automatically saved to your browser&apos;s
