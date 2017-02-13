@@ -1,8 +1,8 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import createLogger from 'redux-logger';
+import { persistStore, autoRehydrate } from 'redux-persist';
 // TODO: Not really using thunk until we interface with a backend
 // import thunk from 'redux-thunk';
-import { persistStore, autoRehydrate } from 'redux-persist';
 import rootReducer from './redux/index';
 import config from './data/config';
 // import decks from './data/decks';
@@ -20,7 +20,7 @@ const envMiddlewares = {
  * @param  {Boolean} debug       Flag for debug mode
  * @return {Object}              A store object for Redux
  */
-export default function configureStore(initialState = {}, debug = __DEV__) {
+export default function configureStore(initialState = {}, debug = __DEVELOPMENT__) {
   const middlewares = debug ?
     applyMiddleware(...envMiddlewares.dev)
     : applyMiddleware(...envMiddlewares.prod);

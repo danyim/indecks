@@ -5,14 +5,16 @@ var autoPrefixer = require('autoprefixer');
 var poststylus = require('poststylus');
 
 var definePlugin = new webpack.DefinePlugin({
-  __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true'))
+  __DEVELOPMENT__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true'))
 });
 
 module.exports = {
   devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client',
-    './src/index'
+    './src/index',
+    'font-awesome-webpack!./src/styles/font-awesome.config.js',
+
   ],
   output: {
     path: path.join(__dirname, 'dist'),
