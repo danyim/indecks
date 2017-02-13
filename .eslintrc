@@ -61,7 +61,8 @@
   },
   "globals": {
     "firebase": true,
-    "sinon": true
+    "sinon": true,
+    "__DEVELOPMENT__": true
   },
   "settings": {
     "import/resolver": "webpack"

@@ -12,7 +12,7 @@
     "publish:git": "npm run build && mkdir dist/dist && mv dist/*.* dist/dist && cp index.html dist/index.html && sed -e 's/\\/dist/dist/g' dist/index.html > dist/index.html.tmp && mv dist/index.html.tmp dist/index.html && gh-pages -d dist",
     "tunnel": "browser-sync start --proxy localhost:7770",
     "lint": "npm-run-all --parallel lint:*",
-    "lint:js": "eslint tests/js src --ext .jsx",
+    "lint:js": "eslint -c .eslintrc src --ext .jsx",
     "lint:styles": "stylint src/styles/**/*.styl",
     "watch:lint": "npm-run-all --parallel lint:* -- --watch"
   },
