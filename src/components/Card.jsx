@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Markdown from './Markdown';
 import styles from '../styles/components/Card';
 
@@ -9,14 +7,16 @@ const propTypes = {
   className: React.PropTypes.string,
   flipped: React.PropTypes.bool,
   handleOnClick: React.PropTypes.func,
-  trimOverflow: React.PropTypes.bool
+  trimOverflow: React.PropTypes.bool,
+  children: React.PropTypes.node
 };
 
 const defaultProps = {
   className: '',
   flipped: false,
   handleOnClick: null,
-  trimOverflow: false
+  trimOverflow: false,
+  children: null
 };
 
 const TITLE_MAX_CHAR_LEN = 125;
@@ -29,14 +29,18 @@ class Card extends React.Component {
   }
 
   trimOverflowTitle(text) {
-    return this.props.trimOverflow && text.length > TITLE_MAX_CHAR_LEN ? `${text.substr(0, TITLE_MAX_CHAR_LEN)}...` : text;
+    return this.props.trimOverflow &&
+      text.length > TITLE_MAX_CHAR_LEN ?
+        `${text.substr(0, TITLE_MAX_CHAR_LEN)}...` : text;
   }
 
   renderEmpty() {
-    console.log('attempting to render empty');
+    // console.log('attempting to render empty');
     return (
-      <div className={`${styles['center']}`}>
-        <p className={`${styles['grey']}`}>This card does not have an answer yet</p>
+      <div className={`${styles.center}`}>
+        <p className={`${styles.grey}`}>
+          This card does not have an answer yet
+        </p>
       </div>
     );
   }
@@ -48,14 +52,12 @@ class Card extends React.Component {
         <Markdown className={`${styles['card-title']}`} text={this.trimOverflowTitle(card.title)} />
       );
     }
-    else {
-      return (
-        <figcaption>
-          <Markdown text={card.answer} />
-          {card.answer === '' ? this.renderEmpty() : null}
-        </figcaption>
-      );
-    }
+    return (
+      <figcaption>
+        <Markdown text={card.answer} />
+        {card.answer === '' ? this.renderEmpty() : null}
+      </figcaption>
+    );
   }
 
   renderHasAnswerIcon(card) {
@@ -66,14 +68,17 @@ class Card extends React.Component {
         </div>
       );
     }
-    return;
+    return null;
   }
 
   render() {
-    const { card, flipped, className } = this.props;
+    const { card, className } = this.props;
 
     return (
-      <figure className={`grid-figure ${styles['grid-figure']} ${className}`} onClick={this.props.handleOnClick}>
+      <figure
+        className={`grid-figure ${styles['grid-figure']} ${className}`}
+        onClick={this.props.handleOnClick}
+      >
         <div className={`${styles['card-contents']}`}>
           {this.renderMarkdown()}
         </div>

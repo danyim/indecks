@@ -12,6 +12,7 @@ const propTypes = {
 const defaultProps = {
   filename: 'file.txt',
   label: 'Save',
+  className: '',
   disabled: false,
   style: {
     margin: '5px 5px 0px 0px',

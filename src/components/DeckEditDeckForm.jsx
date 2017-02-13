@@ -1,89 +1,93 @@
-import React from 'react';
-import InlineEdit from 'react-inline-edit';
-import { Field, reduxForm } from 'redux-form';
-import styles from '../styles/components/DeckEdit';
+/**
+ * This component is not being used. Deprecated and should be deleted later.
+ */
 
-const propTypes = {
-  handleDetailSubmit: React.PropTypes.func.isRequired
-};
+// import React from 'react';
+// import InlineEdit from 'react-inline-edit';
+// import { Field, reduxForm } from 'redux-form';
+// import styles from '../styles/components/DeckEdit';
 
-const defaultProps = {};
+// const propTypes = {
+//   handleDetailSubmit: React.PropTypes.func.isRequired
+// };
 
-const fields = ['title', 'description'];
+// const defaultProps = {};
 
-class DeckEditDeckForm extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+// const fields = ['title', 'description'];
 
-  handleEditDescription(data) {
-    console.log('description changed', data);
-  }
+// class DeckEditDeckForm extends React.Component {
+//   // constructor(props) {
+//   //   super(props);
+//   // }
 
-  handleEditTitle(data) {
-    console.log('title changed', data);
-  }
+//   handleEditDescription(data) {
+//     // console.log('description changed', data);
+//   }
 
-  validateDescription(text) {
-    return text.trim() !== '';
-  }
+//   handleEditTitle(data) {
+//     // console.log('title changed', data);
+//   }
 
-  validateTitle(text) {
-    return text.length > 0 && text.length < 160;
-  }
+//   validateDescription(text) {
+//     return text.trim() !== '';
+//   }
 
-  render() {
-    const { handleDetailSubmit } = this.props;
+//   validateTitle(text) {
+//     return text.length > 0 && text.length < 160;
+//   }
 
-    return (
-      <div>
-        Inline:
-        <InlineEdit
-          validate={this.validateTitle}
-          change={this.handleEditTitle}
-          paramName="title"
-          placeholder="Add a deck title"
-          defaultValue="This is the default value for the title"
-          minLength="1"
-          maxLength="160"
-        />
-        <InlineEdit
-          validate={this.validateDescription}
-          change={this.handleEditDescription}
-          paramName="description"
-          placeholder="Add a description for the deck (Markdown supported)"
-          defaultValue="This is the default value for the description"
-          className="mono"
-          maxLength="500"
-        />
-        <form className="edit-form" onSubmit={handleDetailSubmit}>
-          <Field
-            name="title"
-            component="textarea"
-            type="text"
-            className="large-input"
-            rows="1"
-            placeholder="Deck Title"
-          />
-          <Field
-            name="description"
-            component="textarea"
-            type="text"
-            className="mono"
-            rows="4"
-            placeholder="Deck Description"
-          />
-          <button type="submit">Save</button>
-        </form>
-      </div>
-    );
-  }
-}
+//   render() {
+//     const { handleDetailSubmit } = this.props;
 
-DeckEditDeckForm.propTypes = propTypes;
-DeckEditDeckForm.defaultProps = defaultProps;
+//     return (
+//       <div>
+//         Inline:
+//         <InlineEdit
+//           validate={this.validateTitle}
+//           change={this.handleEditTitle}
+//           paramName="title"
+//           placeholder="Add a deck title"
+//           defaultValue="This is the default value for the title"
+//           minLength="1"
+//           maxLength="160"
+//         />
+//         <InlineEdit
+//           validate={this.validateDescription}
+//           change={this.handleEditDescription}
+//           paramName="description"
+//           placeholder="Add a description for the deck (Markdown supported)"
+//           defaultValue="This is the default value for the description"
+//           className="mono"
+//           maxLength="500"
+//         />
+//         <form className="edit-form" onSubmit={handleDetailSubmit}>
+//           <Field
+//             name="title"
+//             component="textarea"
+//             type="text"
+//             className="large-input"
+//             rows="1"
+//             placeholder="Deck Title"
+//           />
+//           <Field
+//             name="description"
+//             component="textarea"
+//             type="text"
+//             className="mono"
+//             rows="4"
+//             placeholder="Deck Description"
+//           />
+//           <button type="submit">Save</button>
+//         </form>
+//       </div>
+//     );
+//   }
+// }
 
-export default reduxForm({
-  form: 'deckEditDeck',
-  fields
-})(DeckEditDeckForm);
+// DeckEditDeckForm.propTypes = propTypes;
+// DeckEditDeckForm.defaultProps = defaultProps;
+
+// export default reduxForm({
+//   form: 'deckEditDeck',
+//   fields
+// })(DeckEditDeckForm);

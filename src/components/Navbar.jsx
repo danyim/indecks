@@ -1,8 +1,5 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
-import ImportDeckContainer from '../containers/ImportDeckContainer';
-import SettingsContainer from '../containers/SettingsContainer';
-import ShortcutHelper from './ShortcutHelper';
 import styles from '../styles/components/Navbar';
 
 const propTypes = {};
@@ -93,7 +90,7 @@ class Navbar extends React.Component {
 
     // Determines from the path which icons to display and their destination
     // when clicked
-    browserHistory.listen(ev => {
+    browserHistory.listen((ev) => {
       const { addLink: add, listLink: list } = routeParser(ev.pathname);
       addLink = add;
       listLink = list;

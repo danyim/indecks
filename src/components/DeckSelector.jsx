@@ -2,11 +2,11 @@ import React from 'react';
 import styles from '../styles/components/DeckSelector';
 
 const propTypes = {
-  decks: React.PropTypes.array.isRequired,
-  excludedDeckIds: React.PropTypes.array,
-  maxSelected: React.PropTypes.number.isRequired,
-  minSelected: React.PropTypes.number.isRequired,
-  handleOnSelected: React.PropTypes.func.isRequired
+  // decks: React.PropTypes.array.isRequired,
+  // excludedDeckIds: React.PropTypes.array,
+  // maxSelected: React.PropTypes.number.isRequired,
+  // minSelected: React.PropTypes.number.isRequired,
+  // handleOnSelected: React.PropTypes.func.isRequired
 };
 
 const defaultProps = {
@@ -22,22 +22,20 @@ const defaultProps = {
  *   to allow for selection via [min, max]
  * Output: deck(s) selected from the list
  */
-class DeckSelector extends React.Component {
-  render() {
-    const { decks } = this.props;
+const DeckSelector = () => {
+  const { decks } = this.props;
 
-    return (
-      <div>
-        <p>Yo, motherfucker, here are your decks:</p>
-        {decks.map(x =>
-          <div className={`${styles['deck-list-item']}`}>
-            deck Id: {x.deckId}
-          </div>
-        )}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <p>Yo, motherfucker, here are your decks:</p>
+      {decks.map(x =>
+        <div className={`${styles['deck-list-item']}`}>
+          deck Id: {x.deckId}
+        </div>
+      )}
+    </div>
+  );
+};
 
 DeckSelector.propTypes = propTypes;
 DeckSelector.defaultProps = defaultProps;

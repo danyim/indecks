@@ -4,8 +4,6 @@ import Markdown from './Markdown';
 import styles from '../styles/components/CardEdit';
 
 const propTypes = {
-  title: React.PropTypes.string,
-  answer: React.PropTypes.string,
   cardIndex: React.PropTypes.number.isRequired,
   deckId: React.PropTypes.string.isRequired,
   formValues: React.PropTypes.object.isRequired,
@@ -29,7 +27,7 @@ class CardEditForm extends React.Component {
 
     this.state = {
       showPreview: false
-    }
+    };
   }
 
   togglePreview() {
@@ -44,12 +42,10 @@ class CardEditForm extends React.Component {
     }
     return (
       <div className={`${styles['preview-pane']}`}>
-        <h1>
-          <Markdown
-            className={`${styles['card-title']}`}
-            text={this.props.formValues.values.cardTitle}
-          />
-        </h1>
+        <Markdown
+          className={`${styles['card-title']}`}
+          text={this.props.formValues.values.cardTitle}
+        />
         <hr />
         <Markdown
           className={`${styles['card-answer']}`}
@@ -82,10 +78,13 @@ class CardEditForm extends React.Component {
           placeholder="Answer (Markdown)"
         />
 
-        <div className={`${styles['preview']}`}>
-          <p className="pointer m-t" onClick={() => this.togglePreview()}>
+        <div className={`${styles.preview}`}>
+          <button
+            type="button" className="btn pointer m-t"
+            onClick={() => this.togglePreview()}
+          >
             Preview [{this.state.showPreview ? '-' : '+'}]
-          </p>
+          </button>
         </div>
         {this.renderPreview()}
 

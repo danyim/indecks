@@ -27,26 +27,30 @@ class Settings extends React.Component {
     const { deckCount } = this.props;
 
     const renderDeleteAll = deckCount === 0 ?
-      <button
-        className="btn-delete"
-        disabled="disabled"
-      >
-        Delete all decks from local storage
-      </button>
+      (
+        <button
+          className="btn-delete"
+          disabled="disabled"
+        >
+          Delete all decks from local storage
+        </button>
+      )
       :
-      <button
-        className="btn-delete"
-        onClick={() => this.removeAllDecks(deckCount)}
-      >
-        Delete all {deckCount} deck(s) from local storage
-      </button>;
+      (
+        <button
+          className="btn-delete"
+          onClick={() => this.removeAllDecks(deckCount)}
+        >
+          Delete all {deckCount} deck(s) from local storage
+        </button>
+      );
 
     return (
-      <section className={`${styles['settings']}`}>
-        <h2 className={`${styles['header']}`}>Settings</h2>
+      <section className={`${styles.settings}`}>
+        <h2 className={`${styles.header}`}>Settings</h2>
         <div className={`${styles['settings-content']}`}>
           <p>
-            The decks you create are automatically saved to your browser's
+            The decks you create are automatically saved to your browser&apos;s
             local storage.
           </p>
           <ExportDeckButton

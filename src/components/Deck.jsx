@@ -2,7 +2,9 @@ import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import styles from '../styles/components/Deck';
 
-const propTypes = {};
+const propTypes = {
+  deck: React.PropTypes.object.isRequired
+};
 
 const defaultProps = {};
 
@@ -18,7 +20,13 @@ class Deck extends React.Component {
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`}>
         <div>
-          <h1 className={`${styles['deck-title']}`} onClick={() => this.navigateToDeck(deckId)}>{deck.title}</h1>
+          <h1
+            className={`${styles['deck-title']}`}
+          >
+            <a onClick={() => this.navigateToDeck(deckId)}>
+              {deck.title}
+            </a>
+          </h1>
         </div>
 
         <figcaption>
@@ -46,6 +54,6 @@ class Deck extends React.Component {
 }
 
 Deck.propTypes = propTypes;
-Deck.defaultProps = defaultProps ;
+Deck.defaultProps = defaultProps;
 
 export default Deck;

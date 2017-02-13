@@ -1,32 +1,69 @@
 {
-  "extends": "airbnb",
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true
-  },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "es6": true
+  },
+
+  "plugins": [
+    "babel",
+    "react"
+  ],
+
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "ecmaFeatures": {
+    "arrowFunctions": true,
+    "binaryLiterals": true,
+    "blockBindings": true,
+    "classes": true,
+    "defaultParams": true,
+    "destructuring": true,
+    "forOf": true,
+    "generators": true,
+    "modules": true,
+    "objectLiteralComputedProperties": true,
+    "objectLiteralDuplicateProperties": true,
+    "objectLiteralShorthandMethods": true,
+    "objectLiteralShorthandProperties": true,
+    "octalLiterals": true,
+    "regexUFlag": true,
+    "regexYFlag": true,
+    "spread": true,
+    "superInFunctions": true,
+    "templateStrings": true,
+    "unicodeCodePointEscapes": true,
+    "globalReturn": true,
+    "jsx": true
   },
   "parser": "babel-eslint",
   "rules": {
-    "quotes": [2, "single"],
-    "strict": [2, "never"],
-    "comma-dangle": 0,
-    "babel/generator-star-spacing": 1,
+    "arrow-parens": 1,
     "babel/new-cap": 1,
-    "babel/object-shorthand": 1,
-    "babel/arrow-parens": 1,
     "babel/no-await-in-loop": 1,
+    "comma-dangle": 0,
+    "dot-notation": 1,
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    "jsx-a11y/no-static-element-interactions": 1,
+    "generator-star-spacing": 1,
+    "keyword-spacing": 0,
+    "object-shorthand": 1,
+    "quotes": [2, "single"],
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
-    "react/react-in-jsx-scope": 2
+    "react/react-in-jsx-scope": 2,
+    "strict": [2, "never"]
   },
-  "plugins": [
-    "react"
-  ],
   "globals": {
     "firebase": true,
     "sinon": true
+  },
+  "settings": {
+    "import/resolver": "webpack"
   }
 }

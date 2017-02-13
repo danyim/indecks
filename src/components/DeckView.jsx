@@ -1,9 +1,9 @@
 import React from 'react';
-import Card from './Card';
 import { RIEInput, RIETextArea } from 'riek';
 import { Link, browserHistory } from 'react-router';
-import ExportDeckButton from './ExportDeckButton';
 import slug from 'slug';
+import Card from './Card';
+import ExportDeckButton from './ExportDeckButton';
 import styles from '../styles/components/DeckView';
 
 const propTypes = {
@@ -27,9 +27,9 @@ class DeckView extends React.Component {
   mdReplacer(k, v) {
     if(k === 'cards') {
       const cards = [...v];
-      for(let card of cards) {
+      // for(let card of cards) {
         // card.description = 'This is a test';
-      }
+      // }
       return cards;
     }
     return v;
@@ -46,9 +46,9 @@ class DeckView extends React.Component {
     );
   }
 
-  handleCardMove(deckId, i) {
-    // TODO: Some implementation here
-  }
+  // handleCardMove(deckId, i) {
+  //   // TODO: Some implementation here
+  // }
 
   handleCardEdit(deckId, i) {
     browserHistory.push(`/edit/${deckId}/${i + 1}`);
@@ -84,8 +84,10 @@ class DeckView extends React.Component {
   }
 
   render() {
+    const { deck } = this.props;
+
     const emptyMsg = (() => {
-      if (this.props.deck.cards.length === 0) {
+      if (deck.cards.length === 0) {
         return (
           <p className="center">
             Click the + button on the top left to add a card
@@ -100,22 +102,24 @@ class DeckView extends React.Component {
         <div className={`${styles['title-card']}`}>
           <div className={`${styles['title-text']}`}>
             <RIEInput
-              value={this.props.deck.title}
+              value={deck.title}
               change={this.handleEditDeckDetails}
               propName="title"
               className="large editable"
               minLength="1"
               maxLength="160"
               validate={this.validateTitle}
+              placeholder="Click here to add a title"
               classLoading="loading"
-              classInvalid="invalid" />
+              classInvalid="invalid"
+            />
             <p>
               <strong>
-                {`${this.props.deck.cards.length} cards`}
+                {`${deck.cards.length} cards`}
               </strong>
             </p>
             <RIETextArea
-              value={this.props.deck.description}
+              value={deck.description}
               change={this.handleEditDeckDetails}
               propName="description"
               className="paragraph editable m-t"
@@ -123,25 +127,19 @@ class DeckView extends React.Component {
               maxLength="300"
               rows="6"
               validate={this.validateDescription}
+              placeholder="Click here to add a description"
               classLoading="loading"
               classInvalid="invalid"
             />
           </div>
           <div className={`${styles['control-buttons']}`}>
-            <Link className="button" to={`/view/${this.props.deck.id}/1`}>
+            <Link className="button" to={`/view/${deck.id}/1`}>
               <span>
                 Play Deck
               </span>
             </Link>
-            {/*
-              <Link className="button" to={`/edit/${this.props.deck.id}`}>
-                <span>
-                  Edit Details
-                </span>
-              </Link>
-            */}
             <ExportDeckButton
-              filename={`${slug(this.props.deck.title)}.json`}
+              filename={`${slug(deck.title)}.json`}
               label="Export Deck"
               className="button"
               style={{}}
@@ -149,32 +147,32 @@ class DeckView extends React.Component {
                 // Use this if you want to use the replacer
                 exportFile={() =>  JSON.stringify(deck, this.mdReplacer, 2)}
               */
-              exportFile={() => JSON.stringify(this.props.deck, null, 2)}
+              exportFile={() => JSON.stringify(deck, null, 2)}
             />
             <a
               className="button btn-delete"
-              onClick={() => this.props.handleRemoveDeck(this.props.deck.id)}
+              onClick={() => this.props.handleRemoveDeck(deck.id)}
             >
                 Delete Deck
             </a>
           </div>
         </div>
 
-        <div className={`wrap-row ${styles['grid']}`}>
+        <div className={`wrap-row ${styles.grid}`}>
           {
-            this.props.deck.cards.map((c, i) =>
+            deck.cards.map((c, i) =>
               <Card
                 card={c}
-                key={i}
+                key={`card_${deck.id}__${c.index}`}
                 className={`${styles['card-contents']}`}
-                trimOverflow={true}
+                trimOverflow
               >
                 <div className={`${styles['card-overlay']}`}>
                   <div className={`${styles['hover-actions-container']}`}>
                     <div className={`${styles['hover-actions']}`}>
                       <button
                         onClick={
-                          () => this.handleCardView(this.props.deck.id, i)
+                          () => this.handleCardView(deck.id, i)
                         }
                         className={`${styles['hover-button']}`}
                       >
@@ -182,7 +180,7 @@ class DeckView extends React.Component {
                       </button>
                       <button
                         onClick={
-                          () => this.handleCardEdit(this.props.deck.id, i)
+                          () => this.handleCardEdit(deck.id, i)
                         }
                         className={`${styles['hover-button']}`}
                       >
@@ -190,7 +188,7 @@ class DeckView extends React.Component {
                       </button>
                       <button
                         onClick={
-                          () => this.handleCardDelete(this.props.deck.id, i)
+                          () => this.handleCardDelete(deck.id, i)
                         }
                         className={`btn-delete ${styles['hover-button']}`}
                       >
@@ -201,7 +199,7 @@ class DeckView extends React.Component {
                     <div className={`${styles['hover-actions']}`}>
                       <button
                         onClick={
-                          () => this.handleCardDuplicate(this.props.deck.id, i)
+                          () => this.handleCardDuplicate(deck.id, i)
                         }
                         className={`${styles['hover-button']}`}
                       >
@@ -210,7 +208,7 @@ class DeckView extends React.Component {
                       {/*
                       <button
                         onClick={
-                          () => this.handleCardMove(this.props.deck.id, i)
+                          () => this.handleCardMove(deck.id, i)
                         }
                         className={`${styles['hover-button']}`}
                       >

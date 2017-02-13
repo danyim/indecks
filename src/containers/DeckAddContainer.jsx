@@ -48,7 +48,7 @@ const mapStateToProps = ({ decks }, ownProps) => {
     deckId: ownProps.params.deckId
   };
 };
-const mapDispatchToProps = (dispatch) => bindActionCreators(deckActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(deckActions, dispatch);
 
 export default connect(
   mapStateToProps,

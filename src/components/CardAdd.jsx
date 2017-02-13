@@ -1,37 +1,48 @@
 import React from 'react';
-import { findDOMNode } from 'react-dom';
-import { Link, browserHistory } from 'react-router';
+// import { findDOMNode } from 'react-dom';
 import styles from '../styles/components/CardAdd';
 
 const propTypes = {
   deckId: React.PropTypes.string.isRequired,
-  handleSubmit: React.PropTypes.func.isRequired
+  handleSubmit: React.PropTypes.func.isRequired,
+  history: React.PropTypes.object.isRequired
 };
 
 const defaultProps = {};
 
+// TODO: Remove all the refs in this component
 class CardAdd extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleCancel = this.handleCancel.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    // Default values for the edit fields
+    this.state = {
+      title: '',
+      description: '',
+    };
   }
 
-  componentDidMount(){
-    // This happens a little too fast. If you get to this view via keyboard
-    // shortcut, the focus event fires before the keyup and writes the value
-    // into the field. Adding a 100ms delay prevents this from happening.
-    setTimeout(() => {
-      findDOMNode(this.refs.title).focus()
-    }, 100);
+  componentDidMount() {
+    // // This happens a little too fast. If you get to this view via keyboard
+    // // shortcut, the focus event fires before the keyup and writes the value
+    // // into the field. Adding a 100ms delay prevents this from happening.
+    // setTimeout(() => {
+    //   findDOMNode(this.refs.title).focus();
+    // }, 100);
   }
 
   handleSubmit(e, deckId) {
     e.preventDefault();
+    if(this.state.title.trim() === '' || this.state.answer.trim() === '') {
+      return false;
+    }
+
     const card = {
-      title: this.refs.title.value,
-      answer: this.refs.answer.value
+      title: this.state.title,
+      answer: this.state.answer
     };
     this.props.handleSubmit(deckId, card);
   }
@@ -40,14 +51,31 @@ class CardAdd extends React.Component {
     this.props.history.goBack();
   }
 
+  handleChange(event, key) {
+    const state = { ...this.state };
+    state[key] = event.target.value;
+    this.setState(state);
+  }
+
   render() {
     const { deckId } = this.props;
 
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`}>
-        <form ref="commentForm" className="edit-form" onSubmit={e => this.handleSubmit(e, deckId)}>
-          <input type="text" className="large-input" name="title" ref="title" placeholder="Title" />
-          <textarea type="text" className="mono" name="answer" ref="answer" placeholder="Answer (Markdown)" rows="4" />
+        <form
+          className="edit-form"
+          onSubmit={e => this.handleSubmit(e, deckId)}
+        >
+          <input
+            type="text" className="large-input" name="title"
+            placeholder="Title"
+            onChange={e => this.handleChange(e, 'title')}
+          />
+          <textarea
+            type="text" className="mono" name="answer"
+            placeholder="Answer (Markdown)" rows="4"
+            onChange={e => this.handleChange(e, 'answer')}
+          />
 
           <div className={`${styles['control-buttons']}`}>
             <button type="submit" className="button">Save</button>

@@ -2,18 +2,20 @@
 
 .frontBack
   display: inline-block
-  color grey
+  a, .separator
+    font: 200 1.5rem 'Dosis'
+    color: grey
+  a
+    cursor: pointer
 
 .front, .back
-  font 200 1.5rem 'Dosis'
-  cursor pointer
-  transition all 0.2s
+  transition: all .2s
 
-.active
-  font-weight bold
-  color blue
-  transform scale(1.1)
+a.active
+  font-weight: bold
+  transform: scale(1.1)
+  color: blue
 
 .separator
-  font 200 1.5rem 'Dosis'
-  margin 0 1rem
+  color: grey
+  margin: 0 1rem

@@ -1,8 +1,8 @@
 :global
   .modal-anim-enter
-      opacity: 0.00
-      transform: scale(0.7)
-      transition: all 0.2s
+      opacity: 0
+      transform: scale(.7)
+      transition: all .2s
 
   .modal-anim-enter.modal-anim-enter-active
       opacity: 1
@@ -11,28 +11,28 @@
   .modal-anim-leave
       opacity: 1
       transform: scale(1)
-      transition: all 0.2s
+      transition: all .2s
 
   .modal-anim-leave.modal-anim-leave-active
       opacity: 0.00
-      transform: scale(0.7)
+      transform: scale(.7)
 
 // offset variable gets tacked for centering in addition to the scaling
 
 // offsets = translateX(-50%) translateY(-50%)
 // .likes-heart
-//   opacity 0
-//   transition all 0.5s // time to fade out after its done
-//   transform offsets scale(5) // this is the "end state"
-//   display block
+//   opacity: 0
+//   transition: all 0.5s // time to fade out after its done
+//   transform: offsets scale(5) // this is the "end state"
+//   display: block
 //   &.like-enter
-//     transition all .2s
-//     transform offsets scale(1)
-//     opacity 1
+//     transition: all .2s
+//     transform: offsets scale(1)
+//     opacity: 1
 //     &.like-enter-active
-//       transform offsets scale(5)
+//       transform: offsets scale(5)
 //   .like-leave-active
-//     display none
+//     display: none
 
 // .example-enter
 //   opacity: 0.01

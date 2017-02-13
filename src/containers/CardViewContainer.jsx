@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import * as deckActions from '../action-creators/deck';
 import * as configActions from '../action-creators/config';
 import CardView from '../components/CardView';
-import styles from '../styles/components/CardView';
 
 const propTypes = {
   card: React.PropTypes.object.isRequired,
@@ -13,30 +12,28 @@ const propTypes = {
 
 const defaultProps = {};
 
-class CardViewContainer extends React.Component {
-  render() {
-    const { card, deck } = this.props;
-    if (deck.cards.length === 0) {
-      return (
-        <p className="center">
-          No cards have been added to this deck. Click the + on the top left to
-          add a card.
-        </p>
-      );
-    }
-    if (!card) {
-      return (
-        <p className="center">
-          Invalid card index
-        </p>
-      );
-    }
-
+const CardViewContainer = (props) => {
+  const { card, deck } = props;
+  if (deck.cards.length === 0) {
     return (
-      <CardView {...this.props} />
+      <p className="center">
+        No cards have been added to this deck. Click the + on the top left to
+        add a card.
+      </p>
     );
   }
-}
+  if (!card) {
+    return (
+      <p className="center">
+        Invalid card index
+      </p>
+    );
+  }
+
+  return (
+    <CardView {...props} />
+  );
+};
 
 CardViewContainer.propTypes = propTypes;
 CardViewContainer.defaultProps = defaultProps;
@@ -49,10 +46,10 @@ const mapStateToProps = ({ decks, config }, ownProps) => {
     card: decks[deckIndex].cards.length > 0 ? decks[deckIndex].cards[cardIndex - 1] : null,
     deck: decks[deckIndex],
     config,
-    cardIndex: parseInt(cardIndex)
+    cardIndex: parseInt(cardIndex, 10)
   };
 };
-const mapDispatchToProps = (dispatch) =>
+const mapDispatchToProps = dispatch =>
   bindActionCreators(Object.assign({}, deckActions, configActions), dispatch);
 
 export default connect(

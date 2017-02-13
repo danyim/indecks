@@ -1,109 +1,109 @@
 @import '../_variables';
 
 .deck-edit
-  width 100%
-  max-width pageWidth
+  width: 100%
+  max-width: pageWidth
 
 // Below was taken from DeckView; uncomment as needed
 // --------------------------
 // // Individual card styles
 // .grid
-//   justify-content center
+//   justify-content: center
 //   figure
-//     flex-basis calc(50% - 4rem)
+//     flex-basis: calc(50% - 4rem)
 //   // div > h1
-//   //   width 550px
+//   //   width: 550px
 //   //   // white-space nowrap
-//   //   overflow hidden
-//   //   text-overflow ellipsis
+//   //   overflow: hidden
+//   //   text-overflow: ellipsis
 
 // @media (max-width: cardWidth)
 //   .grid figure
-//     flex-basis calc(100% - 4rem)
+//     flex-basis: calc(100% - 4rem)
 
 .card
-  border 1px solid lightgrey
-  background-color white
-  margin 0 1rem 2rem 1rem
-  padding 2rem
-  flex-flow column wrap
+  border: 1px solid lightgrey
+  background-color: white
+  margin: 0 1rem 2rem 1rem
+  padding: 2rem
+  flex-flow: column wrap
   ul
     list-style-type: none
     padding: 0
 
 .title-section
-  border-bottom 5px solid black
+  border-bottom: 5px solid black
 
 .card-section
-  flex-flow row wrap
-  justify-content space-between
+  flex-flow: row wrap
+  justify-content: space-between
   figure
-    display flex
-    flex-basis calc(50% - 2rem)
-    flex-flow column nowrap
-    margin 1rem 0
-    border 1px solid lightgrey
-    min-height 175px
+    display: flex
+    flex-basis: calc(50% - 2rem)
+    flex-flow: column nowrap
+    margin: 1rem 0
+    border: 1px solid lightgrey
+    min-height: 175px
     box-sizing: border-box
     textarea
-      flex-grow 1
+      flex-grow: 1
 
 @media (max-width: cardWidth)
   .card-section
     figure
-      flex-basis calc(100% - 2rem)
+      flex-basis: calc(100% - 2rem)
 
 .card-content
   // align-self: flex-start
-  flex 1 0
-  padding 1.5rem
+  flex: 1 0
+  padding: 1.5rem
 
 $button-height = 4.0rem
 
 .card-actions
   // align-self: flex-end
-  flex 0 0 $button-height
-  padding 0
-  display flex
-  flex-flow row nowrap
+  flex: 0 0 $button-height
+  padding: 0
+  display: flex
+  flex-flow: row nowrap
   button
-    flex 1 0
-    min-height $button-height
-    margin 0
-    padding 1.0rem
-    border-radius 0
+    flex: 1 0
+    min-height: $button-height
+    margin: 0
+    padding: 1.0rem
+    border-radius: 0
     border: 1px solid lightgrey
     box-sizing: border-box
 
 // .title-text
-//   margin-top 2rem
-//   flex 1 1 75%
-//   order 1
-//   text-overflow ellipsis
+//   margin-top: 2rem
+//   flex: 1 1 75%
+//   order: 1
+//   text-overflow: ellipsis
 //   *
-//     margin-right 2rem
-//     flex 1 1 auto
+//     margin-right: 2rem
+//     flex: 1 1 auto
 // .control-buttons
-//   flex-flow column nowrap
-//   flex-grow 1
-//   order 2
-//   transition all 0.2s ease-in
+//   flex-flow: column nowrap
+//   flex-grow: 1
+//   order: 2
+//   transition: all 0.2s ease-in
 //   button, a
-//     flex 1 0 calc(25% - 1rem)
-//     margin-top 0.6rem
+//     flex: 1 0 calc(25% - 1rem)
+//     margin-top: 0.6rem
 //   button:first-child, a:first-child
-//     margin-top 0
+//     margin-top: 0
 
 // @media (max-width: cardWidth)
 //   .title-card
-//     flex-flow column nowrap
+//     flex-flow: column nowrap
 //     justify-content: center
 //   .control-buttons
-//     flex-flow row nowrap
+//     flex-flow: row nowrap
 //     button, a
-//       flex 1 0 calc(25% - 2rem)
-//       margin-top 0
-//       margin-left 0.6rem
+//       flex: 1 0 calc(25% - 2rem)
+//       margin-top: 0
+//       margin-left: 0.6rem
 //     button:first-child, a:first-child
-//       margin-left 0
+//       margin-left: 0
 

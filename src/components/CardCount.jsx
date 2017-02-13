@@ -8,18 +8,16 @@ const propTypes = {
 
 const defaultProps = {};
 
-class CardCount extends React.Component {
-  render() {
-    const { current, max } = this.props;
-    return (
-      <div className={styles.cardCount}>
-        <span className={styles.current}>{current}</span>
-        <span className={styles.separator}></span>
-        <span className={styles.max}>{max}</span>
-      </div>
-    );
-  }
-}
+const CardCount = (props) => {
+  const { current, max } = props;
+  return (
+    <div className={styles.cardCount}>
+      <span className={styles.current}>{current}</span>
+      <span className={styles.separator} />
+      <span className={styles.max}>{max}</span>
+    </div>
+  );
+};
 
 CardCount.propTypes = propTypes;
 CardCount.defaultProps = defaultProps;
