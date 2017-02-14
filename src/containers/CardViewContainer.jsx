@@ -6,11 +6,13 @@ import * as configActions from '../redux/modules/config';
 import CardView from '../components/CardView';
 
 const propTypes = {
-  card: React.PropTypes.object.isRequired,
+  card: React.PropTypes.object,
   deck: React.PropTypes.object.isRequired
 };
 
-const defaultProps = {};
+const defaultProps = {
+  card: {}
+};
 
 const CardViewContainer = (props) => {
   const { card, deck } = props;

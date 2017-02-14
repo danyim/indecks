@@ -1,4 +1,5 @@
 import React from 'react';
+import { TransitionMotion, spring } from 'react-motion';
 import Deck from './Deck';
 import styles from '../styles/components/DeckGrid';
 
@@ -22,22 +23,42 @@ class DeckGrid extends React.Component {
   }
 
   render() {
-    const emptyMsg =
-      this.props.decks.length === 0 ?
-        <p className="center">Click the + button on the top left to add a deck</p>
-        : '';
-
     return (
-      <section className={`${styles['deck-grid']} wrap-row`}>
-        {this.props.decks.map((deck, i) =>
-          <Deck
-            key={`deck_${deck.id}`}
-            i={i} deck={deck}
-            handleRemoveDeck={this.handleRemoveDeck}
-          />
-        )}
-        {emptyMsg}
-      </section>
+      <TransitionMotion
+        willEnter={() => ({ opacity: 0, left: -100})}
+        willLeave={() => ({ opacity: spring(0), left: spring(-100)})}
+        styles={this.props.decks.map(d => ({
+          key: `deck_${d.id}`,
+          data: { deck: d },
+          style: {
+            opacity: spring(1),
+            left: spring(0)
+          }
+        }))}
+      >
+        {
+          interpolatedStyles =>
+            <section className={`${styles['deck-grid']} wrap-row`}>
+              {
+                interpolatedStyles.map((config) => {
+                  return (
+                    <Deck
+                      key={config.key}
+                      deck={config.data.deck}
+                      style={{
+                        ...config.style,
+                        display: 'relative'
+                      }}
+                    />
+                  );
+                })
+              }
+              { this.props.decks.length === 0 &&
+                <p key="no_value" className="center">Click the + button on the top left to add a deck</p>
+              }
+            </section>
+        }
+      </TransitionMotion>
     );
   }
 }

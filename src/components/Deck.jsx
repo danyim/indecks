@@ -3,10 +3,13 @@ import { Link, browserHistory } from 'react-router';
 import styles from '../styles/components/Deck';
 
 const propTypes = {
-  deck: React.PropTypes.object.isRequired
+  deck: React.PropTypes.object.isRequired,
+  style: React.PropTypes.object
 };
 
-const defaultProps = {};
+const defaultProps = {
+  style: {}
+};
 
 class Deck extends React.Component {
   navigateToDeck(deckId) {
@@ -14,11 +17,11 @@ class Deck extends React.Component {
   }
 
   render() {
-    const { deck } = this.props;
+    const { deck, style } = this.props;
     const { id: deckId } = deck;
 
     return (
-      <figure className={`grid-figure ${styles['grid-figure']}`}>
+      <figure className={`grid-figure ${styles['grid-figure']}`} style={style}>
         <div>
           <h1
             className={`${styles['deck-title']}`}
