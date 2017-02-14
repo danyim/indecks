@@ -1,4 +1,5 @@
 import React from 'react';
+import { Motion, spring } from 'react-motion';
 import Markdown from './Markdown';
 import styles from '../styles/components/CardPreview';
 
@@ -31,17 +32,28 @@ class CardPreview extends React.Component {
 
   renderPreview(title, answer) {
     return (
-      <div className={`${styles['preview-pane']}`}>
-        <Markdown
-          className={`${styles['card-title']}`}
-          text={title}
-        />
-        <hr />
-        <Markdown
-          className={`${styles['card-answer']}`}
-          text={answer}
-        />
-      </div>
+      <Motion style={{y: spring(this.state.display ? 400 : 0)}}>
+        {
+          ({y}) =>
+            <div
+              className={`${styles['preview-pane']}`}
+              style={{
+                height: `${y}`,
+                display: (y/400 > .05 ? 'block' : 'none')
+              }}
+            >
+              <Markdown
+                className={`${styles['card-title']}`}
+                text={title}
+              />
+              <hr />
+              <Markdown
+                className={`${styles['card-answer']}`}
+                text={answer}
+              />
+            </div>
+        }
+      </Motion>
     );
   }
 
@@ -56,7 +68,7 @@ class CardPreview extends React.Component {
         >
           Preview [{this.state.display ? '-' : '+'}]
         </button>
-        { this.state.display ? this.renderPreview(title, answer) : '' }
+        { this.renderPreview(title, answer) }
       </div>
     );
   }
