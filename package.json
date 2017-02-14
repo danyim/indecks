@@ -81,6 +81,7 @@
     "eslint-plugin-react": "^6.9.0",
     "expect": "^1.18.0",
     "expect-jsx": "^2.5.1",
+    "extract-text-webpack-plugin": "^1.0.1",
     "font-awesome": "^4.7.0",
     "font-awesome-webpack": "^0.0.4",
     "gh-pages": "^0.12.0",

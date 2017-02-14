@@ -13,8 +13,7 @@ module.exports = {
   entry: [
     'webpack-hot-middleware/client',
     './src/index',
-    'font-awesome-webpack!./src/styles/font-awesome.config.js',
-
+    'font-awesome-webpack!./src/styles/font-awesome.config.js'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
