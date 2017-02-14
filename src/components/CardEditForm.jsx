@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import Markdown from './Markdown';
+import CardPreview from './CardPreview';
 import styles from '../styles/components/CardEdit';
 
 const propTypes = {
@@ -23,41 +23,32 @@ class CardEditForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.renderPreview.bind(this, this.renderPreview);
+    // this.togglePreview.bind(this, this.togglePreview);
 
     this.state = {
-      showPreview: false
+      displayPreviewPane: false
     };
   }
 
   togglePreview() {
     const currState = this.state;
-    currState.showPreview = !currState.showPreview;
+    currState.displayPreviewPane = !currState.displayPreviewPane;
     this.setState(currState);
   }
 
-  renderPreview() {
-    if(!this.state.showPreview) {
-      return '';
-    }
+  renderPreview(show, title, answer) {
     return (
-      <div className={`${styles['preview-pane']}`}>
-        <Markdown
-          className={`${styles['card-title']}`}
-          text={this.props.formValues.values.cardTitle}
-        />
-        <hr />
-        <Markdown
-          className={`${styles['card-answer']}`}
-          text={this.props.formValues.values.cardAnswer}
-        />
-      </div>
+      <CardPreview
+        show={this.state.displayPreviewPane}
+        title={form.values !== undefined ? form.values.cardTitle : ''}
+        answer={form.values !== undefined ? form.values.cardAnswer : ''}
+      />
     );
   }
 
   render() {
     const { deckId, cardIndex, handleSubmit,
-      handleDelete, handleCancel } = this.props;
+      handleDelete, handleCancel, formValues: form } = this.props;
 
     return (
       <form className="edit-form" onSubmit={handleSubmit}>
@@ -78,15 +69,21 @@ class CardEditForm extends React.Component {
           placeholder="Answer (Markdown)"
         />
 
-        <div className={`${styles.preview}`}>
+        <div className={styles.preview}>
           <button
             type="button" className="btn pointer m-t"
             onClick={() => this.togglePreview()}
           >
-            Preview [{this.state.showPreview ? '-' : '+'}]
+            Preview [{this.state.displayPreviewPane ? '-' : '+'}]
           </button>
+          {// this.renderPreview(this.state.displayPreviewPane, title )}
+          }
+          <CardPreview
+            show={this.state.displayPreviewPane}
+            title={form !== undefined ? form.values.cardTitle : ''}
+            answer={form !== undefined ? form.values.cardAnswer : ''}
+          />
         </div>
-        {this.renderPreview()}
 
         <div className={`${styles['control-buttons']}`}>
           <button type="submit" className="button">Save Card</button>

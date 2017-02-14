@@ -7,23 +7,6 @@ figure.grid-figure
   flex-flow: column nowrap
   justify-content: center
 
-.card-title p
-  font-size: 2.5rem
-  padding: .5rem 0
-
-.card-answer p, li
-  font-size: 1.5rem
-  line-height: 1.5
-
-.preview p
-  font-weight: bold
-  user-select: none
-
-.preview-pane
-  padding: 1.0rem 2.5rem
-  background-color: lighten(lightgrey, 90%)
-  border: 1px solid lightgrey
-
 .control-buttons
   flex: 0 0 auto
   flex-flow: row nowrap
@@ -32,6 +15,10 @@ figure.grid-figure
     margin: 0 0 0 1rem
   button:first-child
     margin: 0
+
+.preview p
+  // font-weight: bold
+  user-select: none
 
 @media (max-width: cardWidth)
   .control-buttons
