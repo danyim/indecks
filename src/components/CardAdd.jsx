@@ -1,5 +1,5 @@
 import React from 'react';
-// import { findDOMNode } from 'react-dom';
+import CardPreview from './CardPreview';
 import styles from '../styles/components/CardAdd';
 
 const propTypes = {
@@ -10,7 +10,6 @@ const propTypes = {
 
 const defaultProps = {};
 
-// TODO: Remove all the refs in this component
 class CardAdd extends React.Component {
   constructor(props) {
     super(props);
@@ -75,6 +74,11 @@ class CardAdd extends React.Component {
             type="text" className="mono" name="answer"
             placeholder="Answer (Markdown)" rows="4"
             onChange={e => this.handleChange(e, 'answer')}
+          />
+
+          <CardPreview
+            title={this.state.title}
+            answer={this.state.answer}
           />
 
           <div className={`${styles['control-buttons']}`}>

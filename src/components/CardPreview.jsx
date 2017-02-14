@@ -3,7 +3,6 @@ import Markdown from './Markdown';
 import styles from '../styles/components/CardPreview';
 
 const propTypes = {
-  show: React.PropTypes.bool.isRequired,
   title: React.PropTypes.string,
   answer: React.PropTypes.string
 };
@@ -16,13 +15,21 @@ const defaultProps = {
 class CardPreview extends React.Component {
   constructor(props) {
     super(props);
+
+    this.togglePreview.bind(this, this.togglePreview);
+
+    this.state = {
+      display: false
+    };
   }
 
-  render() {
-    const { show, title, answer } = this.props;
-    if(!show) {
-      return null;
-    }
+  togglePreview() {
+    const currState = this.state;
+    currState.display = !currState.display;
+    this.setState(currState);
+  }
+
+  renderPreview(title, answer) {
     return (
       <div className={`${styles['preview-pane']}`}>
         <Markdown
@@ -34,6 +41,22 @@ class CardPreview extends React.Component {
           className={`${styles['card-answer']}`}
           text={answer}
         />
+      </div>
+    );
+  }
+
+  render() {
+    const { title, answer } = this.props;
+
+    return (
+      <div className={styles.preview}>
+        <button
+          type="button" className="btn pointer m-t"
+          onClick={() => this.togglePreview()}
+        >
+          Preview [{this.state.display ? '-' : '+'}]
+        </button>
+        { this.state.display ? this.renderPreview(title, answer) : '' }
       </div>
     );
   }
