@@ -4,7 +4,7 @@
  * those modals should be separated from here.
  */
 
-/* eslint react/jsx-no-bind: 0 */
+/* eslint react/jsx-no-bind: 1 */
 import React from 'react';
 import Modal from 'react-modal';
 import { Link, browserHistory } from 'react-router';
