@@ -4,11 +4,13 @@ import styles from '../styles/components/Deck';
 
 const propTypes = {
   deck: React.PropTypes.object.isRequired,
-  style: React.PropTypes.object
+  style: React.PropTypes.object,
+  children: React.PropTypes.node
 };
 
 const defaultProps = {
-  style: {}
+  style: {},
+  children: null
 };
 
 class Deck extends React.Component {
@@ -51,6 +53,7 @@ class Deck extends React.Component {
           </a>
           */}
         </div>
+        {this.props.children}
       </figure>
     );
   }
