@@ -4,6 +4,8 @@ import { Link, browserHistory } from 'react-router';
 import slug from 'slug';
 import Card from './Card';
 import ExportDeckButton from './ExportDeckButton';
+import Overlay from './Overlay';
+import OverlayRow from './OverlayRow';
 import styles from '../styles/components/DeckView';
 
 const propTypes = {
@@ -171,57 +173,49 @@ class DeckView extends React.Component {
                   // TODO: Break this into an Overlay component and use on Card
                   // and Deck
                 }
-                <div className={`${styles['card-overlay']}`}>
-                  <div className={`${styles['hover-actions-container']}`}>
-                    <div className={`${styles['hover-actions']}`}>
-                      <button
-                        onClick={
-                          () => this.handleCardView(deck.id, i)
-                        }
-                        className={`${styles['hover-button']}`}
-                      >
-                        View
-                      </button>
-                      <button
-                        onClick={
-                          () => this.handleCardEdit(deck.id, i)
-                        }
-                        className={`${styles['hover-button']}`}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={
-                          () => this.handleCardDelete(deck.id, i)
-                        }
-                        className={`btn-delete ${styles['hover-button']}`}
-                      >
-                        Delete
-                      </button>
-                    </div>
-
-                    <div className={`${styles['hover-actions']}`}>
-                      <button
-                        onClick={
-                          () => this.handleCardDuplicate(deck.id, i)
-                        }
-                        className={`${styles['hover-button']}`}
-                      >
-                        Duplicate
-                      </button>
-                      {/*
-                      <button
-                        onClick={
-                          () => this.handleCardMove(deck.id, i)
-                        }
-                        className={`${styles['hover-button']}`}
-                      >
-                        Copy To..
-                      </button>
-                      */}
-                    </div>
-                  </div>
-                </div>
+                <Overlay>
+                  <OverlayRow>
+                    <button
+                      onClick={
+                        () => this.handleCardView(deck.id, i)
+                      }
+                    >
+                      View
+                    </button>
+                    <button
+                      onClick={
+                        () => this.handleCardEdit(deck.id, i)
+                      }
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={
+                        () => this.handleCardDelete(deck.id, i)
+                      }
+                      className="btn-delete"
+                    >
+                      Delete
+                    </button>
+                  </OverlayRow>
+                  <OverlayRow>
+                    <button
+                      onClick={() => this.handleCardDuplicate(deck.id, i)}
+                    >
+                      Duplicate
+                    </button>
+                    {/*
+                    <button
+                      onClick={
+                        () => this.handleCardMove(deck.id, i)
+                      }
+                      className={`${styles['hover-button']}`}
+                    >
+                      Copy To..
+                    </button>
+                    */}
+                  </OverlayRow>
+                </Overlay>
               </Card>
             )
           }

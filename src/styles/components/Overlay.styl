@@ -1,0 +1,32 @@
+@import '../_variables';
+
+.overlay
+  position: absolute
+  top: 0
+  left: 0
+  height: 100%
+  width: 100%
+  // transition all 0.2s
+  // transition-delay: 0.1s // Not sure if this is good or not, try A/Bing
+  opacity: 0
+  &:hover
+    opacity: 1
+
+.hover-actions-container
+  height: 100%
+  align-items: center
+  justify-content: center
+
+.hover-actions
+  flex-direction: row
+  opacity: 1
+  color: red
+
+.hover-button
+  display: inline-block
+  background-color: white
+  box-shadow: 1 1 0 0 black
+  padding: 1rem 2rem
+  margin-left: 1rem
+  :nth-child(-n+1)
+    margin-left: 0
