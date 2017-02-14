@@ -32,6 +32,7 @@ class CardView extends React.Component {
   }
 
   handleNextCard() {
+    debugger;
     if (this.props.cardIndex < this.props.deck.cards.length || this.props.config.shuffle === true) {
       this.handleFlip(null, false);
       let nextIndex = this.props.cardIndex + 1; // Going forwards
@@ -58,9 +59,12 @@ class CardView extends React.Component {
     browserHistory.push(`/edit/${this.props.deck.id}/${this.props.cardIndex}`);
   }
 
-  handleFlip(e, flipped) {
-    if (flipped !== undefined) {
-      this.setState({ flipped: true });
+  /**
+   * Flips the card
+   */
+  handleFlip(e, flipped = null) {
+    if (flipped !== null) {
+      this.setState({ flipped });
     } else {
       this.setState({ flipped: !this.state.flipped });
     }
