@@ -35,7 +35,6 @@ class Card extends React.Component {
   }
 
   renderEmpty() {
-    // console.log('attempting to render empty');
     return (
       <div className={`${styles.center}`}>
         <p className={`${styles.grey}`}>
@@ -72,18 +71,18 @@ class Card extends React.Component {
   }
 
   render() {
-    const { card, className } = this.props;
+    const { card, className, handleOnClick, children } = this.props;
 
     return (
       <figure
         className={`grid-figure ${styles['grid-figure']} ${className}`}
-        onClick={this.props.handleOnClick}
+        onClick={() => handleOnClick()}
       >
         <div className={`${styles['card-contents']}`}>
           {this.renderMarkdown()}
         </div>
         {this.renderHasAnswerIcon(card)}
-        {this.props.children}
+        {children}
       </figure>
     );
   }

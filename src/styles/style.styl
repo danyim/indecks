@@ -99,6 +99,9 @@
     box-sizing: padding-box
     cursor: pointer
     user-select: none // Disallow selection of button text
+    // Button sizing looks really off on Safari; hoping this will fix it
+    // without any repercussions
+    min-height: 40px
     &:hover, &:focus
       border-color: blue
       outline: 0
