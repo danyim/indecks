@@ -105,7 +105,8 @@ class ImportDeck extends React.Component {
 
     // Close the modal
     this.props.handleClose();
-    browserHistory.push(`/view/${id}`);
+    // Don't go to the deck immediately after creating
+    // browserHistory.push(`/view/${id}`);
   }
 
   handleLoadSample() {

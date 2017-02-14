@@ -1,4 +1,4 @@
-import { createReducer } from '../../utils';
+import { createReducer, findMissing } from '../../utils';
 
 /**
  * Actions
@@ -25,7 +25,8 @@ const reducers = {
     const deck = state[deckIndex];
     const newCard = {
       title,
-      answer
+      answer,
+      index: findMissing(deck.cards.map(x => x.index)) || Math.max(0, Math.max.apply(null, deck.cards.map(x => x.index)) + 1)
     };
 
     const newDeck = {
@@ -46,7 +47,7 @@ const reducers = {
     const adjCardIndex = parseInt(cardIndex, 10) - 1;
     const deck = state[deckIndex];
     const newCard = Object.assign({}, deck.cards[adjCardIndex]);
-
+    newCard.index = adjCardIndex + 1;
     const newDeck = {
       ...deck,
       cards: [...deck.cards, newCard]
