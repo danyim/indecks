@@ -20,7 +20,7 @@ const CardViewContainer = (props) => {
   if(deck === null) {
     return (
       <p className="center">
-        Invalid deck
+        Deck not found.
       </p>
     );
   }
@@ -35,7 +35,7 @@ const CardViewContainer = (props) => {
   if (!card) {
     return (
       <p className="center">
-        Invalid card index
+        Invalid card index.
       </p>
     );
   }

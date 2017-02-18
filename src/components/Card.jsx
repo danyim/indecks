@@ -14,7 +14,7 @@ const propTypes = {
 const defaultProps = {
   className: '',
   flipped: false,
-  handleOnClick: null,
+  handleOnClick: () => {},
   trimOverflow: false,
   children: null
 };
