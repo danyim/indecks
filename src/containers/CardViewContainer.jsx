@@ -7,15 +7,23 @@ import CardView from '../components/CardView';
 
 const propTypes = {
   card: React.PropTypes.object,
-  deck: React.PropTypes.object.isRequired
+  deck: React.PropTypes.object
 };
 
 const defaultProps = {
-  card: {}
+  card: null,
+  deck: null
 };
 
 const CardViewContainer = (props) => {
   const { card, deck } = props;
+  if(deck === null) {
+    return (
+      <p className="center">
+        Invalid deck
+      </p>
+    );
+  }
   if (deck.cards.length === 0) {
     return (
       <p className="center">
@@ -43,10 +51,25 @@ CardViewContainer.defaultProps = defaultProps;
 const mapStateToProps = ({ decks, config }, ownProps) => {
   const { deckId, cardIndex } = ownProps.params;
   // Find the deck based on the property
-  const deckIndex = decks.findIndex(d => d.id === deckId);
+  const deckIndex = deckId ? decks.findIndex(d => d.id === deckId) : null;
+  let card, deck;
+  if(deckId === undefined && cardIndex === undefined) {
+    card = null;
+    deck = null;
+  }
+  else {
+    deck = decks[deckIndex]
+
+    if(deck !== undefined && decks[deckIndex].cards.length > 0) {
+      card = decks[deckIndex].cards[cardIndex - 1];
+    }
+    else {
+      card = null;
+    }
+  }
   return {
-    card: decks[deckIndex].cards.length > 0 ? decks[deckIndex].cards[cardIndex - 1] : null,
-    deck: decks[deckIndex],
+    card,
+    deck,
     config,
     cardIndex: parseInt(cardIndex, 10)
   };

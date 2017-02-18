@@ -51,7 +51,9 @@ class DeckViewContainer extends React.Component {
     }
     else {
       return (
-        <span>Deck not found</span>
+        <p className="center">
+          Deck not found
+        </p>
       );
     }
   }
