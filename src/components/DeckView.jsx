@@ -85,19 +85,18 @@ class DeckView extends React.Component {
     return text.length > 0 && text.length < 160;
   }
 
+  renderEmpty(numCards) {
+    if (numCards === 0) {
+      return (
+        <p className="center">
+          Click the + button on the top left to add a card
+        </p>
+      );
+    }
+  }
+
   render() {
     const { deck } = this.props;
-
-    const emptyMsg = (() => {
-      if (deck.cards.length === 0) {
-        return (
-          <p className="center">
-            Click the + button on the top left to add a card
-          </p>
-        );
-      }
-      return null;
-    })();
 
     return (
       <section className={`${styles['deck-view']}`}>
@@ -219,7 +218,7 @@ class DeckView extends React.Component {
               </Card>
             )
           }
-          {emptyMsg}
+          { this.renderEmpty(deck.cards.length) }
         </div>
       </section>
     );
