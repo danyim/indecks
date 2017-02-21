@@ -13,15 +13,19 @@ Indecks is an interactive index card study app built using React/Redux. Use it t
 - _Google authentication & user data with a Firebase backend (**Coming soon**)_
 
 ### Keyboard Shortcuts
-| Key | Function |
-| --- | -------- |
-| <kbd>RARROW</kbd> | Next Card |
-| <kbd>LARROW</kbd> | Previous Card |
-| <kbd>A</kbd> | Add a card |
-| <kbd>E</kbd> | Edit card |
-| <kbd>SPACE</kbd> | Flip card |
-| <kbd>S</kbd> | Toggle shuffle |
-| <kbd>D</kbd> | Return to deck |
+| Key | Function | Context |
+| --- | -------- | ------- |
+| <kbd>D</kbd> | Deck Quick Selector | Global |
+| <kbd>/</kbd> | Keyboard Shortcuts Cheatsheet | Global |
+| <kbd>I</kbd> | Add/Import Deck | Global |
+| <kbd>,</kbd> | Settings | Global |
+| <kbd>RARROW</kbd> | Next Card | While viewing a deck |
+| <kbd>LARROW</kbd> | Previous Card | While viewing a deck |
+| <kbd>A</kbd> | Add a card | While viewing a deck |
+| <kbd>E</kbd> | Edit card | While viewing a deck |
+| <kbd>SPACE</kbd> | Flip card | While viewing a deck |
+| <kbd>S</kbd> | Toggle shuffle | While viewing a deck |
+| <kbd>D</kbd> | Return to deck | While viewing a deck |
 
 ### Build
 **Local**
