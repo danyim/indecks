@@ -38,7 +38,7 @@ class CardPreview extends React.Component {
             <div
               className={`${styles['preview-pane']}`}
               style={{
-                height: `${y}`,
+                height: y,
                 display: (y/400 > .05 ? 'block' : 'none')
               }}
             >

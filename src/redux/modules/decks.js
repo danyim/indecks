@@ -1,4 +1,4 @@
-import { createReducer, findMissing } from '../../utils';
+import { createReducer, findBestNextIndex } from '../../utils';
 
 /**
  * Actions
@@ -26,7 +26,7 @@ const reducers = {
     const newCard = {
       title,
       answer,
-      index: findMissing(deck.cards.map(x => x.index)) || Math.max(0, Math.max.apply(null, deck.cards.map(x => x.index)) + 1)
+      index: findBestNextIndex(deck.cards, 'index')
     };
 
     const newDeck = {
@@ -47,7 +47,7 @@ const reducers = {
     const adjCardIndex = parseInt(cardIndex, 10) - 1;
     const deck = state[deckIndex];
     const newCard = Object.assign({}, deck.cards[adjCardIndex]);
-    newCard.index = adjCardIndex + 1;
+    newCard.index = findBestNextIndex(deck.cards, 'index');
     const newDeck = {
       ...deck,
       cards: [...deck.cards, newCard]
@@ -140,7 +140,7 @@ const reducers = {
     ];
   },
 
-  shuffleDeck: (state) => state,
+  shuffleDeck: state => state,
 
   removeAllDecks: () => []
 };

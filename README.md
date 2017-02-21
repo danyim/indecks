@@ -27,11 +27,12 @@ Indecks is an interactive index card study app built using React/Redux. Use it t
 | <kbd>S</kbd> | Toggle shuffle | While viewing a deck |
 | <kbd>D</kbd> | Return to deck | While viewing a deck |
 
-### Build
+### Development
 **Local**
 
 1. `yarn` to grab all the necessary dependencies.
 2. `npm start` and open [http://localhost:9406](http://localhost:9406) in your browser.
+3. `npm run test` to run tests
 
 **Production**
 

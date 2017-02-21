@@ -24,3 +24,15 @@ export const findMissing = (a) => {
   }
   return null;
 };
+
+/**
+ * Given an array with potentially missing values at parameter key, find the
+ * next best 0-based index to insert the next value
+ * @param  {Array}  a   An array of objects
+ * @param  {String} key Key to look for
+ * @return {Number}     Index of the best next value
+ */
+export const findBestNextIndex = (a, key) => {
+  return findMissing(a.map(x => x[key])) || Math.max(0, Math.max.apply(null, a.map(x => x[key])) + 1);
+};
+
