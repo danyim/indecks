@@ -16,11 +16,11 @@ const App = props => (
     </main>
     <footer>
       <p>
-        dyim_2016 |
         <a
           href="https://github.com/danyim/indecks"
           target="_blank"
           rel="noopener noreferrer"
+          title="View GitHub repository"
         >
           <i className="fa fa-github" />
         </a>
