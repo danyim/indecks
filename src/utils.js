@@ -8,26 +8,27 @@ export const createReducer = (initialState, handlers) => {
 };
 
 /**
- * Given an array of consecutive numbers, find the missing value.
+ * Given an array of consecutive numbers from 1 to n, find the missing value.
  * Returns null if no missing value found
- * @param  {Array}  a Array of numbers
- * @return {Number}   Missing value
+ * @param  {Array}  a   Array of numbers
+ * @param  {Number} min Minimum value (0 or 1)
+ * @return {Number}     Missing value
  */
-export const findMissing = (a) => {
-  let expectedNextValue;
+export const findMissing = (a, min = 1) => {
+  let expected = min;
   for(let k of a)
   {
-    expectedNextValue = a[k] + 1;
-    if(k <= a.length - 1 && expectedNextValue !== a[k + 1]) {
-      return expectedNextValue;
+    if(k !== expected) {
+      return expected;
     }
+    expected++;
   }
   return null;
 };
 
 /**
- * Given an array with potentially missing values at parameter key, find the
- * next best 0-based index to insert the next value
+ * Given an array of objects, check the value of the key and return the
+ * best 1-based index to insert the next value
  * @param  {Array}  a   An array of objects
  * @param  {String} key Key to look for
  * @return {Number}     Index of the best next value
