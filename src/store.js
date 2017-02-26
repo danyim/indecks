@@ -1,8 +1,7 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import createLogger from 'redux-logger';
 import { persistStore, autoRehydrate } from 'redux-persist';
-// TODO: Not really using thunk until we interface with a backend
-// import thunk from 'redux-thunk';
+import thunk from 'redux-thunk';
 import rootReducer from './redux/index';
 import config from './data/config';
 // import decks from './data/decks';
@@ -10,8 +9,8 @@ import config from './data/config';
 
 const logger = createLogger();
 const envMiddlewares = {
-  dev: [logger], // thunk would go in here
-  prod: [] // thunk would go in here
+  dev: [logger, thunk],
+  prod: [thunk]
 };
 
 /**
@@ -30,7 +29,7 @@ export default function configureStore(initialState = {}, debug = __DEVELOPMENT_
       : compose(middlewares, autoRehydrate());
 
   if (debug) {
-    console.warn('DEVELOPMENT: In debug mode');
+    console.warn('DEVELOPMENT: In debug mode'); // eslint-disable-line
   }
 
   let decksCombined = null;
