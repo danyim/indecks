@@ -9,3 +9,4 @@ Below are some ongoing "best practices" employed/to be employed in this project.
 - [ ] Create `npm test` task that includes the `nyc` coverage reporter
 - [x] Write tests for all Redux reducers -- `config` ducks covered
 - [ ] Figure out how to make `jest` parse ES6 when running tests
+- [ ] Convert the `decks` state to be an associative array instead of an array

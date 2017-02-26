@@ -61,9 +61,6 @@ describe('decks redux', () => {
 
   describe('ADD_DECK', () => {
     it('should create an action to add a deck', () => {
-      const deck = {
-        id: 'test'
-      };
       const expectedAction = {
         type: 'ADD_DECK',
         deck
@@ -193,6 +190,19 @@ describe('decks redux', () => {
       expect(actions.shuffleDeck(deckId)).toEqual(expectedAction)
     });
 
+    // it('should handle shuffling a deck', () => {
+    //   expect(
+    //     reducer([
+    //       deck
+    //     ],
+    //     {
+    //       type: 'SHUFFLE_DECK',
+    //       deckId: deck.id
+    //     })
+    //   ).toEqual([
+
+    //   ]);
+    // });
   });
 
   describe('ADD_CARD', () => {
@@ -369,6 +379,67 @@ describe('decks redux', () => {
       expect(actions.moveCard(cardIndex, srcDeckId, destDeckId)).toEqual(expectedAction)
     });
 
+    it('should handle moving a card between decks', () => {
+      expect(
+        reducer(
+          [
+            deck,
+            deck2
+          ],
+          {
+            type: 'MOVE_CARD',
+            cardIndex: 2,
+            srcDeckId: deck.id,
+            destDeckId: deck2.id
+          }
+        )
+      ).toEqual([
+        {
+          ...deck,
+          cards: [
+            deck.cards[0]
+          ]
+        },
+        {
+          ...deck2,
+          cards: [
+            ...deck2.cards,
+            deck.cards[1]
+          ]
+        }
+      ]);
+    });
+
+    it('should handle moving a card between decks even when the source is after the destination', () => {
+      expect(
+        reducer(
+          [
+            deck,
+            deck2
+          ],
+          {
+            type: 'MOVE_CARD',
+            cardIndex: 2,
+            srcDeckId: deck2.id,
+            destDeckId: deck.id
+          }
+        )
+      ).toEqual([
+        {
+          ...deck,
+          cards: [
+            ...deck.cards,
+            deck2.cards[1]
+          ]
+        },
+        {
+          ...deck2,
+          cards: [
+            deck2.cards[0]
+          ]
+        }
+      ]);
+    });
   });
 
   describe('REMOVE_CARD', () => {
@@ -388,8 +459,7 @@ describe('decks redux', () => {
         reducer(
           [
             deck,
-            deck2,
-            deck3
+            deck2
           ],
           {
             type: 'REMOVE_CARD',
@@ -402,10 +472,9 @@ describe('decks redux', () => {
         {
           ...deck2,
           cards: [
-            { ...deck2.cards[0] }
+            deck2.cards[0]
           ]
-        },
-        deck3
+        }
       ]);
     });
   });

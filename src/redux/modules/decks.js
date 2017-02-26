@@ -87,7 +87,48 @@ const reducers = {
   },
 
   moveCard: (state, {srcDeckId, destDeckId, cardIndex}) => {
-    return state; // TODO: finish this implementation
+    // TODO: Is it possible to call another action from one action?
+    // Yes, though redux-thunk
+    const srcDeckIndex = state.findIndex(v => v.id === srcDeckId);
+    const destDeckIndex = state.findIndex(v => v.id === destDeckId);
+
+    const srcDeck = Object.assign({}, state[srcDeckIndex]);
+    const destDeck = Object.assign({},state[destDeckIndex]);
+
+    const targetCardFilter = srcDeck.cards.filter(x => x.index === cardIndex);
+    const targetCard = targetCardFilter.length === 0 ? null : targetCardFilter[0];
+    const targetCardIndex = srcDeck.cards.indexOf(targetCard);
+
+    // Remove from the source deck
+    srcDeck.cards = [
+      ...srcDeck.cards.slice(0, targetCardIndex),
+      ...srcDeck.cards.slice(targetCardIndex + 1)
+    ];
+
+    // Add to the destination deck
+    destDeck.cards = [
+      ...destDeck.cards,
+      targetCard
+    ];
+
+    if(srcDeckIndex < destDeckIndex) {
+      return [
+        ...state.slice(0, srcDeckIndex),
+        srcDeck,
+        ...state.slice(srcDeckIndex + 1, destDeckIndex),
+        destDeck,
+        ...state.slice(destDeckIndex + 1),
+      ];
+    }
+    else {
+      return [
+        ...state.slice(0, destDeckIndex),
+        destDeck,
+        ...state.slice(destDeckIndex + 1, srcDeckIndex),
+        srcDeck,
+        ...state.slice(srcDeckIndex + 1),
+      ];
+    }
   },
 
   removeCard: (state, {deckId, cardIndex}) => {
@@ -140,6 +181,7 @@ const reducers = {
     ];
   },
 
+  // Should this really be an action?
   shuffleDeck: state => state,
 
   removeAllDecks: () => []
