@@ -86,7 +86,7 @@ const reducers = {
     ];
   },
 
-  moveCard: (state, {sourceDeckId, destDeckId, cardIndex}) => {
+  moveCard: (state, {srcDeckId, destDeckId, cardIndex}) => {
     return state; // TODO: finish this implementation
   },
 
@@ -220,11 +220,11 @@ export const editCard = (title, answer, cardIndex, deckId) => {
   };
 };
 
-export const moveCard = (cardIndex, sourceDeckId, destDeckId) => {
+export const moveCard = (cardIndex, srcDeckId, destDeckId) => {
   return {
     type: MOVE_CARD,
     cardIndex,
-    sourceDeckId,
+    srcDeckId,
     destDeckId
   };
 };

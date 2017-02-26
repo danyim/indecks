@@ -1,16 +1,6 @@
 import * as utils from './utils';
 
 describe('utils', () => {
-  // it('should create a reducer', () => {
-  //   const handlers = {
-  //     id: 'test'
-  //   };
-  //   const expectedAction = {
-  //     type: 'ADD_DECK',
-  //     deck
-  //   }
-  //   expect(utils.createReducer({}, handlers)).toEqual(expectedAction)
-  // });
   describe('findMissing', () => {
     it('should not find the missing index', () => {
       const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];

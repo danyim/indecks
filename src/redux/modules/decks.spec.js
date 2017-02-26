@@ -183,6 +183,18 @@ describe('decks redux', () => {
     });
   });
 
+  describe('SHUFFLE_DECK', () => {
+    it('should create an action to shuffle cards in a deck', () => {
+      const deckId = 'ABCDEFG';
+      const expectedAction = {
+        type: 'SHUFFLE_DECK',
+        deckId
+      }
+      expect(actions.shuffleDeck(deckId)).toEqual(expectedAction)
+    });
+
+  });
+
   describe('ADD_CARD', () => {
     it('should create an action to add a card to a deck', () => {
       const title = 'Title';
@@ -242,6 +254,183 @@ describe('decks redux', () => {
         },
         deck3
       ]);
+    });
+  });
+
+  describe('DUPLICATE_CARD', () => {
+    it('should create an action to add a card to a deck', () => {
+      const cardIndex = 4;
+      const deckId = 'ABCDEFG';
+      const expectedAction = {
+        type: 'DUPLICATE_CARD',
+        cardIndex,
+        deckId
+      }
+      expect(actions.duplicateCard(cardIndex, deckId)).toEqual(expectedAction)
+    });
+
+    it('should handle duplicating a card', () => {
+      expect(
+        reducer(
+          [
+            deck,
+            deck2,
+            deck3
+          ],
+          {
+            type: 'DUPLICATE_CARD',
+            cardIndex: 2,
+            deckId: deck2.id
+          }
+        )
+      ).toEqual([
+        deck,
+        {
+          ...deck2,
+          cards: [
+            ...deck2.cards,
+            {
+              ...deck2.cards[1],
+              index: 3 // 3 because deck2 already has two cards
+            }
+          ]
+        },
+        deck3
+      ]);
+    });
+  });
+
+  describe('EDIT_CARD', () => {
+    it('should create an action to edit a card in a deck', () => {
+      const title = 'Title';
+      const answer = 'Answer';
+      const cardIndex = 1;
+      const deckId = 'ABCDEFG';
+      const expectedAction = {
+        type: 'EDIT_CARD',
+        title,
+        answer,
+        cardIndex,
+        deckId
+      }
+      expect(actions.editCard(title, answer, cardIndex, deckId)).toEqual(expectedAction)
+    });
+
+    it('should handle editing a card in a deck', () => {
+      const newCard = {
+        title: 'Title',
+        answer: 'Answer'
+      };
+
+      expect(
+        reducer(
+          [
+            deck,
+            deck2,
+            deck3
+          ],
+          {
+            type: 'EDIT_CARD',
+            title: newCard.title,
+            answer: newCard.answer,
+            cardIndex: 1,
+            deckId: deck2.id
+          }
+        )
+      ).toEqual([
+        deck,
+        {
+          ...deck2,
+          cards: [
+            {
+              title: newCard.title,
+              answer: newCard.answer,
+              index: 1
+            },
+            {...deck2.cards[1]}
+          ]
+        },
+        deck3
+      ]);
+    });
+  });
+
+  describe('MOVE_CARD', () => {
+    it('should create an action to move a card in a deck', () => {
+      const cardIndex = 4;
+      const srcDeckId = 'ABCDEFG';
+      const destDeckId = 'LMNOPQ';
+      const expectedAction = {
+        type: 'MOVE_CARD',
+        cardIndex,
+        srcDeckId,
+        destDeckId
+      }
+      expect(actions.moveCard(cardIndex, srcDeckId, destDeckId)).toEqual(expectedAction)
+    });
+
+  });
+
+  describe('REMOVE_CARD', () => {
+    it('should create an action to remove a card from a deck', () => {
+      const cardIndex = 4;
+      const deckId = 'ABCDEFG';
+      const expectedAction = {
+        type: 'REMOVE_CARD',
+        cardIndex,
+        deckId
+      }
+      expect(actions.removeCard(cardIndex, deckId)).toEqual(expectedAction)
+    });
+
+    it('should handle removing a card', () => {
+      expect(
+        reducer(
+          [
+            deck,
+            deck2,
+            deck3
+          ],
+          {
+            type: 'REMOVE_CARD',
+            cardIndex: 2,
+            deckId: deck2.id
+          }
+        )
+      ).toEqual([
+        deck,
+        {
+          ...deck2,
+          cards: [
+            { ...deck2.cards[0] }
+          ]
+        },
+        deck3
+      ]);
+    });
+  });
+
+  describe('REMOVE_ALL_DECKS', () => {
+    it('should create an action to remove all decks', () => {
+      const expectedAction = {
+        type: 'REMOVE_ALL_DECKS'
+      }
+      expect(actions.removeAllDecks()).toEqual(expectedAction)
+    });
+
+    it('should handle removing all decks', () => {
+      expect(
+        reducer(
+          [
+            deck,
+            deck2,
+            deck3
+          ],
+          {
+            type: 'REMOVE_ALL_DECKS'
+          }
+        )
+      ).toEqual([]);
     });
   });
 });

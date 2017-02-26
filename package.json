@@ -8,6 +8,7 @@
     "build": "npm run clean && npm run build:webpack",
     "test": "jest",
     "test:watch": "npm test -- --watch",
+    "test:coverage": "npm test -- --coverage",
     "test:nyc": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha test/*.js",
     "clean": "rimraf dist",
     "start": "node devServer.js",

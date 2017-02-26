@@ -5,3 +5,7 @@ Below are some ongoing "best practices" employed/to be employed in this project.
 - [ ] Uses selectors to retrieve data via [reselect](https://github.com/reactjs/reselect) (**Coming soon**)
 - [x] Redux components are organized into "ducks", which combines actions, reducers, and action creators into a single file. [Proposal is here.](https://github.com/erikras/ducks-modular-redux)
 - [ ] Layouts are created using a functional CSS toolkit called [Tachyons](http://tachyons.io/) (**Coming soon**)
+- [x] Build/select testing framework -- Jest/Enzyme
+- [ ] Create `npm test` task that includes the `nyc` coverage reporter
+- [x] Write tests for all Redux reducers -- `config` ducks covered
+- [ ] Figure out how to make `jest` parse ES6 when running tests
