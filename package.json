@@ -28,6 +28,7 @@
   "homepage": "https://github.com/danyim/indecks",
   "dependencies": {
     "classnames": "^2.2.5",
+    "enzyme": "^2.7.1",
     "eslint-plugin-jsx": "^0.0.2",
     "express": "^4.13.4",
     "file-loader": "^0.10.0",
@@ -55,7 +56,7 @@
     "redux-form": "^6.0.2",
     "redux-immutable": "^3.0.8",
     "redux-logger": "^2.8.1",
-    "redux-persist": "^3.5.0",
+    "redux-persist": "^4.4.2",
     "redux-thunk": "^2.2.0",
     "remarkable": "^1.6.2",
     "reselect": "^2.5.3",
@@ -78,8 +79,7 @@
     "babel-preset-stage-3": "^6.22.0",
     "chai": "^3.5.0",
     "cross-env": "^3.1.4",
-    "css-loader": "^0.23.1",
-    "enzyme": "^2.7.1",
+    "css-loader": "^0.26.2",
     "eslint": "^3.15.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-import-resolver-webpack": "^0.8.1",
@@ -89,14 +89,15 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.9.0",
     "expect": "^1.18.0",
-    "expect-jsx": "^2.5.1",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "expect-jsx": "^3.0.0",
+    "extract-text-webpack-plugin": "^2.0.0",
     "font-awesome": "^4.7.0",
-    "font-awesome-webpack": "^0.0.4",
+    "font-awesome-webpack": "^0.0.5-beta.2",
     "gh-pages": "^0.12.0",
     "husky": "^0.13.1",
-    "jest": "^18.1.0",
-    "mocha": "^2.5.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^19.0.2",
+    "mocha": "^3.2.0",
     "npm-run-all": "^4.0.1",
     "nyc": "^10.1.2",
     "postcss-loader": "^1.2.2",
@@ -112,5 +113,20 @@
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0"
   },
-  "jest": {}
+  "jest": {
+    "automock": false,
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "bower_components",
+      "shared"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|styl)$": "identity-obj-proxy"
+    }
+  }
 }
