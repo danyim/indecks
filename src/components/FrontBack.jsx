@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import styles from '../styles/components/FrontBack.styl.styl';
+import styles from '../styles/components/FrontBack.styl';
 
 const propTypes = {
   handleFlip: React.PropTypes.func.isRequired,
