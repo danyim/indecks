@@ -1,5 +1,4 @@
 import React from 'react';
-// import TestUtils from 'react-addons-test-utils';
 import { shallow } from 'enzyme';
 import FrontBack from './FrontBack';
 
@@ -25,7 +24,7 @@ describe('FrontBack', () => {
     expect(wrapper.find('a.back').text()).toBe('BACK');
   });
 
-  it('should apply the active class to "BACK" when flipped property is TRUE', () => {
+  it('should apply the active class to "BACK" when flipped prop is TRUE', () => {
     const { wrapper } = setup(
       {
         ... defaultProps,
@@ -35,7 +34,7 @@ describe('FrontBack', () => {
     expect(wrapper.find('a.active').text()).toBe('BACK');
   });
 
-  it('should apply the active class to "FRONT" when flipped property is FALSE', () => {
+  it('should apply the active class to "FRONT" when flipped prop is FALSE', () => {
     const { wrapper } = setup(
       {
         ... defaultProps,
@@ -45,7 +44,7 @@ describe('FrontBack', () => {
     expect(wrapper.find('a.active').text()).toBe('FRONT');
   });
 
-  it('should call the handleFlip property when FRONT is clicked', () => {
+  it('should call the handleFlip prop when FRONT is clicked', () => {
     const handler = jest.fn();
     const { wrapper } = setup({
       ...defaultProps,
@@ -56,7 +55,7 @@ describe('FrontBack', () => {
     expect(handler.mock.calls.length).toBe(1);
   });
 
-  it('should call the handleFlip property when BACK is clicked', () => {
+  it('should call the handleFlip prop when BACK is clicked', () => {
     const handler = jest.fn();
     const { wrapper } = setup({
       ...defaultProps,

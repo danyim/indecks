@@ -8,6 +8,7 @@ const propTypes = {
   flipped: React.PropTypes.bool,
   handleOnClick: React.PropTypes.func,
   trimOverflow: React.PropTypes.bool,
+  trimOverflowLength: React.PropTypes.number,
   children: React.PropTypes.node
 };
 
@@ -16,10 +17,9 @@ const defaultProps = {
   flipped: false,
   handleOnClick: () => {},
   trimOverflow: false,
+  trimOverflowLength: 125,
   children: null
 };
-
-const TITLE_MAX_CHAR_LEN = 125;
 
 class Card extends React.Component {
   constructor(props) {
@@ -30,8 +30,8 @@ class Card extends React.Component {
 
   trimOverflowTitle(text) {
     return this.props.trimOverflow &&
-      text.length > TITLE_MAX_CHAR_LEN ?
-        `${text.substr(0, TITLE_MAX_CHAR_LEN)}...` : text;
+      text.length > this.props.trimOverflowLength ?
+        `${text.substr(0, this.props.trimOverflowLength)}...` : text;
   }
 
   renderEmpty() {
@@ -53,8 +53,11 @@ class Card extends React.Component {
     }
     return (
       <figcaption>
-        <Markdown text={card.answer} />
-        {card.answer === '' ? this.renderEmpty() : null}
+        {
+          card.answer !== null && card.answer !== '' ?
+            <Markdown text={card.answer} />
+            : this.renderEmpty()
+        }
       </figcaption>
     );
   }
