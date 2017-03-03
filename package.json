@@ -6,7 +6,7 @@
     "prepush": "npm run lint",
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
-    "test": "jest",
+    "test": "jest --config ./jest.json",
     "test:watch": "npm test -- --watch",
     "test:coverage": "npm test -- --coverage",
     "test:nyc": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha test/*.js",
@@ -112,20 +112,5 @@
     "webpack": "^1.13.0",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "moduleDirectories": [
-      "node_modules",
-      "bower_components",
-      "shared"
-    ],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less|styl)$": "identity-obj-proxy"
-    }
   }
 }

@@ -1,0 +1,20 @@
+{
+  "coveragePathIgnorePatterns": [
+    "<rootDir>\/node_modules"
+  ],
+  "collectCoverageFrom": [
+    "src\/**\/*.jsx"
+  ],
+  "transform": {
+    ".*": ".\/node_modules\/babel-jest"
+  },
+  "testRegex": "src\/.*\\.spec\\.js(x?)$",
+  "rootDir": ".\/",
+  "modulePaths": [
+    ".\/"
+  ],
+  "moduleNameMapper": {
+    "\\.(css|less|styl)": "identity-obj-proxy",
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
+  }
+}
