@@ -1,6 +1,6 @@
 import React from 'react';
 import ExportDeckButton from './ExportDeckButton';
-import styles from '../styles/components/Settings';
+import styles from '../styles/components/Settings.styl';
 
 const propTypes = {
   decks: React.PropTypes.array.isRequired,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import CardPreview from './CardPreview';
-import styles from '../styles/components/CardEdit';
+import styles from '../styles/components/CardEdit.styl';
 
 const propTypes = {
   cardIndex: React.PropTypes.number.isRequired,

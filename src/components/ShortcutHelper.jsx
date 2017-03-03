@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/components/ShortcutHelper';
+import styles from '../styles/components/ShortcutHelper.styl';
 
 const propTypes = {};
 const defaultProps = {};

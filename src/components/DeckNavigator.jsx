@@ -4,7 +4,7 @@ import KeyBinding from 'react-keybinding-component';
 import classNames from 'classnames';
 import CardCount from './CardCount';
 import FrontBack from './FrontBack';
-import styles from '../styles/components/DeckNavigator';
+import styles from '../styles/components/DeckNavigator.styl';
 
 const propTypes = {
   deck: React.PropTypes.object.isRequired,

@@ -5,7 +5,7 @@
 // import React from 'react';
 // import InlineEdit from 'react-inline-edit';
 // import { Field, reduxForm } from 'redux-form';
-// import styles from '../styles/components/DeckEdit';
+// import styles from '../styles/components/DeckEdit.styl';
 
 // const propTypes = {
 //   handleDetailSubmit: React.PropTypes.func.isRequired

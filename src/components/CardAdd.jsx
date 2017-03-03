@@ -1,6 +1,6 @@
 import React from 'react';
 import CardPreview from './CardPreview';
-import styles from '../styles/components/CardAdd';
+import styles from '../styles/components/CardAdd.styl';
 
 const propTypes = {
   deckId: React.PropTypes.string.isRequired,

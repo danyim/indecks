@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/components/CardCount';
+import styles from '../styles/components/CardCount.styl';
 
 const propTypes = {
   current: React.PropTypes.number.isRequired,

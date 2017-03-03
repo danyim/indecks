@@ -4,7 +4,7 @@
 
 // import React from 'react';
 // import { Field, reduxForm } from 'redux-form';
-// import styles from '../styles/components/DeckEdit';
+// import styles from '../styles/components/DeckEdit.styl';
 
 // const propTypes = {
 //   cardIndex: React.PropTypes.number.isRequired,

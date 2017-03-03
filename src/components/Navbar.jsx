@@ -12,7 +12,7 @@ import ImportDeckContainer from '../containers/ImportDeckContainer';
 import SettingsContainer from '../containers/SettingsContainer';
 import KeyListener from './KeyListener';
 import ShortcutHelper from './ShortcutHelper';
-import styles from '../styles/components/Navbar';
+import styles from '../styles/components/Navbar.styl';
 
 const propTypes = {};
 

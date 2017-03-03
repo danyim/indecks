@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/components/Overlay';
+import styles from '../styles/components/Overlay.styl';
 
 const propTypes = {
   className: React.PropTypes.string,

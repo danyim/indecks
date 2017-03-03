@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
-import styles from '../styles/components/Deck';
+import styles from '../styles/components/Deck.styl';
 
 const propTypes = {
   deck: React.PropTypes.object.isRequired,

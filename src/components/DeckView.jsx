@@ -6,7 +6,7 @@ import Card from './Card';
 import ExportDeckButton from './ExportDeckButton';
 import Overlay from './Overlay';
 import OverlayRow from './OverlayRow';
-import styles from '../styles/components/DeckView';
+import styles from '../styles/components/DeckView.styl';
 
 const propTypes = {
   deck: React.PropTypes.object.isRequired,

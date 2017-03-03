@@ -1,6 +1,6 @@
 import React from 'react';
 import Markdown from './Markdown';
-import styles from '../styles/components/Card';
+import styles from '../styles/components/Card.styl';
 
 const propTypes = {
   card: React.PropTypes.object.isRequired,

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/components/DeckSelector';
+import styles from '../styles/components/DeckSelector.styl';
 
 const propTypes = {
   // decks: React.PropTypes.array.isRequired,

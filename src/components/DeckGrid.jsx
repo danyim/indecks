@@ -1,7 +1,7 @@
 import React from 'react';
 import { TransitionMotion, spring } from 'react-motion';
 import Deck from './Deck';
-import styles from '../styles/components/DeckGrid';
+import styles from '../styles/components/DeckGrid.styl';
 
 const propTypes = {
   decks: React.PropTypes.array.isRequired,

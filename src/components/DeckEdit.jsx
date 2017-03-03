@@ -5,7 +5,7 @@
 // import React from 'react';
 // import DeckEditCardForm from './DeckEditCardForm';
 // import DeckEditDeckForm from './DeckEditDeckForm';
-// import styles from '../styles/components/DeckEdit';
+// import styles from '../styles/components/DeckEdit.styl';
 
 // const propTypes = {
 //   cards: React.PropTypes.array.isRequired,

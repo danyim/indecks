@@ -2,7 +2,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import KeyBinding from 'react-keybinding-component';
 import CardEditForm from './CardEditForm';
-import styles from '../styles/components/CardEdit';
+import styles from '../styles/components/CardEdit.styl';
 
 const propTypes = {
   card: React.PropTypes.object.isRequired,

@@ -2,7 +2,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import Dropzone from 'react-dropzone';
 import samples from '../data/samples';
-import styles from '../styles/components/ImportDeck';
+import styles from '../styles/components/ImportDeck.styl';
 
 const propTypes = {
   addDeck: React.PropTypes.func.isRequired,
