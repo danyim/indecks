@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardAdd should render self and subcomponents 1`] = `
+<figure
+  className="grid-figure grid-figure"
+>
+  <form
+    className="edit-form"
+    onSubmit={[Function]}
+  >
+    <input
+      className="large-input"
+      name="title"
+      onChange={[Function]}
+      placeholder="Title"
+      type="text"
+    />
+    <textarea
+      className="mono"
+      name="answer"
+      onChange={[Function]}
+      placeholder="Answer (Markdown)"
+      rows="4"
+      type="text"
+    />
+    <div
+      className="preview"
+    >
+      <button
+        className="btn pointer m-t"
+        onClick={[Function]}
+        type="button"
+      >
+        Preview [
+        +
+        ]
+      </button>
+      <div
+        className="preview-pane"
+        style={
+          Object {
+            "display": "none",
+            "height": 0,
+          }
+        }
+      >
+        <div
+          className="card-title"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "",
+            }
+          }
+          onClick={null}
+        />
+        <hr />
+        <div
+          className="card-answer"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "",
+            }
+          }
+          onClick={null}
+        />
+      </div>
+    </div>
+    <div
+      className="control-buttons"
+    >
+      <button
+        className="button"
+        type="submit"
+      >
+        Save
+      </button>
+      <button
+        className="button"
+        onClick={[Function]}
+        type="button"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</figure>
+`;
