@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExportDeckButton should render self and subcomponents 1`] = `
+<button
+  className=""
+  disabled={false}
+  onClick={[Function]}
+  style={
+    Object {
+      "color": "blue",
+      "cursor": "pointer",
+      "margin": "5px 5px 0px 0px",
+      "textDecoration": "underline",
+    }
+  }
+>
+  Save
+</button>
+`;

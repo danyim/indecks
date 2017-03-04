@@ -5,7 +5,7 @@ import styles from '../styles/components/Settings.styl';
 const propTypes = {
   decks: React.PropTypes.array.isRequired,
   deckCount: React.PropTypes.number.isRequired,
-  removeAllDecks: React.PropTypes.func.isRequired,
+  removeAllDecks: React.PropTypes.func.isRequired
 };
 
 const defaultProps = {};

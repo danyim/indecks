@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Overlay should render self and subcomponents 1`] = `
+<div
+  className="overlay "
+>
+  <div
+    className="hover-actions-container"
+  />
+</div>
+`;

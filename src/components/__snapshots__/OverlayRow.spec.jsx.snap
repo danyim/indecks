@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OverlayRow should render self and subcomponents 1`] = `
+<div
+  className=" hover-actions"
+/>
+`;

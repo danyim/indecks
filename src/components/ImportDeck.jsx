@@ -158,7 +158,7 @@ class ImportDeck extends React.Component {
               onChange={e => this.handleChange(e, 'description')}
             />
             <div>
-              <button type="submit" className="button">Create Deck</button>
+              <button type="submit" className="button create-deck">Create Deck</button>
             </div>
             <div className={`${styles['or-bar']}`}>
               <hr />
@@ -182,7 +182,7 @@ class ImportDeck extends React.Component {
             <h4>Use samples</h4>
             <div>
               <button
-                type="button" className="button"
+                type="button" className="button load-sample"
                 onClick={() => this.handleLoadSample()}
               >
                 Load Sample Decks

@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImportDeck should render self and subcomponents 1`] = `
+<section
+  className="deck-import"
+>
+  <div
+    className="grid-figure"
+  >
+    <h2
+      className="header"
+    >
+      Add/Import Deck
+    </h2>
+    <form
+      className="edit-form"
+      onSubmit={[Function]}
+    >
+      <h4>
+        Create a new deck
+      </h4>
+      <input
+        className="large-input"
+        maxLength="30"
+        name="title"
+        onChange={[Function]}
+        placeholder="Deck Title"
+        type="text"
+      />
+      <textarea
+        name="description"
+        onChange={[Function]}
+        placeholder="Description"
+        rows="3"
+        type="text"
+      />
+      <div>
+        <button
+          className="button create-deck"
+          type="submit"
+        >
+          Create Deck
+        </button>
+      </div>
+      <div
+        className="or-bar"
+      >
+        <hr />
+        <p>
+          or
+        </p>
+      </div>
+      <h4>
+        Import an existing deck
+      </h4>
+      <div
+        className="drop"
+        onClick={[Function]}
+        onDragEnter={[Function]}
+        onDragLeave={[Function]}
+        onDragOver={[Function]}
+        onDragStart={[Function]}
+        onDrop={[Function]}
+        style={Object {}}
+      >
+        <p>
+          Click here to import or drag and drop the deck JSON here
+        </p>
+        <input
+          accept="application/json"
+          multiple={false}
+          onChange={[Function]}
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+          type="file"
+        />
+      </div>
+      <div
+        className="or-bar"
+      >
+        <hr />
+        <p>
+          or
+        </p>
+      </div>
+      <h4>
+        Use samples
+      </h4>
+      <div>
+        <button
+          className="button load-sample"
+          onClick={[Function]}
+          type="button"
+        >
+          Load Sample Decks
+        </button>
+      </div>
+      <br />
+      <br />
+      <div>
+        <button
+          className="button btn-delete"
+          onClick={[Function]}
+          type="button"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+`;

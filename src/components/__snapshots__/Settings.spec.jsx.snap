@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Settings should render self and subcomponents 1`] = `
+<section
+  className="settings"
+>
+  <h2
+    className="header"
+  >
+    Settings
+  </h2>
+  <div
+    className="settings-content"
+  >
+    <p>
+      The decks you create are automatically saved to your browser's local storage.
+    </p>
+    <button
+      className="button"
+      disabled={true}
+      onClick={[Function]}
+      style={Object {}}
+    >
+      Download all decks as JSON
+    </button>
+    <button
+      className="btn-delete"
+      disabled="disabled"
+    >
+      Delete all decks from local storage
+    </button>
+  </div>
+</section>
+`;

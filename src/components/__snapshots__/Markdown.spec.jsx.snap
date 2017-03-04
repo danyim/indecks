@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Markdown should render self and subcomponents 1`] = `
+<div
+  className=""
+  dangerouslySetInnerHTML={
+    Object {
+      "__html": "<p>Test</p>
+    ",
+    }
+  }
+  onClick={null}
+/>
+`;
