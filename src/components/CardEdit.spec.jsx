@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import renderer from 'react-test-renderer';
+// import renderer from 'react-test-renderer';
 import CardEdit from './CardEdit';
+// import { CardEditForm } from './CardEditForm';
 
 const defaultProps = {
   card: {},
@@ -22,13 +23,13 @@ function setup(props = defaultProps) {
 }
 
 describe('CardEdit', () => {
-  // it('should render self and subcomponents', () => {
-  //   const { wrapper } = setup();
-  //   expect(wrapper.find('section.single').exists()).toBe(true);
+  it('should render self and subcomponents', () => {
+    const { wrapper } = setup();
+    expect(wrapper.find('section.single').exists()).toBe(true);
 
-  //   const tree = renderer.create(
-  //     <CardEdit {...defaultProps} />
-  //   ).toJSON();
-  //   expect(tree).toMatchSnapshot();
-  // });
+    // const tree = renderer.create(
+    //   <CardEdit {...defaultProps} />
+    // ).toJSON();
+    // expect(tree).toMatchSnapshot();
+  });
 });

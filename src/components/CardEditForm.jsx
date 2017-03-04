@@ -19,7 +19,7 @@ const defaultProps = {
 
 const fields = ['cardTitle', 'cardAnswer'];
 
-const CardEditForm = (props) => {
+export const CardEditForm = (props) => {
   const { deckId, cardIndex, handleSubmit,
     handleDelete, handleCancel, formValues: form } = props;
 

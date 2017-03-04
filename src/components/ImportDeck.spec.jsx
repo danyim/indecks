@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import ImportDeck from './ImportDeck';
-import samples from '../data/samples';
+// import samples from '../data/samples';
 
 const defaultProps = {
   addDeck: () => {},
