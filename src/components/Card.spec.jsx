@@ -83,7 +83,7 @@ describe('Card', () => {
     });
 
     expect(wrapper.find('figcaption Markdown').exists()).toEqual(false);
-    expect(wrapper.find('figcaption p').text()).toEqual('This card does not have an answer yet');
+    expect(wrapper.find('div.center p.grey').text()).toEqual('This card does not have an answer yet');
   });
 
   it('should trim the title if it exceeds n chars', () => {
