@@ -17,7 +17,7 @@ exports[`Settings should render self and subcomponents 1`] = `
     </p>
     <button
       className="button"
-      disabled={true}
+      disabled={false}
       onClick={[Function]}
       style={Object {}}
     >
@@ -25,9 +25,11 @@ exports[`Settings should render self and subcomponents 1`] = `
     </button>
     <button
       className="btn-delete"
-      disabled="disabled"
+      onClick={[Function]}
     >
-      Delete all decks from local storage
+      Delete all 
+      1
+       deck(s) from local storage
     </button>
   </div>
 </section>

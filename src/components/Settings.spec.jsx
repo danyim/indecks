@@ -4,8 +4,12 @@ import { shallow, mount } from 'enzyme';
 import Settings from './Settings';
 
 const defaultProps = {
-  decks: [],
-  deckCount: 0,
+  decks: [{
+    id: 'ABCDEFG',
+    title: 'Sample Deck',
+    description: 'Deck description'
+  }],
+  deckCount: 1,
   removeAllDecks: () => {}
 };
 
@@ -61,5 +65,25 @@ describe('Settings', () => {
     const button = wrapper.find('button.btn-delete[children="Delete all decks from local storage"]')
     expect(button.exists()).toBe(true);
     expect(button.prop('disabled')).toBe('disabled');
+  });
+
+  it('should call the removeAllDecks prop when button is clicked', () => {
+    spyOn(window, 'confirm').and.returnValue(true);
+    const handler = jest.fn();
+    const { wrapper } = setup({
+      ...defaultProps,
+      removeAllDecks: handler
+    });
+
+    const button = wrapper.find('button.btn-delete')
+    button.simulate('click');
+    expect(handler.mock.calls.length).toBe(1);
+  });
+
+  it('should convert the deck into JSON when the export button is clicked', () => {
+    const { props, wrapper } = setupFull();
+
+    const exportButton = wrapper.find('ExportDeckButton');
+    expect(exportButton.prop('exportFile')()).toEqual(JSON.stringify(props.decks, null, 2));
   });
 });
