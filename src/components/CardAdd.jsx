@@ -24,14 +24,14 @@ class CardAdd extends React.Component {
     };
   }
 
-  componentDidMount() {
-    // // This happens a little too fast. If you get to this view via keyboard
-    // // shortcut, the focus event fires before the keyup and writes the value
-    // // into the field. Adding a 100ms delay prevents this from happening.
-    // setTimeout(() => {
-    //   findDOMNode(this.refs.title).focus();
-    // }, 100);
-  }
+  // componentDidMount() {
+  //   // This happens a little too fast. If you get to this view via keyboard
+  //   // shortcut, the focus event fires before the keyup and writes the value
+  //   // into the field. Adding a 100ms delay prevents this from happening.
+  //   setTimeout(() => {
+  //     findDOMNode(this.refs.title).focus();
+  //   }, 100);
+  // }
 
   handleSubmit(e, deckId) {
     e.preventDefault();
