@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeckView should render self and subcomponents 1`] = `
+<section
+  className="deck-view"
+>
+  <div
+    className="title-card"
+  >
+    <div
+      className="title-text"
+    >
+      <span
+        className="large editable"
+        onClick={[Function]}
+        onFocus={[Function]}
+        tabIndex="0"
+      >
+        Deck title
+      </span>
+      <p>
+        <strong>
+          1 cards
+        </strong>
+      </p>
+      <span
+        className="paragraph editable m-t"
+        onClick={[Function]}
+        onFocus={[Function]}
+        tabIndex="0"
+      >
+        <span>
+          Deck description
+        </span>
+      </span>
+    </div>
+    <div
+      className="control-buttons"
+    >
+      <a
+        className="button"
+        onClick={[Function]}
+        style={Object {}}
+      >
+        <span>
+          Play Deck
+        </span>
+      </a>
+      <button
+        className="button"
+        disabled={false}
+        onClick={[Function]}
+        style={Object {}}
+      >
+        Export Deck
+      </button>
+      <button
+        className="btn-delete"
+        onClick={[Function]}
+      >
+        Delete Deck
+      </button>
+    </div>
+  </div>
+  <div
+    className="wrap-row grid"
+  >
+    <figure
+      className="grid-figure grid-figure card-contents"
+      onClick={[Function]}
+    >
+      <div
+        className="card-contents"
+      >
+        <div
+          className="card-title"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<p>Card</p>
+            ",
+            }
+          }
+          onClick={null}
+        />
+      </div>
+      <div
+        className="overlay "
+      >
+        <div
+          className="hover-actions-container"
+        >
+          <div
+            className=" hover-actions"
+          >
+            <button
+              className="hover-button"
+              onClick={[Function]}
+            >
+              View
+            </button>
+            <button
+              className="hover-button"
+              onClick={[Function]}
+            >
+              Edit
+            </button>
+            <button
+              className="hover-button btn-delete"
+              onClick={[Function]}
+            >
+              Delete
+            </button>
+          </div>
+          <div
+            className=" hover-actions"
+          >
+            <button
+              className="hover-button"
+              onClick={[Function]}
+            >
+              Duplicate
+            </button>
+          </div>
+        </div>
+      </div>
+    </figure>
+  </div>
+</section>
+`;
