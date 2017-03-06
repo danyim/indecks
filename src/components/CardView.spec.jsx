@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { browserHistory } from 'react-router';
