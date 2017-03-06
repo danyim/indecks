@@ -36,7 +36,7 @@ exports[`ImportDeck should render self and subcomponents 1`] = `
       />
       <div>
         <button
-          className="button create-deck"
+          className="button"
           type="submit"
         >
           Create Deck
@@ -91,7 +91,7 @@ exports[`ImportDeck should render self and subcomponents 1`] = `
       </h4>
       <div>
         <button
-          className="button load-sample"
+          className="button"
           onClick={[Function]}
           type="button"
         >

@@ -6,11 +6,15 @@ import styles from '../styles/components/ImportDeck.styl';
 
 const propTypes = {
   addDeck: React.PropTypes.func.isRequired,
-  handleClose: React.PropTypes.func
+  handleClose: React.PropTypes.func,
+  maxDeckTitleLength: React.PropTypes.number,
+  maxDeckDescLength: React.PropTypes.number
 };
 
 const defaultProps = {
-  handleClose: () => {}
+  handleClose: () => {},
+  maxDeckTitleLength: 160,
+  maxDeckDescLength: 300
 };
 
 class ImportDeck extends React.Component {
@@ -91,7 +95,9 @@ class ImportDeck extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    if(this.state.title.trim() === '' ) {
+    if(this.state.title.trim() === ''
+      || this.state.title.length >= this.props.maxDeckTitleLength
+      || this.state.description.length >= this.props.maxDeckDescLength) {
       return false;
     }
 
@@ -158,7 +164,7 @@ class ImportDeck extends React.Component {
               onChange={e => this.handleChange(e, 'description')}
             />
             <div>
-              <button type="submit" className="button create-deck">Create Deck</button>
+              <button type="submit" className="button">Create Deck</button>
             </div>
             <div className={`${styles['or-bar']}`}>
               <hr />
@@ -182,7 +188,7 @@ class ImportDeck extends React.Component {
             <h4>Use samples</h4>
             <div>
               <button
-                type="button" className="button load-sample"
+                type="button" className="button"
                 onClick={() => this.handleLoadSample()}
               >
                 Load Sample Decks
