@@ -3,15 +3,14 @@
     "browser": true,
     "node": true,
     "es6": true,
-    "jest": true
+    "jest": true,
+    "jasmine": true
   },
-
   "plugins": [
     "babel",
     "react",
     "chai-expect"
   ],
-
   "extends": [
     "airbnb",
     "eslint:recommended",
@@ -64,7 +63,6 @@
   },
   "globals": {
     "firebase": true,
-    "sinon": true,
     "__DEVELOPMENT__": true
   },
   "settings": {
