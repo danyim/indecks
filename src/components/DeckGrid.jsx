@@ -5,7 +5,7 @@ import styles from '../styles/components/DeckGrid.styl';
 
 const propTypes = {
   decks: React.PropTypes.array.isRequired,
-  removeDeck: React.PropTypes.func.isRequired,
+  removeDeck: React.PropTypes.func.isRequired
 };
 
 const defaultProps = {};

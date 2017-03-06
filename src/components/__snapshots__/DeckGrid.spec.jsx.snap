@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeckGrid should render self and subcomponents 1`] = `
+<section
+  className="deck-grid wrap-row"
+>
+  <figure
+    className="grid-figure grid-figure"
+    style={
+      Object {
+        "display": "relative",
+        "left": 0,
+        "opacity": 1,
+      }
+    }
+  >
+    <div>
+      <h1
+        className="deck-title"
+      >
+        <a
+          onClick={[Function]}
+        >
+          Deck title
+        </a>
+      </h1>
+    </div>
+    <figcaption>
+      <p>
+        0
+         cards
+      </p>
+      <p>
+        Deck description
+      </p>
+    </figcaption>
+    <div
+      className="control-buttons control-buttons"
+    >
+      <a
+        className="button"
+        onClick={[Function]}
+        style={Object {}}
+      >
+        Play Deck
+      </a>
+    </div>
+  </figure>
+</section>
+`;

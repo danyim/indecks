@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardView should render self and subcomponents 1`] = `
+<section
+  className="single"
+>
+  <div
+    onMouseDown={[Function]}
+    onMouseMove={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+  >
+    <figure
+      className="grid-figure grid-figure "
+      onClick={[Function]}
+    >
+      <div
+        className="card-contents"
+      >
+        <div
+          className="card-title"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<p>Card</p>
+            ",
+            }
+          }
+          onClick={null}
+        />
+      </div>
+    </figure>
+  </div>
+  <div
+    className="deck-navigator"
+  >
+    <div
+      className="left"
+    >
+      <div
+        className="frontBack"
+      >
+        <a
+          className="front active"
+          onClick={[Function]}
+          tabIndex="0"
+        >
+          FRONT
+        </a>
+        <span
+          className="separator"
+        >
+          |
+        </span>
+        <a
+          className="back"
+          onClick={[Function]}
+          tabIndex="-1"
+        >
+          BACK
+        </a>
+      </div>
+    </div>
+    <div
+      className="deck-nav-controls"
+    >
+      <button
+        className="button"
+        disabled={true}
+        onClick={[Function]}
+        title="Previous Card"
+      >
+        <i
+          className="fa fa-backward"
+        />
+      </button>
+      <button
+        className="button btn-inactive"
+        onClick={[Function]}
+        title="Shuffle"
+      >
+        <i
+          className="fa fa-random"
+        />
+      </button>
+      <button
+        className="button"
+        disabled={true}
+        onClick={[Function]}
+        title="Next Card"
+      >
+        <i
+          className="fa fa-forward"
+        />
+      </button>
+    </div>
+    <div
+      className="right"
+    >
+      <div
+        className="cardCount"
+      >
+        <span
+          className="current"
+        >
+          1
+        </span>
+        <span
+          className="separator"
+        />
+        <span
+          className="max"
+        >
+          1
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+`;
