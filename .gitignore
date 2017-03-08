@@ -3,3 +3,4 @@ dist
 npm-debug.log
 samples
 coverage
+firebase.js
