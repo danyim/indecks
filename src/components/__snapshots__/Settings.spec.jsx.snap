@@ -12,6 +12,54 @@ exports[`Settings should render self and subcomponents 1`] = `
   <div
     className="settings-content"
   >
+    <button
+      className="button"
+      onClick={[Function]}
+    >
+      Sign in with a hardcoded 
+      <i
+        className="fa fa-github"
+      />
+       token
+    </button>
+    <div>
+      <button
+        className="button"
+        onClick={[Function]}
+      >
+        Sign in with 
+        <i
+          className="fa fa-github"
+        />
+      </button>
+      <button
+        className="button"
+        onClick={[Function]}
+      >
+        Sign in with 
+        <i
+          className="fa fa-twitter"
+        />
+      </button>
+      <button
+        className="button"
+        onClick={[Function]}
+      >
+        Sign in with 
+        <i
+          className="fa fa-facebook"
+        />
+      </button>
+      <button
+        className="button"
+        onClick={[Function]}
+      >
+        Sign in with 
+        <i
+          className="fa fa-google"
+        />
+      </button>
+    </div>
     <p>
       The decks you create are automatically saved to your browser's local storage.
     </p>
