@@ -9,7 +9,16 @@ import OverlayRow from './OverlayRow';
 import styles from '../styles/components/DeckView.styl';
 
 const propTypes = {
-  deck: React.PropTypes.object.isRequired,
+  deck: React.PropTypes.shape({
+    id: React.PropTypes.string.isRequired,
+    title: React.PropTypes.string.isRequired,
+    description: React.PropTypes.string.isRequired,
+    cards: React.PropTypes.arrayOf(React.PropTypes.shape({
+      title: React.PropTypes.string.isRequired,
+      answer: React.PropTypes.string.isRequired,
+      index: React.PropTypes.number.isRequired,
+    }).isRequired).isRequired,
+  }).isRequired,
   maxDeckTitleLength: React.PropTypes.number,
   maxDeckDescLength: React.PropTypes.number,
   handleDuplicateCard: React.PropTypes.func.isRequired,

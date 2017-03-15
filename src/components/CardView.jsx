@@ -6,8 +6,21 @@ import DeckNavigator from './DeckNavigator';
 // import styles from '../styles/components/CardView.styl'; // Not used, uncomment later
 
 const propTypes = {
-  card: React.PropTypes.object.isRequired,
-  deck: React.PropTypes.object.isRequired,
+  card: React.PropTypes.shape({
+    title: React.PropTypes.string.isRequired,
+    answer: React.PropTypes.string.isRequired,
+    index: React.PropTypes.number.isRequired,
+  }).isRequired,
+  deck: React.PropTypes.shape({
+    id: React.PropTypes.string.isRequired,
+    title: React.PropTypes.string.isRequired,
+    description: React.PropTypes.string.isRequired,
+    cards: React.PropTypes.arrayOf(React.PropTypes.shape({
+      title: React.PropTypes.string.isRequired,
+      answer: React.PropTypes.string.isRequired,
+      index: React.PropTypes.number.isRequired,
+    }).isRequired).isRequired,
+  }).isRequired,
   config: React.PropTypes.object.isRequired,
   cardIndex: React.PropTypes.number.isRequired,
   toggleShuffle: React.PropTypes.func.isRequired

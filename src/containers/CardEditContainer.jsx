@@ -5,7 +5,11 @@ import * as deckActions from '../redux/modules/decks';
 import CardEdit from '../components/CardEdit';
 
 const propTypes = {
-  card: React.PropTypes.object.isRequired,
+  card: React.PropTypes.shape({
+    title: React.PropTypes.string.isRequired,
+    answer: React.PropTypes.string.isRequired,
+    index: React.PropTypes.number.isRequired,
+  }).isRequired,
   cardIndex: React.PropTypes.number.isRequired,
   deckId: React.PropTypes.string.isRequired,
   editCard: React.PropTypes.func.isRequired,

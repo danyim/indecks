@@ -5,8 +5,21 @@ import * as deckActions from '../redux/modules/decks';
 import DeckEdit from '../components/DeckEdit';
 
 const propTypes = {
-  cards: React.PropTypes.array.isRequired,
-  deck: React.PropTypes.object.isRequired,
+  cards: React.PropTypes.arrayOf(React.PropTypes.shape({
+    title: React.PropTypes.string.isRequired,
+    answer: React.PropTypes.string.isRequired,
+    index: React.PropTypes.number.isRequired,
+  }).isRequired).isRequired,
+  deck: React.PropTypes.shape({
+    id: React.PropTypes.string.isRequired,
+    title: React.PropTypes.string.isRequired,
+    description: React.PropTypes.string.isRequired,
+    cards: React.PropTypes.arrayOf(React.PropTypes.shape({
+      title: React.PropTypes.string.isRequired,
+      answer: React.PropTypes.string.isRequired,
+      index: React.PropTypes.number.isRequired,
+    }).isRequired).isRequired,
+  }).isRequired,
   deckId: React.PropTypes.string.isRequired,
   editCard: React.PropTypes.func.isRequired,
   removeCard: React.PropTypes.func.isRequired,

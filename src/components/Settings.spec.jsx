@@ -7,7 +7,8 @@ const defaultProps = {
   decks: [{
     id: 'ABCDEFG',
     title: 'Sample Deck',
-    description: 'Deck description'
+    description: 'Deck description',
+    cards: []
   }],
   deckCount: 1,
   removeAllDecks: () => {}

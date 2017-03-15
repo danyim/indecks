@@ -4,7 +4,16 @@ import Deck from './Deck';
 import styles from '../styles/components/DeckGrid.styl';
 
 const propTypes = {
-  decks: React.PropTypes.array.isRequired,
+  decks: React.PropTypes.arrayOf(React.PropTypes.shape({
+    id: React.PropTypes.string.isRequired,
+    title: React.PropTypes.string.isRequired,
+    description: React.PropTypes.string.isRequired,
+    cards: React.PropTypes.arrayOf(React.PropTypes.shape({
+      title: React.PropTypes.string.isRequired,
+      answer: React.PropTypes.string.isRequired,
+      index: React.PropTypes.number.isRequired,
+    }).isRequired).isRequired,
+  }).isRequired).isRequired,
   removeDeck: React.PropTypes.func.isRequired
 };
 

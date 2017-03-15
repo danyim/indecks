@@ -6,8 +6,21 @@ import * as configActions from '../redux/modules/config';
 import CardView from '../components/CardView';
 
 const propTypes = {
-  card: React.PropTypes.object,
-  deck: React.PropTypes.object
+  card: React.PropTypes.shape({
+    title: React.PropTypes.string.isRequired,
+    answer: React.PropTypes.string.isRequired,
+    index: React.PropTypes.number.isRequired,
+  }),
+  deck: React.PropTypes.shape({
+    id: React.PropTypes.string.isRequired,
+    title: React.PropTypes.string.isRequired,
+    description: React.PropTypes.string.isRequired,
+    cards: React.PropTypes.arrayOf(React.PropTypes.shape({
+      title: React.PropTypes.string.isRequired,
+      answer: React.PropTypes.string.isRequired,
+      index: React.PropTypes.number.isRequired,
+    }).isRequired).isRequired,
+  }).isRequired,
 };
 
 const defaultProps = {

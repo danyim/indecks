@@ -6,7 +6,16 @@ import * as deckActions from '../redux/modules/decks';
 import DeckView from '../components/DeckView';
 
 const propTypes = {
-  decks: React.PropTypes.array.isRequired,
+  decks: React.PropTypes.arrayOf(React.PropTypes.shape({
+    id: React.PropTypes.string.isRequired,
+    title: React.PropTypes.string.isRequired,
+    description: React.PropTypes.string.isRequired,
+    cards: React.PropTypes.arrayOf(React.PropTypes.shape({
+      title: React.PropTypes.string.isRequired,
+      answer: React.PropTypes.string.isRequired,
+      index: React.PropTypes.number.isRequired,
+    }).isRequired).isRequired,
+  }).isRequired).isRequired,
   editDeck: React.PropTypes.func.isRequired,
   duplicateCard: React.PropTypes.func.isRequired,
   moveCard: React.PropTypes.func.isRequired,
