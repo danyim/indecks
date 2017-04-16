@@ -170,7 +170,7 @@ class ImportDeck extends React.Component {
               <hr />
               <p>or</p>
             </div>
-            <h4>Import an existing deck</h4>
+            <h4>Import an existing deck collection or deck</h4>
             <Dropzone
               onDrop={this.handleDrop}
               className={`${styles.drop}`}

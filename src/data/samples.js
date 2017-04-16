@@ -1,5 +1,6 @@
 const samples = [
   {
+    "id": "ABCEDFG",
     "title": "Front-End Interview Prep",
     "description": "Potential interview questions for a modern front-end engineering position with a focus on: Javascript/ES6, ReactJS, HTML5, and CSS3.",
     "cards": [
@@ -276,6 +277,7 @@ const samples = [
     ]
   },
   {
+    "id": "HIJKLMN",
     "title": "California DMV: Drivers' License Exam Prep",
     "description": "Questions and answers that will help prepare for the California DMV drivers' license exam.",
     "cards": [
@@ -367,6 +369,7 @@ const samples = [
     ]
   },
   {
+    "id": "QRSTUV",
     "title": "React/Redux Study",
     "description": "Material for studying basic concepts of the React/Redux framework.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     "cards": [
@@ -384,6 +387,23 @@ const samples = [
         "title": "What is the difference between `React.Component` and `React.PureComponent`?",
         "answer": "They are exactly the same except in a `PureComponent`, the `shouldComponentUpdate()` will only perform a shallow check of the state.\n\n[Source](https://facebook.github.io/react/docs/react-api.html#react.purecomponent)",
         "index": 3
+      }
+    ]
+  },
+  {
+    "id": "HafLG44d",
+    "title": "Recipes for Japanese Dishes",
+    "description": "A collection of Japanese recipes",
+    "cards": [
+      {
+        "title": "Kombu Dashi (soup base)",
+        "answer": "#### Ingredients\n- 4 cups of water\n- 4\"x4\" of Kombu\n- 3x dried shittake\n- 1 cup of dried bonito flakes\n\n#### Preparation\n1. Place the shittake and kombu in the water overnight\n2. Bring the mixture to just before a boil (until the bubbles appear) and turn the temperature down to a simmer\n3. Simmer for 1 minute and remove the kombu and shittake\n4. Add the bonito flakes and let simmer for 10 minutes\n5. Using a paper towel or strainer, pour the mixture into a container\n\nThe dashi can keep for up to 10 days if kept cool in the refrigerator or up to two weeks if frozen.",
+        "index": 0
+      },
+      {
+        "title": "![](http://www.seriouseats.com/recipes/assets_c/2016/07/20160711-gyudon-beef-rice-bowl-japanese-recipe-16-thumb-1500xauto-433093.jpg)Gyudon",
+        "answer": "#### Ingredients\n- 1 cup of dashi\n- 2 tbsp of **mirin**\n- 2 tbsp of sugar\n- 2 tbsp of sake\n- 2 tbsp of soy sauce\n- 1/2 lb of thinly sliced frozen ribeye (beef) -- no need to defrost\n- 1 white onion, sliced\n- 1.5 cup white rice (cooking it should yield 3 cups)\n- **Garnish**\n  - 2 stalks of green onion\n  - Pickled red ginger\n  - Roasted sesame seeds\n\n#### Preparation\n- Combine the dashi, soy sauce, sugar, sake, and mirin in a pan and bring to a boil\n- Add the onions to the pan\n- When the onions are soft, add the frozen beef to the pan\n- Separate the slices and cook until there is no more pink\n- Serve in bowls with white rice and garnish with sliced green onions, pickled red ginger, and a dash of roasted sesame seeds\n\nServing size: 2",
+        "index": 1
       }
     ]
   }

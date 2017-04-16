@@ -71,7 +71,7 @@ class Settings extends React.Component {
           </p>
           <ExportDeckButton
             filename="indecks.json"
-            label="Download all decks as JSON"
+            label="Download your deck collection as JSON"
             className="button"
             disabled={deckCount === 0}
             style={{}}
