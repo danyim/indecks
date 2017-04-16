@@ -103,4 +103,23 @@ describe('Card', () => {
 
     expect(wrapper.find(`Markdown[text="${title.substr(0, trimOverflowLength)}..."]`).exists()).toEqual(true);
   });
+
+  it('should trim the title not including markdown image tags', () => {
+    const extra = '![Image title](http://image.url)';
+    const title = 'Testing long title with an image';
+    const trimOverflowLength = 5;
+
+    const { wrapper } = setup({
+      ...defaultProps,
+      card: {
+        ...defaultProps.card,
+        title: extra + title
+      },
+      flipped: false,
+      trimOverflow: true,
+      trimOverflowLength
+    });
+
+    expect(wrapper.find(`Markdown[text="${title.substr(0, trimOverflowLength)}..."]`).exists()).toEqual(true);
+  });
 });

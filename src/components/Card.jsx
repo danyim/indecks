@@ -29,9 +29,13 @@ class Card extends React.Component {
   }
 
   trimOverflowTitle(text) {
-    return this.props.trimOverflow &&
-      text.length > this.props.trimOverflowLength ?
-        `${text.substr(0, this.props.trimOverflowLength)}...` : text;
+    const textWithoutImg = text.replace(/!\[.*\]\(.*\)/g, '');
+    return (
+      this.props.trimOverflow
+      && textWithoutImg.length > this.props.trimOverflowLength
+      ? `${textWithoutImg.substr(0, this.props.trimOverflowLength)}...`
+      : text
+    );
   }
 
   renderEmpty() {

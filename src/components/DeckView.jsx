@@ -8,8 +8,7 @@ import Overlay from './Overlay';
 import OverlayRow from './OverlayRow';
 import styles from '../styles/components/DeckView.styl';
 
-class DeckView extends React.Component {
-static propTypes = {
+const propTypes = {
   deck: React.PropTypes.shape({
     id: React.PropTypes.string.isRequired,
     title: React.PropTypes.string.isRequired,
@@ -26,13 +25,14 @@ static propTypes = {
   handleEditDeck: React.PropTypes.func.isRequired,
   handleRemoveCard: React.PropTypes.func.isRequired,
   handleRemoveDeck: React.PropTypes.func.isRequired
-}
+};
 
-static defaultProps = {
+const defaultProps = {
   maxDeckTitleLength: 160,
   maxDeckDescLength: 300
-}
+};
 
+class DeckView extends React.Component {
   constructor(props) {
     super(props);
 

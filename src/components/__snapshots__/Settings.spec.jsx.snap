@@ -21,7 +21,7 @@ exports[`Settings should render self and subcomponents 1`] = `
       onClick={[Function]}
       style={Object {}}
     >
-      Download all decks as JSON
+      Download your deck collection as JSON
     </button>
     <button
       className="btn-delete"

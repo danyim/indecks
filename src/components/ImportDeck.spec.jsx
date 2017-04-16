@@ -77,7 +77,7 @@ describe('ImportDeck', () => {
     expect(browserHistory.push).toHaveBeenCalledWith('/');
   });
 
-  it('should load 3 sample decks and then navigate home', () => {
+  it('should load 4 sample decks and then navigate home', () => {
     spyOn(browserHistory, 'push');
     const handlerAdd = jest.fn();
     const handlerClose = jest.fn();
@@ -88,7 +88,7 @@ describe('ImportDeck', () => {
     });
 
     wrapper.find('button.button[children="Load Sample Decks"]').simulate('click');
-    expect(handlerAdd.mock.calls.length).toBe(3);
+    expect(handlerAdd.mock.calls.length).toBe(4);
     expect(handlerClose.mock.calls.length).toBe(1);
     expect(browserHistory.push).toHaveBeenCalledWith('/');
   });
