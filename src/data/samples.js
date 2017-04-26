@@ -398,12 +398,17 @@ const samples = [
       {
         "title": "Kombu Dashi (soup base)",
         "answer": "#### Ingredients\n- 4 cups of water\n- 4\"x4\" of Kombu\n- 3x dried shittake\n- 1 cup of dried bonito flakes\n\n#### Preparation\n1. Place the shittake and kombu in the water overnight\n2. Bring the mixture to just before a boil (until the bubbles appear) and turn the temperature down to a simmer\n3. Simmer for 1 minute and remove the kombu and shittake\n4. Add the bonito flakes and let simmer for 10 minutes\n5. Using a paper towel or strainer, pour the mixture into a container\n\nThe dashi can keep for up to 10 days if kept cool in the refrigerator or up to two weeks if frozen.",
-        "index": 0
+        "index": 1
       },
       {
         "title": "![](http://www.seriouseats.com/recipes/assets_c/2016/07/20160711-gyudon-beef-rice-bowl-japanese-recipe-16-thumb-1500xauto-433093.jpg)Gyudon",
         "answer": "#### Ingredients\n- 1 cup of dashi\n- 2 tbsp of **mirin**\n- 2 tbsp of sugar\n- 2 tbsp of sake\n- 2 tbsp of soy sauce\n- 1/2 lb of thinly sliced frozen ribeye (beef) -- no need to defrost\n- 1 white onion, sliced\n- 1.5 cup white rice (cooking it should yield 3 cups)\n- **Garnish**\n  - 2 stalks of green onion\n  - Pickled red ginger\n  - Roasted sesame seeds\n\n#### Preparation\n- Combine the dashi, soy sauce, sugar, sake, and mirin in a pan and bring to a boil\n- Add the onions to the pan\n- When the onions are soft, add the frozen beef to the pan\n- Separate the slices and cook until there is no more pink\n- Serve in bowls with white rice and garnish with sliced green onions, pickled red ginger, and a dash of roasted sesame seeds\n\nServing size: 2",
-        "index": 1
+        "index": 2
+      },
+      {
+        "title": "![](https://yunomi.us/files/2014/12/soba-noodle.jpg) Zaru Soba Noodles",
+        "answer": "#### Ingredients\n- 1 bunch of Ju-wari (buckwheat) soba noodles\n- 1/4 cup sake\n- 1/2 cup mirin\n- 1/2 cup soy sauce\n- 1 piece of kombu (dried kelp) - 1\"x1\"\n- 1 cup of katsuobushi (dried bonito flakes)\n- **Garnish**\n  - 2 stalks of green onion\n  - Wasabi\n  - Roasted sesame seeds\n\n#### Preparation\n- **Mentsuyu** (soup base/dipping sauce)\n  - In a saucepan, add the sake, and bring it to a boil no high heat\n  - Add the soy sauce and mirin\n  - Add the kombu and bonito flakes (katsuobushi) as it comes to a boil and let simmer for 5 minutes on low heat\n- **Soba Noodles**\n  - Boil water in a large pot **without salt**\n  - Add soba noodles, separating them from each other\n  - Drain the noodles and vigorously rinse under running water to remove excess starch\n- Serve the noodles on a mat that will let the water drain and pour the dipping sauce into a bowl, garnishing with chopped green onions and a little bit of wasabi\n\nServing size: 2",
+        "index": 3
       }
     ]
   }
