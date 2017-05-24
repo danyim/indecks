@@ -17,7 +17,6 @@ const propTypes = {
   removeAllDecks: React.PropTypes.func.isRequired
 };
 
-
 // articles: PropTypes.arrayOf(PropTypes.shape({
 //   url: PropTypes.string.isRequired,
 //   title: PropTypes.string.isRequired,
@@ -39,10 +38,8 @@ class Settings extends React.Component {
     }
   }
 
-  render() {
-    const { deckCount } = this.props;
-
-    const renderDeleteAll = deckCount === 0 ?
+  renderDeleteAll(deckCount) {
+    return deckCount === 0 ?
       (
         <button
           className="btn-delete"
@@ -60,6 +57,10 @@ class Settings extends React.Component {
           Delete all {deckCount} deck(s) from local storage
         </button>
       );
+  }
+
+  render() {
+    const { deckCount } = this.props;
 
     return (
       <section className={`${styles.settings}`}>
@@ -77,7 +78,7 @@ class Settings extends React.Component {
             style={{}}
             exportFile={() => JSON.stringify(this.props.decks, null, 2)}
           />
-          {renderDeleteAll}
+          {this.renderDeleteAll(deckCount)}
         </div>
       </section>
     );
