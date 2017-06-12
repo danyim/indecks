@@ -6,8 +6,6 @@ exports[`CardView should render self and subcomponents 1`] = `
 >
   <div
     onMouseDown={[Function]}
-    onMouseMove={[Function]}
-    onMouseUp={[Function]}
     onTouchEnd={[Function]}
     onTouchMove={[Function]}
     onTouchStart={[Function]}

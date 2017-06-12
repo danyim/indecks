@@ -1,6 +1,6 @@
 /* globals __DEVELOPMENT__ */
 import { applyMiddleware, createStore, compose } from 'redux'
-import createLogger from 'redux-logger'
+import { createLogger } from 'redux-logger'
 import { persistStore, autoRehydrate } from 'redux-persist'
 import thunk from 'redux-thunk'
 import rootReducer from './redux/index'
