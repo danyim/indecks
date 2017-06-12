@@ -1,0 +1,9 @@
+{
+  "watch": [
+    "webpack.config.dev.js",
+    "webpack.config.prod.js",
+    "devServer.js",
+    "index.html",
+    ".bootstraprc"
+  ]
+}
