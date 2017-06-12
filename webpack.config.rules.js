@@ -1,5 +1,5 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const path = require('path')
 
 const nodeEnv = process.env.NODE_ENV || 'development'
 const isDev = nodeEnv !== 'production'
@@ -11,7 +11,7 @@ const loaderConfig = [
     include: path.join(__dirname, 'src'),
     loader: 'babel-loader',
     options: {
-      cacheDirectory: isDev,
+      cacheDirectory: isDev
     }
   },
   // CSS
@@ -33,8 +33,18 @@ const loaderConfig = [
             minimize: !isDev
           }
         },
-        'postcss-loader',
-        'stylus-loader'
+        {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: true
+          }
+        },
+        {
+          loader: 'stylus-loader',
+          options: {
+            sourceMap: true
+          }
+        }
       ]
     })
   },
@@ -43,7 +53,7 @@ const loaderConfig = [
     use: [
       {
         loader: 'url-loader?limit=8192'
-      },
+      }
     ]
   },
   {
@@ -86,7 +96,7 @@ const loaderConfig = [
     use: [
       'url-loader?limit=10000&mimetype=image/svg+xml'
     ]
-  },
-];
+  }
+]
 
-module.exports = loaderConfig;
+module.exports = loaderConfig

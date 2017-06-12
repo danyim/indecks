@@ -1,21 +1,21 @@
 'use strict'; // eslint-disable-line
 
-var path = require('path');
-var webpack = require('webpack');
-var rules = require('./webpack.config.rules');
+const path = require('path')
+const webpack = require('webpack')
+const rules = require('./webpack.config.rules')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-var autoPrefixer = require('autoprefixer');
-var poststylus = require('poststylus');
+// const autoPrefixer = require('autoprefixer');
+// const poststylus = require('poststylus');
 
-const nodeEnv = process.env.NODE_ENV || 'development';
-const isDev = nodeEnv !== 'production';
+const nodeEnv = process.env.NODE_ENV || 'development'
+const isDev = nodeEnv !== 'production'
 
 module.exports = {
   devtool: 'source-map',
   entry: [
-    'webpack-hot-middleware/client',
-    './src/index',
-    'font-awesome-webpack!./src/styles/font-awesome.config.js'
+    'webpack-hot-middleware/client?reload=true',
+    'font-awesome-webpack!./src/styles/font-awesome.config.js',
+    './src/index'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -23,26 +23,39 @@ module.exports = {
     publicPath: '/dist/'
   },
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        // Javascript lint
+        eslint: { failOnError: true },
+        context: '/',   // Required for the sourceMap of css/sass loader
+        debug: isDev,
+        minimize: !isDev
+      }
+    }),
     new ExtractTextPlugin({
       filename: '[name].[contenthash:8].css',
       allChunks: true,
       disable: isDev,   // Disable css extracting on development
       ignoreOrder: true
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       __DEVELOPMENT__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true'))
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.IgnorePlugin(/webpack-stats\.json$/),
+    new webpack.NoEmitOnErrorsPlugin()
   ],
   module: {
     rules
   },
+  resolveLoader: {
+    modules: ['src', 'node_modules']
+  },
   resolve: {
-    extensions: ['.js', '.jsx', '.styl'],
-    modules: [
-      path.join(__dirname, 'src'),
-      'node_modules'
-    ]
+    modules: ['src', 'node_modules'],
+    descriptionFiles: ['package.json'],
+    moduleExtensions: ['-loader'],
+    extensions: ['.js', '.jsx', '.json', '.styl']
   }
-};
+}

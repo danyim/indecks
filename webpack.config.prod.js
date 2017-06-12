@@ -1,13 +1,13 @@
-var path = require('path');
-var webpack = require('webpack');
-var loaders = require('./webpack.config.loaders');
-var autoPrefixer = require('autoprefixer');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var path = require('path')
+var webpack = require('webpack')
+var loaders = require('./webpack.config.loaders')
+var autoPrefixer = require('autoprefixer')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   devtool: 'source-map',
   entry: [
-    'font-awesome-webpack!./src/styles/font-awesome.config.prod.js',
+    // 'font-awesome-webpack!./src/styles/font-awesome.config.prod.js',
     './src/index'
   ],
   output: {
@@ -36,8 +36,14 @@ module.exports = {
   module: {
     loaders
   },
+  resolveLoader: {
+    modules: ['src', 'node_modules']
+  },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.styl']
+    modules: ['src', 'node_modules'],
+    descriptionFiles: ['package.json'],
+    moduleExtensions: ['-loader'],
+    extensions: ['.js', '.jsx', '.json', '.styl']
   },
   postcss: [autoPrefixer({ browsers: ['last 2 versions'] })]
-};
+}
