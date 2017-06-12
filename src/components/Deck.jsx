@@ -1,20 +1,21 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import { Link, browserHistory } from 'react-router'
 import styles from '../styles/components/Deck.styl'
 
 const propTypes = {
-  deck: React.PropTypes.shape({
-    id: React.PropTypes.string.isRequired,
-    title: React.PropTypes.string.isRequired,
-    description: React.PropTypes.string.isRequired,
-    cards: React.PropTypes.arrayOf(React.PropTypes.shape({
-      title: React.PropTypes.string.isRequired,
-      answer: React.PropTypes.string.isRequired,
-      index: React.PropTypes.number.isRequired
+  deck: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    cards: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      answer: PropTypes.string.isRequired,
+      index: PropTypes.number.isRequired
     }).isRequired).isRequired
   }).isRequired,
-  style: React.PropTypes.object,
-  children: React.PropTypes.node
+  style: PropTypes.object,
+  children: PropTypes.node
 }
 
 const defaultProps = {

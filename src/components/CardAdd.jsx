@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import CardPreview from './CardPreview'
 import styles from '../styles/components/CardAdd.styl'
 
 const propTypes = {
-  deckId: React.PropTypes.string.isRequired,
-  handleSubmit: React.PropTypes.func.isRequired,
-  history: React.PropTypes.object.isRequired
+  deckId: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 }
 
 const defaultProps = {}

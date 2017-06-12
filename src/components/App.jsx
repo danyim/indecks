@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import Navbar from './Navbar'
 
 const propTypes = {
-  children: React.PropTypes.object.isRequired
+  children: PropTypes.object.isRequired
 }
 
 const defaultProps = {}

@@ -1,15 +1,16 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import CardPreview from './CardPreview'
 import styles from '../styles/components/CardEdit.styl'
 
 const propTypes = {
-  cardIndex: React.PropTypes.number.isRequired,
-  deckId: React.PropTypes.string.isRequired,
-  formValues: React.PropTypes.object.isRequired,
-  handleSubmit: React.PropTypes.func.isRequired,
-  handleDelete: React.PropTypes.func.isRequired,
-  handleCancel: React.PropTypes.func.isRequired
+  cardIndex: PropTypes.number.isRequired,
+  deckId: PropTypes.string.isRequired,
+  formValues: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  handleCancel: PropTypes.func.isRequired
 }
 
 const defaultProps = {

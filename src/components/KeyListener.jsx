@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import KeyBinding from 'react-keybinding-component'
 
@@ -9,7 +10,7 @@ import KeyBinding from 'react-keybinding-component'
  *   }
  */
 const propTypes = {
-  handlers: React.PropTypes.array.isRequired
+  handlers: PropTypes.array.isRequired
 }
 
 const defaultProps = {

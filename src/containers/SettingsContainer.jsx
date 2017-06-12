@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -5,8 +6,8 @@ import * as deckActions from '../redux/modules/decks'
 import Settings from '../components/Settings'
 
 const propTypes = {
-  deckCount: React.PropTypes.number.isRequired,
-  removeAllDecks: React.PropTypes.func.isRequired
+  deckCount: PropTypes.number.isRequired,
+  removeAllDecks: PropTypes.func.isRequired
 }
 
 const defaultProps = {}

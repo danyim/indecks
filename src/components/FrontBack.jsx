@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import classNames from 'classnames'
 import styles from '../styles/components/FrontBack.styl'
 
 const propTypes = {
-  handleFlip: React.PropTypes.func.isRequired,
-  flipped: React.PropTypes.bool.isRequired
+  handleFlip: PropTypes.func.isRequired,
+  flipped: PropTypes.bool.isRequired
 }
 
 const defaultProps = {}

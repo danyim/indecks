@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import { browserHistory } from 'react-router'
 import KeyBinding from 'react-keybinding-component'
@@ -5,12 +6,12 @@ import CardEditForm from './CardEditForm'
 import styles from '../styles/components/CardEdit.styl'
 
 const propTypes = {
-  card: React.PropTypes.object.isRequired,
-  cardIndex: React.PropTypes.number.isRequired,
-  deckId: React.PropTypes.string.isRequired,
-  editCard: React.PropTypes.func.isRequired,
-  removeCard: React.PropTypes.func.isRequired,
-  form: React.PropTypes.object.isRequired
+  card: PropTypes.object.isRequired,
+  cardIndex: PropTypes.number.isRequired,
+  deckId: PropTypes.string.isRequired,
+  editCard: PropTypes.func.isRequired,
+  removeCard: PropTypes.func.isRequired,
+  form: PropTypes.object.isRequired
 }
 
 const defaultProps = {}

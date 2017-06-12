@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import { Motion, spring } from 'react-motion'
 import Markdown from './Markdown'
 import styles from '../styles/components/CardPreview.styl'
 
 const propTypes = {
-  title: React.PropTypes.string,
-  answer: React.PropTypes.string
+  title: PropTypes.string,
+  answer: PropTypes.string
 }
 
 const defaultProps = {

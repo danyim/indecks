@@ -1,15 +1,16 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import Markdown from './Markdown'
 import styles from '../styles/components/Card.styl'
 
 const propTypes = {
-  card: React.PropTypes.object.isRequired,
-  className: React.PropTypes.string,
-  flipped: React.PropTypes.bool,
-  handleOnClick: React.PropTypes.func,
-  trimOverflow: React.PropTypes.bool,
-  trimOverflowLength: React.PropTypes.number,
-  children: React.PropTypes.node
+  card: PropTypes.object.isRequired,
+  className: PropTypes.string,
+  flipped: PropTypes.bool,
+  handleOnClick: PropTypes.func,
+  trimOverflow: PropTypes.bool,
+  trimOverflowLength: PropTypes.number,
+  children: PropTypes.node
 }
 
 const defaultProps = {

@@ -1,20 +1,21 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import ExportDeckButton from './ExportDeckButton'
 import styles from '../styles/components/Settings.styl'
 
 const propTypes = {
-  decks: React.PropTypes.arrayOf(React.PropTypes.shape({
-    id: React.PropTypes.string.isRequired,
-    title: React.PropTypes.string.isRequired,
-    description: React.PropTypes.string.isRequired,
-    cards: React.PropTypes.arrayOf(React.PropTypes.shape({
-      title: React.PropTypes.string.isRequired,
-      answer: React.PropTypes.string.isRequired,
-      index: React.PropTypes.number.isRequired
+  decks: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    cards: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      answer: PropTypes.string.isRequired,
+      index: PropTypes.number.isRequired
     }).isRequired).isRequired
   }).isRequired).isRequired,
-  deckCount: React.PropTypes.number.isRequired,
-  removeAllDecks: React.PropTypes.func.isRequired
+  deckCount: PropTypes.number.isRequired,
+  removeAllDecks: PropTypes.func.isRequired
 }
 
 // articles: PropTypes.arrayOf(PropTypes.shape({

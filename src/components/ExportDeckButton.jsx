@@ -1,12 +1,13 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 
 const propTypes = {
-  filename: React.PropTypes.string,
-  label: React.PropTypes.string,
-  disabled: React.PropTypes.bool,
-  style: React.PropTypes.object,
-  className: React.PropTypes.string,
-  exportFile: React.PropTypes.func
+  filename: PropTypes.string,
+  label: PropTypes.string,
+  disabled: PropTypes.bool,
+  style: PropTypes.object,
+  className: PropTypes.string,
+  exportFile: PropTypes.func
 }
 
 const defaultProps = {

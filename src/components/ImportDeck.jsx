@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import { browserHistory } from 'react-router'
 import Dropzone from 'react-dropzone'
@@ -5,10 +6,10 @@ import samples from '../data/samples'
 import styles from '../styles/components/ImportDeck.styl'
 
 const propTypes = {
-  addDeck: React.PropTypes.func.isRequired,
-  handleClose: React.PropTypes.func,
-  maxDeckTitleLength: React.PropTypes.number,
-  maxDeckDescLength: React.PropTypes.number
+  addDeck: PropTypes.func.isRequired,
+  handleClose: PropTypes.func,
+  maxDeckTitleLength: PropTypes.number,
+  maxDeckDescLength: PropTypes.number
 }
 
 const defaultProps = {

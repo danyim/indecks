@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import { RIEInput, RIETextArea } from 'riek'
 import { Link, browserHistory } from 'react-router'
@@ -9,22 +10,22 @@ import OverlayRow from './OverlayRow'
 import styles from '../styles/components/DeckView.styl'
 
 const propTypes = {
-  deck: React.PropTypes.shape({
-    id: React.PropTypes.string.isRequired,
-    title: React.PropTypes.string.isRequired,
-    description: React.PropTypes.string.isRequired,
-    cards: React.PropTypes.arrayOf(React.PropTypes.shape({
-      title: React.PropTypes.string.isRequired,
-      answer: React.PropTypes.string.isRequired,
-      index: React.PropTypes.number.isRequired
+  deck: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    cards: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      answer: PropTypes.string.isRequired,
+      index: PropTypes.number.isRequired
     }).isRequired).isRequired
   }).isRequired,
-  maxDeckTitleLength: React.PropTypes.number,
-  maxDeckDescLength: React.PropTypes.number,
-  handleDuplicateCard: React.PropTypes.func.isRequired,
-  handleEditDeck: React.PropTypes.func.isRequired,
-  handleRemoveCard: React.PropTypes.func.isRequired,
-  handleRemoveDeck: React.PropTypes.func.isRequired
+  maxDeckTitleLength: PropTypes.number,
+  maxDeckDescLength: PropTypes.number,
+  handleDuplicateCard: PropTypes.func.isRequired,
+  handleEditDeck: PropTypes.func.isRequired,
+  handleRemoveCard: PropTypes.func.isRequired,
+  handleRemoveDeck: PropTypes.func.isRequired
 }
 
 const defaultProps = {

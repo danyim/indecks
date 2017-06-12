@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import styles from '../styles/components/Overlay.styl'
 
 const propTypes = {
-  className: React.PropTypes.string,
-  children: React.PropTypes.node
+  className: PropTypes.string,
+  children: PropTypes.node
 }
 
 const defaultProps = {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -5,16 +6,16 @@ import * as deckActions from '../redux/modules/decks'
 import CardEdit from '../components/CardEdit'
 
 const propTypes = {
-  card: React.PropTypes.shape({
-    title: React.PropTypes.string.isRequired,
-    answer: React.PropTypes.string.isRequired,
-    index: React.PropTypes.number.isRequired
+  card: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    answer: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired
   }).isRequired,
-  cardIndex: React.PropTypes.number.isRequired,
-  deckId: React.PropTypes.string.isRequired,
-  editCard: React.PropTypes.func.isRequired,
-  removeCard: React.PropTypes.func.isRequired,
-  form: React.PropTypes.object.isRequired
+  cardIndex: PropTypes.number.isRequired,
+  deckId: PropTypes.string.isRequired,
+  editCard: PropTypes.func.isRequired,
+  removeCard: PropTypes.func.isRequired,
+  form: PropTypes.object.isRequired
 }
 const defaultProps = {}
 

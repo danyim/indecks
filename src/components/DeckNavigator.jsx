@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import { browserHistory } from 'react-router'
 import KeyBinding from 'react-keybinding-component'
@@ -7,22 +8,22 @@ import FrontBack from './FrontBack'
 import styles from '../styles/components/DeckNavigator.styl'
 
 const propTypes = {
-  deck: React.PropTypes.shape({
-    id: React.PropTypes.string.isRequired,
-    title: React.PropTypes.string.isRequired,
-    description: React.PropTypes.string.isRequired,
-    cards: React.PropTypes.arrayOf(React.PropTypes.shape({
-      title: React.PropTypes.string.isRequired,
-      answer: React.PropTypes.string.isRequired,
-      index: React.PropTypes.number.isRequired
+  deck: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    cards: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      answer: PropTypes.string.isRequired,
+      index: PropTypes.number.isRequired
     }).isRequired).isRequired
   }).isRequired,
-  cardIndex: React.PropTypes.number.isRequired,
-  handleFlip: React.PropTypes.func.isRequired,
-  flipped: React.PropTypes.bool.isRequired,
-  config: React.PropTypes.object.isRequired,
-  handleShuffleToggle: React.PropTypes.func.isRequired,
-  mode: React.PropTypes.string.isRequired
+  cardIndex: PropTypes.number.isRequired,
+  handleFlip: PropTypes.func.isRequired,
+  flipped: PropTypes.bool.isRequired,
+  config: PropTypes.object.isRequired,
+  handleShuffleToggle: PropTypes.func.isRequired,
+  mode: PropTypes.string.isRequired
 }
 
 const defaultProps = {}

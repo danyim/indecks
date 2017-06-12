@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import styles from '../styles/components/CardCount.styl'
 
 const propTypes = {
-  current: React.PropTypes.number.isRequired,
-  max: React.PropTypes.number.isRequired
+  current: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired
 }
 
 const defaultProps = {}

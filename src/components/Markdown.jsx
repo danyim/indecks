@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import Remarkable from 'remarkable'
 
 const propTypes = {
-  className: React.PropTypes.string,
-  text: React.PropTypes.string,
-  handleOnClick: React.PropTypes.func
+  className: PropTypes.string,
+  text: PropTypes.string,
+  handleOnClick: PropTypes.func
 }
 
 const defaultProps = {
