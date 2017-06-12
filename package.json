@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "An interactive index card built in ReactJS",
   "scripts": {
-    "prepush": "npm run lint",
+    "precommit": "lint-staged",
+    "prepush": "yarn test",
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
     "test": "jest --config ./jest.json",
@@ -15,9 +16,25 @@
     "publish:git": "npm run build && mkdir dist/dist && mv dist/*.* dist/dist && cp index.html dist/index.html && sed -e 's/\\/dist/dist/g' dist/index.html > dist/index.html.tmp && mv dist/index.html.tmp dist/index.html && gh-pages -d dist",
     "tunnel": "browser-sync start --proxy localhost:7770",
     "lint": "npm-run-all --parallel lint:*",
-    "lint:js": "eslint -c .eslintrc src --ext .jsx",
+    "lint:js": "standard src --ext .jsx --verbose | snazzy",
     "lint:styles": "stylint src/styles/**/*.styl",
     "watch:lint": "npm-run-all --parallel lint:* -- --watch"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "standard --fix --verbose | snazzy",
+      "git add"
+    ],
+    "*.css": [
+      "stylefmt",
+      "stylelint",
+      "git add"
+    ],
+    "*.styl": [
+      "stylefmt",
+      "stylint",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
@@ -99,12 +116,15 @@
     "husky": "^0.13.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^19.0.2",
+    "lint-staged": "^3.6.1",
     "mocha": "^3.2.0",
     "npm-run-all": "^4.0.1",
     "nyc": "^10.1.2",
     "postcss-loader": "^1.2.2",
     "poststylus": "^0.2.3",
     "rimraf": "^2.5.2",
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.2",
     "style-loader": "^0.13.1",
     "stylint": "^1.5.9",
     "stylus": "^0.54.5",
