@@ -1,7 +1,7 @@
-import React from 'react';
-import { TransitionMotion, spring } from 'react-motion';
-import Deck from './Deck';
-import styles from '../styles/components/DeckGrid.styl';
+import React from 'react'
+import { TransitionMotion, spring } from 'react-motion'
+import Deck from './Deck'
+import styles from '../styles/components/DeckGrid.styl'
 
 const propTypes = {
   decks: React.PropTypes.arrayOf(React.PropTypes.shape({
@@ -11,31 +11,31 @@ const propTypes = {
     cards: React.PropTypes.arrayOf(React.PropTypes.shape({
       title: React.PropTypes.string.isRequired,
       answer: React.PropTypes.string.isRequired,
-      index: React.PropTypes.number.isRequired,
-    }).isRequired).isRequired,
+      index: React.PropTypes.number.isRequired
+    }).isRequired).isRequired
   }).isRequired).isRequired,
   removeDeck: React.PropTypes.func.isRequired
-};
+}
 
-const defaultProps = {};
+const defaultProps = {}
 
 class DeckGrid extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleRemoveDeck = this.handleRemoveDeck.bind(this);
+  constructor (props) {
+    super(props)
+    this.handleRemoveDeck = this.handleRemoveDeck.bind(this)
   }
 
-  handleRemoveDeck(deckId) {
+  handleRemoveDeck (deckId) {
     if (confirm('Are you sure you want to delete this deck?')) {
-      this.props.removeDeck(deckId);
+      this.props.removeDeck(deckId)
     }
   }
 
-  render() {
+  render () {
     return (
       <TransitionMotion
-        willEnter={() => ({ opacity: 0, left: -100})}
-        willLeave={() => ({ opacity: spring(0), left: spring(-100)})}
+        willEnter={() => ({ opacity: 0, left: -100 })}
+        willLeave={() => ({ opacity: spring(0), left: spring(-100) })}
         styles={this.props.decks.map(d => ({
           key: `deck_${d.id}`,
           data: { deck: d },
@@ -59,20 +59,20 @@ class DeckGrid extends React.Component {
                         display: 'relative'
                       }}
                     />
-                  );
+                  )
                 })
               }
               { this.props.decks.length === 0 &&
-                <p key="no_value" className="center">Click the + button on the top left to add a deck</p>
+                <p key='no_value' className='center'>Click the + button on the top left to add a deck</p>
               }
             </section>
         }
       </TransitionMotion>
-    );
+    )
   }
 }
 
-DeckGrid.propTypes = propTypes;
-DeckGrid.defaultProps = defaultProps;
+DeckGrid.propTypes = propTypes
+DeckGrid.defaultProps = defaultProps
 
-export default DeckGrid;
+export default DeckGrid

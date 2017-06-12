@@ -1,15 +1,15 @@
-import React from 'react';
-import Swipeable from 'react-swipeable';
-import { browserHistory } from 'react-router';
-import Card from './Card';
-import DeckNavigator from './DeckNavigator';
+import React from 'react'
+import Swipeable from 'react-swipeable'
+import { browserHistory } from 'react-router'
+import Card from './Card'
+import DeckNavigator from './DeckNavigator'
 // import styles from '../styles/components/CardView.styl'; // Not used, uncomment later
 
 const propTypes = {
   card: React.PropTypes.shape({
     title: React.PropTypes.string.isRequired,
     answer: React.PropTypes.string.isRequired,
-    index: React.PropTypes.number.isRequired,
+    index: React.PropTypes.number.isRequired
   }).isRequired,
   deck: React.PropTypes.shape({
     id: React.PropTypes.string.isRequired,
@@ -18,80 +18,80 @@ const propTypes = {
     cards: React.PropTypes.arrayOf(React.PropTypes.shape({
       title: React.PropTypes.string.isRequired,
       answer: React.PropTypes.string.isRequired,
-      index: React.PropTypes.number.isRequired,
-    }).isRequired).isRequired,
+      index: React.PropTypes.number.isRequired
+    }).isRequired).isRequired
   }).isRequired,
   config: React.PropTypes.object.isRequired,
   cardIndex: React.PropTypes.number.isRequired,
   toggleShuffle: React.PropTypes.func.isRequired
-};
+}
 
-const defaultProps = {};
+const defaultProps = {}
 
 class CardView extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { flipped: false };
+  constructor (props) {
+    super(props)
+    this.state = { flipped: false }
 
-    this.handleEditCard = this.handleEditCard.bind(this);
-    this.handleNextCard = this.handleNextCard.bind(this);
-    this.handlePrevCard = this.handlePrevCard.bind(this);
-    this.handleFlip = this.handleFlip.bind(this);
-    this.handleShuffleToggle = this.handleShuffleToggle.bind(this);
+    this.handleEditCard = this.handleEditCard.bind(this)
+    this.handleNextCard = this.handleNextCard.bind(this)
+    this.handlePrevCard = this.handlePrevCard.bind(this)
+    this.handleFlip = this.handleFlip.bind(this)
+    this.handleShuffleToggle = this.handleShuffleToggle.bind(this)
   }
 
-  randomCardIndex() {
-    return Math.floor((Math.random() * this.maxCardIndex) + 1);
+  randomCardIndex () {
+    return Math.floor((Math.random() * this.maxCardIndex) + 1)
   }
 
-  handleNextCard() {
+  handleNextCard () {
     if (this.props.cardIndex < this.props.deck.cards.length || this.props.config.shuffle === true) {
-      this.handleFlip(null, false);
-      let nextIndex = this.props.cardIndex + 1; // Going forwards
+      this.handleFlip(null, false)
+      let nextIndex = this.props.cardIndex + 1 // Going forwards
       if (this.props.config.shuffle === true) {
-        nextIndex = this.randomCardIndex();
+        nextIndex = this.randomCardIndex()
       }
 
-      browserHistory.push(`/view/${this.props.deck.id}/${nextIndex}`);
+      browserHistory.push(`/view/${this.props.deck.id}/${nextIndex}`)
     }
   }
 
-  handlePrevCard() {
+  handlePrevCard () {
     if (this.props.cardIndex > 1 || this.props.config.shuffle === true) {
-      this.handleFlip(null, false);
-      let nextIndex = this.props.cardIndex - 1; // Going backwards
+      this.handleFlip(null, false)
+      let nextIndex = this.props.cardIndex - 1 // Going backwards
       if (this.props.config.shuffle === true) {
-        nextIndex = this.randomCardIndex();
+        nextIndex = this.randomCardIndex()
       }
-      browserHistory.push(`/view/${this.props.deck.id}/${nextIndex}`);
+      browserHistory.push(`/view/${this.props.deck.id}/${nextIndex}`)
     }
   }
 
-  handleEditCard() {
-    browserHistory.push(`/edit/${this.props.deck.id}/${this.props.cardIndex}`);
+  handleEditCard () {
+    browserHistory.push(`/edit/${this.props.deck.id}/${this.props.cardIndex}`)
   }
 
   /**
    * Flips the card
    */
-  handleFlip(e, flipped = null) {
+  handleFlip (e, flipped = null) {
     if (flipped !== null) {
-      this.setState({ flipped });
+      this.setState({ flipped })
     } else {
-      this.setState({ flipped: !this.state.flipped });
+      this.setState({ flipped: !this.state.flipped })
     }
   }
 
-  handleShuffleToggle() {
-    this.props.toggleShuffle();
+  handleShuffleToggle () {
+    this.props.toggleShuffle()
   }
 
-  render() {
-    const { card, deck, config, cardIndex } = this.props;
-    const mode = 'view';
+  render () {
+    const { card, deck, config, cardIndex } = this.props
+    const mode = 'view'
 
     return (
-      <section className="single">
+      <section className='single'>
         <Swipeable
           onSwipedDown={this.handleEditCard}
           onSwipedLeft={this.handleNextCard}
@@ -108,11 +108,11 @@ class CardView extends React.Component {
           handleShuffleToggle={this.handleShuffleToggle}
         />
       </section>
-    );
+    )
   }
 }
 
-CardView.propTypes = propTypes;
-CardView.defaultProps = defaultProps;
+CardView.propTypes = propTypes
+CardView.defaultProps = defaultProps
 
-export default CardView;
+export default CardView

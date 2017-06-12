@@ -12,6 +12,7 @@
     "chai-expect"
   ],
   "extends": [
+    "standard",
     "airbnb",
     "eslint:recommended",
     "plugin:react/recommended",

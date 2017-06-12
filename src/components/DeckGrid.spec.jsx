@@ -1,7 +1,7 @@
-import React from 'react';
-import { shallow, mount } from 'enzyme';
-import renderer from 'react-test-renderer';
-import DeckGrid from './DeckGrid';
+import React from 'react'
+import { shallow, mount } from 'enzyme'
+import renderer from 'react-test-renderer'
+import DeckGrid from './DeckGrid'
 
 const defaultProps = {
   decks: [{
@@ -11,9 +11,9 @@ const defaultProps = {
     cards: []
   }],
   removeDeck: jest.fn()
-};
+}
 
-function setup(props = defaultProps) {
+function setup (props = defaultProps) {
   const wrapper = shallow(<DeckGrid {...props} />)
 
   return {
@@ -22,7 +22,7 @@ function setup(props = defaultProps) {
   }
 }
 
-function setupFull(props = defaultProps) {
+function setupFull (props = defaultProps) {
   const wrapper = mount(<DeckGrid {...props} />)
 
   return {
@@ -35,34 +35,34 @@ describe('DeckGrid', () => {
   it('should render self and subcomponents', () => {
     const tree = renderer.create(
       <DeckGrid {...defaultProps} />
-    ).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 
   // This method is implemented but not used anywhere
   it.skip('should call the removeDeck prop when the "Delete" deck overlay button is clicked', () => {
-    const handler = jest.fn();
-    spyOn(window, 'confirm').and.returnValue(true);
+    const handler = jest.fn()
+    spyOn(window, 'confirm').and.returnValue(true)
     const { wrapper } = setup({
       ...defaultProps,
       removeDeck: handler
-    });
+    })
 
-    wrapper.find('Overlay button[children="Delete"]').first().simulate('click');
-    expect(handler.mock.calls.length).toBe(1);
-  });
+    wrapper.find('Overlay button[children="Delete"]').first().simulate('click')
+    expect(handler.mock.calls.length).toBe(1)
+  })
 
   it('should display the correct amount of decks', () => {
-    const { props, wrapper } = setupFull();
+    const { props, wrapper } = setupFull()
 
-    expect(wrapper.find('Deck').length).toBe(props.decks.length);
-  });
+    expect(wrapper.find('Deck').length).toBe(props.decks.length)
+  })
 
   it('should display a message if no decks are found', () => {
     const { wrapper } = setupFull({
       ...defaultProps,
       decks: []
-    });
-    expect(wrapper.find('p.center').exists()).toBe(true);
-  });
-});
+    })
+    expect(wrapper.find('p.center').exists()).toBe(true)
+  })
+})

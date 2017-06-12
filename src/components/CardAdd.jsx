@@ -1,27 +1,27 @@
-import React from 'react';
-import CardPreview from './CardPreview';
-import styles from '../styles/components/CardAdd.styl';
+import React from 'react'
+import CardPreview from './CardPreview'
+import styles from '../styles/components/CardAdd.styl'
 
 const propTypes = {
   deckId: React.PropTypes.string.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
   history: React.PropTypes.object.isRequired
-};
+}
 
-const defaultProps = {};
+const defaultProps = {}
 
 class CardAdd extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
-    this.handleCancel = this.handleCancel.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCancel = this.handleCancel.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
 
     // Default values for the edit fields
     this.state = {
       title: '',
-      description: '',
-    };
+      description: ''
+    }
   }
 
   // componentDidMount() {
@@ -33,46 +33,46 @@ class CardAdd extends React.Component {
   //   }, 100);
   // }
 
-  handleSubmit(e, deckId) {
-    e.preventDefault();
-    if(this.state.title.trim() === '' || this.state.answer.trim() === '') {
-      return false;
+  handleSubmit (e, deckId) {
+    e.preventDefault()
+    if (this.state.title.trim() === '' || this.state.answer.trim() === '') {
+      return false
     }
 
     const card = {
       title: this.state.title,
       answer: this.state.answer
-    };
-    this.props.handleSubmit(deckId, card);
+    }
+    this.props.handleSubmit(deckId, card)
   }
 
-  handleCancel() {
-    this.props.history.goBack();
+  handleCancel () {
+    this.props.history.goBack()
   }
 
-  handleChange(event, key) {
-    const state = { ...this.state };
-    state[key] = event.target.value;
-    this.setState(state);
+  handleChange (event, key) {
+    const state = { ...this.state }
+    state[key] = event.target.value
+    this.setState(state)
   }
 
-  render() {
-    const { deckId } = this.props;
+  render () {
+    const { deckId } = this.props
 
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`}>
         <form
-          className="edit-form"
+          className='edit-form'
           onSubmit={e => this.handleSubmit(e, deckId)}
         >
           <input
-            type="text" className="large-input" name="title"
-            placeholder="Title"
+            type='text' className='large-input' name='title'
+            placeholder='Title'
             onChange={e => this.handleChange(e, 'title')}
           />
           <textarea
-            type="text" className="mono" name="answer"
-            placeholder="Answer (Markdown)" rows="4"
+            type='text' className='mono' name='answer'
+            placeholder='Answer (Markdown)' rows='4'
             onChange={e => this.handleChange(e, 'answer')}
           />
 
@@ -82,16 +82,16 @@ class CardAdd extends React.Component {
           />
 
           <div className={`${styles['control-buttons']}`}>
-            <button type="submit" className="button">Save</button>
-            <button type="button" className="button" onClick={this.handleCancel}>Cancel</button>
+            <button type='submit' className='button'>Save</button>
+            <button type='button' className='button' onClick={this.handleCancel}>Cancel</button>
           </div>
         </form>
       </figure>
-    );
+    )
   }
 }
 
-CardAdd.propTypes = propTypes;
-CardAdd.defaultProps = defaultProps;
+CardAdd.propTypes = propTypes
+CardAdd.defaultProps = defaultProps
 
-export default CardAdd;
+export default CardAdd

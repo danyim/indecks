@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from '../styles/components/DeckSelector.styl';
+import React from 'react'
+import styles from '../styles/components/DeckSelector.styl'
 
 const propTypes = {
   // decks: React.PropTypes.array.isRequired,
@@ -7,12 +7,12 @@ const propTypes = {
   // maxSelected: React.PropTypes.number.isRequired,
   // minSelected: React.PropTypes.number.isRequired,
   // handleOnSelected: React.PropTypes.func.isRequired
-};
+}
 
 const defaultProps = {
   maxSelected: 1,
   minSelected: 1
-};
+}
 
 /**
  * Should be a simple pop-up of all the decks available to choose from,
@@ -23,7 +23,7 @@ const defaultProps = {
  * Output: deck(s) selected from the list
  */
 const DeckSelector = () => {
-  const { decks } = this.props;
+  const { decks } = this.props
 
   return (
     <div>
@@ -34,11 +34,10 @@ const DeckSelector = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-DeckSelector.propTypes = propTypes;
-DeckSelector.defaultProps = defaultProps;
+DeckSelector.propTypes = propTypes
+DeckSelector.defaultProps = defaultProps
 
-export default DeckSelector;
-
+export default DeckSelector

@@ -1,4 +1,4 @@
-import reducer, * as actions from './decks';
+import reducer, * as actions from './decks'
 
 describe('decks redux', () => {
   const deck = {
@@ -17,7 +17,7 @@ describe('decks redux', () => {
     id: 'ADBCEF',
     title: 'Test Deck',
     description: 'Test deck description.'
-  };
+  }
   const deck2 = {
     cards: [
       {
@@ -34,7 +34,7 @@ describe('decks redux', () => {
     id: 'UVWXYZ',
     title: 'Test Deck 2',
     description: 'Test deck 2 description.'
-  };
+  }
   const deck3 = {
     cards: [
       {
@@ -51,13 +51,13 @@ describe('decks redux', () => {
     id: 'HIJKLM',
     title: 'Test Deck 3',
     description: 'Test deck 3 description.'
-  };
+  }
 
   it('should return the initial state', () => {
     expect(
       reducer(undefined, {})
     ).toEqual({})
-  });
+  })
 
   describe('ADD_DECK', () => {
     it('should create an action to add a deck', () => {
@@ -66,7 +66,7 @@ describe('decks redux', () => {
         deck
       }
       expect(actions.addDeck(deck)).toEqual(expectedAction)
-    });
+    })
 
     it('should handle adding to an empty array of decks', () => {
       expect(
@@ -76,8 +76,8 @@ describe('decks redux', () => {
         })
       ).toEqual([
         deck
-      ]);
-    });
+      ])
+    })
 
     it('should handle adding to a populated array of decks', () => {
       expect(
@@ -93,15 +93,15 @@ describe('decks redux', () => {
       ).toEqual([
         deck2,
         deck
-      ]);
-    });
-  });
+      ])
+    })
+  })
 
   describe('EDIT_DECK', () => {
     it('should create an action to edit a deck', () => {
-      const deckId = 'ABCDEFG';
-      const title = 'Deck title';
-      const description = 'Deck description';
+      const deckId = 'ABCDEFG'
+      const title = 'Deck title'
+      const description = 'Deck description'
       const expectedAction = {
         type: 'EDIT_DECK',
         deckId,
@@ -109,7 +109,7 @@ describe('decks redux', () => {
         description
       }
       expect(actions.editDeck(deckId, title, description)).toEqual(expectedAction)
-    });
+    })
 
     it('should handle editing a non-existent deck', () => {
       expect(
@@ -117,10 +117,10 @@ describe('decks redux', () => {
           type: 'EDIT_DECK',
           deckId: 1234,
           title: 'Test 1',
-          description: 'Test 2',
+          description: 'Test 2'
         })
-      ).toEqual([]);
-    });
+      ).toEqual([])
+    })
 
     it('should handle editing an existing deck', () => {
       expect(
@@ -132,7 +132,7 @@ describe('decks redux', () => {
             type: 'EDIT_DECK',
             deckId: deck.id,
             title: 'Edited Title',
-            description: deck.description,
+            description: deck.description
           }
         )
       ).toEqual([
@@ -140,19 +140,19 @@ describe('decks redux', () => {
           ...deck,
           title: 'Edited Title'
         }
-      ]);
-    });
-  });
+      ])
+    })
+  })
 
   describe('REMOVE_DECK', () => {
     it('should create an action to remove a deck', () => {
-      const deckId = 'ABCDEFG';
+      const deckId = 'ABCDEFG'
       const expectedAction = {
         type: 'REMOVE_DECK',
         deckId
       }
       expect(actions.removeDeck(deckId)).toEqual(expectedAction)
-    });
+    })
 
     it('should handle removing a non-existent deck', () => {
       expect(
@@ -160,8 +160,8 @@ describe('decks redux', () => {
           type: 'REMOVE_DECK',
           deckId: 1234
         })
-      ).toEqual([]);
-    });
+      ).toEqual([])
+    })
 
     it('should handle removing an existing deck', () => {
       expect(
@@ -176,19 +176,19 @@ describe('decks redux', () => {
             deckId: deck2.id
           }
         )
-      ).toEqual([deck, deck3]);
-    });
-  });
+      ).toEqual([deck, deck3])
+    })
+  })
 
   describe('SHUFFLE_DECK', () => {
     it('should create an action to shuffle cards in a deck', () => {
-      const deckId = 'ABCDEFG';
+      const deckId = 'ABCDEFG'
       const expectedAction = {
         type: 'SHUFFLE_DECK',
         deckId
       }
       expect(actions.shuffleDeck(deckId)).toEqual(expectedAction)
-    });
+    })
 
     // it('should handle shuffling a deck', () => {
     //   expect(
@@ -203,13 +203,13 @@ describe('decks redux', () => {
 
     //   ]);
     // });
-  });
+  })
 
   describe('ADD_CARD', () => {
     it('should create an action to add a card to a deck', () => {
-      const title = 'Title';
-      const answer = 'Answer';
-      const deckId = 'ABCDEFG';
+      const title = 'Title'
+      const answer = 'Answer'
+      const deckId = 'ABCDEFG'
       const expectedAction = {
         type: 'ADD_CARD',
         title,
@@ -217,7 +217,7 @@ describe('decks redux', () => {
         deckId
       }
       expect(actions.addCard(title, answer, deckId)).toEqual(expectedAction)
-    });
+    })
 
     it('should handle adding a card to a non-existent deck', () => {
       expect(
@@ -227,14 +227,14 @@ describe('decks redux', () => {
           answer: 'Answer',
           deckId: '???'
         })
-      ).toEqual([]);
-    });
+      ).toEqual([])
+    })
 
     it('should handle adding a card to an existing deck', () => {
       const newCard = {
         title: 'Title',
         answer: 'Answer'
-      };
+      }
 
       expect(
         reducer(
@@ -263,21 +263,21 @@ describe('decks redux', () => {
           ]
         },
         deck3
-      ]);
-    });
-  });
+      ])
+    })
+  })
 
   describe('DUPLICATE_CARD', () => {
     it('should create an action to add a card to a deck', () => {
-      const cardIndex = 4;
-      const deckId = 'ABCDEFG';
+      const cardIndex = 4
+      const deckId = 'ABCDEFG'
       const expectedAction = {
         type: 'DUPLICATE_CARD',
         cardIndex,
         deckId
       }
       expect(actions.duplicateCard(cardIndex, deckId)).toEqual(expectedAction)
-    });
+    })
 
     it('should handle duplicating a card', () => {
       expect(
@@ -306,16 +306,16 @@ describe('decks redux', () => {
           ]
         },
         deck3
-      ]);
-    });
-  });
+      ])
+    })
+  })
 
   describe('EDIT_CARD', () => {
     it('should create an action to edit a card in a deck', () => {
-      const title = 'Title';
-      const answer = 'Answer';
-      const cardIndex = 1;
-      const deckId = 'ABCDEFG';
+      const title = 'Title'
+      const answer = 'Answer'
+      const cardIndex = 1
+      const deckId = 'ABCDEFG'
       const expectedAction = {
         type: 'EDIT_CARD',
         title,
@@ -324,13 +324,13 @@ describe('decks redux', () => {
         deckId
       }
       expect(actions.editCard(title, answer, cardIndex, deckId)).toEqual(expectedAction)
-    });
+    })
 
     it('should handle editing a card in a deck', () => {
       const newCard = {
         title: 'Title',
         answer: 'Answer'
-      };
+      }
 
       expect(
         reducer(
@@ -361,15 +361,15 @@ describe('decks redux', () => {
           ]
         },
         deck3
-      ]);
-    });
-  });
+      ])
+    })
+  })
 
   describe('MOVE_CARD', () => {
     it('should create an action to move a card in a deck', () => {
-      const cardIndex = 4;
-      const srcDeckId = 'ABCDEFG';
-      const destDeckId = 'LMNOPQ';
+      const cardIndex = 4
+      const srcDeckId = 'ABCDEFG'
+      const destDeckId = 'LMNOPQ'
       const expectedAction = {
         type: 'MOVE_CARD',
         cardIndex,
@@ -377,7 +377,7 @@ describe('decks redux', () => {
         destDeckId
       }
       expect(actions.moveCard(cardIndex, srcDeckId, destDeckId)).toEqual(expectedAction)
-    });
+    })
 
     it('should handle moving a card between decks', () => {
       expect(
@@ -407,8 +407,8 @@ describe('decks redux', () => {
             deck.cards[1]
           ]
         }
-      ]);
-    });
+      ])
+    })
 
     it('should handle moving a card between decks even when the source is after the destination', () => {
       expect(
@@ -438,21 +438,21 @@ describe('decks redux', () => {
             deck2.cards[0]
           ]
         }
-      ]);
-    });
-  });
+      ])
+    })
+  })
 
   describe('REMOVE_CARD', () => {
     it('should create an action to remove a card from a deck', () => {
-      const cardIndex = 4;
-      const deckId = 'ABCDEFG';
+      const cardIndex = 4
+      const deckId = 'ABCDEFG'
       const expectedAction = {
         type: 'REMOVE_CARD',
         cardIndex,
         deckId
       }
       expect(actions.removeCard(cardIndex, deckId)).toEqual(expectedAction)
-    });
+    })
 
     it('should handle removing a card', () => {
       expect(
@@ -475,9 +475,9 @@ describe('decks redux', () => {
             deck2.cards[0]
           ]
         }
-      ]);
-    });
-  });
+      ])
+    })
+  })
 
   describe('REMOVE_ALL_DECKS', () => {
     it('should create an action to remove all decks', () => {
@@ -485,7 +485,7 @@ describe('decks redux', () => {
         type: 'REMOVE_ALL_DECKS'
       }
       expect(actions.removeAllDecks()).toEqual(expectedAction)
-    });
+    })
 
     it('should handle removing all decks', () => {
       expect(
@@ -499,7 +499,7 @@ describe('decks redux', () => {
             type: 'REMOVE_ALL_DECKS'
           }
         )
-      ).toEqual([]);
-    });
-  });
-});
+      ).toEqual([])
+    })
+  })
+})

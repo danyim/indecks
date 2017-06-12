@@ -1,26 +1,26 @@
-import React from 'react';
-import Remarkable from 'remarkable';
+import React from 'react'
+import Remarkable from 'remarkable'
 
 const propTypes = {
   className: React.PropTypes.string,
   text: React.PropTypes.string,
   handleOnClick: React.PropTypes.func
-};
+}
 
 const defaultProps = {
   className: '',
   text: '',
-  handleOnClick: null,
-};
+  handleOnClick: null
+}
 
 class Markdown extends React.Component {
-  convertToMarkdown(plaintext = '') {
-    const md = new Remarkable();
-    const rawMarkup = md.render(plaintext);
-    return { __html: rawMarkup };
+  convertToMarkdown (plaintext = '') {
+    const md = new Remarkable()
+    const rawMarkup = md.render(plaintext)
+    return { __html: rawMarkup }
   }
 
-  render() {
+  render () {
     return (
       <div
         className={this.props.className}
@@ -29,11 +29,11 @@ class Markdown extends React.Component {
           this.convertToMarkdown(this.props.text)
         }
       />
-    );
+    )
   }
 }
 
-Markdown.propTypes = propTypes;
-Markdown.defaultProps = defaultProps;
+Markdown.propTypes = propTypes
+Markdown.defaultProps = defaultProps
 
-export default Markdown;
+export default Markdown

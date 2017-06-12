@@ -1,12 +1,12 @@
-import React from 'react';
-import { RIEInput, RIETextArea } from 'riek';
-import { Link, browserHistory } from 'react-router';
-import slug from 'slug';
-import Card from './Card';
-import ExportDeckButton from './ExportDeckButton';
-import Overlay from './Overlay';
-import OverlayRow from './OverlayRow';
-import styles from '../styles/components/DeckView.styl';
+import React from 'react'
+import { RIEInput, RIETextArea } from 'riek'
+import { Link, browserHistory } from 'react-router'
+import slug from 'slug'
+import Card from './Card'
+import ExportDeckButton from './ExportDeckButton'
+import Overlay from './Overlay'
+import OverlayRow from './OverlayRow'
+import styles from '../styles/components/DeckView.styl'
 
 const propTypes = {
   deck: React.PropTypes.shape({
@@ -16,8 +16,8 @@ const propTypes = {
     cards: React.PropTypes.arrayOf(React.PropTypes.shape({
       title: React.PropTypes.string.isRequired,
       answer: React.PropTypes.string.isRequired,
-      index: React.PropTypes.number.isRequired,
-    }).isRequired).isRequired,
+      index: React.PropTypes.number.isRequired
+    }).isRequired).isRequired
   }).isRequired,
   maxDeckTitleLength: React.PropTypes.number,
   maxDeckDescLength: React.PropTypes.number,
@@ -25,20 +25,20 @@ const propTypes = {
   handleEditDeck: React.PropTypes.func.isRequired,
   handleRemoveCard: React.PropTypes.func.isRequired,
   handleRemoveDeck: React.PropTypes.func.isRequired
-};
+}
 
 const defaultProps = {
   maxDeckTitleLength: 160,
   maxDeckDescLength: 300
-};
+}
 
 class DeckView extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
-    this.handleEditDeckDetails = this.handleEditDeckDetails.bind(this);
-    this.validateDescription = this.validateDescription.bind(this);
-    this.validateTitle = this.validateTitle.bind(this);
+    this.handleEditDeckDetails = this.handleEditDeckDetails.bind(this)
+    this.validateDescription = this.validateDescription.bind(this)
+    this.validateTitle = this.validateTitle.bind(this)
   }
 
   // // Parses all the cards of a deck object and performs a special replacement
@@ -53,62 +53,62 @@ class DeckView extends React.Component {
   //   return v;
   // }
 
-  handleCardView(deckId, i) {
-    browserHistory.push(`/view/${deckId}/${i + 1}`);
+  handleCardView (deckId, i) {
+    browserHistory.push(`/view/${deckId}/${i + 1}`)
   }
 
-  handleCardDuplicate(deckId, i) {
+  handleCardDuplicate (deckId, i) {
     this.props.handleDuplicateCard(
       i + 1, // expects a cardIndex, which is 1-based
       deckId
-    );
+    )
   }
 
   // handleCardMove(deckId, i) {
   //   // TODO: Some implementation here
   // }
 
-  handleCardEdit(deckId, i) {
-    browserHistory.push(`/edit/${deckId}/${i + 1}`);
+  handleCardEdit (deckId, i) {
+    browserHistory.push(`/edit/${deckId}/${i + 1}`)
   }
 
-  handleCardDelete(deckId, i) {
+  handleCardDelete (deckId, i) {
     if (confirm('Are you sure?')) {
       this.props.handleRemoveCard(
         i + 1, // expects a cardIndex, which is 1-based
         deckId
-      );
-      browserHistory.push(`/view/${deckId}`);
+      )
+      browserHistory.push(`/view/${deckId}`)
     }
   }
 
-  handleEditDeckDetails(data) {
+  handleEditDeckDetails (data) {
     this.props.handleEditDeck(
       this.props.deck.id,
       data.title ? data.title : this.props.deck.title,
-      data.description ? data.description : this.props.deck.description);
+      data.description ? data.description : this.props.deck.description)
   }
 
-  validateDescription(text) {
-    return text.trim() !== '' && text.length > 0 && text.length <= this.props.maxDeckDescLength;
+  validateDescription (text) {
+    return text.trim() !== '' && text.length > 0 && text.length <= this.props.maxDeckDescLength
   }
 
-  validateTitle(text) {
-    return text.length > 0 && text.length <= this.props.maxDeckTitleLength;
+  validateTitle (text) {
+    return text.length > 0 && text.length <= this.props.maxDeckTitleLength
   }
 
-  renderEmpty(numCards) {
+  renderEmpty (numCards) {
     if (numCards === 0) {
       return (
-        <p className="center">
+        <p className='center'>
           Click the + button on the top left to add a card
         </p>
-      );
+      )
     }
   }
 
-  render() {
-    const { deck, maxDeckTitleLength, maxDeckDescLength } = this.props;
+  render () {
+    const { deck, maxDeckTitleLength, maxDeckDescLength } = this.props
 
     return (
       <section className={`${styles['deck-view']}`}>
@@ -117,14 +117,14 @@ class DeckView extends React.Component {
             <RIEInput
               value={deck.title}
               change={this.handleEditDeckDetails}
-              propName="title"
-              className="large editable"
-              minLength="1"
+              propName='title'
+              className='large editable'
+              minLength='1'
               maxLength={maxDeckTitleLength}
               validate={this.validateTitle}
-              placeholder="Click here to add a title"
-              classLoading="loading"
-              classInvalid="invalid"
+              placeholder='Click here to add a title'
+              classLoading='loading'
+              classInvalid='invalid'
             />
             <p>
               <strong>
@@ -134,27 +134,27 @@ class DeckView extends React.Component {
             <RIETextArea
               value={deck.description}
               change={this.handleEditDeckDetails}
-              propName="description"
-              className="paragraph editable m-t"
-              minLength="1"
+              propName='description'
+              className='paragraph editable m-t'
+              minLength='1'
               maxLength={maxDeckDescLength}
-              rows="6"
+              rows='6'
               validate={this.validateDescription}
-              placeholder="Click here to add a description"
-              classLoading="loading"
-              classInvalid="invalid"
+              placeholder='Click here to add a description'
+              classLoading='loading'
+              classInvalid='invalid'
             />
           </div>
           <div className={`${styles['control-buttons']}`}>
-            <Link className="button" to={`/view/${deck.id}/1`}>
+            <Link className='button' to={`/view/${deck.id}/1`}>
               <span>
                 Play Deck
               </span>
             </Link>
             <ExportDeckButton
               filename={`${slug(deck.title)}.json`}
-              label="Export Deck"
-              className="button"
+              label='Export Deck'
+              className='button'
               style={{}}
               /*
                 // Use this if you want to use the replacer
@@ -163,7 +163,7 @@ class DeckView extends React.Component {
               exportFile={() => JSON.stringify(deck, null, 2)}
             />
             <button
-              className="btn-delete"
+              className='btn-delete'
               onClick={() => this.props.handleRemoveDeck(deck.id)}
             >
                 Delete Deck
@@ -204,7 +204,7 @@ class DeckView extends React.Component {
                       onClick={
                         () => this.handleCardDelete(deck.id, i)
                       }
-                      className="btn-delete"
+                      className='btn-delete'
                     >
                       Delete
                     </button>
@@ -233,11 +233,11 @@ class DeckView extends React.Component {
           { this.renderEmpty(deck.cards.length) }
         </div>
       </section>
-    );
+    )
   }
 }
 
-DeckView.propTypes = propTypes;
-DeckView.defaultProps = defaultProps;
+DeckView.propTypes = propTypes
+DeckView.defaultProps = defaultProps
 
-export default DeckView;
+export default DeckView

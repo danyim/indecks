@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link, browserHistory } from 'react-router';
-import styles from '../styles/components/Deck.styl';
+import React from 'react'
+import { Link, browserHistory } from 'react-router'
+import styles from '../styles/components/Deck.styl'
 
 const propTypes = {
   deck: React.PropTypes.shape({
@@ -10,26 +10,26 @@ const propTypes = {
     cards: React.PropTypes.arrayOf(React.PropTypes.shape({
       title: React.PropTypes.string.isRequired,
       answer: React.PropTypes.string.isRequired,
-      index: React.PropTypes.number.isRequired,
-    }).isRequired).isRequired,
+      index: React.PropTypes.number.isRequired
+    }).isRequired).isRequired
   }).isRequired,
   style: React.PropTypes.object,
   children: React.PropTypes.node
-};
+}
 
 const defaultProps = {
   style: {},
   children: null
-};
+}
 
 class Deck extends React.Component {
-  navigateToDeck(deckId) {
-    browserHistory.push(`/view/${deckId}`);
+  navigateToDeck (deckId) {
+    browserHistory.push(`/view/${deckId}`)
   }
 
-  render() {
-    const { deck, style } = this.props;
-    const { id: deckId } = deck;
+  render () {
+    const { deck, style } = this.props
+    const { id: deckId } = deck
 
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`} style={style}>
@@ -53,7 +53,7 @@ class Deck extends React.Component {
         </figcaption>
 
         <div className={`control-buttons ${styles['control-buttons']}`}>
-          <Link className="button" to={`/view/${deckId}/1`}>
+          <Link className='button' to={`/view/${deckId}/1`}>
             Play Deck
           </Link>
           {/*
@@ -64,11 +64,11 @@ class Deck extends React.Component {
         </div>
         {this.props.children}
       </figure>
-    );
+    )
   }
 }
 
-Deck.propTypes = propTypes;
-Deck.defaultProps = defaultProps;
+Deck.propTypes = propTypes
+Deck.defaultProps = defaultProps
 
-export default Deck;
+export default Deck

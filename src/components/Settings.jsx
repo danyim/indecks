@@ -1,6 +1,6 @@
-import React from 'react';
-import ExportDeckButton from './ExportDeckButton';
-import styles from '../styles/components/Settings.styl';
+import React from 'react'
+import ExportDeckButton from './ExportDeckButton'
+import styles from '../styles/components/Settings.styl'
 
 const propTypes = {
   decks: React.PropTypes.arrayOf(React.PropTypes.shape({
@@ -10,12 +10,12 @@ const propTypes = {
     cards: React.PropTypes.arrayOf(React.PropTypes.shape({
       title: React.PropTypes.string.isRequired,
       answer: React.PropTypes.string.isRequired,
-      index: React.PropTypes.number.isRequired,
-    }).isRequired).isRequired,
+      index: React.PropTypes.number.isRequired
+    }).isRequired).isRequired
   }).isRequired).isRequired,
   deckCount: React.PropTypes.number.isRequired,
   removeAllDecks: React.PropTypes.func.isRequired
-};
+}
 
 // articles: PropTypes.arrayOf(PropTypes.shape({
 //   url: PropTypes.string.isRequired,
@@ -23,44 +23,43 @@ const propTypes = {
 //   author: PropTypes.string.isRequired,
 // }).isRequired).isRequired,
 
-const defaultProps = {};
+const defaultProps = {}
 
 class Settings extends React.Component {
-  constructor(props) {
-    super(props);
-    this.removeAllDecks = this.removeAllDecks.bind(this);
+  constructor (props) {
+    super(props)
+    this.removeAllDecks = this.removeAllDecks.bind(this)
   }
 
-  removeAllDecks(count) {
+  removeAllDecks (count) {
     if (confirm(`Are you sure you want to delete all ${count} decks? ` +
       'This action is permanent.')) {
-      this.props.removeAllDecks();
+      this.props.removeAllDecks()
     }
   }
 
-  renderDeleteAll(deckCount) {
-    return deckCount === 0 ?
-      (
+  renderDeleteAll (deckCount) {
+    return deckCount === 0
+      ? (
         <button
-          className="btn-delete"
-          disabled="disabled"
+          className='btn-delete'
+          disabled='disabled'
         >
           Delete all decks from local storage
         </button>
       )
-      :
-      (
+      : (
         <button
-          className="btn-delete"
+          className='btn-delete'
           onClick={() => this.removeAllDecks(deckCount)}
         >
           Delete all {deckCount} deck(s) from local storage
         </button>
-      );
+      )
   }
 
-  render() {
-    const { deckCount } = this.props;
+  render () {
+    const { deckCount } = this.props
 
     return (
       <section className={`${styles.settings}`}>
@@ -71,9 +70,9 @@ class Settings extends React.Component {
             local storage.
           </p>
           <ExportDeckButton
-            filename="indecks.json"
-            label="Download your deck collection as JSON"
-            className="button"
+            filename='indecks.json'
+            label='Download your deck collection as JSON'
+            className='button'
             disabled={deckCount === 0}
             style={{}}
             exportFile={() => JSON.stringify(this.props.decks, null, 2)}
@@ -81,11 +80,11 @@ class Settings extends React.Component {
           {this.renderDeleteAll(deckCount)}
         </div>
       </section>
-    );
+    )
   }
 }
 
-Settings.propTypes = propTypes;
-Settings.defaultProps = defaultProps;
+Settings.propTypes = propTypes
+Settings.defaultProps = defaultProps
 
-export default Settings;
+export default Settings

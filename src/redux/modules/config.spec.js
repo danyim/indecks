@@ -1,4 +1,4 @@
-import reducer, * as actions from './config';
+import reducer, * as actions from './config'
 
 describe('config actions', () => {
   it('should create an action to toggle card shuffling', () => {
@@ -7,14 +7,14 @@ describe('config actions', () => {
     }
     expect(actions.toggleShuffle()).toEqual(expectedAction)
   })
-});
+})
 
 describe('config reducers', () => {
   it('should return the initial state', () => {
     expect(
       reducer(undefined, {})
     ).toEqual({})
-  });
+  })
 
   it('should handle TOGGLE_SHUFFLE', () => {
     expect(
@@ -23,7 +23,7 @@ describe('config reducers', () => {
       })
     ).toEqual({
       shuffle: true
-    });
+    })
 
     expect(
       reducer(
@@ -36,7 +36,7 @@ describe('config reducers', () => {
       )
     ).toEqual({
       shuffle: true
-    });
+    })
 
     expect(
       reducer(
@@ -49,6 +49,6 @@ describe('config reducers', () => {
       )
     ).toEqual({
       shuffle: false
-    });
-  });
-});
+    })
+  })
+})

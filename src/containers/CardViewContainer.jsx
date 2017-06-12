@@ -1,15 +1,15 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as deckActions from '../redux/modules/decks';
-import * as configActions from '../redux/modules/config';
-import CardView from '../components/CardView';
+import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as deckActions from '../redux/modules/decks'
+import * as configActions from '../redux/modules/config'
+import CardView from '../components/CardView'
 
 const propTypes = {
   card: React.PropTypes.shape({
     title: React.PropTypes.string.isRequired,
     answer: React.PropTypes.string.isRequired,
-    index: React.PropTypes.number.isRequired,
+    index: React.PropTypes.number.isRequired
   }),
   deck: React.PropTypes.shape({
     id: React.PropTypes.string.isRequired,
@@ -18,66 +18,64 @@ const propTypes = {
     cards: React.PropTypes.arrayOf(React.PropTypes.shape({
       title: React.PropTypes.string.isRequired,
       answer: React.PropTypes.string.isRequired,
-      index: React.PropTypes.number.isRequired,
-    }).isRequired).isRequired,
-  }).isRequired,
-};
+      index: React.PropTypes.number.isRequired
+    }).isRequired).isRequired
+  }).isRequired
+}
 
 const defaultProps = {
   card: null,
   deck: null
-};
+}
 
 const CardViewContainer = (props) => {
-  const { card, deck } = props;
-  if(deck === null) {
+  const { card, deck } = props
+  if (deck === null) {
     return (
-      <p className="center">
+      <p className='center'>
         Deck not found.
       </p>
-    );
+    )
   }
   if (deck.cards.length === 0) {
     return (
-      <p className="center">
+      <p className='center'>
         No cards have been added to this deck. Click the + on the top left to
         add a card.
       </p>
-    );
+    )
   }
   if (!card) {
     return (
-      <p className="center">
+      <p className='center'>
         Invalid card index.
       </p>
-    );
+    )
   }
 
   return (
     <CardView {...props} />
-  );
-};
+  )
+}
 
-CardViewContainer.propTypes = propTypes;
-CardViewContainer.defaultProps = defaultProps;
+CardViewContainer.propTypes = propTypes
+CardViewContainer.defaultProps = defaultProps
 
 const mapStateToProps = ({ decks, config }, ownProps) => {
-  const { deckId, cardIndex } = ownProps.params;
+  const { deckId, cardIndex } = ownProps.params
   // Find the deck based on the property
-  const deckIndex = deckId ? decks.findIndex(d => d.id === deckId) : null;
-  let card, deck;
-  if(deckId === undefined && cardIndex === undefined) {
-    card = null;
-    deck = null;
-  }
-  else {
+  const deckIndex = deckId ? decks.findIndex(d => d.id === deckId) : null
+  let card, deck
+  if (deckId === undefined && cardIndex === undefined) {
+    card = null
+    deck = null
+  } else {
     deck = decks[deckIndex]
 
-    if(deck !== undefined && decks[deckIndex].cards.length > 0) {
-      card = decks[deckIndex].cards[cardIndex - 1];
-    }
-    else {
-      card = null;
+    if (deck !== undefined && decks[deckIndex].cards.length > 0) {
+      card = decks[deckIndex].cards[cardIndex - 1]
+    } else {
+      card = null
     }
   }
   return {
@@ -85,12 +83,12 @@ const mapStateToProps = ({ decks, config }, ownProps) => {
     deck,
     config,
     cardIndex: parseInt(cardIndex, 10)
-  };
-};
+  }
+}
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(Object.assign({}, deckActions, configActions), dispatch);
+  bindActionCreators(Object.assign({}, deckActions, configActions), dispatch)
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CardViewContainer);
+)(CardViewContainer)
