@@ -1,5 +1,6 @@
-import React from 'react';
-import KeyBinding from 'react-keybinding-component';
+import PropTypes from 'prop-types'
+import React from 'react'
+import KeyBinding from 'react-keybinding-component'
 
 /**
  * Handlers should be an array of objects in the form:
@@ -9,40 +10,40 @@ import KeyBinding from 'react-keybinding-component';
  *   }
  */
 const propTypes = {
-  handlers: React.PropTypes.array.isRequired
-};
+  handlers: PropTypes.array.isRequired
+}
 
 const defaultProps = {
   handlers: []
-};
+}
 
 class KeyListener extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
-    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this)
   }
 
-  handleKeyDown(e) {
+  handleKeyDown (e) {
     this.props.handlers.forEach((h) => {
       if (h && h.keyCode && h.action && h.keyCode === e.keyCode) {
-        h.action();
+        h.action()
       }
-    });
+    })
   }
 
-  render() {
+  render () {
     return (
       <KeyBinding
         onKey={e => this.handleKeyDown(e)}
         preventInputConflict
         preventPropagation
       />
-    );
+    )
   }
 }
 
-KeyListener.propTypes = propTypes;
-KeyListener.defaultProps = defaultProps;
+KeyListener.propTypes = propTypes
+KeyListener.defaultProps = defaultProps
 
-export default KeyListener;
+export default KeyListener

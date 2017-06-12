@@ -1,7 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import { shallow, mount } from 'enzyme';
-import Settings from './Settings';
+import React from 'react'
+import renderer from 'react-test-renderer'
+import { shallow, mount } from 'enzyme'
+import Settings from './Settings'
 
 const defaultProps = {
   decks: [{
@@ -12,9 +12,9 @@ const defaultProps = {
   }],
   deckCount: 1,
   removeAllDecks: () => {}
-};
+}
 
-function setup(props = defaultProps) {
+function setup (props = defaultProps) {
   const wrapper = shallow(<Settings {...props} />)
 
   return {
@@ -23,7 +23,7 @@ function setup(props = defaultProps) {
   }
 }
 
-function setupFull(props = defaultProps) {
+function setupFull (props = defaultProps) {
   const wrapper = mount(<Settings {...props} />)
 
   return {
@@ -36,55 +36,55 @@ describe('Settings', () => {
   it('should render self and subcomponents', () => {
     const tree = renderer.create(
       <Settings {...defaultProps}>Hello</Settings>
-    ).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 
   it('should render the export button', () => {
-    const { wrapper } = setupFull();
-    expect(wrapper.find('ExportDeckButton').exists()).toBe(true);
-  });
+    const { wrapper } = setupFull()
+    expect(wrapper.find('ExportDeckButton').exists()).toBe(true)
+  })
 
   it('should render the "delete all from local storage" button with the correct number', () => {
-    const deckCount = 5;
+    const deckCount = 5
     const { wrapper } = setup({
       ...defaultProps,
       deckCount
-    });
+    })
 
-    const button = wrapper.findWhere(n => n.text() === `Delete all ${deckCount} deck(s) from local storage`);
-    expect(button.length).toBe(1);
-  });
+    const button = wrapper.findWhere(n => n.text() === `Delete all ${deckCount} deck(s) from local storage`)
+    expect(button.length).toBe(1)
+  })
 
   it('should render a disabled "delete all from local storage" button if no decks are found', () => {
-    const deckCount = 0;
+    const deckCount = 0
     const { wrapper } = setup({
       ...defaultProps,
       deckCount
-    });
+    })
 
     const button = wrapper.find('button.btn-delete[children="Delete all decks from local storage"]')
-    expect(button.exists()).toBe(true);
-    expect(button.prop('disabled')).toBe('disabled');
-  });
+    expect(button.exists()).toBe(true)
+    expect(button.prop('disabled')).toBe('disabled')
+  })
 
   it('should call the removeAllDecks prop when button is clicked', () => {
-    spyOn(window, 'confirm').and.returnValue(true);
-    const handler = jest.fn();
+    spyOn(window, 'confirm').and.returnValue(true)
+    const handler = jest.fn()
     const { wrapper } = setup({
       ...defaultProps,
       removeAllDecks: handler
-    });
+    })
 
     const button = wrapper.find('button.btn-delete')
-    button.simulate('click');
-    expect(handler.mock.calls.length).toBe(1);
-  });
+    button.simulate('click')
+    expect(handler.mock.calls.length).toBe(1)
+  })
 
   it('should convert the deck into JSON when the export button is clicked', () => {
-    const { props, wrapper } = setupFull();
+    const { props, wrapper } = setupFull()
 
-    const exportButton = wrapper.find('ExportDeckButton');
-    expect(exportButton.prop('exportFile')()).toEqual(JSON.stringify(props.decks, null, 2));
-  });
-});
+    const exportButton = wrapper.find('ExportDeckButton')
+    expect(exportButton.prop('exportFile')()).toEqual(JSON.stringify(props.decks, null, 2))
+  })
+})

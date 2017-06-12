@@ -4,3 +4,6 @@ npm-debug.log
 samples
 coverage
 firebase.js
+*.sublime-workspace
+*.log
+.DS_Store

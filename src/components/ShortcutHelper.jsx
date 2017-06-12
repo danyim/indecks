@@ -1,8 +1,8 @@
-import React from 'react';
-import styles from '../styles/components/ShortcutHelper.styl';
+import React from 'react'
+import styles from '../styles/components/ShortcutHelper.styl'
 
-const propTypes = {};
-const defaultProps = {};
+const propTypes = {}
+const defaultProps = {}
 
 const ShortcutHelper = () => (
   <section className={`${styles['shortcut-helper']}`}>
@@ -24,9 +24,9 @@ const ShortcutHelper = () => (
       <p><kbd>D</kbd> - Return to the deck</p>
     </div>
   </section>
-);
+)
 
-ShortcutHelper.propTypes = propTypes;
-ShortcutHelper.defaultProps = defaultProps;
+ShortcutHelper.propTypes = propTypes
+ShortcutHelper.defaultProps = defaultProps
 
-export default ShortcutHelper;
+export default ShortcutHelper

@@ -1,7 +1,7 @@
-import React from 'react';
-import { shallow } from 'enzyme';
+import React from 'react'
+import { shallow } from 'enzyme'
 // import renderer from 'react-test-renderer';
-import CardEdit from './CardEdit';
+import CardEdit from './CardEdit'
 // import { CardEditForm } from './CardEditForm';
 
 const defaultProps = {
@@ -11,9 +11,9 @@ const defaultProps = {
   editCard: () => {},
   removeCard: () => {},
   form: {}
-};
+}
 
-function setup(props = defaultProps) {
+function setup (props = defaultProps) {
   const wrapper = shallow(<CardEdit {...props} />)
 
   return {
@@ -24,12 +24,12 @@ function setup(props = defaultProps) {
 
 describe('CardEdit', () => {
   it('should render self and subcomponents', () => {
-    const { wrapper } = setup();
-    expect(wrapper.find('section.single').exists()).toBe(true);
+    const { wrapper } = setup()
+    expect(wrapper.find('section.single').exists()).toBe(true)
 
     // const tree = renderer.create(
     //   <CardEdit {...defaultProps} />
     // ).toJSON();
     // expect(tree).toMatchSnapshot();
-  });
-});
+  })
+})

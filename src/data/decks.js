@@ -1,5 +1,5 @@
 const decks = [
 
-];
+]
 
-export default decks;
+export default decks

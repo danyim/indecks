@@ -1,7 +1,7 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import renderer from 'react-test-renderer';
-import ExportDeckButton from './ExportDeckButton';
+import React from 'react'
+import { shallow } from 'enzyme'
+import renderer from 'react-test-renderer'
+import ExportDeckButton from './ExportDeckButton'
 
 const defaultProps = {
   filename: 'file.txt',
@@ -15,9 +15,9 @@ const defaultProps = {
     cursor: 'pointer'
   },
   exportFile: () => {}
-};
+}
 
-function setup(props = defaultProps) {
+function setup (props = defaultProps) {
   const wrapper = shallow(<ExportDeckButton {...props} />)
 
   return {
@@ -28,14 +28,14 @@ function setup(props = defaultProps) {
 
 describe('ExportDeckButton', () => {
   it('should render self and subcomponents', () => {
-    const { wrapper } = setup();
-    expect(wrapper.find('button').hasClass(defaultProps.className)).toBe(true);
+    const { wrapper } = setup()
+    expect(wrapper.find('button').hasClass(defaultProps.className)).toBe(true)
 
     const tree = renderer.create(
       <ExportDeckButton {...defaultProps} />
-    ).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 
   // it('should call the exportFile once when ExportDeckButton is clicked', () => {
   //   const handler = jest.fn();
@@ -47,4 +47,4 @@ describe('ExportDeckButton', () => {
   //   wrapper.find('button').simulate('click');
   //   expect(handler.mock.calls.length).toBe(1);
   // });
-});
+})

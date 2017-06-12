@@ -51,7 +51,7 @@ exports[`ImportDeck should render self and subcomponents 1`] = `
         </p>
       </div>
       <h4>
-        Import an existing deck
+        Import an existing deck collection or deck
       </h4>
       <div
         className="drop"

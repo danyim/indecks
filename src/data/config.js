@@ -1,5 +1,5 @@
 const config = {
   shuffle: false
-};
+}
 
-export default config;
+export default config

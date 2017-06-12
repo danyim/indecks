@@ -1,15 +1,16 @@
-import React from 'react';
-import styles from '../styles/components/Overlay.styl';
+import PropTypes from 'prop-types'
+import React from 'react'
+import styles from '../styles/components/Overlay.styl'
 
 const propTypes = {
-  className: React.PropTypes.string,
-  children: React.PropTypes.node
-};
+  className: PropTypes.string,
+  children: PropTypes.node
+}
 
 const defaultProps = {
   className: '',
   children: null
-};
+}
 
 const Overlay = (props) => {
   return (
@@ -19,9 +20,9 @@ const Overlay = (props) => {
       </div>
     </div>
   )
-};
+}
 
-Overlay.propTypes = propTypes;
-Overlay.defaultProps = defaultProps;
+Overlay.propTypes = propTypes
+Overlay.defaultProps = defaultProps
 
-export default Overlay;
+export default Overlay

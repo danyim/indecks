@@ -1,28 +1,26 @@
-import { createReducer } from '../../utils';
+import { createReducer } from '../../utils'
 
 /**
  * Actions
  */
-const TOGGLE_SHUFFLE = 'TOGGLE_SHUFFLE';
-
+const TOGGLE_SHUFFLE = 'TOGGLE_SHUFFLE'
 
 /**
  * Reducers
  */
 const reducers = {
   toggleShuffle: (state) => {
-    const newState = { ...state };
-    newState.shuffle = !newState.shuffle;
-    return newState;
+    const newState = { ...state }
+    newState.shuffle = !newState.shuffle
+    return newState
   }
-};
+}
 
 const handlers = {
   [TOGGLE_SHUFFLE]: reducers.toggleShuffle
-};
+}
 
-export default createReducer({}, handlers);
-
+export default createReducer({}, handlers)
 
 /**
  * Action Creators
@@ -30,5 +28,5 @@ export default createReducer({}, handlers);
 export const toggleShuffle = () => {
   return {
     type: TOGGLE_SHUFFLE
-  };
-};
+  }
+}
