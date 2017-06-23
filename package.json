@@ -52,6 +52,7 @@
     "immutable": "^3.8.1",
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
+    "prop-types": "^15.5.10",
     "re-base": "^3.0.1",
     "react": "^15.5.4",
     "react-addons-test-utils": "^15.5.1",

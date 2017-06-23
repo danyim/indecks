@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types'
 import React from 'react'
+import PropTypes from 'prop-types'
 import { browserHistory } from 'react-router'
 import KeyBinding from 'react-keybinding-component'
 import CardEditForm from './CardEditForm'
