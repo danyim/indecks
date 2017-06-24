@@ -98,6 +98,7 @@
     "chai": "^4.0.2",
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
+    "enzyme-to-json": "^1.5.1",
     "eslint": "^4.1.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-config-standard": "^10.2.1",

@@ -53,31 +53,23 @@ exports[`ImportDeck should render self and subcomponents 1`] = `
       <h4>
         Import an existing deck collection or deck
       </h4>
-      <div
+      <Dropzone
+        accept="application/json"
+        activeClassName="drop-active"
         className="drop"
-        onClick={[Function]}
-        onDragEnter={[Function]}
-        onDragLeave={[Function]}
-        onDragOver={[Function]}
-        onDragStart={[Function]}
+        disableClick={false}
+        disablePreview={false}
+        maxSize={Infinity}
+        minSize={0}
+        multiple={false}
         onDrop={[Function]}
-        style={Object {}}
+        preventDropOnDocument={true}
+        rejectClassName="drop-reject"
       >
         <p>
           Click here to import or drag and drop the deck JSON here
         </p>
-        <input
-          accept="application/json"
-          multiple={false}
-          onChange={[Function]}
-          style={
-            Object {
-              "display": "none",
-            }
-          }
-          type="file"
-        />
-      </div>
+      </Dropzone>
       <div
         className="or-bar"
       >

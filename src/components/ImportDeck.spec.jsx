@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
-import renderer from 'react-test-renderer'
+import toJson from 'enzyme-to-json'
 import { browserHistory } from 'react-router'
 import ImportDeck from './ImportDeck'
 // import samples from '../data/samples';
@@ -32,10 +32,10 @@ function setupFull (props = defaultProps) {
 
 describe('ImportDeck', () => {
   it('should render self and subcomponents', () => {
-    const tree = renderer.create(
+    const wrapper = shallow(
       <ImportDeck {...defaultProps} />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    expect(toJson(wrapper)).toMatchSnapshot()
   })
 
   it('should render a dropzone', () => {
