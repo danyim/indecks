@@ -51,7 +51,7 @@ class ImportDeck extends React.Component {
     const reader = new FileReader()
     const addToDeck = (inputDeck) => {
       const deck = { ...inputDeck }
-      deck.id = this.generateRandomString() // Generate a new ID regardless
+      deck.id = ImportDeck.generateRandomString() // Generate a new ID regardless
       // Absolutely no validation of the JSON here...
       // We're trusting that the user is providing a indecks-produced deck json
       this.props.addDeck(deck)
@@ -75,7 +75,7 @@ class ImportDeck extends React.Component {
         // Navigate to the newly imported deck
         browserHistory.push(`/view/${resultJson.id}`)
       }
-      // resultJson.id = this.generateRandomString(); // Generate a new ID regardless
+      // resultJson.id = ImportDeck.generateRandomString(); // Generate a new ID regardless
       // // Absolutely no validation of the JSON here...
       // // We're trusting that the user is providing a indecks-produced deck json
       // this.props.addDeck(resultJson);
@@ -102,7 +102,7 @@ class ImportDeck extends React.Component {
       return false
     }
 
-    const id = this.generateRandomString()
+    const id = ImportDeck.generateRandomString()
     this.props.addDeck({
       id,
       title: this.state.title,
@@ -114,13 +114,14 @@ class ImportDeck extends React.Component {
     this.props.handleClose()
     // Don't go to the deck immediately after creating
     // browserHistory.push(`/view/${id}`);
+    return undefined
   }
 
   handleLoadSample () {
     let sampleDeck
     for (const d of samples) {
       sampleDeck = { ...d }
-      sampleDeck.id = this.generateRandomString()
+      sampleDeck.id = ImportDeck.generateRandomString()
       this.props.addDeck(sampleDeck)
     }
 
