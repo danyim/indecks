@@ -4,6 +4,10 @@
     "stage-3",
     "react"
   ],
+  "plugins": [
+    "transform-react-jsx",
+    "transform-class-properties"
+  ],
   "env": {
     "development": {
       "plugins": [
