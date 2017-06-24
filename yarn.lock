@@ -2625,7 +2625,7 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "^2.0.0"
 
-fbjs@^0.8.4, fbjs@^0.8.9:
+fbjs@^0.8.9:
   version "0.8.9"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.9.tgz#180247fbd347dcc9004517b904f865400a0c8f14"
   dependencies:
@@ -5587,12 +5587,9 @@ re-base@^3.0.1:
   dependencies:
     firebase "^4.0.0"
 
-react-addons-test-utils@^15.5.1:
-  version "15.5.1"
-  resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.5.1.tgz#e0d258cda2a122ad0dff69f838260d0c3958f5f7"
-  dependencies:
-    fbjs "^0.8.4"
-    object-assign "^4.1.0"
+react-addons-test-utils@^15.6.0:
+  version "15.6.0"
+  resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.6.0.tgz#062d36117fe8d18f3ba5e06eb33383b0b85ea5b9"
 
 react-deep-force-update@^1.0.0:
   version "1.0.1"
