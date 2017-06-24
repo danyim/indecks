@@ -19,6 +19,13 @@ const defaultProps = {
 }
 
 class ImportDeck extends React.Component {
+  static generateRandomString (length = 8) {
+    const chars = '0123456789abcdefABCDEFGHIJKLMNPQRSTUVWXYZ'
+    let result = ''
+    for (let i = length; i > 0; i -= 1) result += chars[Math.floor(Math.random() * chars.length)]
+    return result
+  }
+
   constructor (props) {
     super(props)
     this.handleDrop = this.handleDrop.bind(this)
@@ -31,13 +38,6 @@ class ImportDeck extends React.Component {
       title: '',
       description: ''
     }
-  }
-
-  generateRandomString (length = 8) {
-    const chars = '0123456789abcdefABCDEFGHIJKLMNPQRSTUVWXYZ'
-    let result = ''
-    for (let i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)]
-    return result
   }
 
   handleChange (event, key) {
@@ -154,14 +154,18 @@ class ImportDeck extends React.Component {
           <form className='edit-form' onSubmit={this.handleSubmit}>
             <h4>Create a new deck</h4>
             <input
-              type='text' className='large-input'
+              type='text'
+              className='large-input'
               name='title'
-              placeholder='Deck Title' maxLength='30'
+              placeholder='Deck Title'
+              maxLength='30'
               onChange={e => this.handleChange(e, 'title')}
             />
             <textarea
-              type='text' name='description'
-              placeholder='Description' rows='3'
+              type='text'
+              name='description'
+              placeholder='Description'
+              rows='3'
               onChange={e => this.handleChange(e, 'description')}
             />
             <div>
@@ -189,7 +193,8 @@ class ImportDeck extends React.Component {
             <h4>Use samples</h4>
             <div>
               <button
-                type='button' className='button'
+                type='button'
+                className='button'
                 onClick={() => this.handleLoadSample()}
               >
                 Load Sample Decks

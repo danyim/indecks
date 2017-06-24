@@ -6,18 +6,19 @@
     "jest": true,
     "jasmine": true
   },
-  "plugins": [
-    "babel",
-    "react",
-    "chai-expect"
-  ],
   "extends": [
-    "standard",
     "airbnb",
-    "eslint:recommended",
+    "standard",
     "plugin:react/recommended",
     "plugin:import/errors",
     "plugin:import/warnings"
+  ],
+  "plugins": [
+    "babel",
+    "react",
+    "chai-expect",
+    "promise",
+    "import"
   ],
   "ecmaFeatures": {
     "arrowFunctions": true,
@@ -45,6 +46,7 @@
   },
   "parser": "babel-eslint",
   "rules": {
+    "semi": 0,
     "arrow-parens": 1,
     "babel/new-cap": 1,
     "babel/no-await-in-loop": 1,
@@ -60,7 +62,9 @@
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
     "react/react-in-jsx-scope": 2,
-    "strict": [2, "never"]
+    "strict": [2, "never"],
+    "react/jsx-quotes": 0,
+    "jsx-quotes": [2, "prefer-single"]
   },
   "globals": {
     "firebase": true,

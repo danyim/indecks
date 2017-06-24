@@ -9,15 +9,15 @@ import KeyBinding from 'react-keybinding-component'
  *     action: [Function]
  *   }
  */
-const propTypes = {
-  handlers: PropTypes.array.isRequired
-}
-
-const defaultProps = {
-  handlers: []
-}
-
 class KeyListener extends React.Component {
+  static propTypes = {
+    handlers: PropTypes.arrayOf(PropTypes.object).isRequired
+  }
+
+  static defaultProps = {
+    handlers: []
+  }
+
   constructor (props) {
     super(props)
 
@@ -42,8 +42,5 @@ class KeyListener extends React.Component {
     )
   }
 }
-
-KeyListener.propTypes = propTypes
-KeyListener.defaultProps = defaultProps
 
 export default KeyListener

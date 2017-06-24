@@ -85,7 +85,7 @@ const reducers = {
     ]
   },
 
-  moveCard: (state, {srcDeckId, destDeckId, cardIndex}) => {
+  moveCard: (state, { srcDeckId, destDeckId, cardIndex }) => {
     // TODO: Is it possible to call another action from one action?
     // Yes, though redux-thunk
     const srcDeckIndex = state.findIndex(v => v.id === srcDeckId)
@@ -118,18 +118,17 @@ const reducers = {
         destDeck,
         ...state.slice(destDeckIndex + 1)
       ]
-    } else {
-      return [
-        ...state.slice(0, destDeckIndex),
-        destDeck,
-        ...state.slice(destDeckIndex + 1, srcDeckIndex),
-        srcDeck,
-        ...state.slice(srcDeckIndex + 1)
-      ]
     }
+    return [
+      ...state.slice(0, destDeckIndex),
+      destDeck,
+      ...state.slice(destDeckIndex + 1, srcDeckIndex),
+      srcDeck,
+      ...state.slice(srcDeckIndex + 1)
+    ]
   },
 
-  removeCard: (state, {deckId, cardIndex}) => {
+  removeCard: (state, { deckId, cardIndex }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
 
     // The card index coming in isn't 0-based and also a string, so convert
@@ -150,12 +149,10 @@ const reducers = {
     ]
   },
 
-  addDeck: (state, { deck }) => {
-    return [
-      ...state,
-      Object.assign({}, deck)
-    ]
-  },
+  addDeck: (state, { deck }) => [
+    ...state,
+    Object.assign({}, deck)
+  ],
 
   editDeck: (state, { deckId, title, description }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
@@ -202,82 +199,62 @@ export default createReducer({}, reducerHandlers)
 /**
  * Action Creators
  */
-export const addDeck = (deck) => {
-  return {
-    type: ADD_DECK,
-    deck
-  }
-}
+export const addDeck = deck => ({
+  type: ADD_DECK,
+  deck
+})
 
-export const editDeck = (deckId, title, description) => {
-  return {
-    type: EDIT_DECK,
-    deckId,
-    title,
-    description
-  }
-}
+export const editDeck = (deckId, title, description) => ({
+  type: EDIT_DECK,
+  deckId,
+  title,
+  description
+})
 
-export const removeDeck = (deckId) => {
-  return {
-    type: REMOVE_DECK,
-    deckId
-  }
-}
+export const removeDeck = deckId => ({
+  type: REMOVE_DECK,
+  deckId
+})
 
-export const shuffleDeck = (deckId) => {
-  return {
-    type: SHUFFLE_DECK,
-    deckId
-  }
-}
+export const shuffleDeck = deckId => ({
+  type: SHUFFLE_DECK,
+  deckId
+})
 
-export const addCard = (title, answer, deckId) => {
-  return {
-    type: ADD_CARD,
-    title,
-    answer,
-    deckId
-  }
-}
+export const addCard = (title, answer, deckId) => ({
+  type: ADD_CARD,
+  title,
+  answer,
+  deckId
+})
 
-export const duplicateCard = (cardIndex, deckId) => {
-  return {
-    type: DUPLICATE_CARD,
-    cardIndex,
-    deckId
-  }
-}
+export const duplicateCard = (cardIndex, deckId) => ({
+  type: DUPLICATE_CARD,
+  cardIndex,
+  deckId
+})
 
-export const editCard = (title, answer, cardIndex, deckId) => {
-  return {
-    type: EDIT_CARD,
-    title,
-    answer,
-    cardIndex,
-    deckId
-  }
-}
+export const editCard = (title, answer, cardIndex, deckId) => ({
+  type: EDIT_CARD,
+  title,
+  answer,
+  cardIndex,
+  deckId
+})
 
-export const moveCard = (cardIndex, srcDeckId, destDeckId) => {
-  return {
-    type: MOVE_CARD,
-    cardIndex,
-    srcDeckId,
-    destDeckId
-  }
-}
+export const moveCard = (cardIndex, srcDeckId, destDeckId) => ({
+  type: MOVE_CARD,
+  cardIndex,
+  srcDeckId,
+  destDeckId
+})
 
-export const removeCard = (cardIndex, deckId) => {
-  return {
-    type: REMOVE_CARD,
-    cardIndex,
-    deckId
-  }
-}
+export const removeCard = (cardIndex, deckId) => ({
+  type: REMOVE_CARD,
+  cardIndex,
+  deckId
+})
 
-export const removeAllDecks = () => {
-  return {
-    type: REMOVE_ALL_DECKS
-  }
-}
+export const removeAllDecks = () => ({
+  type: REMOVE_ALL_DECKS
+})

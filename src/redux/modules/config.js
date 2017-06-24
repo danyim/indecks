@@ -25,8 +25,10 @@ export default createReducer({}, handlers)
 /**
  * Action Creators
  */
-export const toggleShuffle = () => {
-  return {
-    type: TOGGLE_SHUFFLE
-  }
-}
+export const toggleShuffle = () => ({
+  type: TOGGLE_SHUFFLE
+})
+
+/**
+ * Side Effects
+ */

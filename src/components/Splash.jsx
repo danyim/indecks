@@ -9,7 +9,7 @@ const Splash = () => (
     <h2 className={`${styles.header}`}>Welcome to Indecks</h2>
     <div className={`${styles['shortcut-helper-content']}`}>
       Hey there! Welcome to the Indecks app. Indecks is an interactive flipcard
-      study aid, just like how you've used index cards in the past.
+      study aid, just like how you&apos;ve used index cards in the past.
     </div>
   </section>
 )
