@@ -1,32 +1,35 @@
-import PropTypes from 'prop-types'
 import React from 'react'
+import PropTypes from 'prop-types'
 import ExportDeckButton from './ExportDeckButton'
+import AuthContainer from '../containers/AuthContainer'
 import styles from '../styles/components/Settings.styl'
 
-const propTypes = {
-  decks: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    cards: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      answer: PropTypes.string.isRequired,
-      index: PropTypes.number.isRequired
-    }).isRequired).isRequired
-  }).isRequired).isRequired,
-  deckCount: PropTypes.number.isRequired,
-  removeAllDecks: PropTypes.func.isRequired
-}
-
-// articles: PropTypes.arrayOf(PropTypes.shape({
-//   url: PropTypes.string.isRequired,
-//   title: PropTypes.string.isRequired,
-//   author: PropTypes.string.isRequired,
-// }).isRequired).isRequired,
-
-const defaultProps = {}
-
 class Settings extends React.Component {
+  static propTypes = {
+    decks: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      cards: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        answer: PropTypes.string.isRequired,
+        index: PropTypes.number.isRequired
+      }).isRequired).isRequired
+    }).isRequired).isRequired,
+    deckCount: PropTypes.number.isRequired,
+    removeAllDecks: PropTypes.func.isRequired,
+    signup: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired
+  }
+
+  // articles: PropTypes.arrayOf(PropTypes.shape({
+  //   url: PropTypes.string.isRequired,
+  //   title: PropTypes.string.isRequired,
+  //   author: PropTypes.string.isRequired,
+  // }).isRequired).isRequired,
+
+  static defaultProps = {}
+
   constructor (props) {
     super(props)
     this.removeAllDecks = this.removeAllDecks.bind(this)
@@ -70,6 +73,7 @@ class Settings extends React.Component {
             The decks you create are automatically saved to your browser&apos;s
             local storage.
           </p>
+          <AuthContainer />
           <ExportDeckButton
             filename='indecks.json'
             label='Download your deck collection as JSON'
@@ -84,8 +88,5 @@ class Settings extends React.Component {
     )
   }
 }
-
-Settings.propTypes = propTypes
-Settings.defaultProps = defaultProps
 
 export default Settings

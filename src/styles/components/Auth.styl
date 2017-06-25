@@ -1,0 +1,34 @@
+@import '../_variables'
+
+// figure is added here to give precedence over the base grid-figure
+figure.grid-figure
+  display: flex
+  min-height: 275px
+  flex-flow: column nowrap
+  justify-content: center
+
+.auth
+  margin: 2rem 0
+  strong
+    display: inline
+  > div
+    flex-flow: column nowrap
+
+.control-buttons
+  flex: 0 0 auto
+  flex-flow: row nowrap
+  margin-top: 1.5rem
+  button
+    margin: 0 0 0 1rem
+  button:first-child
+    margin: 0
+
+@media (max-width: cardWidth)
+  .control-buttons
+    flex: 0 0 50%
+    flex-flow: column nowrap
+    align-content: space-around
+    button
+      margin: .6rem 0 0
+    button:first-child
+      margin: 0

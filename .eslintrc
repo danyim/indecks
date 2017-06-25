@@ -64,7 +64,8 @@
     "react/react-in-jsx-scope": 2,
     "strict": [2, "never"],
     "react/jsx-quotes": 0,
-    "jsx-quotes": [2, "prefer-single"]
+    "jsx-quotes": [2, "prefer-single"],
+    "class-methods-use-this": 1
   },
   "globals": {
     "firebase": true,

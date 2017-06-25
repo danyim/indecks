@@ -1,26 +1,61 @@
 // import axios from 'axios'
+import firebase from '../../firebase'
 import { createReducer } from '../../utils'
 
 /**
  * Actions
  */
-const AUTHENTICATION_COMPLETE = 'AUTHENTICATION_COMPLETE'
-const AUTHENTICATION_REQUEST = 'AUTHENTICATION_REQUEST'
-const AUTHENTICATION_FAILED = 'AUTHENTICATION_FAILED'
+const AUTHENTICATION_COMPLETE = 'user/AUTHENTICATION_COMPLETE'
+const START_AUTH = 'user/START_AUTH'
+const STOP_AUTH = 'user/STOP_AUTH'
+const REGISTER = 'user/REGISTER'
+const LOGIN = 'user/LOGIN'
+const LOGOUT = 'user/LOGOUT'
 
 /**
  * Reducers
  */
 const reducers = {
-  authenticationComplete: (state, action) => state,
-  authenticationRequest: (state, action) => state,
-  authenticationFailed: (state, action) => state
+  register: (state, action) => ({
+    ...state,
+    username: action.username,
+    authenticated: false
+  }),
+  login: (state, action) => ({
+    ...state,
+    username: action.username,
+    token: action.token,
+    authenticated: true,
+    isAuthenticating: false
+  }),
+  logout: (state, action) => ({
+    username: null,
+    token: null,
+    authenticated: false,
+    isAuthenticating: false,
+    starred: []
+  }),
+  authenticationComplete: (state, action) => ({
+    ...state
+    // TODO: Fill in
+  }),
+  startAuthenticating: (state, action) => ({
+    ...state,
+    isAuthenticating: true
+  }),
+  stopAuthenticating: (state, action) => ({
+    ...state,
+    isAuthenticating: false
+  })
 }
 
 const handlers = {
+  [REGISTER]: reducers.register,
+  [LOGIN]: reducers.login,
+  [LOGOUT]: reducers.logout,
   [AUTHENTICATION_COMPLETE]: reducers.authenticationComplete,
-  [AUTHENTICATION_REQUEST]: reducers.authenticationRequest,
-  [AUTHENTICATION_FAILED]: reducers.authenticationFailed
+  [START_AUTH]: reducers.startAuthenticating,
+  [STOP_AUTH]: reducers.stopAuthenticating
 }
 
 export default createReducer({}, handlers)
@@ -31,20 +66,85 @@ export default createReducer({}, handlers)
 export const authenticationComplete = () => ({
   type: AUTHENTICATION_COMPLETE
 })
-export const authenticationRequest = () => ({
-  type: AUTHENTICATION_REQUEST
+export const startAuthenticating = () => ({
+  type: START_AUTH
 })
-export const authenticationFailed = () => ({
-  type: AUTHENTICATION_FAILED
+export const stopAuthenticating = () => ({
+  type: STOP_AUTH
 })
+export function register (username, password) {
+  return { type: REGISTER, username, password }
+}
+
+export function loginUser (username, password, token) {
+  return { type: LOGIN, username, password, token }
+}
+
+export function logoutUser (username) {
+  return { type: LOGOUT, username }
+}
 
 /**
  * Side Effects
  */
-export const authenticate = (username, password) =>
+export const logout = username =>
   (dispatch) => {
-    dispatch(authenticationRequest)
-    // Do something here...
-    dispatch(authenticationComplete)
-    dispatch(authenticationFailed)
+    dispatch(logoutUser(username))
+  }
+
+export const signup = (username, password) =>
+  (dispatch) => {
+    // Disable the login/signup buttons while we're authenticating with Firebase
+    dispatch(startAuthenticating())
+
+    return firebase.auth()
+      .createUserWithEmailAndPassword(username, password)
+      .then((e) => {
+        dispatch(login(username, password))
+      })
+      .catch((err) => {
+        dispatch(stopAuthenticating())
+        let message
+        if (err.code === 'auth/email-already-in-use') {
+          message = 'Email already in use'
+        } if (err.code === 'auth/weak-password') {
+          message = 'The password is too weak'
+        } if (err.code === 'auth/invalid-email') {
+          message = 'Invalid email'
+        } if (err.code === 'auth/operation-not-allowed') {
+          message = 'Email not allowed'
+        } else {
+          message = err.message
+        }
+        console.log('Signup error', err, 'username', username, 'password', password)
+
+        return message
+      })
+  }
+
+export const login = (username, password) =>
+  (dispatch) => {
+    // Disable the login/signup buttons while we're authenticating with Firebase
+    dispatch(startAuthenticating())
+
+    return firebase.auth()
+      .signInWithEmailAndPassword(username, password)
+      .then((e) => {
+        dispatch(loginUser(username, password, e.uid))
+        // dispatch(fetchStarredPosts())
+      })
+      .catch((err) => {
+        dispatch(stopAuthenticating())
+        let message
+        if (err.code === 'auth/invalid-email' ||
+          err.code === 'auth/user-not-found' ||
+          err.code === 'auth/wrong-password') {
+          message = 'Invalid username or password'
+        } else {
+          message = err.message
+        }
+
+        console.log('Login error', err, 'username', username, 'password', password)
+        return message
+      })
   }
