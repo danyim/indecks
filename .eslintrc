@@ -65,7 +65,8 @@
     "strict": [2, "never"],
     "react/jsx-quotes": 0,
     "jsx-quotes": [2, "prefer-single"],
-    "class-methods-use-this": 1
+    "class-methods-use-this": 1,
+    "no-plusplus": 0
   },
   "globals": {
     "firebase": true,
