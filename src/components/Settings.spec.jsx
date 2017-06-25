@@ -1,6 +1,6 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
-import { shallow, mount } from 'enzyme'
+import toJson from 'enzyme-to-json'
+import { shallow } from 'enzyme'
 import Settings from './Settings'
 
 const defaultProps = {
@@ -23,26 +23,12 @@ function setup (props = defaultProps) {
   }
 }
 
-function setupFull (props = defaultProps) {
-  const wrapper = mount(<Settings {...props} />)
-
-  return {
-    props,
-    wrapper
-  }
-}
-
 describe('Settings', () => {
   it('should render self and subcomponents', () => {
-    const tree = renderer.create(
-      <Settings {...defaultProps}>Hello</Settings>
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-
-  it('should render the export button', () => {
-    const { wrapper } = setupFull()
-    expect(wrapper.find('ExportDeckButton').exists()).toBe(true)
+    const wrapper = shallow(
+      <Settings {...defaultProps} />
+    )
+    expect(toJson(wrapper)).toMatchSnapshot()
   })
 
   it('should render the "delete all from local storage" button with the correct number', () => {
@@ -79,12 +65,5 @@ describe('Settings', () => {
     const button = wrapper.find('button.btn-delete')
     button.simulate('click')
     expect(handler.mock.calls.length).toBe(1)
-  })
-
-  it('should convert the deck into JSON when the export button is clicked', () => {
-    const { props, wrapper } = setupFull()
-
-    const exportButton = wrapper.find('ExportDeckButton')
-    expect(exportButton.prop('exportFile')()).toEqual(JSON.stringify(props.decks, null, 2))
   })
 })

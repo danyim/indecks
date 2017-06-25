@@ -17,9 +17,7 @@ class Settings extends React.Component {
       }).isRequired).isRequired
     }).isRequired).isRequired,
     deckCount: PropTypes.number.isRequired,
-    removeAllDecks: PropTypes.func.isRequired,
-    signup: PropTypes.func.isRequired,
-    login: PropTypes.func.isRequired
+    removeAllDecks: PropTypes.func.isRequired
   }
 
   // articles: PropTypes.arrayOf(PropTypes.shape({
