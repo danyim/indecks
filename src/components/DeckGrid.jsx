@@ -47,26 +47,25 @@ class DeckGrid extends React.Component {
         }))}
       >
         {
-          interpolatedStyles =>
+          interpolatedStyles => (
             <section className={`${styles['deck-grid']} wrap-row`}>
               {
-                interpolatedStyles.map((config) => {
-                  return (
-                    <Deck
-                      key={config.key}
-                      deck={config.data.deck}
-                      style={{
-                        ...config.style,
-                        display: 'relative'
-                      }}
-                    />
-                  )
-                })
+                interpolatedStyles.map(config => (
+                  <Deck
+                    key={config.key}
+                    deck={config.data.deck}
+                    style={{
+                      ...config.style,
+                      display: 'relative'
+                    }}
+                  />
+                ))
               }
               { this.props.decks.length === 0 &&
                 <p key='no_value' className='center'>Click the + button on the top left to add a deck</p>
               }
             </section>
+          )
         }
       </TransitionMotion>
     )

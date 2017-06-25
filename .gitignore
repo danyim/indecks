@@ -5,3 +5,4 @@ samples
 coverage
 firebase.js
 *.sublime-workspace
+.env

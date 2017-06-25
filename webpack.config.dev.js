@@ -1,12 +1,16 @@
-var path = require('path');
-var webpack = require('webpack');
-var loaders = require('./webpack.config.loaders');
-var autoPrefixer = require('autoprefixer');
-var poststylus = require('poststylus');
+require('dotenv').config()
 
-var definePlugin = new webpack.DefinePlugin({
-  __DEVELOPMENT__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true'))
-});
+const path = require('path')
+const webpack = require('webpack')
+const loaders = require('./webpack.config.loaders')
+const autoPrefixer = require('autoprefixer')
+const poststylus = require('poststylus')
+
+const definePlugin = new webpack.DefinePlugin({
+  __DEVELOPMENT__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
+  FIREBASE_KEY: JSON.stringify(process.env.FIREBASE_KEY || ''),
+  FIREBASE_ID: JSON.stringify(process.env.FIREBASE_ID || '')
+})
 
 module.exports = {
   devtool: 'source-map',
@@ -34,7 +38,7 @@ module.exports = {
   // postcss: [autoPrefixer({ browsers: ['last 2 versions'] })],
   stylus: {
     use: [
-      poststylus([ autoPrefixer({ browsers: ['last 2 versions'] }) ])
+      poststylus([autoPrefixer({ browsers: ['last 2 versions'] })])
     ]
   }
-};
+}
