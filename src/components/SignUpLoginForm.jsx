@@ -4,14 +4,12 @@ import styles from '../styles/components/SignUpLoginForm.styl'
 
 class SignUpLoginForm extends React.Component {
   static propTypes = {
+    isAuthenticating: PropTypes.bool.isRequired,
     signup: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired
   }
 
-  static defaultProps = {
-    title: '',
-    answer: ''
-  }
+  static defaultProps = {}
 
   constructor (props) {
     super(props)
@@ -92,6 +90,7 @@ class SignUpLoginForm extends React.Component {
           <button
             type='button'
             className='button'
+            disabled={this.props.isAuthenticating}
             onClick={this.handleLoginClick}
           >
             Login
@@ -99,6 +98,7 @@ class SignUpLoginForm extends React.Component {
           <button
             type='button'
             className='button'
+            disabled={this.props.isAuthenticating}
             onClick={this.handleSignUpClick}
           >
             Sign Up

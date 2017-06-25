@@ -3,6 +3,5 @@ dist
 npm-debug.log
 samples
 coverage
-firebase.js
 *.sublime-workspace
 .env

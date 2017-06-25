@@ -263,30 +263,31 @@ export const removeAllDecks = () => ({
 /**
  * Side Effects
  */
-export function fetchUserDecks () {
-  return (dispatch, getState) => {
+export const fetchUserDecks = () =>
+  (dispatch, getState) => {
     const state = getState()
     const token = state.user.token
+    const deckExists = deckId =>
+      state.decks.filter(v => v.deckId === deckId).length > 0
 
     firebase.database()
       .ref(`decks/${token}`)
-      .once('value', (decks) => {
+      .on('value', (decks) => {
+        let deckCount = 0
         decks.forEach((deck) => {
           const val = deck.val()
-          dispatch(addDeck(val))
+          // Only load the deck from Firebase if it doesn't already exist
+          if (!deckExists(val.id)) {
+            dispatch(addDeck(val))
+            deckCount++
+          }
         })
-        console.log('loaded ', decks.length, 'decks')
-
-        // setTimeout(() => {
-        //   const postIds = postId.val() || [];
-        //   dispatch(receiveStarredPosts(postIds));
-        // }, 0);
+        console.log('loaded', deckCount, 'decks')
       })
   }
-}
 
-export function saveDecksToFirebase () {
-  return (dispatch, getState) => {
+export const saveDecksToFirebase = () =>
+  (dispatch, getState) => {
     const state = getState()
     const token = state.user.token
     const authenticated = state.user.authenticated
@@ -302,4 +303,3 @@ export function saveDecksToFirebase () {
     }
     return Promise.all(promises)
   }
-}

@@ -33,12 +33,11 @@ const reducers = {
     username: null,
     token: null,
     authenticated: false,
-    isAuthenticating: false,
-    starred: []
+    isAuthenticating: false
   }),
   authenticationComplete: (state, action) => ({
     ...state
-    // TODO: Fill in
+    // TODO: Fill in later
   }),
   startAuthenticating: (state, action) => ({
     ...state,

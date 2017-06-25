@@ -15,6 +15,22 @@ class Auth extends React.Component {
     username: ''
   }
 
+  constructor (props) {
+    super(props)
+
+    this.handleClickSaveDecks = this.handleClickSaveDecks.bind(this)
+  }
+
+  handleClickSaveDecks () {
+    this.props.saveDecksToFirebase()
+    .then(() => {
+      console.log('saved all decks to firebase!')
+    })
+    .catch(() => {
+      console.log('error occurred while saving to firebase')
+    })
+  }
+
   render () {
     return (
       <div className={styles.auth}>
@@ -30,7 +46,7 @@ class Auth extends React.Component {
               className='btn'
               onClick={this.props.saveDecksToFirebase}
             >
-              Save Decks
+              Save your decks
             </button>
             <button
               type='button'
