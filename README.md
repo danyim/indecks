@@ -13,7 +13,7 @@ Indecks is an interactive index card study app built using React/Redux. Use it t
 - Import/export of decks via JSON
 - Data persistence through local storage
 - Keyboard shortcuts for quick navigation (see legend below)
-- _Google authentication & user data with a Firebase backend (**Coming soon**)_
+- Authentication & user data using Firebase
 
 ### Keyboard Shortcuts
 | Key | Function | Context |

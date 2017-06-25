@@ -1,5 +1,6 @@
 // import axios from 'axios'
 import firebase from '../../firebase'
+import { fetchUserDecks } from './decks'
 import { createReducer } from '../../utils'
 
 /**
@@ -131,7 +132,7 @@ export const login = (username, password) =>
       .signInWithEmailAndPassword(username, password)
       .then((e) => {
         dispatch(loginUser(username, password, e.uid))
-        // dispatch(fetchStarredPosts())
+        dispatch(fetchUserDecks())
       })
       .catch((err) => {
         dispatch(stopAuthenticating())

@@ -7,6 +7,7 @@ class Auth extends React.Component {
   static propTypes = {
     authenticated: PropTypes.bool.isRequired,
     logout: PropTypes.func.isRequired,
+    saveDecksToFirebase: PropTypes.func.isRequired,
     username: PropTypes.string
   }
 
@@ -24,6 +25,13 @@ class Auth extends React.Component {
             <p>
               Logged in as&nbsp;<strong>{this.props.username}</strong>
             </p>
+            <button
+              type='button'
+              className='btn'
+              onClick={this.props.saveDecksToFirebase}
+            >
+              Save Decks
+            </button>
             <button
               type='button'
               className='btn'

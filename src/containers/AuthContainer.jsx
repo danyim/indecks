@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as userActions from '../redux/modules/user'
+import * as deckActions from '../redux/modules/decks'
 import Auth from '../components/Auth'
 
 const AuthContainer = props => (
@@ -16,7 +17,7 @@ const mapStateToProps = ({ user }) => ({
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
-    userActions,
+    Object.assign({}, deckActions, userActions),
     dispatch
   )
 

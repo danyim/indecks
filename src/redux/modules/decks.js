@@ -1,3 +1,4 @@
+import firebase from '../../firebase'
 import { createReducer, findBestNextIndex } from '../../utils'
 
 /**
@@ -258,3 +259,47 @@ export const removeCard = (cardIndex, deckId) => ({
 export const removeAllDecks = () => ({
   type: REMOVE_ALL_DECKS
 })
+
+/**
+ * Side Effects
+ */
+export function fetchUserDecks () {
+  return (dispatch, getState) => {
+    const state = getState()
+    const token = state.user.token
+
+    firebase.database()
+      .ref(`decks/${token}`)
+      .once('value', (decks) => {
+        decks.forEach((deck) => {
+          const val = deck.val()
+          dispatch(addDeck(val))
+        })
+        console.log('loaded ', decks.length, 'decks')
+
+        // setTimeout(() => {
+        //   const postIds = postId.val() || [];
+        //   dispatch(receiveStarredPosts(postIds));
+        // }, 0);
+      })
+  }
+}
+
+export function saveDecksToFirebase () {
+  return (dispatch, getState) => {
+    const state = getState()
+    const token = state.user.token
+    const authenticated = state.user.authenticated
+    const promises = []
+    if (authenticated) {
+      for (let d = 0; d < state.decks.length; d++) {
+        promises.push(
+          firebase.database()
+            .ref(`decks/${token}/${state.decks[d].id}`)
+            .set(state.decks[d])
+        )
+      }
+    }
+    return Promise.all(promises)
+  }
+}
