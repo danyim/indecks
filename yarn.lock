@@ -3123,9 +3123,9 @@ https-browserify@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-0.0.1.tgz#3f91365cabe60b77ed0ebba24b454e3e09d95a82"
 
-husky@^0.14.0:
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/husky/-/husky-0.14.0.tgz#d0115459d824e7cc67dbc23231935ba9cfdf0989"
+husky@^0.14.1:
+  version "0.14.1"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-0.14.1.tgz#8edba33e728ceed75343e88bb8002e4cbd8d1b40"
   dependencies:
     is-ci "^1.0.10"
     normalize-path "^1.0.0"
@@ -5584,9 +5584,9 @@ react-keybinding-component@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/react-keybinding-component/-/react-keybinding-component-0.4.1.tgz#fd69d01aa14ee4e622774a8bf9a9fddd2b615a9b"
 
-react-modal@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-2.0.6.tgz#00eaa806ec6b52625e25716cda07734692c99e31"
+react-modal@^2.0.7:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-2.0.7.tgz#036f313e6321014971c1d0a21215e87bd0850acd"
   dependencies:
     element-class "^0.2.0"
     exenv "1.2.0"
@@ -5793,9 +5793,9 @@ redux-thunk@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.2.0.tgz#e615a16e16b47a19a515766133d1e3e99b7852e5"
 
-redux@^3.7.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/redux/-/redux-3.7.0.tgz#07a623cafd92eee8abe309d13d16538f6707926f"
+redux@^3.7.1:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-3.7.1.tgz#bfc535c757d3849562ead0af18ac52122cd7268e"
   dependencies:
     lodash "^4.2.1"
     lodash-es "^4.2.1"
