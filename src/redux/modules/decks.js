@@ -268,21 +268,24 @@ export const fetchUserDecks = () =>
     const state = getState()
     const token = state.user.token
     const deckExists = deckId =>
-      state.decks.filter(v => v.deckId === deckId).length > 0
+      state.decks.filter(v => v.id === deckId).length > 0
 
     firebase.database()
       .ref(`decks/${token}`)
       .on('value', (decks) => {
-        let deckCount = 0
+        let decksLoaded = 0
+        let decksDuplicate = 0
         decks.forEach((deck) => {
           const val = deck.val()
           // Only load the deck from Firebase if it doesn't already exist
           if (!deckExists(val.id)) {
             dispatch(addDeck(val))
-            deckCount++
+            decksLoaded++
+          } else {
+            decksDuplicate++
           }
         })
-        console.log('loaded', deckCount, 'decks')
+        console.log(`Fetched ${decksLoaded} decks, ${decksDuplicate} duplicates found`)
       })
   }
 

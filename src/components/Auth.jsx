@@ -8,6 +8,7 @@ class Auth extends React.Component {
     authenticated: PropTypes.bool.isRequired,
     logout: PropTypes.func.isRequired,
     saveDecksToFirebase: PropTypes.func.isRequired,
+    fetchUserDecks: PropTypes.func.isRequired,
     username: PropTypes.string
   }
 
@@ -47,6 +48,13 @@ class Auth extends React.Component {
               onClick={this.props.saveDecksToFirebase}
             >
               Save your decks
+            </button>
+            <button
+              type='button'
+              className='btn'
+              onClick={this.props.fetchUserDecks}
+            >
+              Reload decks from account
             </button>
             <button
               type='button'
