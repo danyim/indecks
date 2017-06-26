@@ -28,11 +28,11 @@ exports[`Settings should render self and subcomponents 1`] = `
       </p>
     </label>
     <label
-      htmlFor="offline-mode"
+      htmlFor="auto-save"
     >
       <p>
         <input
-          id="offline-mode"
+          id="auto-save"
           onChange={[Function]}
           type="checkbox"
         />

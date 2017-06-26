@@ -75,8 +75,8 @@ class Settings extends React.Component {
           <label htmlFor='offline-mode'>
             <p><input id='offline-mode' type='checkbox' onChange={() => {}} /> Enable offline support</p>
           </label>
-          <label htmlFor='offline-mode'>
-            <p><input id='offline-mode' type='checkbox' onChange={() => {}} /> Save changes automatically to account</p>
+          <label htmlFor='auto-save'>
+            <p><input id='auto-save' type='checkbox' onChange={() => {}} /> Save changes automatically to account</p>
           </label>
 
           <AuthContainer />
