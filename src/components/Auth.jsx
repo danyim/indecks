@@ -24,10 +24,10 @@ class Auth extends React.Component {
   handleClickSaveDecks () {
     this.props.saveDecksToFirebase()
     .then(() => {
-      console.log('saved all decks to firebase!')
+      // console.log('saved all decks to firebase!')
     })
     .catch(() => {
-      console.log('error occurred while saving to firebase')
+      // console.log('error occurred while saving to firebase')
     })
   }
 

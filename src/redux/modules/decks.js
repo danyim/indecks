@@ -303,3 +303,6 @@ export const saveDecksToFirebase = () =>
     }
     return Promise.all(promises)
   }
+
+// TODO: Eventually we want to make a call to Firebase on card add/delete/move
+// and deck add/delete/move

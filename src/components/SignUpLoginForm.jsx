@@ -5,7 +5,7 @@ import styles from '../styles/components/SignUpLoginForm.styl'
 class SignUpLoginForm extends React.Component {
   static propTypes = {
     isAuthenticating: PropTypes.bool.isRequired,
-    signup: PropTypes.func.isRequired,
+    signupEmail: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired
   }
 
@@ -60,7 +60,7 @@ class SignUpLoginForm extends React.Component {
       return
     }
 
-    this.props.signup(
+    this.props.signupEmail(
       this.state.username,
       this.state.password
     ).then((message) => {

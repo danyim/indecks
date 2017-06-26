@@ -92,7 +92,7 @@ export const logout = username =>
     dispatch(logoutUser(username))
   }
 
-export const signup = (username, password) =>
+export const signupEmail = (username, password) =>
   (dispatch) => {
     // Disable the login/signup buttons while we're authenticating with Firebase
     dispatch(startAuthenticating())
