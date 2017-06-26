@@ -68,9 +68,17 @@ class Settings extends React.Component {
         <h2 className={`${styles.header}`}>Settings</h2>
         <div className={`${styles['settings-content']}`}>
           <p>
-            The decks you create are automatically saved to your browser&apos;s
+            For now, the decks you create are automatically saved to your browser&apos;s
             local storage.
           </p>
+
+          <label htmlFor='offline-mode'>
+            <p><input id='offline-mode' type='checkbox' onChange={() => {}} /> Enable offline support</p>
+          </label>
+          <label htmlFor='offline-mode'>
+            <p><input id='offline-mode' type='checkbox' onChange={() => {}} /> Save changes automatically to account</p>
+          </label>
+
           <AuthContainer />
           <ExportDeckButton
             filename='indecks.json'
