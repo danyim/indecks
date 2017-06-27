@@ -122,6 +122,48 @@ export const signupEmail = (username, password) =>
       })
   }
 
+export const signupGithub = () =>
+  (dispatch) => {
+    // Disable the login/signup buttons while we're authenticating with Firebase
+    dispatch(startAuthenticating())
+
+    const provider = firebase.auth.TwitterAuthProvider() // eslint-disable-line
+    // provider.addScope('repo')
+    return firebase.auth().signInWithPopup(provider)
+      .then((result) => {
+        debugger
+        const token = result.credential.accessToken
+        const user = result.user
+        dispatch(login('testing', 'github'))
+      })
+      .catch((err) => {
+        dispatch(stopAuthenticating())
+
+        let message
+        // Handle Errors here.
+        const errorCode = err.code
+        const errorMessage = err.message
+        // The email of the user's account used.
+        const email = err.email
+        // The firebase.auth.AuthCredential type that was used.
+        const credential = err.credential
+        if (errorCode === 'auth/account-exists-with-different-credential') {
+          message = 'You have signed up with a different provider for that email.'
+          // Handle linking here if your app allows it.
+        } else {
+          console.error(err)
+        }
+
+        return message
+      })
+  }
+
+export const signupTwitter = () =>
+  (dispatch) => Promise.resolve()
+
+export const signupGoogle = () =>
+  (dispatch) => Promise.resolve()
+
 export const login = (username, password) =>
   (dispatch) => {
     // Disable the login/signup buttons while we're authenticating with Firebase
