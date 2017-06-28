@@ -1,5 +1,5 @@
 /* globals FIREBASE_KEY FIREBASE_ID */
-import * as firebase from 'firebase'
+import firebase from 'firebase'
 
 const config = {
   apiKey: FIREBASE_KEY,
@@ -9,6 +9,7 @@ const config = {
   storageBucket: `${FIREBASE_ID}.appspot.com`
 }
 
-firebase.initializeApp(config)
-
+export const firebaseApp = firebase.initializeApp(config)
+export const db = firebaseApp.database()
+export const auth = firebaseApp.auth()
 export default firebase
