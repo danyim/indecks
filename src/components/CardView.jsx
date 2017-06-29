@@ -101,7 +101,8 @@ class CardView extends React.Component {
           <Card card={card} flipped={this.state.flipped} handleOnClick={this.handleFlip} />
         </Swipeable>
         <DeckNavigator
-          deck={deck} cardIndex={cardIndex}
+          deck={deck}
+          cardIndex={cardIndex}
           mode={mode}
           flipped={this.state.flipped}
           config={config}

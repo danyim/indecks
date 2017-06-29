@@ -36,8 +36,11 @@ class CardAdd extends React.Component {
 
   handleSubmit (e, deckId) {
     e.preventDefault()
-    if (this.state.title.trim() === '' || this.state.answer.trim() === '') {
-      return false
+    if (!this.state.title ||
+      !this.state.answer ||
+      this.state.title.trim() === '' ||
+      this.state.answer.trim() === '') {
+      return
     }
 
     const card = {
