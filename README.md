@@ -9,7 +9,7 @@ Indecks is an interactive index card study app built using React/Redux. Use it t
 </h3>
 
 
-![](http://i.imgur.com/FqrVbVf.png)
+![](https://github.com/danyim/indecks/raw/master/screenshot.png)
 
 
 
