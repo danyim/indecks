@@ -66,9 +66,16 @@
     margin-top: 0
 
 @media (max-width: cardWidth)
+  .title-text
+    margin-top: 0
+    flex: inherit
   .title-card
     flex-flow: column nowrap
     justify-content: center
+    padding: 1rem 1.5rem
+    :global
+      .large.editable
+        font-size: 2.5rem
 
   .control-buttons
     flex-flow: row nowrap
