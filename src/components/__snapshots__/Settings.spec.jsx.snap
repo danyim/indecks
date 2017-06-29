@@ -13,39 +13,19 @@ exports[`Settings should render self and subcomponents 1`] = `
     className="settings-content"
   >
     <p>
-      For now, the decks you create are automatically saved to your browser's local storage.
+      If you're logged in, any changes made to your decks will automatically be saved and synchronized in 
+      <strong>
+        real-time
+      </strong>
+      .
     </p>
-    <label
-      htmlFor="offline-mode"
-    >
-      <p>
-        <input
-          id="offline-mode"
-          onChange={[Function]}
-          type="checkbox"
-        />
-         Enable offline support
-      </p>
-    </label>
-    <label
-      htmlFor="auto-save"
-    >
-      <p>
-        <input
-          id="auto-save"
-          onChange={[Function]}
-          type="checkbox"
-        />
-         Save changes automatically to account
-      </p>
-    </label>
     <Connect(AuthContainer) />
     <ExportDeckButton
       className="button"
       disabled={false}
       exportFile={[Function]}
       filename="indecks.json"
-      label="Download your deck collection as JSON"
+      label="Download your entire deck collection as JSON"
       style={Object {}}
     />
     <button

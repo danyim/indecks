@@ -1,6 +1,6 @@
 // import axios from 'axios'
 import firebase, { auth } from '../../firebase'
-import { fetchUserDecks } from './decks'
+import { fetchUserDecks, removeAllDecks } from './decks'
 import { createReducer } from '../../utils'
 
 const storageKey = 'FB_AUTH'
@@ -134,8 +134,10 @@ export function setToken (token) {
 export const logout = username =>
   dispatch => {
     auth.signOut()
-    dispatch(setToken(null))
-    localStorage.setItem(storageKey, {})
+    // dispatch(setToken(null))
+    // localStorage.setItem(storageKey, {})
+    dispatch(removeAllDecks())
+    localStorage.clear()
   }
 
 export const signUpEmail = (username, password) =>

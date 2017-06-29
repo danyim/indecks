@@ -44,11 +44,11 @@ class Auth extends React.Component {
           ? <SignUpLoginForm {...this.props} />
           : <div>
             <p>
-              {
+              {/*
                 this.props.photoURL
                 ? <img src={this.props.photoURL} alt='Avatar' />
                 : null
-              }
+              */}
               Logged in as&nbsp;
               <strong>
                 {
