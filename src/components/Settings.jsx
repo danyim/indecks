@@ -48,6 +48,7 @@ class Settings extends React.Component {
     return deckCount === 0
       ? (
         <button
+          name='delete-all-decks'
           className='btn-delete'
           disabled='disabled'
         >
@@ -56,6 +57,7 @@ class Settings extends React.Component {
       )
       : (
         <button
+          name='delete-all-decks'
           className='btn-delete'
           onClick={() => this.removeAllDecks(deckCount)}
         >
@@ -94,6 +96,7 @@ class Settings extends React.Component {
           />
           {this.renderDeleteAll(deckCount)}
           <button
+            name='clear-storage'
             className='btn-delete'
             onClick={Settings.handleClearLocalStorage}
           >

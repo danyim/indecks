@@ -50,11 +50,19 @@ exports[`Settings should render self and subcomponents 1`] = `
     />
     <button
       className="btn-delete"
+      name="delete-all-decks"
       onClick={[Function]}
     >
       Delete all 
       1
        deck(s) from local storage
+    </button>
+    <button
+      className="btn-delete"
+      name="clear-storage"
+      onClick={[Function]}
+    >
+      Clear local storage
     </button>
   </div>
 </section>

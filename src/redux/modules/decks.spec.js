@@ -62,7 +62,7 @@ describe('decks redux', () => {
   describe('ADD_DECK', () => {
     it('should create an action to add a deck', () => {
       const expectedAction = {
-        type: 'ADD_DECK',
+        type: 'decks/ADD_DECK',
         deck
       }
       expect(actions.addDeck(deck)).toEqual(expectedAction)
@@ -71,7 +71,7 @@ describe('decks redux', () => {
     it('should handle adding to an empty array of decks', () => {
       expect(
         reducer([], {
-          type: 'ADD_DECK',
+          type: 'decks/ADD_DECK',
           deck
         })
       ).toEqual([
@@ -86,7 +86,7 @@ describe('decks redux', () => {
             deck2
           ],
           {
-            type: 'ADD_DECK',
+            type: 'decks/ADD_DECK',
             deck
           }
         )
@@ -103,7 +103,7 @@ describe('decks redux', () => {
       const title = 'Deck title'
       const description = 'Deck description'
       const expectedAction = {
-        type: 'EDIT_DECK',
+        type: 'decks/EDIT_DECK',
         deckId,
         title,
         description
@@ -114,7 +114,7 @@ describe('decks redux', () => {
     it('should handle editing a non-existent deck', () => {
       expect(
         reducer([], {
-          type: 'EDIT_DECK',
+          type: 'decks/EDIT_DECK',
           deckId: 1234,
           title: 'Test 1',
           description: 'Test 2'
@@ -129,7 +129,7 @@ describe('decks redux', () => {
             deck
           ],
           {
-            type: 'EDIT_DECK',
+            type: 'decks/EDIT_DECK',
             deckId: deck.id,
             title: 'Edited Title',
             description: deck.description
@@ -148,7 +148,7 @@ describe('decks redux', () => {
     it('should create an action to remove a deck', () => {
       const deckId = 'ABCDEFG'
       const expectedAction = {
-        type: 'REMOVE_DECK',
+        type: 'decks/REMOVE_DECK',
         deckId
       }
       expect(actions.removeDeck(deckId)).toEqual(expectedAction)
@@ -157,7 +157,7 @@ describe('decks redux', () => {
     it('should handle removing a non-existent deck', () => {
       expect(
         reducer([], {
-          type: 'REMOVE_DECK',
+          type: 'decks/REMOVE_DECK',
           deckId: 1234
         })
       ).toEqual([])
@@ -172,7 +172,7 @@ describe('decks redux', () => {
             deck3
           ],
           {
-            type: 'REMOVE_DECK',
+            type: 'decks/REMOVE_DECK',
             deckId: deck2.id
           }
         )
@@ -184,7 +184,7 @@ describe('decks redux', () => {
     it('should create an action to shuffle cards in a deck', () => {
       const deckId = 'ABCDEFG'
       const expectedAction = {
-        type: 'SHUFFLE_DECK',
+        type: 'decks/SHUFFLE_DECK',
         deckId
       }
       expect(actions.shuffleDeck(deckId)).toEqual(expectedAction)
@@ -196,7 +196,7 @@ describe('decks redux', () => {
     //       deck
     //     ],
     //     {
-    //       type: 'SHUFFLE_DECK',
+    //       type: 'decks/SHUFFLE_DECK',
     //       deckId: deck.id
     //     })
     //   ).toEqual([
@@ -211,7 +211,7 @@ describe('decks redux', () => {
       const answer = 'Answer'
       const deckId = 'ABCDEFG'
       const expectedAction = {
-        type: 'ADD_CARD',
+        type: 'decks/ADD_CARD',
         title,
         answer,
         deckId
@@ -222,7 +222,7 @@ describe('decks redux', () => {
     it('should handle adding a card to a non-existent deck', () => {
       expect(
         reducer([], {
-          type: 'ADD_CARD',
+          type: 'decks/ADD_CARD',
           title: 'Title',
           answer: 'Answer',
           deckId: '???'
@@ -244,7 +244,7 @@ describe('decks redux', () => {
             deck3
           ],
           {
-            type: 'ADD_CARD',
+            type: 'decks/ADD_CARD',
             title: 'Title',
             answer: 'Answer',
             deckId: deck2.id
@@ -272,7 +272,7 @@ describe('decks redux', () => {
       const cardIndex = 4
       const deckId = 'ABCDEFG'
       const expectedAction = {
-        type: 'DUPLICATE_CARD',
+        type: 'decks/DUPLICATE_CARD',
         cardIndex,
         deckId
       }
@@ -288,7 +288,7 @@ describe('decks redux', () => {
             deck3
           ],
           {
-            type: 'DUPLICATE_CARD',
+            type: 'decks/DUPLICATE_CARD',
             cardIndex: 2,
             deckId: deck2.id
           }
@@ -317,7 +317,7 @@ describe('decks redux', () => {
       const cardIndex = 1
       const deckId = 'ABCDEFG'
       const expectedAction = {
-        type: 'EDIT_CARD',
+        type: 'decks/EDIT_CARD',
         title,
         answer,
         cardIndex,
@@ -340,7 +340,7 @@ describe('decks redux', () => {
             deck3
           ],
           {
-            type: 'EDIT_CARD',
+            type: 'decks/EDIT_CARD',
             title: newCard.title,
             answer: newCard.answer,
             cardIndex: 1,
@@ -371,7 +371,7 @@ describe('decks redux', () => {
       const srcDeckId = 'ABCDEFG'
       const destDeckId = 'LMNOPQ'
       const expectedAction = {
-        type: 'MOVE_CARD',
+        type: 'decks/MOVE_CARD',
         cardIndex,
         srcDeckId,
         destDeckId
@@ -387,7 +387,7 @@ describe('decks redux', () => {
             deck2
           ],
           {
-            type: 'MOVE_CARD',
+            type: 'decks/MOVE_CARD',
             cardIndex: 2,
             srcDeckId: deck.id,
             destDeckId: deck2.id
@@ -418,7 +418,7 @@ describe('decks redux', () => {
             deck2
           ],
           {
-            type: 'MOVE_CARD',
+            type: 'decks/MOVE_CARD',
             cardIndex: 2,
             srcDeckId: deck2.id,
             destDeckId: deck.id
@@ -447,7 +447,7 @@ describe('decks redux', () => {
       const cardIndex = 4
       const deckId = 'ABCDEFG'
       const expectedAction = {
-        type: 'REMOVE_CARD',
+        type: 'decks/REMOVE_CARD',
         cardIndex,
         deckId
       }
@@ -462,7 +462,7 @@ describe('decks redux', () => {
             deck2
           ],
           {
-            type: 'REMOVE_CARD',
+            type: 'decks/REMOVE_CARD',
             cardIndex: 2,
             deckId: deck2.id
           }
@@ -482,7 +482,7 @@ describe('decks redux', () => {
   describe('REMOVE_ALL_DECKS', () => {
     it('should create an action to remove all decks', () => {
       const expectedAction = {
-        type: 'REMOVE_ALL_DECKS'
+        type: 'decks/REMOVE_ALL_DECKS'
       }
       expect(actions.removeAllDecks()).toEqual(expectedAction)
     })
@@ -496,7 +496,7 @@ describe('decks redux', () => {
             deck3
           ],
           {
-            type: 'REMOVE_ALL_DECKS'
+            type: 'decks/REMOVE_ALL_DECKS'
           }
         )
       ).toEqual([])

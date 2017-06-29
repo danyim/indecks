@@ -62,7 +62,7 @@ describe('Settings', () => {
       removeAllDecks: handler
     })
 
-    const button = wrapper.find('button.btn-delete')
+    const button = wrapper.find('button.btn-delete[name="delete-all-decks"]')
     button.simulate('click')
     expect(handler.mock.calls.length).toBe(1)
   })
