@@ -7,13 +7,14 @@ Indecks is an interactive index card study app built using React/Redux. Use it t
 [Live Link](https://indecks.netlify.com/)
 
 ### Features
+- Real-time synchronization of deck data across devices
+- Save data using Twitter, GitHub, Google or email/password for authentication
+- Full GitHub-flavored Markdown support (including images) for card contents
 - Minimalistic layout tailored for desktop and mobile on-the-go viewing
   - Captures swipes on mobile for quickly navigating between cards
-- Markdown support for card contents
-- Import/export of decks via JSON
-- Data persistence through local storage
 - Keyboard shortcuts for quick navigation (see legend below)
-- Authentication & user data using Firebase
+- Offline persistence with local storage
+- Import/export of decks via JSON
 
 ### Keyboard Shortcuts
 | Key | Function | Context |
@@ -30,16 +31,18 @@ Indecks is an interactive index card study app built using React/Redux. Use it t
 | <kbd>S</kbd> | Toggle shuffle | While viewing a deck |
 | <kbd>D</kbd> | Return to deck | While viewing a deck |
 
-### Development
+### Builds
 **Local**
 
 1. `yarn` to grab all the necessary dependencies.
-2. `npm start` and open [http://localhost:9406](http://localhost:9406) in your browser.
-3. `npm run test` to run tests
+2. `yarn start` and open [http://localhost:9406](http://localhost:9406) in your browser.
+3. `yarn test` to unit tests
 
 **Production**
 
-1. Run `npm build` to create a distro folder and a bundle.js file.
+1. Run `yarn build`
+2. Copy `index.html` into `/dist` 
+3. Place `/dist` on a server
 
 ### License
   MIT
