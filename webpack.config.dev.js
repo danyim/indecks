@@ -15,6 +15,7 @@ const definePlugin = new webpack.DefinePlugin({
 module.exports = {
   devtool: 'source-map',
   entry: [
+    'babel-polyfill',
     'webpack-hot-middleware/client',
     './src/index',
     'font-awesome-webpack!./src/styles/font-awesome.config.js'

@@ -7,6 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = {
   devtool: 'source-map',
   entry: [
+    'babel-polyfill',
     'font-awesome-webpack!./src/styles/font-awesome.config.prod.js',
     './src/index'
   ],
