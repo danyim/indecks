@@ -4,7 +4,15 @@ Indecks is an interactive index card study app built using React/Redux. Use it t
 
 [![Build Status](https://travis-ci.org/danyim/indecks.svg?branch=master)](https://travis-ci.org/danyim/indecks)
 
-[Live Link](https://indecks.netlify.com/)
+<h3>
+  Live Demo: <a href="https://indecks.netlify.com/" target="_blank">https://indecks.netlify.com/</a>
+</h3>
+
+
+![](http://i.imgur.com/FqrVbVf.png)
+
+
+
 
 ### Features
 - Real-time synchronization of deck data across devices
