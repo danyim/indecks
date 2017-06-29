@@ -45,9 +45,11 @@
   flex: 1 1 75%
   order: 1
   text-overflow: ellipsis
-  *
-    margin-right: 2rem
-    flex: 1 1 auto
+  > *
+    flex: 1 0 auto
+  :global
+    .editable
+      min-height: 5rem
 
 .control-buttons
   margin-top: 1.0rem
@@ -55,11 +57,11 @@
   flex-grow: 1
   order: 2
   transition: all .2s ease-in
-  padding-left: 1.0rem
+  margin-left: 2rem
   button, a
     flex: 1 0 calc(25% - 1rem)
     margin-top: .6rem
-    max-height: 4.0rem
+    // max-height: 4.0rem
   button:first-child, a:first-child
     margin-top: 0
 
@@ -67,9 +69,11 @@
   .title-card
     flex-flow: column nowrap
     justify-content: center
+
   .control-buttons
     flex-flow: row nowrap
-    padding-left: 0
+    margin-left: 0
+    margin-top: 3rem
     button, a
       flex: 1 0 calc(25% - 2rem)
       margin-top: 0

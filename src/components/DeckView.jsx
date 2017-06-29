@@ -98,6 +98,7 @@ class DeckView extends React.Component {
         </p>
       )
     }
+    return null
   }
 
   render () {
@@ -166,7 +167,7 @@ class DeckView extends React.Component {
 
         <div className={`wrap-row ${styles.grid}`}>
           {
-            deck.cards.map((c, i) =>
+            deck.cards.map((c, i) => (
               <Card
                 card={c}
                 key={`card_${deck.id}__${c.index}`}
@@ -221,7 +222,7 @@ class DeckView extends React.Component {
                   </OverlayRow>
                 </Overlay>
               </Card>
-            )
+            ))
           }
           { this.renderEmpty(deck.cards.length) }
         </div>
