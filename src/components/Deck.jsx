@@ -49,7 +49,7 @@ class Deck extends React.Component {
           <p><code>{deck.id}</code></p>
           <p>URL: <a href={deck.url}>Link</a></p>
           */}
-          <p>{deck.cards.length} cards</p>
+          <p>{deck.cards ? deck.cards.length : 0} cards</p>
           <p>{deck.description}</p>
         </figcaption>
 

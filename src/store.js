@@ -2,16 +2,21 @@
 import { applyMiddleware, createStore, compose } from 'redux'
 import { createLogger } from 'redux-logger'
 import { persistStore, autoRehydrate } from 'redux-persist'
+import createSagaMiddleware from 'redux-saga'
 import thunk from 'redux-thunk'
-import rootReducer from './redux/index'
+// import rootSaga from './sagas/index'
+import { combineListeners } from './listenerMiddleware'
+import { rootReducer, rootSaga, rootListener } from './redux/index'
 import config from './data/config'
 // import decks from './data/decks';
 // import samples from './data/samples';
 
 const logger = createLogger()
+const sagaMiddleware = createSagaMiddleware()
+const listenerMiddlewares = combineListeners(rootListener)
 const envMiddlewares = {
-  dev: [logger, thunk],
-  prod: [thunk]
+  dev: [logger, thunk, sagaMiddleware, ...listenerMiddlewares],
+  prod: [thunk, sagaMiddleware, ...listenerMiddlewares]
 }
 
 /**
@@ -49,17 +54,18 @@ export default function configureStore (initialState = {}, debug = __DEVELOPMENT
 
   // Loads state from local storage
   persistStore(store, {
-    blacklist: ['routing', 'form'] // Except these objects
+    blacklist: ['routing', 'form', 'config', 'user']
   })
 
-  // TODO: Does this belong here or in root.js?
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('./redux', () => {
-      const nextRootReducer = require('./redux/index')
+      const nextRootReducer = require('./redux/index').rootReducer // eslint-disable-line
       store.replaceReducer(nextRootReducer)
     })
   }
+
+  sagaMiddleware.run(rootSaga)
 
   return store
 }

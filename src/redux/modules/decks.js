@@ -4,16 +4,17 @@ import { createReducer, findBestNextIndex } from '../../utils'
 /**
  * Actions
  */
-const ADD_CARD = 'ADD_CARD'
-const DUPLICATE_CARD = 'DUPLICATE_CARD'
-const EDIT_CARD = 'EDIT_CARD'
-const MOVE_CARD = 'MOVE_CARD'
-const REMOVE_CARD = 'REMOVE_CARD'
-const ADD_DECK = 'ADD_DECK'
-const EDIT_DECK = 'EDIT_DECK'
-const REMOVE_DECK = 'REMOVE_DECK'
-const SHUFFLE_DECK = 'SHUFFLE_DECK'
-const REMOVE_ALL_DECKS = 'REMOVE_ALL_DECKS'
+const ADD_CARD = 'decks/ADD_CARD'
+const DUPLICATE_CARD = 'decks/DUPLICATE_CARD'
+const EDIT_CARD = 'decks/EDIT_CARD'
+const MOVE_CARD = 'decks/MOVE_CARD'
+const REMOVE_CARD = 'decks/REMOVE_CARD'
+const ADD_DECK = 'decks/ADD_DECK'
+const EDIT_DECK = 'decks/EDIT_DECK'
+const REMOVE_DECK = 'decks/REMOVE_DECK'
+const SHUFFLE_DECK = 'decks/SHUFFLE_DECK'
+const LOAD_DECKS = 'decks/LOAD_DECKS'
+const REMOVE_ALL_DECKS = 'decks/REMOVE_ALL_DECKS'
 
 /**
  * Reducers
@@ -180,7 +181,8 @@ const reducers = {
   // Should this really be an action?
   shuffleDeck: state => state,
 
-  removeAllDecks: () => []
+  removeAllDecks: () => [],
+  loadDecks: (state, action) => action.decks
 }
 
 const reducerHandlers = {
@@ -193,7 +195,8 @@ const reducerHandlers = {
   [EDIT_DECK]: reducers.editDeck,
   [REMOVE_DECK]: reducers.removeDeck,
   [SHUFFLE_DECK]: reducers.shuffleDeck,
-  [REMOVE_ALL_DECKS]: reducers.removeAllDecks
+  [REMOVE_ALL_DECKS]: reducers.removeAllDecks,
+  [LOAD_DECKS]: reducers.loadDecks
 }
 export default createReducer({}, reducerHandlers)
 
@@ -204,37 +207,31 @@ export const addDeck = deck => ({
   type: ADD_DECK,
   deck
 })
-
 export const editDeck = (deckId, title, description) => ({
   type: EDIT_DECK,
   deckId,
   title,
   description
 })
-
 export const removeDeck = deckId => ({
   type: REMOVE_DECK,
   deckId
 })
-
 export const shuffleDeck = deckId => ({
   type: SHUFFLE_DECK,
   deckId
 })
-
 export const addCard = (title, answer, deckId) => ({
   type: ADD_CARD,
   title,
   answer,
   deckId
 })
-
 export const duplicateCard = (cardIndex, deckId) => ({
   type: DUPLICATE_CARD,
   cardIndex,
   deckId
 })
-
 export const editCard = (title, answer, cardIndex, deckId) => ({
   type: EDIT_CARD,
   title,
@@ -242,22 +239,23 @@ export const editCard = (title, answer, cardIndex, deckId) => ({
   cardIndex,
   deckId
 })
-
 export const moveCard = (cardIndex, srcDeckId, destDeckId) => ({
   type: MOVE_CARD,
   cardIndex,
   srcDeckId,
   destDeckId
 })
-
 export const removeCard = (cardIndex, deckId) => ({
   type: REMOVE_CARD,
   cardIndex,
   deckId
 })
-
 export const removeAllDecks = () => ({
   type: REMOVE_ALL_DECKS
+})
+export const loadDecks = decks => ({
+  type: LOAD_DECKS,
+  decks
 })
 
 /**
@@ -266,46 +264,98 @@ export const removeAllDecks = () => ({
 export const fetchUserDecks = () =>
   (dispatch, getState) => {
     const state = getState()
-    const token = state.user.token
-    const deckExists = deckId =>
-      state.decks.filter(v => v.id === deckId).length > 0
+    // const deckExists = deckId =>
+    //   state.decks.filter(v => v.id === deckId).length > 0
 
     firebase.database()
-      .ref(`decks/${token}`)
+      .ref(`decks/${state.user.uid}`)
       .on('value', (decks) => {
-        let decksLoaded = 0
-        let decksDuplicate = 0
+        const deckArray = []
         decks.forEach((deck) => {
           const val = deck.val()
-          // Only load the deck from Firebase if it doesn't already exist
-          if (!deckExists(val.id)) {
-            dispatch(addDeck(val))
-            decksLoaded++
-          } else {
-            decksDuplicate++
+          // Bug where Firebase does not save properties with empty arrays, so
+          // we'll have to rebuild it when we receive a deck like that
+          if (!val.cards) {
+            val.cards = []
           }
+          // // Only load the deck from Firebase if it doesn't already exist
+          // if (!deckExists(val.id)) {
+          //   dispatch(addDeck(val))
+          //   decksLoaded++
+          // } else {
+          //   decksDuplicate++
+          // }
+          deckArray.push(val)
         })
-        console.log(`Fetched ${decksLoaded} decks, ${decksDuplicate} duplicates found`)
+        dispatch(loadDecks(deckArray))
       })
   }
 
 export const saveDecksToFirebase = () =>
   (dispatch, getState) => {
     const state = getState()
-    const token = state.user.token
     const authenticated = state.user.authenticated
     const promises = []
     if (authenticated) {
       for (let d = 0; d < state.decks.length; d++) {
         promises.push(
           firebase.database()
-            .ref(`decks/${token}/${state.decks[d].id}`)
+            .ref(`decks/${state.user.uid}/${state.decks[d].id}`)
             .set(state.decks[d])
         )
       }
+      console.log(`saved ${promises.length} decks`)
     }
     return Promise.all(promises)
   }
 
+// Unused
+export const saveCardToFirebase = (cardIndex, deckId) =>
+  (dispatch, getState) => {
+    const state = getState()
+    const authenticated = state.user.authenticated
+    if (authenticated) {
+      return firebase.database()
+        .ref(`decks/${state.user.uid}/${deckId}/cards/${cardIndex}`)
+        .set(state.decks[deckId].cards[cardIndex])
+    }
+    return Promise.resolve()
+  }
+
 // TODO: Eventually we want to make a call to Firebase on card add/delete/move
 // and deck add/delete/move
+
+/**
+ * Sagas
+ */
+// function * saveDecksToFirebaseSaga (dispatch) {
+//   debugger
+//   yield put(saveDecksToFirebase)
+// }
+
+// function * addCardSaga () {
+//   yield takeEvery('decks/ADD_CARD', saveDecksToFirebaseSaga)
+// }
+
+// export function * sagas () {
+//   yield all([
+//     addCardSaga()
+//   ])
+// }
+
+/**
+ * Action Listeners
+ */
+// Ensure that we dispatch the save to firebase action after these actions
+const saveDecks = (action, dispatch, state) => {
+  dispatch(saveDecksToFirebase())
+}
+
+export const listeners = {
+  [ADD_CARD]: saveDecks,
+  [ADD_DECK]: saveDecks,
+  [EDIT_DECK]: saveDecks,
+  [DUPLICATE_CARD]: saveDecks,
+  [REMOVE_CARD]: saveDecks,
+  [EDIT_CARD]: saveDecks
+}

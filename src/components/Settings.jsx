@@ -28,6 +28,10 @@ class Settings extends React.Component {
 
   static defaultProps = {}
 
+  static handleClearLocalStorage () {
+    localStorage.clear()
+  }
+
   constructor (props) {
     super(props)
     this.removeAllDecks = this.removeAllDecks.bind(this)
@@ -89,6 +93,12 @@ class Settings extends React.Component {
             exportFile={() => JSON.stringify(this.props.decks, null, 2)}
           />
           {this.renderDeleteAll(deckCount)}
+          <button
+            className='btn-delete'
+            onClick={Settings.handleClearLocalStorage}
+          >
+            Clear local storage
+          </button>
         </div>
       </section>
     )

@@ -9,11 +9,15 @@ class Auth extends React.Component {
     logout: PropTypes.func.isRequired,
     saveDecksToFirebase: PropTypes.func.isRequired,
     fetchUserDecks: PropTypes.func.isRequired,
-    username: PropTypes.string
+    photoURL: PropTypes.string,
+    displayName: PropTypes.string,
+    email: PropTypes.string
   }
 
   static defaultProps = {
-    username: ''
+    photoURL: null,
+    displayName: null,
+    email: null
   }
 
   constructor (props) {
@@ -40,7 +44,19 @@ class Auth extends React.Component {
           ? <SignUpLoginForm {...this.props} />
           : <div>
             <p>
-              Logged in as&nbsp;<strong>{this.props.username}</strong>
+              {
+                this.props.photoURL
+                ? <img src={this.props.photoURL} alt='Avatar' />
+                : null
+              }
+              Logged in as&nbsp;
+              <strong>
+                {
+                  this.props.displayName
+                  ? this.props.displayName
+                  : this.props.email
+                }
+              </strong>
             </p>
             <button
               type='button'

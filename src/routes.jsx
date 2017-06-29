@@ -1,7 +1,7 @@
 import React from 'react'
 import { IndexRoute, Route } from 'react-router'
 
-import App from './components/App'
+import AppContainer from './containers/AppContainer'
 import CardEditContainer from './containers/CardEditContainer'
 import CardViewContainer from './containers/CardViewContainer'
 // import DeckEditContainer from './containers/DeckEditContainer';
@@ -12,7 +12,7 @@ import DeckAddContainer from './containers/DeckAddContainer'
 // import SettingsContainer from './containers/SettingsContainer';
 
 const Routes = (
-  <Route path='/' component={App}>
+  <Route path='/' component={AppContainer}>
     <IndexRoute component={DeckGridContainer} />
     <Route path='/view/:deckId' component={DeckViewContainer} />
     <Route path='/add/:deckId' component={DeckAddContainer} />

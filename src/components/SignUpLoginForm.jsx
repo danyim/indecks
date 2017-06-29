@@ -6,18 +6,18 @@ class SignUpLoginForm extends React.Component {
   static propTypes = {
     isAuthenticating: PropTypes.bool.isRequired,
     login: PropTypes.func.isRequired,
-    signupEmail: PropTypes.func.isRequired,
-    signupGithub: PropTypes.func.isRequired,
-    signupTwitter: PropTypes.func.isRequired,
-    signupGoogle: PropTypes.func.isRequired
+    signUpEmail: PropTypes.func.isRequired,
+    signInGithub: PropTypes.func.isRequired,
+    signInTwitter: PropTypes.func.isRequired,
+    signInGoogle: PropTypes.func.isRequired
   }
 
   static defaultProps = {}
 
   static providerMap = {
-    GITHUB: 'signupGithub',
-    TWITTER: 'signupTwitter',
-    GOOGLE: 'signupGoogle'
+    GITHUB: 'signInGithub',
+    TWITTER: 'signInTwitter',
+    GOOGLE: 'signInGoogle'
   }
 
   constructor (props) {
@@ -69,7 +69,7 @@ class SignUpLoginForm extends React.Component {
       return
     }
 
-    this.props.signupEmail(
+    this.props.signUpEmail(
       this.state.username,
       this.state.password
     ).then((message) => {
@@ -135,6 +135,10 @@ class SignUpLoginForm extends React.Component {
           </button>
         </div>
 
+        <div className='txt-center m-t'>
+          <p>or sign up with a provider below</p>
+        </div>
+
         <div className={`${styles['control-buttons']}`}>
           <button
             type='button'
@@ -142,7 +146,7 @@ class SignUpLoginForm extends React.Component {
             disabled={this.props.isAuthenticating}
             onClick={e => this.handleClickProviderAuth(e, 'GITHUB')}
           >
-            Sign in using GitHub
+            <i className='fa fa-github' /> GitHub Sign In
           </button>
           <button
             type='button'
@@ -150,7 +154,7 @@ class SignUpLoginForm extends React.Component {
             disabled={this.props.isAuthenticating}
             onClick={e => this.handleClickProviderAuth(e, 'GOOGLE')}
           >
-            Sign in using Google
+            <i className='fa fa-google' /> Google Sign In
           </button>
           <button
             type='button'
@@ -158,7 +162,7 @@ class SignUpLoginForm extends React.Component {
             disabled={this.props.isAuthenticating}
             onClick={e => this.handleClickProviderAuth(e, 'TWITTER')}
           >
-            Sign in using Twitter
+            <i className='fa fa-twitter' /> Twitter Sign In
           </button>
         </div>
       </form>
