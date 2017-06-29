@@ -3,6 +3,7 @@ import React from 'react'
 import { RIEInput, RIETextArea } from 'riek'
 import { Link, browserHistory } from 'react-router'
 import slug from 'slug'
+import { DeckShape } from './__commonShapes'
 import Card from './Card'
 import ExportDeckButton from './ExportDeckButton'
 import Overlay from './Overlay'
@@ -10,16 +11,7 @@ import OverlayRow from './OverlayRow'
 import styles from '../styles/components/DeckView.styl'
 
 const propTypes = {
-  deck: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    cards: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      answer: PropTypes.string.isRequired,
-      index: PropTypes.number.isRequired
-    }).isRequired).isRequired
-  }).isRequired,
+  deck: DeckShape.isRequired,
   maxDeckTitleLength: PropTypes.number,
   maxDeckDescLength: PropTypes.number,
   handleDuplicateCard: PropTypes.func.isRequired,

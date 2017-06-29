@@ -2,26 +2,14 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import Swipeable from 'react-swipeable'
 import { browserHistory } from 'react-router'
+import { CardShape, DeckShape } from './__commonShapes'
 import Card from './Card'
 import DeckNavigator from './DeckNavigator'
 // import styles from '../styles/components/CardView.styl'; // Not used, uncomment later
 
 const propTypes = {
-  card: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    answer: PropTypes.string.isRequired,
-    index: PropTypes.number.isRequired
-  }).isRequired,
-  deck: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    cards: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      answer: PropTypes.string.isRequired,
-      index: PropTypes.number.isRequired
-    }).isRequired).isRequired
-  }).isRequired,
+  card: CardShape.isRequired,
+  deck: DeckShape.isRequired,
   config: PropTypes.object.isRequired,
   cardIndex: PropTypes.number.isRequired,
   toggleShuffle: PropTypes.func.isRequired

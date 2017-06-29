@@ -2,11 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { browserHistory } from 'react-router'
 import KeyBinding from 'react-keybinding-component'
+import { CardShape } from './__commonShapes'
 import CardEditForm from './CardEditForm'
 import styles from '../styles/components/CardEdit.styl'
 
 const propTypes = {
-  card: PropTypes.object.isRequired,
+  card: CardShape.isRequired,
   cardIndex: PropTypes.number.isRequired,
   deckId: PropTypes.string.isRequired,
   editCard: PropTypes.func.isRequired,

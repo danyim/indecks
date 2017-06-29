@@ -3,21 +3,13 @@ import React from 'react'
 import { browserHistory } from 'react-router'
 import KeyBinding from 'react-keybinding-component'
 import classNames from 'classnames'
+import { DeckShape } from './__commonShapes'
 import CardCount from './CardCount'
 import FrontBack from './FrontBack'
 import styles from '../styles/components/DeckNavigator.styl'
 
 const propTypes = {
-  deck: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    cards: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      answer: PropTypes.string.isRequired,
-      index: PropTypes.number.isRequired
-    }).isRequired).isRequired
-  }).isRequired,
+  deck: DeckShape.isRequired,
   cardIndex: PropTypes.number.isRequired,
   handleFlip: PropTypes.func.isRequired,
   flipped: PropTypes.bool.isRequired,

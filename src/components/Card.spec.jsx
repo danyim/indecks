@@ -5,7 +5,8 @@ import Card from './Card'
 const defaultProps = {
   card: {
     title: 'Title',
-    answer: 'Answer'
+    answer: 'Answer',
+    index: 0
   },
   className: '',
   flipped: false,
@@ -65,7 +66,7 @@ describe('Card', () => {
       ...defaultProps,
       card: {
         ...defaultProps.card,
-        answer: null
+        answer: ''
       }
     })
 
@@ -77,7 +78,7 @@ describe('Card', () => {
       ...defaultProps,
       card: {
         ...defaultProps.card,
-        answer: null
+        answer: ''
       },
       flipped: true
     })

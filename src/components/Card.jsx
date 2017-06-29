@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import { CardShape } from './__commonShapes'
 import Markdown from './Markdown'
 import styles from '../styles/components/Card.styl'
 
 const propTypes = {
-  card: PropTypes.object.isRequired,
+  card: CardShape.isRequired,
   className: PropTypes.string,
   flipped: PropTypes.bool,
   handleOnClick: PropTypes.func,

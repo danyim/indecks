@@ -5,7 +5,11 @@ import CardEdit from './CardEdit'
 // import { CardEditForm } from './CardEditForm';
 
 const defaultProps = {
-  card: {},
+  card: {
+    title: '',
+    answer: '',
+    index: 0
+  },
   cardIndex: 1,
   deckId: 'ABCDEFG',
   editCard: () => {},

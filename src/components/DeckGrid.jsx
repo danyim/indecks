@@ -1,20 +1,12 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { TransitionMotion, spring } from 'react-motion'
+import { DeckShape } from './__commonShapes'
 import Deck from './Deck'
 import styles from '../styles/components/DeckGrid.styl'
 
 const propTypes = {
-  decks: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    cards: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      answer: PropTypes.string.isRequired,
-      index: PropTypes.number.isRequired
-    }).isRequired).isRequired
-  }).isRequired).isRequired,
+  decks: PropTypes.arrayOf(DeckShape).isRequired,
   removeDeck: PropTypes.func.isRequired
 }
 
