@@ -1,6 +1,22 @@
 @import '../_variables';
 
+.deck-list
+  padding: 0
+  margin: 0
+  list-style-type: none
+  li
+    margin: 0
+    font-size: 1.5rem
+    transition: 0.2s all
+  :global
+    li.selected
+      font-weight: bold
+      font-size: 2rem
+  &:focus
+    outline: 0
 
-.deck-list-item
-  padding: 2rem 3rem
-  color: red
+.help
+  margin-top: 2rem
+  color: #c0c0c0
+  font-size: 1.5rem
+  font-weight: bold

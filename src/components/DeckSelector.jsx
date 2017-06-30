@@ -1,18 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { browserHistory } from 'react-router'
+import { DeckShape } from './__commonShapes'
 import styles from '../styles/components/DeckSelector.styl'
-
-const propTypes = {
-  // decks: React.PropTypes.array.isRequired,
-  // excludedDeckIds: React.PropTypes.array,
-  // maxSelected: React.PropTypes.number.isRequired,
-  // minSelected: React.PropTypes.number.isRequired,
-  // handleOnSelected: React.PropTypes.func.isRequired
-}
-
-const defaultProps = {
-  maxSelected: 1,
-  minSelected: 1
-}
 
 /**
  * Should be a simple pop-up of all the decks available to choose from,
@@ -22,22 +12,111 @@ const defaultProps = {
  *   to allow for selection via [min, max]
  * Output: deck(s) selected from the list
  */
-const DeckSelector = () => {
-  const { decks } = this.props
+class DeckSelector extends React.Component {
+  static propTypes = {
+    decks: PropTypes.arrayOf(DeckShape.isRequired).isRequired
+    // excludedDeckIds: React.PropTypes.array,
+    // maxSelected: React.PropTypes.number.isRequired,
+    // minSelected: React.PropTypes.number.isRequired,
+    // handleOnSelected: React.PropTypes.func.isRequired
+  }
 
-  return (
-    <div>
-      <p>Yo, motherfucker, here are your decks:</p>
-      {decks.map(x =>
-        <div className={`${styles['deck-list-item']}`}>
-          deck Id: {x.deckId}
-        </div>
-      )}
-    </div>
-  )
+  static defaultProps = {
+    maxSelected: 1,
+    minSelected: 1
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.handleKeyDown = this.handleKeyDown.bind(this)
+    this.moveDown = this.moveDown.bind(this)
+    this.moveUp = this.moveUp.bind(this)
+    this.navigateToDeck = this.navigateToDeck.bind(this)
+
+    console.log(window.location.pathname)
+
+    // Grab the currently viewed deck (if applicable) and pre-select it
+    let index = null
+    if (
+      window &&
+      window.location.pathname &&
+      window.location.pathname.includes('/view/')
+    ) {
+      const deckId = window.location.pathname.split('/')[2]
+      index = this.props.decks.findIndex(x => x.id === deckId)
+    }
+
+    this.state = {
+      selectedIndex: index || 0
+    }
+  }
+
+  handleKeyDown(e) {
+    if (e.keyCode === 38) {
+      // Up arrow
+      this.moveUp()
+    } else if (e.keyCode === 40) {
+      // Down arrow
+      this.moveDown()
+    } else if (e.keyCode === 13) {
+      // Enter key
+      this.navigateToDeck(this.props.decks[this.state.selectedIndex].id)
+    }
+  }
+
+  navigateToDeck(deckId) {
+    browserHistory.push(`/view/${deckId}`)
+  }
+
+  moveDown() {
+    this.setState({
+      selectedIndex: Math.min(
+        this.props.decks.length - 1,
+        this.state.selectedIndex + 1
+      )
+    })
+  }
+
+  moveUp() {
+    this.setState({
+      selectedIndex: Math.max(0, this.state.selectedIndex - 1)
+    })
+  }
+
+  render() {
+    const { decks } = this.props
+
+    return (
+      <div>
+        <ul
+          ref={input => input && input.focus()}
+          tabIndex={-1}
+          className={styles['deck-list']}
+          onKeyDown={this.handleKeyDown}
+          role="presentation"
+        >
+          {decks.map((deck, index) =>
+            <li
+              key={deck.id}
+              value={deck.id}
+              className={index === this.state.selectedIndex ? 'selected' : ''}
+            >
+              {deck.title} <small>{deck.cards.length} cards</small>
+            </li>
+          )}
+          {/*
+          <button onClick={this.moveUp}>Up</button>
+          <button onClick={this.moveDown}>Down</button>
+          */}
+        </ul>
+        <p className={styles.help}>
+          Use the up and down arrows to select a deck. Press enter to navigate
+          to the deck.
+        </p>
+      </div>
+    )
+  }
 }
-
-DeckSelector.propTypes = propTypes
-DeckSelector.defaultProps = defaultProps
 
 export default DeckSelector

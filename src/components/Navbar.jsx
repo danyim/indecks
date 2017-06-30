@@ -8,6 +8,7 @@
 import React from 'react'
 import Modal from 'react-modal'
 import { Link, browserHistory } from 'react-router'
+import DeckSelectorContainer from '../containers/DeckSelectorContainer'
 import ImportDeckContainer from '../containers/ImportDeckContainer'
 import SettingsContainer from '../containers/SettingsContainer'
 import KeyListener from './KeyListener'
@@ -34,7 +35,8 @@ class Navbar extends React.Component {
       openModals: {
         SETTINGS: false,
         IMPORT: false,
-        SHORTCUTS: false
+        SHORTCUTS: false,
+        SELECTOR: false
       }
     }
 
@@ -50,6 +52,10 @@ class Navbar extends React.Component {
       {
         keyCode: 191, // '/' forward slash
         action: this.openModal.bind(this, 'SHORTCUTS')
+      },
+      {
+        keyCode: 83, // 's'
+        action: this.openModal.bind(this, 'SELECTOR')
       }
     ]
   }
@@ -201,6 +207,26 @@ class Navbar extends React.Component {
     )
   }
 
+  renderDeckSelectorModal() {
+    return (
+      <Modal
+        isOpen={
+          this.state.openModals.SELECTOR
+            ? this.state.openModals.SELECTOR
+            : false
+        }
+        onRequestClose={this.closeModal.bind(this, 'SELECTOR')}
+        className={`${styles['modal-content']}`}
+        overlayClassName={`${styles['modal-overlay']}`}
+        contentLabel="Import Deck"
+      >
+        <DeckSelectorContainer
+          handleClose={this.closeModal.bind(this, 'SELECTOR')}
+        />
+      </Modal>
+    )
+  }
+
   renderLink(url, title, faClassName) {
     return (
       <Link to={url} title={title}>
@@ -219,7 +245,7 @@ class Navbar extends React.Component {
 
   renderNoAction(faClassName = 'fa-plus-square-o') {
     return (
-      <a href="javascript:void(0);" disabled>
+      <a disabled>
         <i className={`fa ${faClassName}`} />
       </a>
     )
@@ -258,6 +284,7 @@ class Navbar extends React.Component {
             {this.renderImportDeckModal()}
             {this.renderShortcutsModal()}
             {this.renderSettingsModal()}
+            {this.renderDeckSelectorModal()}
           </div>
         </div>
         <KeyListener handlers={this.handlers} />
