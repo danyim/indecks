@@ -3,28 +3,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as deckActions from '../redux/modules/decks'
+import { CardShape, DeckShape } from '../components/__commonShapes'
 import DeckEdit from '../components/DeckEdit'
 
 const propTypes = {
-  cards: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      answer: PropTypes.string.isRequired,
-      index: PropTypes.number.isRequired
-    }).isRequired
-  ).isRequired,
-  deck: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    cards: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        answer: PropTypes.string.isRequired,
-        index: PropTypes.number.isRequired
-      }).isRequired
-    ).isRequired
-  }).isRequired,
+  cards: CardShape.isRequired,
+  deck: DeckShape.isRequired,
   deckId: PropTypes.string.isRequired,
   editCard: PropTypes.func.isRequired,
   removeCard: PropTypes.func.isRequired,

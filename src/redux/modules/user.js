@@ -112,156 +112,157 @@ export const userAuthFail = () => ({
 export const stopAuthenticating = () => ({
   type: USER_AUTH_COMPLETE
 })
-export function register (username, password) {
+export function register(username, password) {
   return { type: REGISTER, username, password }
 }
-export function loginUser (user) {
+export function loginUser(user) {
   return { type: LOGIN, user }
 }
-export function logoutUser (username) {
+export function logoutUser(username) {
   return { type: LOGOUT, username }
 }
-export function updateDeckCount (count) {
+export function updateDeckCount(count) {
   return { type: UPDATE_DECK_COUNT, count }
 }
-export function setToken (token) {
+export function setToken(token) {
   return { type: SET_TOKEN, token }
 }
 
 /**
  * Side Effects
  */
-export const logout = username =>
-  dispatch => {
-    auth.signOut()
-    // dispatch(setToken(null))
-    // localStorage.setItem(storageKey, {})
-    dispatch(removeAllDecks())
-    localStorage.clear()
-  }
+export const logout = username => dispatch => {
+  auth.signOut()
+  // dispatch(setToken(null))
+  // localStorage.setItem(storageKey, {})
+  dispatch(removeAllDecks())
+  localStorage.clear()
+}
 
-export const signUpEmail = (username, password) =>
-  (dispatch) => {
-    // Disable the login/signup buttons while we're authenticating with Firebase
-    dispatch(userAuthRequest())
+export const signUpEmail = (username, password) => dispatch => {
+  // Disable the login/signup buttons while we're authenticating with Firebase
+  dispatch(userAuthRequest())
 
-    return auth.createUserWithEmailAndPassword(username, password)
-      .then((e) => {
-        dispatch(userAuthSuccess())
-        dispatch(login(e.providerData[0]))
-      })
-      .catch((err) => {
-        dispatch(userAuthFail())
-        let message
-        if (err.code === 'auth/email-already-in-use') {
-          message = 'Email already in use'
-        } if (err.code === 'auth/weak-password') {
-          message = 'The password is too weak'
-        } if (err.code === 'auth/invalid-email') {
-          message = 'Invalid email'
-        } if (err.code === 'auth/operation-not-allowed') {
-          message = 'Email not allowed'
-        } else {
-          message = err.message
-        }
-        // console.log('Signup error', err, 'username', username, 'password', password)
+  return auth
+    .createUserWithEmailAndPassword(username, password)
+    .then(e => {
+      dispatch(userAuthSuccess())
+      dispatch(login(e.providerData[0]))
+    })
+    .catch(err => {
+      dispatch(userAuthFail())
+      let message
+      if (err.code === 'auth/email-already-in-use') {
+        message = 'Email already in use'
+      }
+      if (err.code === 'auth/weak-password') {
+        message = 'The password is too weak'
+      }
+      if (err.code === 'auth/invalid-email') {
+        message = 'Invalid email'
+      }
+      if (err.code === 'auth/operation-not-allowed') {
+        message = 'Email not allowed'
+      } else {
+        message = err.message
+      }
+      // console.log('Signup error', err, 'username', username, 'password', password)
 
-        return message
-      })
-  }
+      return message
+    })
+}
 
-export const signInWithProvider = provider =>
-  (dispatch) => {
-    // Disable the login/signup buttons while we're authenticating with Firebase
-    dispatch(userAuthRequest())
+export const signInWithProvider = provider => dispatch => {
+  // Disable the login/signup buttons while we're authenticating with Firebase
+  dispatch(userAuthRequest())
 
-    return auth.signInWithPopup(provider)
-      .then((result) => {
-        dispatch(userAuthSuccess())
+  return auth
+    .signInWithPopup(provider)
+    .then(result => {
+      dispatch(userAuthSuccess())
 
-        // const token = result.credential.accessToken
-        // localStorage.setItem(storageKey, {
-        //   token: token
-        // })
-        // dispatch(setToken(token))
-        // const user = result.user
-        // console.log('user:', user)
-        // console.log('token:', token)
-        // dispatch(login('testing', 'github'))
-      })
-      .catch((err) => {
-        dispatch(userAuthFail())
+      // const token = result.credential.accessToken
+      // localStorage.setItem(storageKey, {
+      //   token: token
+      // })
+      // dispatch(setToken(token))
+      // const user = result.user
+      // console.log('user:', user)
+      // console.log('token:', token)
+      // dispatch(login('testing', 'github'))
+    })
+    .catch(err => {
+      dispatch(userAuthFail())
 
-        let message
-        // Handle Errors here.
-        const errorCode = err.code
-        // const errorMessage = err.message
-        // // The email of the user's account used.
-        // const email = err.email
-        // // The firebase.auth.AuthCredential type that was used.
-        // const credential = err.credential
-        if (errorCode === 'auth/account-exists-with-different-credential') {
-          message = 'You have signed up with a different provider for that email.'
-        } else {
-          console.error(err)
-        }
+      let message
+      // Handle Errors here.
+      const errorCode = err.code
+      // const errorMessage = err.message
+      // // The email of the user's account used.
+      // const email = err.email
+      // // The firebase.auth.AuthCredential type that was used.
+      // const credential = err.credential
+      if (errorCode === 'auth/account-exists-with-different-credential') {
+        message = 'You have signed up with a different provider for that email.'
+      } else {
+        console.error(err)
+      }
 
-        return message
-      })
-  }
+      return message
+    })
+}
 
-export const signInGithub = () =>
-  (dispatch) => {
-    const provider = new firebase.auth.GithubAuthProvider()
-    // Can add additional permissions here
-    // provider.addScope('repo')
-    return dispatch(signInWithProvider(provider))
-  }
+export const signInGithub = () => dispatch => {
+  const provider = new firebase.auth.GithubAuthProvider()
+  // Can add additional permissions here
+  // provider.addScope('repo')
+  return dispatch(signInWithProvider(provider))
+}
 
-export const signInTwitter = () =>
-  (dispatch) => {
-    const provider = new firebase.auth.TwitterAuthProvider()
-    return dispatch(signInWithProvider(provider))
-  }
+export const signInTwitter = () => dispatch => {
+  const provider = new firebase.auth.TwitterAuthProvider()
+  return dispatch(signInWithProvider(provider))
+}
 
-export const signInGoogle = () =>
-  (dispatch) => {
-    const provider = new firebase.auth.GoogleAuthProvider()
-    return dispatch(signInWithProvider(provider))
-  }
+export const signInGoogle = () => dispatch => {
+  const provider = new firebase.auth.GoogleAuthProvider()
+  return dispatch(signInWithProvider(provider))
+}
 
-export const login = (username, password) =>
-  (dispatch) => {
-    // Disable the login/signup buttons while we're authenticating with Firebase
-    dispatch(userAuthRequest())
+export const login = (username, password) => dispatch => {
+  // Disable the login/signup buttons while we're authenticating with Firebase
+  dispatch(userAuthRequest())
 
-    return auth.signInWithEmailAndPassword(username, password)
-      .then((user) => {
-        dispatch(userAuthSuccess())
-      })
-      .catch((err) => {
-        dispatch(userAuthFail())
-        let message
-        if (err.code === 'auth/invalid-email' ||
-          err.code === 'auth/user-not-found' ||
-          err.code === 'auth/wrong-password') {
-          message = 'Invalid username or password'
-        } else {
-          message = err.message
-        }
+  return auth
+    .signInWithEmailAndPassword(username, password)
+    .then(user => {
+      dispatch(userAuthSuccess())
+    })
+    .catch(err => {
+      dispatch(userAuthFail())
+      let message
+      if (
+        err.code === 'auth/invalid-email' ||
+        err.code === 'auth/user-not-found' ||
+        err.code === 'auth/wrong-password'
+      ) {
+        message = 'Invalid username or password'
+      } else {
+        message = err.message
+      }
 
-        // console.log('Login error', err, 'username', username, 'password', password)
-        return message
-      })
-  }
+      // console.log('Login error', err, 'username', username, 'password', password)
+      return message
+    })
+}
 
 export const isAuthenticated = () =>
   !!auth.currentUser || !!localStorage.getItem(storageKey)
 
 // Dispatching an action to set up the firebase auth listener probably isn't the
 // best way to do this. Using this pattern for now, but needs revision
-export const setupAuthHook = (dispatch) => {
-  auth.onAuthStateChanged((user) => {
+export const setupAuthHook = dispatch => {
+  auth.onAuthStateChanged(user => {
     if (user) {
       dispatch(loginUser(user))
       dispatch(fetchUserDecks())

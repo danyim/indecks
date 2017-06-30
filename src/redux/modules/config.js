@@ -9,7 +9,7 @@ const TOGGLE_SHUFFLE = 'TOGGLE_SHUFFLE'
  * Reducers
  */
 const reducers = {
-  toggleShuffle: (state) => {
+  toggleShuffle: state => {
     const newState = { ...state }
     newState.shuffle = !newState.shuffle
     return newState

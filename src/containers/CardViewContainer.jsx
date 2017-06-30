@@ -1,34 +1,18 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as deckActions from '../redux/modules/decks'
 import * as configActions from '../redux/modules/config'
+import { CardShape, DeckShape } from '../components/__commonShapes'
 import CardView from '../components/CardView'
 
 const propTypes = {
-  card: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    answer: PropTypes.string.isRequired,
-    index: PropTypes.number.isRequired
-  }),
-  deck: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    cards: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        answer: PropTypes.string.isRequired,
-        index: PropTypes.number.isRequired
-      }).isRequired
-    ).isRequired
-  }).isRequired
+  card: CardShape,
+  deck: DeckShape.isRequired
 }
 
 const defaultProps = {
-  card: null,
-  deck: null
+  card: null
 }
 
 const CardViewContainer = props => {
@@ -58,7 +42,8 @@ const mapStateToProps = ({ decks, config }, ownProps) => {
   const { deckId, cardIndex } = ownProps.params
   // Find the deck based on the property
   const deckIndex = deckId ? decks.findIndex(d => d.id === deckId) : null
-  let card, deck
+  let card
+  let deck
   if (deckId === undefined && cardIndex === undefined) {
     card = null
     deck = null

@@ -11,16 +11,17 @@ describe('config actions', () => {
 
 describe('config reducers', () => {
   it('should return the initial state', () => {
-    expect(
-      reducer(undefined, {})
-    ).toEqual({})
+    expect(reducer(undefined, {})).toEqual({})
   })
 
   it('should handle TOGGLE_SHUFFLE', () => {
     expect(
-      reducer({}, {
-        type: 'TOGGLE_SHUFFLE'
-      })
+      reducer(
+        {},
+        {
+          type: 'TOGGLE_SHUFFLE'
+        }
+      )
     ).toEqual({
       shuffle: true
     })

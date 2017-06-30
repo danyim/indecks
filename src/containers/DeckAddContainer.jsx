@@ -4,21 +4,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { browserHistory } from 'react-router'
 import * as deckActions from '../redux/modules/decks'
+import { DeckShape } from '../components/__commonShapes'
 import CardAdd from '../components/CardAdd'
 
 const propTypes = {
-  deck: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    cards: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        answer: PropTypes.string.isRequired,
-        index: PropTypes.number.isRequired
-      }).isRequired
-    ).isRequired
-  }).isRequired,
+  deck: DeckShape.isRequired,
   addCard: PropTypes.func.isRequired
 }
 

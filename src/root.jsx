@@ -10,12 +10,12 @@ const store = configureStore({})
 const history = syncHistoryWithStore(browserHistory, store)
 
 class Root extends React.Component {
-  componentDidMount () {
+  componentDidMount() {
     // Call an action here if we need to fetch something as the app loads
     // store.dispatch(getDecks());
   }
 
-  render () {
+  render() {
     return (
       <Provider store={store}>
         <Router history={history} routes={routes} />

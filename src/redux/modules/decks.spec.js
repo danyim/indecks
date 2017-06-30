@@ -54,9 +54,7 @@ describe('decks redux', () => {
   }
 
   it('should return the initial state', () => {
-    expect(
-      reducer(undefined, {})
-    ).toEqual({})
+    expect(reducer(undefined, {})).toEqual({})
   })
 
   describe('ADD_DECK', () => {
@@ -74,26 +72,16 @@ describe('decks redux', () => {
           type: 'decks/ADD_DECK',
           deck
         })
-      ).toEqual([
-        deck
-      ])
+      ).toEqual([deck])
     })
 
     it('should handle adding to a populated array of decks', () => {
       expect(
-        reducer(
-          [
-            deck2
-          ],
-          {
-            type: 'decks/ADD_DECK',
-            deck
-          }
-        )
-      ).toEqual([
-        deck2,
-        deck
-      ])
+        reducer([deck2], {
+          type: 'decks/ADD_DECK',
+          deck
+        })
+      ).toEqual([deck2, deck])
     })
   })
 
@@ -108,7 +96,9 @@ describe('decks redux', () => {
         title,
         description
       }
-      expect(actions.editDeck(deckId, title, description)).toEqual(expectedAction)
+      expect(actions.editDeck(deckId, title, description)).toEqual(
+        expectedAction
+      )
     })
 
     it('should handle editing a non-existent deck', () => {
@@ -124,17 +114,12 @@ describe('decks redux', () => {
 
     it('should handle editing an existing deck', () => {
       expect(
-        reducer(
-          [
-            deck
-          ],
-          {
-            type: 'decks/EDIT_DECK',
-            deckId: deck.id,
-            title: 'Edited Title',
-            description: deck.description
-          }
-        )
+        reducer([deck], {
+          type: 'decks/EDIT_DECK',
+          deckId: deck.id,
+          title: 'Edited Title',
+          description: deck.description
+        })
       ).toEqual([
         {
           ...deck,
@@ -165,17 +150,10 @@ describe('decks redux', () => {
 
     it('should handle removing an existing deck', () => {
       expect(
-        reducer(
-          [
-            deck,
-            deck2,
-            deck3
-          ],
-          {
-            type: 'decks/REMOVE_DECK',
-            deckId: deck2.id
-          }
-        )
+        reducer([deck, deck2, deck3], {
+          type: 'decks/REMOVE_DECK',
+          deckId: deck2.id
+        })
       ).toEqual([deck, deck3])
     })
   })
@@ -237,19 +215,12 @@ describe('decks redux', () => {
       }
 
       expect(
-        reducer(
-          [
-            deck,
-            deck2,
-            deck3
-          ],
-          {
-            type: 'decks/ADD_CARD',
-            title: 'Title',
-            answer: 'Answer',
-            deckId: deck2.id
-          }
-        )
+        reducer([deck, deck2, deck3], {
+          type: 'decks/ADD_CARD',
+          title: 'Title',
+          answer: 'Answer',
+          deckId: deck2.id
+        })
       ).toEqual([
         deck,
         {
@@ -281,18 +252,11 @@ describe('decks redux', () => {
 
     it('should handle duplicating a card', () => {
       expect(
-        reducer(
-          [
-            deck,
-            deck2,
-            deck3
-          ],
-          {
-            type: 'decks/DUPLICATE_CARD',
-            cardIndex: 2,
-            deckId: deck2.id
-          }
-        )
+        reducer([deck, deck2, deck3], {
+          type: 'decks/DUPLICATE_CARD',
+          cardIndex: 2,
+          deckId: deck2.id
+        })
       ).toEqual([
         deck,
         {
@@ -323,7 +287,9 @@ describe('decks redux', () => {
         cardIndex,
         deckId
       }
-      expect(actions.editCard(title, answer, cardIndex, deckId)).toEqual(expectedAction)
+      expect(actions.editCard(title, answer, cardIndex, deckId)).toEqual(
+        expectedAction
+      )
     })
 
     it('should handle editing a card in a deck', () => {
@@ -333,20 +299,13 @@ describe('decks redux', () => {
       }
 
       expect(
-        reducer(
-          [
-            deck,
-            deck2,
-            deck3
-          ],
-          {
-            type: 'decks/EDIT_CARD',
-            title: newCard.title,
-            answer: newCard.answer,
-            cardIndex: 1,
-            deckId: deck2.id
-          }
-        )
+        reducer([deck, deck2, deck3], {
+          type: 'decks/EDIT_CARD',
+          title: newCard.title,
+          answer: newCard.answer,
+          cardIndex: 1,
+          deckId: deck2.id
+        })
       ).toEqual([
         deck,
         {
@@ -357,7 +316,7 @@ describe('decks redux', () => {
               answer: newCard.answer,
               index: 1
             },
-            {...deck2.cards[1]}
+            { ...deck2.cards[1] }
           ]
         },
         deck3
@@ -376,67 +335,47 @@ describe('decks redux', () => {
         srcDeckId,
         destDeckId
       }
-      expect(actions.moveCard(cardIndex, srcDeckId, destDeckId)).toEqual(expectedAction)
+      expect(actions.moveCard(cardIndex, srcDeckId, destDeckId)).toEqual(
+        expectedAction
+      )
     })
 
     it('should handle moving a card between decks', () => {
       expect(
-        reducer(
-          [
-            deck,
-            deck2
-          ],
-          {
-            type: 'decks/MOVE_CARD',
-            cardIndex: 2,
-            srcDeckId: deck.id,
-            destDeckId: deck2.id
-          }
-        )
+        reducer([deck, deck2], {
+          type: 'decks/MOVE_CARD',
+          cardIndex: 2,
+          srcDeckId: deck.id,
+          destDeckId: deck2.id
+        })
       ).toEqual([
         {
           ...deck,
-          cards: [
-            deck.cards[0]
-          ]
+          cards: [deck.cards[0]]
         },
         {
           ...deck2,
-          cards: [
-            ...deck2.cards,
-            deck.cards[1]
-          ]
+          cards: [...deck2.cards, deck.cards[1]]
         }
       ])
     })
 
     it('should handle moving a card between decks even when the source is after the destination', () => {
       expect(
-        reducer(
-          [
-            deck,
-            deck2
-          ],
-          {
-            type: 'decks/MOVE_CARD',
-            cardIndex: 2,
-            srcDeckId: deck2.id,
-            destDeckId: deck.id
-          }
-        )
+        reducer([deck, deck2], {
+          type: 'decks/MOVE_CARD',
+          cardIndex: 2,
+          srcDeckId: deck2.id,
+          destDeckId: deck.id
+        })
       ).toEqual([
         {
           ...deck,
-          cards: [
-            ...deck.cards,
-            deck2.cards[1]
-          ]
+          cards: [...deck.cards, deck2.cards[1]]
         },
         {
           ...deck2,
-          cards: [
-            deck2.cards[0]
-          ]
+          cards: [deck2.cards[0]]
         }
       ])
     })
@@ -456,24 +395,16 @@ describe('decks redux', () => {
 
     it('should handle removing a card', () => {
       expect(
-        reducer(
-          [
-            deck,
-            deck2
-          ],
-          {
-            type: 'decks/REMOVE_CARD',
-            cardIndex: 2,
-            deckId: deck2.id
-          }
-        )
+        reducer([deck, deck2], {
+          type: 'decks/REMOVE_CARD',
+          cardIndex: 2,
+          deckId: deck2.id
+        })
       ).toEqual([
         deck,
         {
           ...deck2,
-          cards: [
-            deck2.cards[0]
-          ]
+          cards: [deck2.cards[0]]
         }
       ])
     })
@@ -489,16 +420,9 @@ describe('decks redux', () => {
 
     it('should handle removing all decks', () => {
       expect(
-        reducer(
-          [
-            deck,
-            deck2,
-            deck3
-          ],
-          {
-            type: 'decks/REMOVE_ALL_DECKS'
-          }
-        )
+        reducer([deck, deck2, deck3], {
+          type: 'decks/REMOVE_ALL_DECKS'
+        })
       ).toEqual([])
     })
   })

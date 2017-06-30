@@ -13,7 +13,8 @@ exports[`Settings should render self and subcomponents 1`] = `
     className="settings-content"
   >
     <p>
-      If you're logged in, any changes made to your decks will automatically be saved and synchronized in 
+      If you're logged in, any changes made to your decks will automatically be saved and synchronized in
+       
       <strong>
         real-time
       </strong>

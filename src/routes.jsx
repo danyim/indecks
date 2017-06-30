@@ -12,18 +12,18 @@ import DeckAddContainer from './containers/DeckAddContainer'
 // import SettingsContainer from './containers/SettingsContainer';
 
 const Routes = (
-  <Route path='/' component={AppContainer}>
+  <Route path="/" component={AppContainer}>
     <IndexRoute component={DeckGridContainer} />
-    <Route path='/view/:deckId' component={DeckViewContainer} />
-    <Route path='/add/:deckId' component={DeckAddContainer} />
-    <Route path='/edit/:deckId/:cardIndex' component={CardEditContainer} />
-    <Route path='/view/:deckId/:cardIndex' component={CardViewContainer} />
+    <Route path="/view/:deckId" component={DeckViewContainer} />
+    <Route path="/add/:deckId" component={DeckAddContainer} />
+    <Route path="/edit/:deckId/:cardIndex" component={CardEditContainer} />
+    <Route path="/view/:deckId/:cardIndex" component={CardViewContainer} />
     {/*
     <Route path="/edit/:deckId" component={DeckEditContainer} />
     <Route path="/add" component={ImportDeckContainer} />
     <Route path="/settings" component={SettingsContainer} />
     */}
-    <Route path='*' component={DeckGridContainer} />
+    <Route path="*" component={DeckGridContainer} />
   </Route>
 )
 

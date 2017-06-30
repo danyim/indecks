@@ -25,20 +25,26 @@ const envMiddlewares = {
  * @param  {Boolean} debug       Flag for debug mode
  * @return {Object}              A store object for Redux
  */
-export default function configureStore (initialState = {}, debug = __DEVELOPMENT__) {
+export default function configureStore(
+  initialState = {},
+  debug = __DEVELOPMENT__
+) {
   const middlewares = debug
     ? applyMiddleware(...envMiddlewares.dev)
     : applyMiddleware(...envMiddlewares.prod)
   const storeEnhancers = debug
-      ? compose(middlewares, autoRehydrate(),
-        window.devToolsExtension ? window.devToolsExtension() : f => f)
-      : compose(middlewares, autoRehydrate())
+    ? compose(
+        middlewares,
+        autoRehydrate(),
+        window.devToolsExtension ? window.devToolsExtension() : f => f
+      )
+    : compose(middlewares, autoRehydrate())
 
   if (debug) {
-    console.warn('DEVELOPMENT: In debug mode'); // eslint-disable-line
+    console.warn('DEVELOPMENT: In debug mode') // eslint-disable-line
   }
 
-  let decksCombined = null
+  const decksCombined = null
   // decksCombined = [...decks, ...samples]; // Comment this out for release
   // decksCombined = [...samples]; // Comment this out for release
   initialState = {
@@ -46,11 +52,7 @@ export default function configureStore (initialState = {}, debug = __DEVELOPMENT
     decks: decksCombined || []
   }
 
-  const store = createStore(
-    rootReducer,
-    initialState,
-    storeEnhancers
-  )
+  const store = createStore(rootReducer, initialState, storeEnhancers)
 
   // Loads state from local storage
   persistStore(store, {

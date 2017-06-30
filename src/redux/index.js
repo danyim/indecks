@@ -16,12 +16,12 @@ export const rootReducer = combineReducers({
   routing
 })
 
-export function * rootSaga () {
-  yield all([
-    // deckSagas(),
-  ])
+export function* rootSaga() {
+  yield all(
+    [
+      // deckSagas(),
+    ]
+  )
 }
 
-export const rootListener = [
-  decksListeners
-]
+export const rootListener = [decksListeners]

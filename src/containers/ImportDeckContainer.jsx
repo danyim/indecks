@@ -11,9 +11,7 @@ const propTypes = {
 
 const defaultProps = {}
 
-const ImportDeckContainer = props => {
-  return <ImportDeck {...props} />
-}
+const ImportDeckContainer = props => <ImportDeck {...props} />
 
 ImportDeckContainer.propTypes = propTypes
 ImportDeckContainer.defaultProps = defaultProps

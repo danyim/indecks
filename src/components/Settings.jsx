@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { CardShape } from './__commonShapes'
+import { DeckShape } from './__commonShapes'
 import ExportDeckButton from './ExportDeckButton'
 import AuthContainer from '../containers/AuthContainer'
 import styles from '../styles/components/Settings.styl'

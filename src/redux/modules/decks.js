@@ -97,7 +97,8 @@ const reducers = {
     const destDeck = Object.assign({}, state[destDeckIndex])
 
     const targetCardFilter = srcDeck.cards.filter(x => x.index === cardIndex)
-    const targetCard = targetCardFilter.length === 0 ? null : targetCardFilter[0]
+    const targetCard =
+      targetCardFilter.length === 0 ? null : targetCardFilter[0]
     const targetCardIndex = srcDeck.cards.indexOf(targetCard)
 
     // Remove from the source deck
@@ -107,10 +108,7 @@ const reducers = {
     ]
 
     // Add to the destination deck
-    destDeck.cards = [
-      ...destDeck.cards,
-      targetCard
-    ]
+    destDeck.cards = [...destDeck.cards, targetCard]
 
     if (srcDeckIndex < destDeckIndex) {
       return [
@@ -151,10 +149,7 @@ const reducers = {
     ]
   },
 
-  addDeck: (state, { deck }) => [
-    ...state,
-    Object.assign({}, deck)
-  ],
+  addDeck: (state, { deck }) => [...state, Object.assign({}, deck)],
 
   editDeck: (state, { deckId, title, description }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
@@ -162,20 +157,13 @@ const reducers = {
     const deck = { ...state[deckIndex] }
     deck.title = title
     deck.description = description
-    return [
-      ...state.slice(0, deckIndex),
-      deck,
-      ...state.slice(deckIndex + 1)
-    ]
+    return [...state.slice(0, deckIndex), deck, ...state.slice(deckIndex + 1)]
   },
 
   removeDeck: (state, { deckId }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
     if (deckIndex === -1) return state
-    return [
-      ...state.slice(0, deckIndex),
-      ...state.slice(deckIndex + 1)
-    ]
+    return [...state.slice(0, deckIndex), ...state.slice(deckIndex + 1)]
   },
 
   // Should this really be an action?
@@ -261,66 +249,66 @@ export const loadDecks = decks => ({
 /**
  * Side Effects
  */
-export const fetchUserDecks = () =>
-  (dispatch, getState) => {
-    const state = getState()
-    // const deckExists = deckId =>
-    //   state.decks.filter(v => v.id === deckId).length > 0
+export const fetchUserDecks = () => (dispatch, getState) => {
+  const state = getState()
+  // const deckExists = deckId =>
+  //   state.decks.filter(v => v.id === deckId).length > 0
 
-    firebase.database()
-      .ref(`decks/${state.user.uid}`)
-      .on('value', (decks) => {
-        const deckArray = []
-        decks.forEach((deck) => {
-          const val = deck.val()
-          // Bug where Firebase does not save properties with empty arrays, so
-          // we'll have to rebuild it when we receive a deck like that
-          if (!val.cards) {
-            val.cards = []
-          }
-          // // Only load the deck from Firebase if it doesn't already exist
-          // if (!deckExists(val.id)) {
-          //   dispatch(addDeck(val))
-          //   decksLoaded++
-          // } else {
-          //   decksDuplicate++
-          // }
-          deckArray.push(val)
-        })
-        dispatch(loadDecks(deckArray))
-      })
-  }
-
-export const saveDecksToFirebase = () =>
-  (dispatch, getState) => {
-    const state = getState()
-    const authenticated = state.user.authenticated
-    const promises = []
-    if (authenticated) {
-      for (let d = 0; d < state.decks.length; d++) {
-        promises.push(
-          firebase.database()
-            .ref(`decks/${state.user.uid}/${state.decks[d].id}`)
-            .set(state.decks[d])
-        )
+  firebase.database().ref(`decks/${state.user.uid}`).on('value', decks => {
+    const deckArray = []
+    decks.forEach(deck => {
+      const val = deck.val()
+      // Bug where Firebase does not save properties with empty arrays, so
+      // we'll have to rebuild it when we receive a deck like that
+      if (!val.cards) {
+        val.cards = []
       }
-      console.log(`saved ${promises.length} decks`)
+      // // Only load the deck from Firebase if it doesn't already exist
+      // if (!deckExists(val.id)) {
+      //   dispatch(addDeck(val))
+      //   decksLoaded++
+      // } else {
+      //   decksDuplicate++
+      // }
+      deckArray.push(val)
+    })
+    dispatch(loadDecks(deckArray))
+  })
+}
+
+export const saveDecksToFirebase = () => (dispatch, getState) => {
+  const state = getState()
+  const authenticated = state.user.authenticated
+  const promises = []
+  if (authenticated) {
+    for (let d = 0; d < state.decks.length; d++) {
+      promises.push(
+        firebase
+          .database()
+          .ref(`decks/${state.user.uid}/${state.decks[d].id}`)
+          .set(state.decks[d])
+      )
     }
-    return Promise.all(promises)
+    console.log(`saved ${promises.length} decks`)
   }
+  return Promise.all(promises)
+}
 
 // Unused
-export const saveCardToFirebase = (cardIndex, deckId) =>
-  (dispatch, getState) => {
-    const state = getState()
-    const authenticated = state.user.authenticated
-    if (authenticated) {
-      return firebase.database()
-        .ref(`decks/${state.user.uid}/${deckId}/cards/${cardIndex}`)
-        .set(state.decks[deckId].cards[cardIndex])
-    }
-    return Promise.resolve()
+export const saveCardToFirebase = (cardIndex, deckId) => (
+  dispatch,
+  getState
+) => {
+  const state = getState()
+  const authenticated = state.user.authenticated
+  if (authenticated) {
+    return firebase
+      .database()
+      .ref(`decks/${state.user.uid}/${deckId}/cards/${cardIndex}`)
+      .set(state.decks[deckId].cards[cardIndex])
   }
+  return Promise.resolve()
+}
 
 // TODO: Eventually we want to make a call to Firebase on card add/delete/move
 // and deck add/delete/move

@@ -4,23 +4,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { browserHistory } from 'react-router'
 import * as deckActions from '../redux/modules/decks'
+import { DeckShape } from '../components/__commonShapes'
 import DeckView from '../components/DeckView'
 
 const propTypes = {
-  decks: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      cards: PropTypes.arrayOf(
-        PropTypes.shape({
-          title: PropTypes.string.isRequired,
-          answer: PropTypes.string.isRequired,
-          index: PropTypes.number.isRequired
-        }).isRequired
-      ).isRequired
-    }).isRequired
-  ).isRequired,
+  decks: PropTypes.arrayOf(DeckShape.isRequired).isRequired,
   editDeck: PropTypes.func.isRequired,
   duplicateCard: PropTypes.func.isRequired,
   moveCard: PropTypes.func.isRequired,
@@ -62,9 +50,8 @@ class DeckViewContainer extends React.Component {
           handleRemoveCard={this.props.removeCard}
         />
       )
-    } else {
-      return <p className="center">Deck not found</p>
     }
+    return <p className="center">Deck not found</p>
   }
 }
 

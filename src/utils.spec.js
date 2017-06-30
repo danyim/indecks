@@ -30,11 +30,7 @@ describe('utils', () => {
 
   describe('findBestNextIndex', () => {
     it('should find the best next index in an array of one missing value', () => {
-      const data = [
-        { index: 1 },
-        { index: 3 },
-        { index: 4 }
-      ]
+      const data = [{ index: 1 }, { index: 3 }, { index: 4 }]
       expect(utils.findBestNextIndex(data, 'index')).toEqual(2)
     })
     it('should find the best next index in an array of n missing values', () => {
