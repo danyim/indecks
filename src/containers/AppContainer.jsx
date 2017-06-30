@@ -5,17 +5,13 @@ import * as userActions from '../redux/modules/user'
 import * as deckActions from '../redux/modules/decks'
 import App from '../components/App'
 
-const AppContainer = props => (
-  <App
-    {...props}
-  />
-)
+const AppContainer = props => <App {...props} />
 
 const mapStateToProps = ({ user }) => ({
   ...user
 })
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   userActions.setupAuthHook(dispatch)
 
   return bindActionCreators(
@@ -24,7 +20,4 @@ const mapDispatchToProps = (dispatch) => {
   )
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AppContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer)

@@ -9,7 +9,7 @@ const defaultProps = {
   handleOnClick: jest.fn()
 }
 
-function setup (props = defaultProps) {
+function setup(props = defaultProps) {
   const wrapper = shallow(<Markdown {...props} />)
 
   return {
@@ -23,9 +23,9 @@ describe('Markdown', () => {
     const { wrapper } = setup()
     expect(wrapper.find('div').hasClass(defaultProps.className)).toBe(true)
 
-    const tree = renderer.create(
-      <Markdown text='Test'>Hello</Markdown>
-    ).toJSON()
+    const tree = renderer
+      .create(<Markdown text="Test">Hello</Markdown>)
+      .toJSON()
     expect(tree).toMatchSnapshot()
   })
 

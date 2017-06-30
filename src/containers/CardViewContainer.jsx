@@ -16,11 +16,13 @@ const propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    cards: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      answer: PropTypes.string.isRequired,
-      index: PropTypes.number.isRequired
-    }).isRequired).isRequired
+    cards: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        answer: PropTypes.string.isRequired,
+        index: PropTypes.number.isRequired
+      }).isRequired
+    ).isRequired
   }).isRequired
 }
 
@@ -29,34 +31,24 @@ const defaultProps = {
   deck: null
 }
 
-const CardViewContainer = (props) => {
+const CardViewContainer = props => {
   const { card, deck } = props
   if (deck === null) {
-    return (
-      <p className='center'>
-        Deck not found.
-      </p>
-    )
+    return <p className="center">Deck not found.</p>
   }
   if (deck.cards.length === 0) {
     return (
-      <p className='center'>
+      <p className="center">
         No cards have been added to this deck. Click the + on the top left to
         add a card.
       </p>
     )
   }
   if (!card) {
-    return (
-      <p className='center'>
-        Invalid card index.
-      </p>
-    )
+    return <p className="center">Invalid card index.</p>
   }
 
-  return (
-    <CardView {...props} />
-  )
+  return <CardView {...props} />
 }
 
 CardViewContainer.propTypes = propTypes
@@ -89,7 +81,4 @@ const mapStateToProps = ({ decks, config }, ownProps) => {
 const mapDispatchToProps = dispatch =>
   bindActionCreators(Object.assign({}, deckActions, configActions), dispatch)
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CardViewContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(CardViewContainer)

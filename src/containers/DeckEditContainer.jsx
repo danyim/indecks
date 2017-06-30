@@ -6,20 +6,24 @@ import * as deckActions from '../redux/modules/decks'
 import DeckEdit from '../components/DeckEdit'
 
 const propTypes = {
-  cards: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    answer: PropTypes.string.isRequired,
-    index: PropTypes.number.isRequired
-  }).isRequired).isRequired,
+  cards: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      answer: PropTypes.string.isRequired,
+      index: PropTypes.number.isRequired
+    }).isRequired
+  ).isRequired,
   deck: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    cards: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      answer: PropTypes.string.isRequired,
-      index: PropTypes.number.isRequired
-    }).isRequired).isRequired
+    cards: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        answer: PropTypes.string.isRequired,
+        index: PropTypes.number.isRequired
+      }).isRequired
+    ).isRequired
   }).isRequired,
   deckId: PropTypes.string.isRequired,
   editCard: PropTypes.func.isRequired,
@@ -29,9 +33,8 @@ const propTypes = {
 }
 const defaultProps = {}
 
-const DeckEditContainer = (props) => {
-  const { cards, deck, deckId,
-    editCard, removeCard, editDeck, form } = props
+const DeckEditContainer = props => {
+  const { cards, deck, deckId, editCard, removeCard, editDeck, form } = props
 
   return (
     <DeckEdit
@@ -60,10 +63,6 @@ const mapStateToProps = ({ decks, form }, ownProps) => {
     form
   }
 }
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(deckActions, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators(deckActions, dispatch)
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DeckEditContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(DeckEditContainer)

@@ -11,11 +11,13 @@ const propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    cards: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      answer: PropTypes.string.isRequired,
-      index: PropTypes.number.isRequired
-    }).isRequired).isRequired
+    cards: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        answer: PropTypes.string.isRequired,
+        index: PropTypes.number.isRequired
+      }).isRequired
+    ).isRequired
   }).isRequired,
   addCard: PropTypes.func.isRequired
 }
@@ -23,25 +25,21 @@ const propTypes = {
 const defaultProps = {}
 
 class DeckAddContainer extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleSubmit (deckId, card) {
-    this.props.addCard(
-      card.title,
-      card.answer,
-      deckId
-    )
+  handleSubmit(deckId, card) {
+    this.props.addCard(card.title, card.answer, deckId)
     // View the card immediately after saving
     browserHistory.push(`/view/${deckId}/${this.props.deck.cards.length + 1}`)
   }
 
-  render () {
+  render() {
     return (
-      <section className='single'>
+      <section className="single">
         <CardAdd {...this.props} handleSubmit={this.handleSubmit} />
       </section>
     )
@@ -60,7 +58,4 @@ const mapStateToProps = ({ decks }, ownProps) => {
 }
 const mapDispatchToProps = dispatch => bindActionCreators(deckActions, dispatch)
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DeckAddContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(DeckAddContainer)

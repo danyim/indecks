@@ -18,7 +18,7 @@ const propTypes = {
 const defaultProps = {}
 
 class CardView extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = { flipped: false }
 
@@ -29,12 +29,15 @@ class CardView extends React.Component {
     this.handleShuffleToggle = this.handleShuffleToggle.bind(this)
   }
 
-  randomCardIndex () {
-    return Math.floor((Math.random() * this.maxCardIndex) + 1)
+  randomCardIndex() {
+    return Math.floor(Math.random() * this.maxCardIndex + 1)
   }
 
-  handleNextCard () {
-    if (this.props.cardIndex < this.props.deck.cards.length || this.props.config.shuffle === true) {
+  handleNextCard() {
+    if (
+      this.props.cardIndex < this.props.deck.cards.length ||
+      this.props.config.shuffle === true
+    ) {
       this.handleFlip(null, false)
       let nextIndex = this.props.cardIndex + 1 // Going forwards
       if (this.props.config.shuffle === true) {
@@ -45,7 +48,7 @@ class CardView extends React.Component {
     }
   }
 
-  handlePrevCard () {
+  handlePrevCard() {
     if (this.props.cardIndex > 1 || this.props.config.shuffle === true) {
       this.handleFlip(null, false)
       let nextIndex = this.props.cardIndex - 1 // Going backwards
@@ -56,14 +59,14 @@ class CardView extends React.Component {
     }
   }
 
-  handleEditCard () {
+  handleEditCard() {
     browserHistory.push(`/edit/${this.props.deck.id}/${this.props.cardIndex}`)
   }
 
   /**
    * Flips the card
    */
-  handleFlip (e, flipped = null) {
+  handleFlip(e, flipped = null) {
     if (flipped !== null) {
       this.setState({ flipped })
     } else {
@@ -71,22 +74,26 @@ class CardView extends React.Component {
     }
   }
 
-  handleShuffleToggle () {
+  handleShuffleToggle() {
     this.props.toggleShuffle()
   }
 
-  render () {
+  render() {
     const { card, deck, config, cardIndex } = this.props
     const mode = 'view'
 
     return (
-      <section className='single'>
+      <section className="single">
         <Swipeable
           onSwipedDown={this.handleEditCard}
           onSwipedLeft={this.handleNextCard}
           onSwipedRight={this.handlePrevCard}
         >
-          <Card card={card} flipped={this.state.flipped} handleOnClick={this.handleFlip} />
+          <Card
+            card={card}
+            flipped={this.state.flipped}
+            handleOnClick={this.handleFlip}
+          />
         </Swipeable>
         <DeckNavigator
           deck={deck}

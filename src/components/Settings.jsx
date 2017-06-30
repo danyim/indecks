@@ -1,21 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { CardShape } from './__commonShapes'
 import ExportDeckButton from './ExportDeckButton'
 import AuthContainer from '../containers/AuthContainer'
 import styles from '../styles/components/Settings.styl'
 
 class Settings extends React.Component {
   static propTypes = {
-    decks: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      cards: PropTypes.arrayOf(PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        answer: PropTypes.string.isRequired,
-        index: PropTypes.number.isRequired
-      }).isRequired).isRequired
-    }).isRequired).isRequired,
+    decks: PropTypes.arrayOf(DeckShape.isRequired).isRequired,
     deckCount: PropTypes.number.isRequired,
     removeAllDecks: PropTypes.func.isRequired
   }
@@ -28,45 +20,45 @@ class Settings extends React.Component {
 
   static defaultProps = {}
 
-  static handleClearLocalStorage () {
+  static handleClearLocalStorage() {
     localStorage.clear()
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.removeAllDecks = this.removeAllDecks.bind(this)
   }
 
-  removeAllDecks (count) {
-    if (confirm(`Are you sure you want to delete all ${count} decks? ` +
-      'This action is permanent.')) {
+  removeAllDecks(count) {
+    if (
+      confirm(
+        `Are you sure you want to delete all ${count} decks? ` +
+          'This action is permanent.'
+      )
+    ) {
       this.props.removeAllDecks()
     }
   }
 
-  renderDeleteAll (deckCount) {
+  renderDeleteAll(deckCount) {
     return deckCount === 0
-      ? (
-        <button
-          name='delete-all-decks'
-          className='btn-delete'
-          disabled='disabled'
+      ? <button
+          name="delete-all-decks"
+          className="btn-delete"
+          disabled="disabled"
         >
           Delete all decks from local storage
         </button>
-      )
-      : (
-        <button
-          name='delete-all-decks'
-          className='btn-delete'
+      : <button
+          name="delete-all-decks"
+          className="btn-delete"
           onClick={() => this.removeAllDecks(deckCount)}
         >
           Delete all {deckCount} deck(s) from local storage
         </button>
-      )
   }
 
-  render () {
+  render() {
     const { deckCount } = this.props
 
     return (
@@ -75,7 +67,8 @@ class Settings extends React.Component {
         <div className={`${styles['settings-content']}`}>
           <p>
             If you&apos;re logged in, any changes made to your decks will
-            automatically be saved and synchronized in <strong>real-time</strong>.
+            automatically be saved and synchronized in{' '}
+            <strong>real-time</strong>.
           </p>
 
           {/*
@@ -89,17 +82,17 @@ class Settings extends React.Component {
 
           <AuthContainer />
           <ExportDeckButton
-            filename='indecks.json'
-            label='Download your entire deck collection as JSON'
-            className='button'
+            filename="indecks.json"
+            label="Download your entire deck collection as JSON"
+            className="button"
             disabled={deckCount === 0}
             style={{}}
             exportFile={() => JSON.stringify(this.props.decks, null, 2)}
           />
           {this.renderDeleteAll(deckCount)}
           <button
-            name='clear-storage'
-            className='btn-delete'
+            name="clear-storage"
+            className="btn-delete"
             onClick={Settings.handleClearLocalStorage}
           >
             Clear local storage

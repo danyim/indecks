@@ -11,7 +11,7 @@ const defaultProps = {
   }
 }
 
-function setup (props = defaultProps) {
+function setup(props = defaultProps) {
   const wrapper = shallow(<CardAdd {...props} />)
 
   return {
@@ -25,9 +25,7 @@ describe('CardAdd', () => {
     const { wrapper } = setup()
     expect(wrapper.find('figure.grid-figure').exists()).toBe(true)
 
-    const tree = renderer.create(
-      <CardAdd {...defaultProps} />
-    ).toJSON()
+    const tree = renderer.create(<CardAdd {...defaultProps} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 

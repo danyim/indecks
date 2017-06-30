@@ -25,13 +25,13 @@ const defaultProps = {
 }
 
 class ExportDeckButton extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.handleDownloadClick = this.handleDownloadClick.bind(this)
   }
 
-  magicDownload (text, fileName) {
+  magicDownload(text, fileName) {
     const blob = new Blob([text], {
       type: 'text/csv;charset=utf8;'
     })
@@ -49,20 +49,18 @@ class ExportDeckButton extends React.Component {
     event.stopPropagation()
   }
 
-  handleDownloadClick (event) {
+  handleDownloadClick(event) {
     const fileType = event.target.innerText
     const text = this.props.exportFile(fileType)
 
     if (text instanceof Promise) {
-      text.then(
-        result => this.magicDownload(result, this.props.filename)
-      )
+      text.then(result => this.magicDownload(result, this.props.filename))
     } else {
       this.magicDownload(text, this.props.filename)
     }
   }
 
-  render () {
+  render() {
     return (
       <button
         style={this.props.style}

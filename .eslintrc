@@ -7,6 +7,7 @@
     "jasmine": true
   },
   "extends": [
+    "prettier",
     "airbnb",
     "standard",
     "plugin:react/recommended",
@@ -14,6 +15,7 @@
     "plugin:import/warnings"
   ],
   "plugins": [
+    "prettier",
     "babel",
     "react",
     "chai-expect",
@@ -46,6 +48,7 @@
   },
   "parser": "babel-eslint",
   "rules": {
+    "prettier/prettier": "error",
     "semi": 0,
     "arrow-parens": 1,
     "babel/new-cap": 1,

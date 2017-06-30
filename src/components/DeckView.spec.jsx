@@ -25,7 +25,7 @@ const defaultProps = {
   handleRemoveDeck: jest.fn()
 }
 
-function setup (props = defaultProps) {
+function setup(props = defaultProps) {
   const wrapper = shallow(<DeckView {...props} />)
 
   return {
@@ -34,7 +34,7 @@ function setup (props = defaultProps) {
   }
 }
 
-function setupFull (props = defaultProps) {
+function setupFull(props = defaultProps) {
   const wrapper = mount(<DeckView {...props} />)
 
   return {
@@ -47,9 +47,7 @@ describe('DeckView', () => {
   it('should render self and subcomponents', () => {
     // const { wrapper } = setup();
 
-    const tree = renderer.create(
-      <DeckView {...defaultProps} />
-    ).toJSON()
+    const tree = renderer.create(<DeckView {...defaultProps} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
@@ -68,7 +66,9 @@ describe('DeckView', () => {
         cards: []
       }
     })
-    expect(wrapper.find('p.center').text()).toEqual('Click the + button on the top left to add a card')
+    expect(wrapper.find('p.center').text()).toEqual(
+      'Click the + button on the top left to add a card'
+    )
   })
 
   it('should navigate to the VIEW card route when the "View" card overlay button is clicked', () => {
@@ -162,7 +162,7 @@ describe('DeckView', () => {
 
     rieInput.simulate('click')
     const input = wrapper.find('input.large')
-    input.simulate('input', {target: {value: ''}})
+    input.simulate('input', { target: { value: '' } })
     expect(input.hasClass('invalid')).toEqual(true)
   })
 
@@ -174,7 +174,7 @@ describe('DeckView', () => {
     const rieInput = wrapper.find('RIEInput')
     rieInput.simulate('click')
     const input = wrapper.find('input.large')
-    input.simulate('input', {target: {value: '12345'}})
+    input.simulate('input', { target: { value: '12345' } })
     expect(input.hasClass('invalid')).toEqual(true)
   })
 
@@ -184,7 +184,7 @@ describe('DeckView', () => {
 
     rieTextArea.simulate('click')
     const input = wrapper.find('textarea.paragraph textarea.editable')
-    input.simulate('input', {target: {value: ''}})
+    input.simulate('input', { target: { value: '' } })
     expect(input.hasClass('invalid')).toEqual(true)
   })
 
@@ -197,7 +197,7 @@ describe('DeckView', () => {
 
     rieTextArea.simulate('click')
     const input = wrapper.find('textarea.paragraph textarea.editable')
-    input.simulate('input', {target: {value: '12345'}})
+    input.simulate('input', { target: { value: '12345' } })
     expect(input.hasClass('invalid')).toEqual(true)
   })
 
@@ -205,6 +205,8 @@ describe('DeckView', () => {
     const { props, wrapper } = setupFull()
 
     const exportButton = wrapper.find('ExportDeckButton')
-    expect(exportButton.prop('exportFile')()).toEqual(JSON.stringify(props.deck, null, 2))
+    expect(exportButton.prop('exportFile')()).toEqual(
+      JSON.stringify(props.deck, null, 2)
+    )
   })
 })

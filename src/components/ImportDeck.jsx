@@ -19,14 +19,15 @@ const defaultProps = {
 }
 
 class ImportDeck extends React.Component {
-  static generateRandomString (length = 8) {
+  static generateRandomString(length = 8) {
     const chars = '0123456789abcdefABCDEFGHIJKLMNPQRSTUVWXYZ'
     let result = ''
-    for (let i = length; i > 0; i -= 1) result += chars[Math.floor(Math.random() * chars.length)]
+    for (let i = length; i > 0; i -= 1)
+      result += chars[Math.floor(Math.random() * chars.length)]
     return result
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.handleDrop = this.handleDrop.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -40,16 +41,16 @@ class ImportDeck extends React.Component {
     }
   }
 
-  handleChange (event, key) {
+  handleChange(event, key) {
     const state = { ...this.state }
     state[key] = event.target.value
     this.setState(state)
   }
 
-  handleDrop (files) {
+  handleDrop(files) {
     const file = files[0]
     const reader = new FileReader()
-    const addToDeck = (inputDeck) => {
+    const addToDeck = inputDeck => {
       const deck = { ...inputDeck }
       deck.id = ImportDeck.generateRandomString() // Generate a new ID regardless
       // Absolutely no validation of the JSON here...
@@ -57,7 +58,7 @@ class ImportDeck extends React.Component {
       this.props.addDeck(deck)
     }
 
-    reader.onload = (e) => {
+    reader.onload = e => {
       const result = e.target.result
       const resultJson = JSON.parse(result)
       if (Array.isArray(resultJson)) {
@@ -93,12 +94,14 @@ class ImportDeck extends React.Component {
     reader.readAsText(file)
   }
 
-  handleSubmit (e) {
+  handleSubmit(e) {
     e.preventDefault()
 
-    if (this.state.title.trim() === '' ||
+    if (
+      this.state.title.trim() === '' ||
       this.state.title.length >= this.props.maxDeckTitleLength ||
-      this.state.description.length >= this.props.maxDeckDescLength) {
+      this.state.description.length >= this.props.maxDeckDescLength
+    ) {
       return false
     }
 
@@ -117,7 +120,7 @@ class ImportDeck extends React.Component {
     return undefined
   }
 
-  handleLoadSample () {
+  handleLoadSample() {
     let sampleDeck
     for (const d of samples) {
       sampleDeck = { ...d }
@@ -130,13 +133,13 @@ class ImportDeck extends React.Component {
     browserHistory.push('/')
   }
 
-  renderCancelButton () {
+  renderCancelButton() {
     if (this.props.handleClose) {
       return (
         <div>
           <button
-            type='button'
-            className='button btn-delete'
+            type="button"
+            className="button btn-delete"
             onClick={() => this.props.handleClose()}
           >
             Cancel
@@ -147,30 +150,32 @@ class ImportDeck extends React.Component {
     return null
   }
 
-  render () {
+  render() {
     return (
       <section className={`${styles['deck-import']}`}>
         <div className={`${styles['grid-figure']}`}>
           <h2 className={`${styles.header}`}>Add/Import Deck</h2>
-          <form className='edit-form' onSubmit={this.handleSubmit}>
+          <form className="edit-form" onSubmit={this.handleSubmit}>
             <h4>Create a new deck</h4>
             <input
-              type='text'
-              className='large-input'
-              name='title'
-              placeholder='Deck Title'
-              maxLength='30'
+              type="text"
+              className="large-input"
+              name="title"
+              placeholder="Deck Title"
+              maxLength="30"
               onChange={e => this.handleChange(e, 'title')}
             />
             <textarea
-              type='text'
-              name='description'
-              placeholder='Description'
-              rows='3'
+              type="text"
+              name="description"
+              placeholder="Description"
+              rows="3"
               onChange={e => this.handleChange(e, 'description')}
             />
             <div>
-              <button type='submit' className='button'>Create Deck</button>
+              <button type="submit" className="button">
+                Create Deck
+              </button>
             </div>
             <div className={`${styles['or-bar']}`}>
               <hr />
@@ -183,7 +188,7 @@ class ImportDeck extends React.Component {
               activeClassName={`${styles['drop-active']}`}
               rejectClassName={`${styles['drop-reject']}`}
               multiple={false}
-              accept='application/json'
+              accept="application/json"
             >
               <p>Click here to import or drag and drop the deck JSON here</p>
             </Dropzone>
@@ -194,14 +199,15 @@ class ImportDeck extends React.Component {
             <h4>Use samples</h4>
             <div>
               <button
-                type='button'
-                className='button'
+                type="button"
+                className="button"
                 onClick={() => this.handleLoadSample()}
               >
                 Load Sample Decks
               </button>
             </div>
-            <br /><br />
+            <br />
+            <br />
             {this.renderCancelButton()}
           </form>
         </div>

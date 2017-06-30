@@ -12,7 +12,7 @@ const defaultProps = {
   maxDeckDescLength: 300
 }
 
-function setup (props = defaultProps) {
+function setup(props = defaultProps) {
   const wrapper = shallow(<ImportDeck {...props} />)
 
   return {
@@ -21,7 +21,7 @@ function setup (props = defaultProps) {
   }
 }
 
-function setupFull (props = defaultProps) {
+function setupFull(props = defaultProps) {
   const wrapper = mount(<ImportDeck {...props} />)
 
   return {
@@ -32,9 +32,7 @@ function setupFull (props = defaultProps) {
 
 describe('ImportDeck', () => {
   it('should render self and subcomponents', () => {
-    const wrapper = shallow(
-      <ImportDeck {...defaultProps} />
-    )
+    const wrapper = shallow(<ImportDeck {...defaultProps} />)
     expect(toJson(wrapper)).toMatchSnapshot()
   })
 
@@ -68,7 +66,8 @@ describe('ImportDeck', () => {
         name: 'test.json',
         size: 1111,
         type: 'application/json'
-      }]
+      }
+    ]
 
     dropzone.simulate('drop', { dataTransfer: { files } })
 
@@ -87,7 +86,9 @@ describe('ImportDeck', () => {
       handleClose: handlerClose
     })
 
-    wrapper.find('button.button[children="Load Sample Decks"]').simulate('click')
+    wrapper
+      .find('button.button[children="Load Sample Decks"]')
+      .simulate('click')
     expect(handlerAdd.mock.calls.length).toBe(4)
     expect(handlerClose.mock.calls.length).toBe(1)
     expect(browserHistory.push).toHaveBeenCalledWith('/')
@@ -99,7 +100,9 @@ describe('ImportDeck', () => {
       handleClose: null
     })
 
-    expect(wrapper.find('button.btn-delete[children="Cancel"]').exists()).toBe(false)
+    expect(wrapper.find('button.btn-delete[children="Cancel"]').exists()).toBe(
+      false
+    )
   })
 
   it('should call the handleClose prop when cancel is clicked', () => {

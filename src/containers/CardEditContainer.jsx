@@ -19,7 +19,7 @@ const propTypes = {
 }
 const defaultProps = {}
 
-const CardEditContainer = (props) => {
+const CardEditContainer = props => {
   const { deckId, cardIndex, card, editCard, removeCard, form } = props
 
   return (
@@ -50,7 +50,4 @@ const mapStateToProps = ({ decks, form }, ownProps) => {
 }
 const mapDispatchToProps = dispatch => bindActionCreators(deckActions, dispatch)
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CardEditContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(CardEditContainer)

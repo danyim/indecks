@@ -10,7 +10,7 @@ const propTypes = {
 
 const defaultProps = {}
 
-const FrontBack = (props) => {
+const FrontBack = props => {
   const { flipped } = props
   const front = {}
   front[styles.front] = true
@@ -22,7 +22,7 @@ const FrontBack = (props) => {
   return (
     <div className={styles.frontBack}>
       <a
-        tabIndex='0'
+        tabIndex="0"
         className={classNames(front)}
         onClick={() => props.handleFlip(false)}
       >
@@ -30,7 +30,7 @@ const FrontBack = (props) => {
       </a>
       <span className={styles.separator}>|</span>
       <a
-        tabIndex='-1'
+        tabIndex="-1"
         className={classNames(back)}
         onClick={() => props.handleFlip(true)}
       >

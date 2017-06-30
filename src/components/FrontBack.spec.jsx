@@ -7,7 +7,7 @@ const defaultProps = {
   flipped: false
 }
 
-function setup (props = defaultProps) {
+function setup(props = defaultProps) {
   const wrapper = shallow(<FrontBack {...props} />)
 
   return {
@@ -25,22 +25,18 @@ describe('FrontBack', () => {
   })
 
   it('should apply the active class to "BACK" when flipped prop is TRUE', () => {
-    const { wrapper } = setup(
-      {
-        ...defaultProps,
-        flipped: true
-      }
-    )
+    const { wrapper } = setup({
+      ...defaultProps,
+      flipped: true
+    })
     expect(wrapper.find('a.active').text()).toBe('BACK')
   })
 
   it('should apply the active class to "FRONT" when flipped prop is FALSE', () => {
-    const { wrapper } = setup(
-      {
-        ...defaultProps,
-        flipped: false
-      }
-    )
+    const { wrapper } = setup({
+      ...defaultProps,
+      flipped: false
+    })
     expect(wrapper.find('a.active').text()).toBe('FRONT')
   })
 

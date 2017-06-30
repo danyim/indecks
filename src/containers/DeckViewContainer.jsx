@@ -7,16 +7,20 @@ import * as deckActions from '../redux/modules/decks'
 import DeckView from '../components/DeckView'
 
 const propTypes = {
-  decks: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    cards: PropTypes.arrayOf(PropTypes.shape({
+  decks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
-      answer: PropTypes.string.isRequired,
-      index: PropTypes.number.isRequired
-    }).isRequired).isRequired
-  }).isRequired).isRequired,
+      description: PropTypes.string.isRequired,
+      cards: PropTypes.arrayOf(
+        PropTypes.shape({
+          title: PropTypes.string.isRequired,
+          answer: PropTypes.string.isRequired,
+          index: PropTypes.number.isRequired
+        }).isRequired
+      ).isRequired
+    }).isRequired
+  ).isRequired,
   editDeck: PropTypes.func.isRequired,
   duplicateCard: PropTypes.func.isRequired,
   moveCard: PropTypes.func.isRequired,
@@ -27,20 +31,20 @@ const propTypes = {
 const defaultProps = {}
 
 class DeckViewContainer extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.handleRemoveDeck = this.handleRemoveDeck.bind(this)
   }
 
-  handleRemoveDeck (deckId) {
+  handleRemoveDeck(deckId) {
     if (confirm('Are you sure you want to delete this deck?')) {
       this.props.removeDeck(deckId)
       browserHistory.push('/')
     }
   }
 
-  render () {
+  render() {
     const { deckId } = this.props.params
     // Derive the deck index
     const deckIndex = this.props.decks.findIndex(deck => deck.id === deckId)
@@ -59,11 +63,7 @@ class DeckViewContainer extends React.Component {
         />
       )
     } else {
-      return (
-        <p className='center'>
-          Deck not found
-        </p>
-      )
+      return <p className="center">Deck not found</p>
     }
   }
 }
@@ -71,10 +71,7 @@ class DeckViewContainer extends React.Component {
 DeckViewContainer.propTypes = propTypes
 DeckViewContainer.defaultProps = defaultProps
 
-const mapStateToProps = ({decks, config}) => ({decks, config})
+const mapStateToProps = ({ decks, config }) => ({ decks, config })
 const mapDispatchToProps = dispatch => bindActionCreators(deckActions, dispatch)
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DeckViewContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(DeckViewContainer)

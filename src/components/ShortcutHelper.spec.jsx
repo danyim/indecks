@@ -5,7 +5,7 @@ import ShortcutHelper from './ShortcutHelper'
 
 const defaultProps = {}
 
-function setup (props = defaultProps) {
+function setup(props = defaultProps) {
   const wrapper = shallow(<ShortcutHelper {...props} />)
 
   return {
@@ -21,9 +21,7 @@ describe('ShortcutHelper', () => {
     expect(wrapper.find('h2').hasClass('header')).toBe(true)
     expect(wrapper.find('div').hasClass('shortcut-helper-content')).toBe(true)
 
-    const tree = renderer.create(
-      <ShortcutHelper />
-    ).toJSON()
+    const tree = renderer.create(<ShortcutHelper />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

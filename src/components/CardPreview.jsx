@@ -15,7 +15,7 @@ const defaultProps = {
 }
 
 class CardPreview extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.togglePreview.bind(this, this.togglePreview)
@@ -25,51 +25,44 @@ class CardPreview extends React.Component {
     }
   }
 
-  togglePreview () {
+  togglePreview() {
     const currState = this.state
     currState.display = !currState.display
     this.setState(currState)
   }
 
-  renderPreview (title, answer) {
+  renderPreview(title, answer) {
     return (
-      <Motion style={{y: spring(this.state.display ? 400 : 0)}}>
-        {
-          ({y}) =>
-            <div
-              className={`${styles['preview-pane']}`}
-              style={{
-                height: y,
-                display: (y / 400 > 0.05 ? 'block' : 'none')
-              }}
-            >
-              <Markdown
-                className={`${styles['card-title']}`}
-                text={title}
-              />
-              <hr />
-              <Markdown
-                className={`${styles['card-answer']}`}
-                text={answer}
-              />
-            </div>
-        }
+      <Motion style={{ y: spring(this.state.display ? 400 : 0) }}>
+        {({ y }) =>
+          <div
+            className={`${styles['preview-pane']}`}
+            style={{
+              height: y,
+              display: y / 400 > 0.05 ? 'block' : 'none'
+            }}
+          >
+            <Markdown className={`${styles['card-title']}`} text={title} />
+            <hr />
+            <Markdown className={`${styles['card-answer']}`} text={answer} />
+          </div>}
       </Motion>
     )
   }
 
-  render () {
+  render() {
     const { title, answer } = this.props
 
     return (
       <div className={styles.preview}>
         <button
-          type='button' className='btn pointer m-t'
+          type="button"
+          className="btn pointer m-t"
           onClick={() => this.togglePreview()}
         >
           Preview [{this.state.display ? '-' : '+'}]
         </button>
-        { this.renderPreview(title, answer) }
+        {this.renderPreview(title, answer)}
       </div>
     )
   }

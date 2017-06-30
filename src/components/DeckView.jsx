@@ -26,7 +26,7 @@ const defaultProps = {
 }
 
 class DeckView extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.handleEditDeckDetails = this.handleEditDeckDetails.bind(this)
@@ -46,11 +46,11 @@ class DeckView extends React.Component {
   //   return v;
   // }
 
-  handleCardView (deckId, i) {
+  handleCardView(deckId, i) {
     browserHistory.push(`/view/${deckId}/${i + 1}`)
   }
 
-  handleCardDuplicate (deckId, i) {
+  handleCardDuplicate(deckId, i) {
     this.props.handleDuplicateCard(
       i + 1, // expects a cardIndex, which is 1-based
       deckId
@@ -61,11 +61,11 @@ class DeckView extends React.Component {
   //   // TODO: Some implementation here
   // }
 
-  handleCardEdit (deckId, i) {
+  handleCardEdit(deckId, i) {
     browserHistory.push(`/edit/${deckId}/${i + 1}`)
   }
 
-  handleCardDelete (deckId, i) {
+  handleCardDelete(deckId, i) {
     if (confirm('Are you sure?')) {
       this.props.handleRemoveCard(
         i + 1, // expects a cardIndex, which is 1-based
@@ -75,25 +75,30 @@ class DeckView extends React.Component {
     }
   }
 
-  handleEditDeckDetails (data) {
+  handleEditDeckDetails(data) {
     this.props.handleEditDeck(
       this.props.deck.id,
       data.title ? data.title : this.props.deck.title,
-      data.description ? data.description : this.props.deck.description)
+      data.description ? data.description : this.props.deck.description
+    )
   }
 
-  validateDescription (text) {
-    return text.trim() !== '' && text.length > 0 && text.length <= this.props.maxDeckDescLength
+  validateDescription(text) {
+    return (
+      text.trim() !== '' &&
+      text.length > 0 &&
+      text.length <= this.props.maxDeckDescLength
+    )
   }
 
-  validateTitle (text) {
+  validateTitle(text) {
     return text.length > 0 && text.length <= this.props.maxDeckTitleLength
   }
 
-  renderEmpty (numCards) {
+  renderEmpty(numCards) {
     if (numCards === 0) {
       return (
-        <p className='center'>
+        <p className="center">
           Click the + button on the top left to add a card
         </p>
       )
@@ -101,7 +106,7 @@ class DeckView extends React.Component {
     return null
   }
 
-  render () {
+  render() {
     const { deck, maxDeckTitleLength, maxDeckDescLength } = this.props
 
     return (
@@ -111,14 +116,14 @@ class DeckView extends React.Component {
             <RIEInput
               value={deck.title}
               change={this.handleEditDeckDetails}
-              propName='title'
-              className='large editable'
-              minLength='1'
+              propName="title"
+              className="large editable"
+              minLength="1"
               maxLength={maxDeckTitleLength}
               validate={this.validateTitle}
-              placeholder='Click here to add a title'
-              classLoading='loading'
-              classInvalid='invalid'
+              placeholder="Click here to add a title"
+              classLoading="loading"
+              classInvalid="invalid"
             />
             <p>
               <strong>
@@ -128,27 +133,25 @@ class DeckView extends React.Component {
             <RIETextArea
               value={deck.description}
               change={this.handleEditDeckDetails}
-              propName='description'
-              className='paragraph editable m-t'
-              minLength='1'
+              propName="description"
+              className="paragraph editable m-t"
+              minLength="1"
               maxLength={maxDeckDescLength}
-              rows='6'
+              rows="6"
               validate={this.validateDescription}
-              placeholder='Click here to add a description'
-              classLoading='loading'
-              classInvalid='invalid'
+              placeholder="Click here to add a description"
+              classLoading="loading"
+              classInvalid="invalid"
             />
           </div>
           <div className={`${styles['control-buttons']}`}>
-            <Link className='button' to={`/view/${deck.id}/1`}>
-              <span>
-                Play Deck
-              </span>
+            <Link className="button" to={`/view/${deck.id}/1`}>
+              <span>Play Deck</span>
             </Link>
             <ExportDeckButton
               filename={`${slug(deck.title)}.json`}
-              label='Export Deck'
-              className='button'
+              label="Export Deck"
+              className="button"
               style={{}}
               /*
                 // Use this if you want to use the replacer
@@ -157,59 +160,46 @@ class DeckView extends React.Component {
               exportFile={() => JSON.stringify(deck, null, 2)}
             />
             <button
-              className='btn-delete'
+              className="btn-delete"
               onClick={() => this.props.handleRemoveDeck(deck.id)}
             >
-                Delete Deck
+              Delete Deck
             </button>
           </div>
         </div>
 
         <div className={`wrap-row ${styles.grid}`}>
-          {
-            deck.cards.map((c, i) => (
-              <Card
-                card={c}
-                key={`card_${deck.id}__${c.index}`}
-                className={`${styles['card-contents']}`}
-                trimOverflow
-              >
-                {
-                  // TODO: Break this into an Overlay component and use on Card
-                  // and Deck
-                }
-                <Overlay>
-                  <OverlayRow>
-                    <button
-                      onClick={
-                        () => this.handleCardView(deck.id, i)
-                      }
-                    >
-                      View
-                    </button>
-                    <button
-                      onClick={
-                        () => this.handleCardEdit(deck.id, i)
-                      }
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={
-                        () => this.handleCardDelete(deck.id, i)
-                      }
-                      className='btn-delete'
-                    >
-                      Delete
-                    </button>
-                  </OverlayRow>
-                  <OverlayRow>
-                    <button
-                      onClick={() => this.handleCardDuplicate(deck.id, i)}
-                    >
-                      Duplicate
-                    </button>
-                    {/*
+          {deck.cards.map((c, i) =>
+            <Card
+              card={c}
+              key={`card_${deck.id}__${c.index}`}
+              className={`${styles['card-contents']}`}
+              trimOverflow
+            >
+              {
+                // TODO: Break this into an Overlay component and use on Card
+                // and Deck
+              }
+              <Overlay>
+                <OverlayRow>
+                  <button onClick={() => this.handleCardView(deck.id, i)}>
+                    View
+                  </button>
+                  <button onClick={() => this.handleCardEdit(deck.id, i)}>
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => this.handleCardDelete(deck.id, i)}
+                    className="btn-delete"
+                  >
+                    Delete
+                  </button>
+                </OverlayRow>
+                <OverlayRow>
+                  <button onClick={() => this.handleCardDuplicate(deck.id, i)}>
+                    Duplicate
+                  </button>
+                  {/*
                     <button
                       onClick={
                         () => this.handleCardMove(deck.id, i)
@@ -219,12 +209,11 @@ class DeckView extends React.Component {
                       Copy To..
                     </button>
                     */}
-                  </OverlayRow>
-                </Overlay>
-              </Card>
-            ))
-          }
-          { this.renderEmpty(deck.cards.length) }
+                </OverlayRow>
+              </Overlay>
+            </Card>
+          )}
+          {this.renderEmpty(deck.cards.length)}
         </div>
       </section>
     )

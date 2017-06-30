@@ -30,7 +30,7 @@ const defaultProps = {
   toggleShuffle: () => {}
 }
 
-function setup (props = defaultProps) {
+function setup(props = defaultProps) {
   const wrapper = shallow(<CardView {...props} />)
 
   return {
@@ -39,7 +39,7 @@ function setup (props = defaultProps) {
   }
 }
 
-function setupFull (props = defaultProps) {
+function setupFull(props = defaultProps) {
   const wrapper = mount(<CardView {...props} />)
 
   return {
@@ -50,9 +50,7 @@ function setupFull (props = defaultProps) {
 
 describe('CardView', () => {
   it('should render self and subcomponents', () => {
-    const tree = renderer.create(
-      <CardView {...defaultProps} />
-    ).toJSON()
+    const tree = renderer.create(<CardView {...defaultProps} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 

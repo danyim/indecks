@@ -20,68 +20,60 @@ class Auth extends React.Component {
     email: null
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.handleClickSaveDecks = this.handleClickSaveDecks.bind(this)
   }
 
-  handleClickSaveDecks () {
-    this.props.saveDecksToFirebase()
-    .then(() => {
-      // console.log('saved all decks to firebase!')
-    })
-    .catch(() => {
-      // console.log('error occurred while saving to firebase')
-    })
+  handleClickSaveDecks() {
+    this.props
+      .saveDecksToFirebase()
+      .then(() => {
+        // console.log('saved all decks to firebase!')
+      })
+      .catch(() => {
+        // console.log('error occurred while saving to firebase')
+      })
   }
 
-  render () {
+  render() {
     return (
       <div className={styles.auth}>
-        {
-          !this.props.authenticated
+        {!this.props.authenticated
           ? <SignUpLoginForm {...this.props} />
           : <div>
-            <p>
-              {/*
+              <p>
+                {/*
                 this.props.photoURL
                 ? <img src={this.props.photoURL} alt='Avatar' />
                 : null
               */}
-              Logged in as&nbsp;
-              <strong>
-                {
-                  this.props.displayName
-                  ? this.props.displayName
-                  : this.props.email
-                }
-              </strong>
-            </p>
-            <button
-              type='button'
-              className='btn'
-              onClick={this.props.saveDecksToFirebase}
-            >
-              Save your decks
-            </button>
-            <button
-              type='button'
-              className='btn'
-              onClick={this.props.fetchUserDecks}
-            >
-              Reload decks from account
-            </button>
-            <button
-              type='button'
-              className='btn'
-              onClick={this.props.logout}
-            >
-              Log out
-            </button>
-          </div>
-        }
-
+                Logged in as&nbsp;
+                <strong>
+                  {this.props.displayName
+                    ? this.props.displayName
+                    : this.props.email}
+                </strong>
+              </p>
+              <button
+                type="button"
+                className="btn"
+                onClick={this.props.saveDecksToFirebase}
+              >
+                Save your decks
+              </button>
+              <button
+                type="button"
+                className="btn"
+                onClick={this.props.fetchUserDecks}
+              >
+                Reload decks from account
+              </button>
+              <button type="button" className="btn" onClick={this.props.logout}>
+                Log out
+              </button>
+            </div>}
       </div>
     )
   }

@@ -20,27 +20,33 @@ const defaultProps = {
 
 const fields = ['cardTitle', 'cardAnswer']
 
-export const CardEditForm = (props) => {
-  const { deckId, cardIndex, handleSubmit,
-    handleDelete, handleCancel, formValues: form } = props
+export const CardEditForm = props => {
+  const {
+    deckId,
+    cardIndex,
+    handleSubmit,
+    handleDelete,
+    handleCancel,
+    formValues: form
+  } = props
 
   return (
-    <form className='edit-form' onSubmit={handleSubmit}>
+    <form className="edit-form" onSubmit={handleSubmit}>
       <Field
-        name='cardTitle'
-        component='textarea'
-        type='text'
-        className='large-input'
-        rows='2'
-        placeholder='Title'
+        name="cardTitle"
+        component="textarea"
+        type="text"
+        className="large-input"
+        rows="2"
+        placeholder="Title"
       />
       <Field
-        name='cardAnswer'
-        component='textarea'
-        type='text'
-        className='mono'
-        rows='6'
-        placeholder='Answer (Markdown)'
+        name="cardAnswer"
+        component="textarea"
+        type="text"
+        className="mono"
+        rows="6"
+        placeholder="Answer (Markdown)"
       />
 
       <CardPreview
@@ -49,17 +55,15 @@ export const CardEditForm = (props) => {
       />
 
       <div className={`${styles['control-buttons']}`}>
-        <button type='submit' className='button'>Save Card</button>
-        <button
-          type='button'
-          className='button'
-          onClick={() => handleCancel()}
-        >
+        <button type="submit" className="button">
+          Save Card
+        </button>
+        <button type="button" className="button" onClick={() => handleCancel()}>
           Cancel
         </button>
         <button
-          type='button'
-          className='button btn-delete'
+          type="button"
+          className="button btn-delete"
           onClick={() => handleDelete(cardIndex, deckId)}
         >
           Remove from Deck

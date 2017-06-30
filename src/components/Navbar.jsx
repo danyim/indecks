@@ -21,7 +21,7 @@ const defaultProps = {}
 // const modalTypes = ['SETTINGS', 'IMPORT', 'SHORTCUTS'];
 
 class Navbar extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.openModal = this.openModal.bind(this)
@@ -54,19 +54,19 @@ class Navbar extends React.Component {
     ]
   }
 
-  closeModal (modalType) {
+  closeModal(modalType) {
     const { openModals } = this.state
     openModals[modalType] = false
     this.setState(openModals)
   }
 
-  openModal (modalType) {
+  openModal(modalType) {
     const { openModals } = this.state
     openModals[modalType] = true
     this.setState(openModals)
   }
 
-  routeParser (path) {
+  routeParser(path) {
     let addLink
     let listLink
     const routeComponents = path.split('/').filter(v => v !== '')
@@ -74,22 +74,48 @@ class Navbar extends React.Component {
     if (path === '/') {
       // @/
       // addLink = this.renderLink('/add', 'Add deck', 'fa-plus-square-o');
-      addLink = this.renderModalLink(this.openModal.bind(this, 'IMPORT'), 'fa-plus-square-o')
-      listLink = this.renderModalLink(this.openModal.bind(this, 'SETTINGS'), 'fa-cog')
+      addLink = this.renderModalLink(
+        this.openModal.bind(this, 'IMPORT'),
+        'fa-plus-square-o'
+      )
+      listLink = this.renderModalLink(
+        this.openModal.bind(this, 'SETTINGS'),
+        'fa-cog'
+      )
       // listLink = this.renderLink('/settings', 'Settings', 'fa-cog');
       // <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
     } else if (routeComponents[0] === 'view' && routeComponents.length === 2) {
       // @/view/:deckId
-      addLink = this.renderLink(`/add/${routeComponents[1]}`, 'Add card', 'fa-plus-square-o')
+      addLink = this.renderLink(
+        `/add/${routeComponents[1]}`,
+        'Add card',
+        'fa-plus-square-o'
+      )
       listLink = this.renderLink('/', 'View decks', 'fa-clone')
     } else if (routeComponents[0] === 'add' && routeComponents.length === 2) {
       // @/add/:deckId
-      addLink = this.renderLink(`/add/${routeComponents[1]}`, 'Add card', 'fa-plus-square-o')
-      listLink = this.renderLink(`/view/${routeComponents[1]}`, 'View cards', 'fa-square-o')
+      addLink = this.renderLink(
+        `/add/${routeComponents[1]}`,
+        'Add card',
+        'fa-plus-square-o'
+      )
+      listLink = this.renderLink(
+        `/view/${routeComponents[1]}`,
+        'View cards',
+        'fa-square-o'
+      )
     } else if (routeComponents[0] === 'view' && routeComponents.length === 3) {
       // @/view/:deckId/:cardId
-      addLink = this.renderLink(`/add/${routeComponents[1]}`, 'Add card', 'fa-plus-square-o')
-      listLink = this.renderLink(`/view/${routeComponents[1]}`, 'View cards', 'fa-square-o')
+      addLink = this.renderLink(
+        `/add/${routeComponents[1]}`,
+        'Add card',
+        'fa-plus-square-o'
+      )
+      listLink = this.renderLink(
+        `/view/${routeComponents[1]}`,
+        'View cards',
+        'fa-square-o'
+      )
     } else if (routeComponents[0] === 'add' && routeComponents.length === 1) {
       // @/add
       addLink = this.renderNoAction()
@@ -97,9 +123,16 @@ class Navbar extends React.Component {
     } else if (routeComponents[0] === 'edit' && routeComponents.length === 3) {
       // @/edit/:deckId/:cardIndex
       addLink = this.renderNoAction()
-      listLink = this.renderLink(`/view/${routeComponents[1]}`, 'View cards', 'fa-square-o')
+      listLink = this.renderLink(
+        `/view/${routeComponents[1]}`,
+        'View cards',
+        'fa-square-o'
+      )
     } else {
-      addLink = this.renderModalLink(this.openModal.bind(this, 'IMPORT'), 'fa-plus-square-o')
+      addLink = this.renderModalLink(
+        this.openModal.bind(this, 'IMPORT'),
+        'fa-plus-square-o'
+      )
       listLink = null
       // listLink = (
       //   <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
@@ -112,49 +145,63 @@ class Navbar extends React.Component {
     }
   }
 
-  renderImportDeckModal () {
+  renderImportDeckModal() {
     return (
       <Modal
-        isOpen={this.state.openModals.IMPORT ? this.state.openModals.IMPORT : false}
+        isOpen={
+          this.state.openModals.IMPORT ? this.state.openModals.IMPORT : false
+        }
         onRequestClose={this.closeModal.bind(this, 'IMPORT')}
         className={`${styles['modal-content']}`}
         overlayClassName={`${styles['modal-overlay']}`}
-        contentLabel='Import Deck'
+        contentLabel="Import Deck"
       >
-        <ImportDeckContainer handleClose={this.closeModal.bind(this, 'IMPORT')} />
+        <ImportDeckContainer
+          handleClose={this.closeModal.bind(this, 'IMPORT')}
+        />
       </Modal>
     )
   }
 
-  renderShortcutsModal () {
+  renderShortcutsModal() {
     return (
       <Modal
-        isOpen={this.state.openModals.SHORTCUTS ? this.state.openModals.SHORTCUTS : false}
+        isOpen={
+          this.state.openModals.SHORTCUTS
+            ? this.state.openModals.SHORTCUTS
+            : false
+        }
         onRequestClose={this.closeModal.bind(this, 'SHORTCUTS')}
         className={`${styles['modal-content']}`}
         overlayClassName={`${styles['modal-overlay']}`}
-        contentLabel='Keyboard Shortcuts'
+        contentLabel="Keyboard Shortcuts"
       >
         <ShortcutHelper handleClose={this.closeModal.bind(this, 'SHORTCUTS')} />
       </Modal>
     )
   }
 
-  renderSettingsModal () {
+  renderSettingsModal() {
     return (
       <Modal
-        isOpen={this.state.openModals.SETTINGS ? this.state.openModals.SETTINGS : false}
+        isOpen={
+          this.state.openModals.SETTINGS
+            ? this.state.openModals.SETTINGS
+            : false
+        }
         onRequestClose={this.closeModal.bind(this, 'SETTINGS')}
         className={`${styles['modal-content']}`}
         overlayClassName={`${styles['modal-overlay']}`}
-        contentLabel='Settings'
+        contentLabel="Settings"
       >
-        <SettingsContainer handleClose={this.closeModal.bind(this, 'SETTINGS')} />
+        <SettingsContainer
+          handleClose={this.closeModal.bind(this, 'SETTINGS')}
+        />
       </Modal>
     )
   }
 
-  renderLink (url, title, faClassName) {
+  renderLink(url, title, faClassName) {
     return (
       <Link to={url} title={title}>
         <i className={`fa ${faClassName}`} />
@@ -162,28 +209,28 @@ class Navbar extends React.Component {
     )
   }
 
-  renderModalLink (openModalFn, faClassName) {
+  renderModalLink(openModalFn, faClassName) {
     return (
-      <a onClick={openModalFn} className='pointer'>
+      <a onClick={openModalFn} className="pointer">
         <i className={`fa ${faClassName}`} />
       </a>
     )
   }
 
-  renderNoAction (faClassName = 'fa-plus-square-o') {
+  renderNoAction(faClassName = 'fa-plus-square-o') {
     return (
-      <a href='javascript:void(0);' disabled>
+      <a href="javascript:void(0);" disabled>
         <i className={`fa ${faClassName}`} />
       </a>
     )
   }
 
-  render () {
+  render() {
     let addLink
     let listLink
     const routeParser = this.routeParser
 
-    browserHistory.listen((ev) => {
+    browserHistory.listen(ev => {
       const { addLink: add, listLink: list } = routeParser(ev.pathname)
       addLink = add
       listLink = list
@@ -199,7 +246,9 @@ class Navbar extends React.Component {
               </div>
             </span>
             <h1>
-              <Link to='/'>in<span className={`${styles['title-bold']}`}>decks</span></Link>
+              <Link to="/">
+                in<span className={`${styles['title-bold']}`}>decks</span>
+              </Link>
             </h1>
             <span className={`${styles['nav-right']}`}>
               <div className={`${styles['rounded-button']}`}>

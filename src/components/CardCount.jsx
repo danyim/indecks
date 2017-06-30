@@ -9,13 +9,17 @@ const propTypes = {
 
 const defaultProps = {}
 
-const CardCount = (props) => {
+const CardCount = props => {
   const { current, max } = props
   return (
     <div className={styles.cardCount}>
-      <span className={styles.current}>{current}</span>
+      <span className={styles.current}>
+        {current}
+      </span>
       <span className={styles.separator} />
-      <span className={styles.max}>{max}</span>
+      <span className={styles.max}>
+        {max}
+      </span>
     </div>
   )
 }

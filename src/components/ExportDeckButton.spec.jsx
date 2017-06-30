@@ -17,7 +17,7 @@ const defaultProps = {
   exportFile: () => {}
 }
 
-function setup (props = defaultProps) {
+function setup(props = defaultProps) {
   const wrapper = shallow(<ExportDeckButton {...props} />)
 
   return {
@@ -31,9 +31,9 @@ describe('ExportDeckButton', () => {
     const { wrapper } = setup()
     expect(wrapper.find('button').hasClass(defaultProps.className)).toBe(true)
 
-    const tree = renderer.create(
-      <ExportDeckButton {...defaultProps} />
-    ).toJSON()
+    const tree = renderer
+      .create(<ExportDeckButton {...defaultProps} />)
+      .toJSON()
     expect(tree).toMatchSnapshot()
   })
 

@@ -8,7 +8,7 @@ const defaultProps = {
   children: null
 }
 
-function setup (props = defaultProps) {
+function setup(props = defaultProps) {
   const wrapper = shallow(<OverlayRow {...props} />)
 
   return {
@@ -22,14 +22,12 @@ describe('OverlayRow', () => {
     const { wrapper } = setup()
     expect(wrapper.find('div').hasClass('hover-actions')).toBe(true)
 
-    const tree = renderer.create(
-      <OverlayRow {...defaultProps} />
-    ).toJSON()
+    const tree = renderer.create(<OverlayRow {...defaultProps} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it('should apply a class to all its children', () => {
-    const children = <a className='test'>Test</a>
+    const children = <a className="test">Test</a>
     const { wrapper } = setup({
       ...defaultProps,
       children

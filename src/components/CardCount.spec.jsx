@@ -7,7 +7,7 @@ const defaultProps = {
   max: 100
 }
 
-function setup (props = defaultProps) {
+function setup(props = defaultProps) {
   const wrapper = shallow(<CardCount {...props} />)
 
   return {
@@ -24,7 +24,9 @@ describe('CardCount', () => {
 
   it('should render the correct card current/max', () => {
     const { wrapper } = setup()
-    expect(wrapper.find('span.current').text()).toEqual(`${defaultProps.current}`)
+    expect(wrapper.find('span.current').text()).toEqual(
+      `${defaultProps.current}`
+    )
     expect(wrapper.find('span.max').text()).toEqual(`${defaultProps.max}`)
   })
 })

@@ -18,21 +18,21 @@ class KeyListener extends React.Component {
     handlers: []
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.handleKeyDown = this.handleKeyDown.bind(this)
   }
 
-  handleKeyDown (e) {
-    this.props.handlers.forEach((h) => {
+  handleKeyDown(e) {
+    this.props.handlers.forEach(h => {
       if (h && h.keyCode && h.action && h.keyCode === e.keyCode) {
         h.action()
       }
     })
   }
 
-  render () {
+  render() {
     return (
       <KeyBinding
         onKey={e => this.handleKeyDown(e)}

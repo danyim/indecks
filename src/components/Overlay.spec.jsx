@@ -8,7 +8,7 @@ const defaultProps = {
   children: null
 }
 
-function setup (props = defaultProps) {
+function setup(props = defaultProps) {
   const wrapper = shallow(<Overlay {...props} />)
 
   return {
@@ -23,9 +23,7 @@ describe('Overlay', () => {
     expect(wrapper.find('div.overlay').exists()).toBe(true)
     expect(wrapper.find('div.hover-actions-container').exists()).toBe(true)
 
-    const tree = renderer.create(
-      <Overlay {...defaultProps} />
-    ).toJSON()
+    const tree = renderer.create(<Overlay {...defaultProps} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

@@ -11,12 +11,8 @@ const propTypes = {
 
 const defaultProps = {}
 
-const ImportDeckContainer = (props) => {
-  return (
-    <ImportDeck
-      {...props}
-    />
-  )
+const ImportDeckContainer = props => {
+  return <ImportDeck {...props} />
 }
 
 ImportDeckContainer.propTypes = propTypes
@@ -25,7 +21,4 @@ ImportDeckContainer.defaultProps = defaultProps
 const mapStateToProps = () => ({})
 const mapDispatchToProps = dispatch => bindActionCreators(deckActions, dispatch)
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ImportDeckContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ImportDeckContainer)

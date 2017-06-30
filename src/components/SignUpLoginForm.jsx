@@ -20,7 +20,7 @@ class SignUpLoginForm extends React.Component {
     GOOGLE: 'signInGoogle'
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.handleChange = this.handleChange.bind(this)
@@ -33,7 +33,7 @@ class SignUpLoginForm extends React.Component {
     }
   }
 
-  handleChange (e) {
+  handleChange(e) {
     const target = e.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
@@ -43,7 +43,7 @@ class SignUpLoginForm extends React.Component {
     })
   }
 
-  handleLoginClick (e) {
+  handleLoginClick(e) {
     e.preventDefault()
 
     if (this.state.username === '' || this.state.password === '') {
@@ -51,17 +51,14 @@ class SignUpLoginForm extends React.Component {
       return
     }
 
-    this.props.login(
-      this.state.username,
-      this.state.password
-    ).then((message) => {
+    this.props.login(this.state.username, this.state.password).then(message => {
       if (message) {
         this.setState({ message })
       }
     })
   }
 
-  handleSignUpClick (e) {
+  handleSignUpClick(e) {
     e.preventDefault()
 
     if (this.state.username === '' || this.state.password === '') {
@@ -69,17 +66,16 @@ class SignUpLoginForm extends React.Component {
       return
     }
 
-    this.props.signUpEmail(
-      this.state.username,
-      this.state.password
-    ).then((message) => {
-      if (message) {
-        this.setState({ message })
-      }
-    })
+    this.props
+      .signUpEmail(this.state.username, this.state.password)
+      .then(message => {
+        if (message) {
+          this.setState({ message })
+        }
+      })
   }
 
-  handleClickProviderAuth (e, provider = null) {
+  handleClickProviderAuth(e, provider = null) {
     e.preventDefault()
 
     if (!provider) {
@@ -90,44 +86,42 @@ class SignUpLoginForm extends React.Component {
     const providerSignIn = this.props[SignUpLoginForm.providerMap[provider]]
 
     providerSignIn()
-    .then((message) => {
-      if (message) {
-        this.setState({ message })
-      }
-    })
-    .catch((err) => {
-      console.log('error while trying to log on with provider', provider, err)
-    })
+      .then(message => {
+        if (message) {
+          this.setState({ message })
+        }
+      })
+      .catch(err => {
+        console.log('error while trying to log on with provider', provider, err)
+      })
   }
 
-  render () {
+  render() {
     return (
       <form className={styles.form}>
-        <div className={styles.error}>{this.state.message}</div>
+        <div className={styles.error}>
+          {this.state.message}
+        </div>
         <input
-          name='username'
-          type='text'
-          placeholder='jane@gmail.com'
+          name="username"
+          type="text"
+          placeholder="jane@gmail.com"
           onChange={this.handleChange}
         />
-        <input
-          name='password'
-          type='password'
-          onChange={this.handleChange}
-        />
+        <input name="password" type="password" onChange={this.handleChange} />
 
         <div className={`${styles['control-buttons']}`}>
           <button
-            type='button'
-            className='button'
+            type="button"
+            className="button"
             disabled={this.props.isAuthenticating}
             onClick={this.handleLoginClick}
           >
             Login
           </button>
           <button
-            type='button'
-            className='button'
+            type="button"
+            className="button"
             disabled={this.props.isAuthenticating}
             onClick={this.handleSignUpClick}
           >
@@ -135,34 +129,34 @@ class SignUpLoginForm extends React.Component {
           </button>
         </div>
 
-        <div className='txt-center m-t'>
+        <div className="txt-center m-t">
           <p>or sign up with a provider below</p>
         </div>
 
         <div className={`${styles['control-buttons']}`}>
           <button
-            type='button'
-            className='button'
+            type="button"
+            className="button"
             disabled={this.props.isAuthenticating}
             onClick={e => this.handleClickProviderAuth(e, 'GITHUB')}
           >
-            <i className='fa fa-github' /> GitHub Sign In
+            <i className="fa fa-github" /> GitHub Sign In
           </button>
           <button
-            type='button'
-            className='button'
+            type="button"
+            className="button"
             disabled={this.props.isAuthenticating}
             onClick={e => this.handleClickProviderAuth(e, 'GOOGLE')}
           >
-            <i className='fa fa-google' /> Google Sign In
+            <i className="fa fa-google" /> Google Sign In
           </button>
           <button
-            type='button'
-            className='button'
+            type="button"
+            className="button"
             disabled={this.props.isAuthenticating}
             onClick={e => this.handleClickProviderAuth(e, 'TWITTER')}
           >
-            <i className='fa fa-twitter' /> Twitter Sign In
+            <i className="fa fa-twitter" /> Twitter Sign In
           </button>
         </div>
       </form>

@@ -11,23 +11,23 @@ class App extends React.Component {
     children: null
   }
 
-  render () {
+  render() {
     return (
       <div>
         <Navbar />
-        <main className='main-container'>
+        <main className="main-container">
           {/* React.cloneElement(this.props.children, this.props) */}
           {this.props.children}
         </main>
         <footer>
           <p>
             <a
-              href='https://github.com/danyim/indecks'
-              target='_blank'
-              rel='noopener noreferrer'
-              title='View GitHub repository'
+              href="https://github.com/danyim/indecks"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="View GitHub repository"
             >
-              <i className='fa fa-github' />
+              <i className="fa fa-github" />
             </a>
           </p>
         </footer>

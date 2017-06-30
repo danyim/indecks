@@ -17,7 +17,7 @@ const defaultProps = {
   form: {}
 }
 
-function setup (props = defaultProps) {
+function setup(props = defaultProps) {
   const wrapper = shallow(<CardEdit {...props} />)
 
   return {

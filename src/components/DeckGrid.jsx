@@ -13,18 +13,18 @@ const propTypes = {
 const defaultProps = {}
 
 class DeckGrid extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.handleRemoveDeck = this.handleRemoveDeck.bind(this)
   }
 
-  handleRemoveDeck (deckId) {
+  handleRemoveDeck(deckId) {
     if (confirm('Are you sure you want to delete this deck?')) {
       this.props.removeDeck(deckId)
     }
   }
 
-  render () {
+  render() {
     return (
       <TransitionMotion
         willEnter={() => ({ opacity: 0, left: -100 })}
@@ -38,27 +38,23 @@ class DeckGrid extends React.Component {
           }
         }))}
       >
-        {
-          interpolatedStyles => (
-            <section className={`${styles['deck-grid']} wrap-row`}>
-              {
-                interpolatedStyles.map(config => (
-                  <Deck
-                    key={config.key}
-                    deck={config.data.deck}
-                    style={{
-                      ...config.style,
-                      display: 'relative'
-                    }}
-                  />
-                ))
-              }
-              { this.props.decks.length === 0 &&
-                <p key='no_value' className='center'>Click the + button on the top left to add a deck</p>
-              }
-            </section>
-          )
-        }
+        {interpolatedStyles =>
+          <section className={`${styles['deck-grid']} wrap-row`}>
+            {interpolatedStyles.map(config =>
+              <Deck
+                key={config.key}
+                deck={config.data.deck}
+                style={{
+                  ...config.style,
+                  display: 'relative'
+                }}
+              />
+            )}
+            {this.props.decks.length === 0 &&
+              <p key="no_value" className="center">
+                Click the + button on the top left to add a deck
+              </p>}
+          </section>}
       </TransitionMotion>
     )
   }

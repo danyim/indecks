@@ -16,20 +16,18 @@ const defaultProps = {
 }
 
 class Deck extends React.Component {
-  navigateToDeck (deckId) {
+  navigateToDeck(deckId) {
     browserHistory.push(`/view/${deckId}`)
   }
 
-  render () {
+  render() {
     const { deck, style } = this.props
     const { id: deckId } = deck
 
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`} style={style}>
         <div>
-          <h1
-            className={`${styles['deck-title']}`}
-          >
+          <h1 className={`${styles['deck-title']}`}>
             <a onClick={() => this.navigateToDeck(deckId)}>
               {deck.title}
             </a>
@@ -41,12 +39,16 @@ class Deck extends React.Component {
           <p><code>{deck.id}</code></p>
           <p>URL: <a href={deck.url}>Link</a></p>
           */}
-          <p>{deck.cards ? deck.cards.length : 0} cards</p>
-          <p>{deck.description}</p>
+          <p>
+            {deck.cards ? deck.cards.length : 0} cards
+          </p>
+          <p>
+            {deck.description}
+          </p>
         </figcaption>
 
         <div className={`control-buttons ${styles['control-buttons']}`}>
-          <Link className='button' to={`/view/${deckId}/1`}>
+          <Link className="button" to={`/view/${deckId}/1`}>
             Play Deck
           </Link>
           {/*

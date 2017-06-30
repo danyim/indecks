@@ -12,7 +12,7 @@ const propTypes = {
 const defaultProps = {}
 
 class CardAdd extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.handleCancel = this.handleCancel.bind(this)
@@ -34,12 +34,14 @@ class CardAdd extends React.Component {
   //   }, 100);
   // }
 
-  handleSubmit (e, deckId) {
+  handleSubmit(e, deckId) {
     e.preventDefault()
-    if (!this.state.title ||
+    if (
+      !this.state.title ||
       !this.state.answer ||
       this.state.title.trim() === '' ||
-      this.state.answer.trim() === '') {
+      this.state.answer.trim() === ''
+    ) {
       return
     }
 
@@ -50,44 +52,54 @@ class CardAdd extends React.Component {
     this.props.handleSubmit(deckId, card)
   }
 
-  handleCancel () {
+  handleCancel() {
     this.props.history.goBack()
   }
 
-  handleChange (event, key) {
+  handleChange(event, key) {
     const state = { ...this.state }
     state[key] = event.target.value
     this.setState(state)
   }
 
-  render () {
+  render() {
     const { deckId } = this.props
 
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`}>
         <form
-          className='edit-form'
+          className="edit-form"
           onSubmit={e => this.handleSubmit(e, deckId)}
         >
           <input
-            type='text' className='large-input' name='title'
-            placeholder='Title'
+            type="text"
+            className="large-input"
+            name="title"
+            placeholder="Title"
             onChange={e => this.handleChange(e, 'title')}
           />
           <textarea
-            type='text' className='mono' name='answer'
-            placeholder='Answer (Markdown)' rows='4'
+            type="text"
+            className="mono"
+            name="answer"
+            placeholder="Answer (Markdown)"
+            rows="4"
             onChange={e => this.handleChange(e, 'answer')}
           />
 
-          <CardPreview
-            title={this.state.title}
-            answer={this.state.answer}
-          />
+          <CardPreview title={this.state.title} answer={this.state.answer} />
 
           <div className={`${styles['control-buttons']}`}>
-            <button type='submit' className='button'>Save</button>
-            <button type='button' className='button' onClick={this.handleCancel}>Cancel</button>
+            <button type="submit" className="button">
+              Save
+            </button>
+            <button
+              type="button"
+              className="button"
+              onClick={this.handleCancel}
+            >
+              Cancel
+            </button>
           </div>
         </form>
       </figure>

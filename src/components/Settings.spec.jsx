@@ -4,17 +4,19 @@ import { shallow } from 'enzyme'
 import Settings from './Settings'
 
 const defaultProps = {
-  decks: [{
-    id: 'ABCDEFG',
-    title: 'Sample Deck',
-    description: 'Deck description',
-    cards: []
-  }],
+  decks: [
+    {
+      id: 'ABCDEFG',
+      title: 'Sample Deck',
+      description: 'Deck description',
+      cards: []
+    }
+  ],
   deckCount: 1,
   removeAllDecks: () => {}
 }
 
-function setup (props = defaultProps) {
+function setup(props = defaultProps) {
   const wrapper = shallow(<Settings {...props} />)
 
   return {
@@ -25,9 +27,7 @@ function setup (props = defaultProps) {
 
 describe('Settings', () => {
   it('should render self and subcomponents', () => {
-    const wrapper = shallow(
-      <Settings {...defaultProps} />
-    )
+    const wrapper = shallow(<Settings {...defaultProps} />)
     expect(toJson(wrapper)).toMatchSnapshot()
   })
 
@@ -38,7 +38,9 @@ describe('Settings', () => {
       deckCount
     })
 
-    const button = wrapper.findWhere(n => n.text() === `Delete all ${deckCount} deck(s) from local storage`)
+    const button = wrapper.findWhere(
+      n => n.text() === `Delete all ${deckCount} deck(s) from local storage`
+    )
     expect(button.length).toBe(1)
   })
 
@@ -49,7 +51,9 @@ describe('Settings', () => {
       deckCount
     })
 
-    const button = wrapper.find('button.btn-delete[children="Delete all decks from local storage"]')
+    const button = wrapper.find(
+      'button.btn-delete[children="Delete all decks from local storage"]'
+    )
     expect(button.exists()).toBe(true)
     expect(button.prop('disabled')).toBe('disabled')
   })

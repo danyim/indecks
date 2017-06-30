@@ -16,7 +16,7 @@ const defaultProps = {
   children: null
 }
 
-function setup (props = defaultProps) {
+function setup(props = defaultProps) {
   const wrapper = shallow(<Card {...props} />)
 
   return {
@@ -84,7 +84,9 @@ describe('Card', () => {
     })
 
     expect(wrapper.find('figcaption Markdown').exists()).toEqual(false)
-    expect(wrapper.find('div.center p.grey').text()).toEqual('This card does not have an answer yet')
+    expect(wrapper.find('div.center p.grey').text()).toEqual(
+      'This card does not have an answer yet'
+    )
   })
 
   it('should trim the title if it exceeds n chars', () => {
@@ -102,7 +104,11 @@ describe('Card', () => {
       trimOverflowLength
     })
 
-    expect(wrapper.find(`Markdown[text="${title.substr(0, trimOverflowLength)}..."]`).exists()).toEqual(true)
+    expect(
+      wrapper
+        .find(`Markdown[text="${title.substr(0, trimOverflowLength)}..."]`)
+        .exists()
+    ).toEqual(true)
   })
 
   it('should trim the title not including markdown image tags', () => {
@@ -121,6 +127,10 @@ describe('Card', () => {
       trimOverflowLength
     })
 
-    expect(wrapper.find(`Markdown[text="${title.substr(0, trimOverflowLength)}..."]`).exists()).toEqual(true)
+    expect(
+      wrapper
+        .find(`Markdown[text="${title.substr(0, trimOverflowLength)}..."]`)
+        .exists()
+    ).toEqual(true)
   })
 })

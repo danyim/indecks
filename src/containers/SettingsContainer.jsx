@@ -13,7 +13,7 @@ const propTypes = {
 
 const defaultProps = {}
 
-const SettingsContainer = (props) => {
+const SettingsContainer = props => {
   return (
     <Settings
       deckCount={props.deckCount}
@@ -32,12 +32,6 @@ const mapStateToProps = ({ decks }) => ({
 })
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    Object.assign({}, deckActions, userActions),
-    dispatch
-  )
+  bindActionCreators(Object.assign({}, deckActions, userActions), dispatch)
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SettingsContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer)

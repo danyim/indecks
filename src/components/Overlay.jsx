@@ -12,13 +12,12 @@ const defaultProps = {
   children: null
 }
 
-const Overlay = props => (
+const Overlay = props =>
   <div className={`${styles.overlay} ${props.className}`}>
     <div className={`${styles['hover-actions-container']}`}>
       {props.children}
     </div>
   </div>
-)
 
 Overlay.propTypes = propTypes
 Overlay.defaultProps = defaultProps

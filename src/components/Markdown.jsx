@@ -15,20 +15,19 @@ const defaultProps = {
 }
 
 class Markdown extends React.Component {
-  convertToMarkdown (plaintext = '') {
+  convertToMarkdown(plaintext = '') {
     const md = new Remarkable()
     const rawMarkup = md.render(plaintext)
     return { __html: rawMarkup }
   }
 
-  render () {
+  render() {
     return (
       <div
         className={this.props.className}
         onClick={this.props.handleOnClick}
-        dangerouslySetInnerHTML={ // eslint-disable-line
-          this.convertToMarkdown(this.props.text)
-        }
+        dangerouslySetInnerHTML={// eslint-disable-line
+        this.convertToMarkdown(this.props.text)}
       />
     )
   }
