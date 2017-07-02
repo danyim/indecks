@@ -7,9 +7,9 @@ class SignUpLoginForm extends React.Component {
     isAuthenticating: PropTypes.bool.isRequired,
     login: PropTypes.func.isRequired,
     signUpEmail: PropTypes.func.isRequired,
-    signInGithub: PropTypes.func.isRequired,
-    signInTwitter: PropTypes.func.isRequired,
-    signInGoogle: PropTypes.func.isRequired
+    signInGithub: PropTypes.func.isRequired, // eslint-disable-line
+    signInTwitter: PropTypes.func.isRequired, // eslint-disable-line
+    signInGoogle: PropTypes.func.isRequired // eslint-disable-line
   }
 
   static defaultProps = {}
@@ -130,33 +130,36 @@ class SignUpLoginForm extends React.Component {
         </div>
 
         <div className="txt-center m-t">
-          <p>or sign up with a provider below</p>
+          <p>or sign in using a provider below</p>
         </div>
 
         <div className={`${styles['control-buttons']}`}>
           <button
             type="button"
-            className="button"
+            className="button github"
             disabled={this.props.isAuthenticating}
             onClick={e => this.handleClickProviderAuth(e, 'GITHUB')}
           >
-            <i className="fa fa-github" /> GitHub Sign In
+            <i className="fa fa-github fa-2x" />
+            GitHub
           </button>
           <button
             type="button"
-            className="button"
+            className="button google"
             disabled={this.props.isAuthenticating}
             onClick={e => this.handleClickProviderAuth(e, 'GOOGLE')}
           >
-            <i className="fa fa-google" /> Google Sign In
+            <i className="fa fa-google fa-2x" />
+            Google
           </button>
           <button
             type="button"
-            className="button"
+            className="button twitter"
             disabled={this.props.isAuthenticating}
             onClick={e => this.handleClickProviderAuth(e, 'TWITTER')}
           >
-            <i className="fa fa-twitter" /> Twitter Sign In
+            <i className="fa fa-twitter fa-2x" />
+            Twitter
           </button>
         </div>
       </form>

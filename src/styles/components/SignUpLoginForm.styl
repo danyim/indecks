@@ -24,8 +24,24 @@ figure.grid-figure
   margin-top: 1.5rem
   button
     margin: 0 0 0 1rem
+    i
+      display: block
+      margin-bottom: 0.5rem
   button:first-child
     margin: 0
+  :global
+    button.twitter
+      color: #00aced
+      &:hover
+        border-color: #00aced
+    button.google
+      color: #dd4b39
+      &:hover
+        border-color: #dd4b39
+    button.github
+      color: #333
+      &:hover
+        border-color: #333
 
 @media (max-width: cardWidth)
   .control-buttons
