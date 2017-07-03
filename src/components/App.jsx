@@ -16,6 +16,18 @@ class App extends React.Component {
     children: null
   }
 
+  componentDidMount() {
+    if (document) {
+      document.documentElement.requestFullscreen()
+    }
+    if (window) {
+      window.scrollTo(0, 1)
+    }
+    //   if (!this.props.isAuthenticated()) {
+    //     this.props.changeActiveModal('SPLASH')
+    //   }
+  }
+
   render() {
     return (
       <main className="app-container">

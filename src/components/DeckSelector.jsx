@@ -89,6 +89,10 @@ class DeckSelector extends React.Component {
     return (
       <div>
         <h2 className={`${styles.header}`}>Deck Selector</h2>
+        <p className={styles.help}>
+          Use the up and down arrows to select a deck. Press enter to navigate
+          to the deck.
+        </p>
         <ul
           ref={input => input && input.focus()}
           tabIndex={-1}
@@ -105,15 +109,12 @@ class DeckSelector extends React.Component {
               {deck.title} <small>{deck.cards.length} cards</small>
             </li>
           )}
+          {(!decks || decks.length === 0) && <p>No decks available</p>}
           {/*
           <button onClick={this.moveUp}>Up</button>
           <button onClick={this.moveDown}>Down</button>
           */}
         </ul>
-        <p className={styles.help}>
-          Use the up and down arrows to select a deck. Press enter to navigate
-          to the deck.
-        </p>
       </div>
     )
   }

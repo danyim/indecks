@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import DeckSelectorContainer from '../containers/DeckSelectorContainer'
 import ImportDeckContainer from '../containers/ImportDeckContainer'
 import SettingsContainer from '../containers/SettingsContainer'
+import Splash from './Splash'
 import Modal from './Modal'
 import KeyListener from './KeyListener'
 import ShortcutHelper from './ShortcutHelper'
@@ -42,50 +43,14 @@ class ModalContainer extends React.Component {
     ]
   }
 
-  renderImportDeckModal() {
+  renderModal(Component, ModalType, label) {
     return (
       <Modal
-        isOpen={this.props.currentModal === ModalTypes.Import}
+        isOpen={this.props.currentModal === ModalType}
         onRequestClose={this.props.closeModal}
-        contentLabel="Import Deck"
+        contentLabel={label}
       >
-        <ImportDeckContainer handleClose={this.props.closeModal} />
-      </Modal>
-    )
-  }
-
-  renderShortcutsModal() {
-    return (
-      <Modal
-        isOpen={this.props.currentModal === ModalTypes.Shortcuts}
-        onRequestClose={this.props.closeModal}
-        contentLabel="Keyboard Shortcuts"
-      >
-        <ShortcutHelper handleClose={this.props.closeModal} />
-      </Modal>
-    )
-  }
-
-  renderSettingsModal() {
-    return (
-      <Modal
-        isOpen={this.props.currentModal === ModalTypes.Settings}
-        onRequestClose={this.props.closeModal}
-        contentLabel="Settings"
-      >
-        <SettingsContainer handleClose={this.props.closeModal} />
-      </Modal>
-    )
-  }
-
-  renderDeckSelectorModal() {
-    return (
-      <Modal
-        isOpen={this.props.currentModal === ModalTypes.Selector}
-        onRequestClose={this.props.closeModal}
-        contentLabel="Import Deck"
-      >
-        <DeckSelectorContainer
+        <Component
           handleClose={this.props.closeModal}
           handleOnSelected={this.props.closeModal}
         />
@@ -96,10 +61,23 @@ class ModalContainer extends React.Component {
   render() {
     return (
       <div>
-        {this.renderImportDeckModal()}
-        {this.renderShortcutsModal()}
-        {this.renderSettingsModal()}
-        {this.renderDeckSelectorModal()}
+        {this.renderModal(
+          ImportDeckContainer,
+          ModalTypes.Import,
+          'Import Deck'
+        )}
+        {this.renderModal(
+          ShortcutHelper,
+          ModalTypes.Shortcuts,
+          'Keyboard Shortcuts'
+        )}
+        {this.renderModal(SettingsContainer, ModalTypes.Settings, 'Settings')}
+        {this.renderModal(
+          DeckSelectorContainer,
+          ModalTypes.Selector,
+          'Deck Selector'
+        )}
+        {this.renderModal(Splash, ModalTypes.Splash, 'Introduction')}
         <KeyListener handlers={this.handlers} />
       </div>
     )

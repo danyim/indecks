@@ -50,7 +50,7 @@ class DeckGrid extends React.Component {
                 }}
               />
             )}
-            {this.props.decks.length === 0 &&
+            {interpolatedStyles.length === 0 &&
               <p key="no_value" className="center">
                 Click the + button on the top left to add a deck
               </p>}

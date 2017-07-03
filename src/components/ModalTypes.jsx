@@ -2,5 +2,6 @@ export default {
   Settings: 'SETTINGS',
   Import: 'IMPORT',
   Shortcuts: 'SHORTCUTS',
-  Selector: 'SELECTOR'
+  Selector: 'SELECTOR',
+  Splash: 'SPLASH'
 }
