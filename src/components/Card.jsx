@@ -67,7 +67,7 @@ class Card extends React.Component {
     if (flipped === false) {
       return (
         <Markdown
-          className={`${styles['card-title']}`}
+          className={`card-title ${styles['card-title']}`}
           text={this.trimOverflowTitle(card.title)}
         />
       )
@@ -90,7 +90,7 @@ class Card extends React.Component {
         onClick={() => handleOnClick()}
         role="presentation"
       >
-        <div className={`${styles['card-contents']}`}>
+        <div className={`card-contents ${styles['card-contents']}`}>
           {this.renderMarkdown()}
         </div>
         {Card.renderHasAnswerIcon(card)}

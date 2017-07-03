@@ -85,7 +85,10 @@ class ModalContainer extends React.Component {
         onRequestClose={this.props.closeModal}
         contentLabel="Import Deck"
       >
-        <DeckSelectorContainer handleClose={this.props.closeModal} />
+        <DeckSelectorContainer
+          handleClose={this.props.closeModal}
+          handleOnSelected={this.props.closeModal}
+        />
       </Modal>
     )
   }

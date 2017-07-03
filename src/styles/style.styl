@@ -133,7 +133,10 @@
     display: flex
     flex: 1 0 auto
     flex-flow: column nowrap
-    justify-content: space-between
+    > *
+      flex: 0 0 auto
+    > textarea
+      flex: 1 0 auto
 
   input[type='text'],
   input[type='password'],

@@ -10,7 +10,8 @@ const propTypes = {
 
 const defaultProps = {}
 
-const DeckSelectorContainer = props => <DeckSelector decks={props.decks} />
+const DeckSelectorContainer = props =>
+  <DeckSelector decks={props.decks} {...props} />
 
 DeckSelectorContainer.propTypes = propTypes
 DeckSelectorContainer.defaultProps = defaultProps

@@ -23,7 +23,7 @@ const CardViewContainer = props => {
   }
   if (!deck.cards || deck.cards.length === 0) {
     return (
-      <p className="center">
+      <p className="center m-t">
         No cards have been added to this deck. Click the + on the top left to
         add a card.
       </p>

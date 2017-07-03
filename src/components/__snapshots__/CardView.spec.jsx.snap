@@ -13,12 +13,13 @@ exports[`CardView should render self and subcomponents 1`] = `
     <figure
       className="grid-figure grid-figure "
       onClick={[Function]}
+      role="presentation"
     >
       <div
-        className="card-contents"
+        className="card-contents card-contents"
       >
         <div
-          className="card-title"
+          className="card-title card-title"
           dangerouslySetInnerHTML={
             Object {
               "__html": "<p>Card</p>

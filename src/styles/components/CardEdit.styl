@@ -10,7 +10,8 @@ figure.grid-figure
 .control-buttons
   flex: 0 0 auto
   flex-flow: row nowrap
-  margin-top: 1.5rem
+  justify-content: center
+  margin-top: 1rem
   button
     margin: 0 0 0 1rem
   button:first-child
@@ -18,10 +19,9 @@ figure.grid-figure
 
 @media (max-width: cardWidth)
   .control-buttons
-    flex: 0 0 50%
-    flex-flow: column nowrap
+    flex-flow: row nowrap
     align-content: space-around
-    button
-      margin: .6rem 0 0
+    button,
     button:first-child
-      margin: 0
+      flex: 1 0 50%
+      margin: .6rem .25rem

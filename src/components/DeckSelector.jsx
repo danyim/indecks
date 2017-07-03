@@ -14,16 +14,21 @@ import styles from '../styles/components/DeckSelector.styl'
  */
 class DeckSelector extends React.Component {
   static propTypes = {
-    decks: PropTypes.arrayOf(DeckShape.isRequired).isRequired
+    decks: PropTypes.arrayOf(DeckShape.isRequired).isRequired,
     // excludedDeckIds: React.PropTypes.array,
     // maxSelected: React.PropTypes.number.isRequired,
     // minSelected: React.PropTypes.number.isRequired,
-    // handleOnSelected: React.PropTypes.func.isRequired
+    handleOnSelected: PropTypes.func
   }
 
   static defaultProps = {
-    maxSelected: 1,
-    minSelected: 1
+    // maxSelected: 1,
+    // minSelected: 1,
+    handleOnSelected: () => {}
+  }
+
+  static navigateToDeck(deckId) {
+    browserHistory.push(`/view/${deckId}`)
   }
 
   constructor(props) {
@@ -32,9 +37,6 @@ class DeckSelector extends React.Component {
     this.handleKeyDown = this.handleKeyDown.bind(this)
     this.moveDown = this.moveDown.bind(this)
     this.moveUp = this.moveUp.bind(this)
-    this.navigateToDeck = this.navigateToDeck.bind(this)
-
-    console.log(window.location.pathname)
 
     // Grab the currently viewed deck (if applicable) and pre-select it
     let index = null
@@ -61,12 +63,9 @@ class DeckSelector extends React.Component {
       this.moveDown()
     } else if (e.keyCode === 13) {
       // Enter key
-      this.navigateToDeck(this.props.decks[this.state.selectedIndex].id)
+      DeckSelector.navigateToDeck(this.props.decks[this.state.selectedIndex].id)
+      this.props.handleOnSelected()
     }
-  }
-
-  navigateToDeck(deckId) {
-    browserHistory.push(`/view/${deckId}`)
   }
 
   moveDown() {

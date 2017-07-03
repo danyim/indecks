@@ -7,15 +7,14 @@ import styles from '../styles/components/CardEdit.styl'
 const propTypes = {
   cardIndex: PropTypes.number.isRequired,
   deckId: PropTypes.string.isRequired,
-  formValues: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
-  handleCancel: PropTypes.func.isRequired
+  handleCancel: PropTypes.func.isRequired,
+  formValues: PropTypes.object
 }
 
 const defaultProps = {
-  title: '',
-  answer: ''
+  formValues: null
 }
 
 const fields = ['cardTitle', 'cardAnswer']
@@ -50,8 +49,8 @@ export const CardEditForm = props => {
       />
 
       <CardPreview
-        title={form !== undefined ? form.values.cardTitle : ''}
-        answer={form !== undefined ? form.values.cardAnswer : ''}
+        title={form ? form.values.cardTitle : ''}
+        answer={form ? form.values.cardAnswer : ''}
       />
 
       <div className={`${styles['control-buttons']}`}>
@@ -61,6 +60,8 @@ export const CardEditForm = props => {
         <button type="button" className="button" onClick={() => handleCancel()}>
           Cancel
         </button>
+      </div>
+      <div className={`${styles['control-buttons']}`}>
         <button
           type="button"
           className="button btn-delete"

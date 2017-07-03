@@ -6,18 +6,18 @@ import { CardShape } from './__commonShapes'
 import CardEditForm from './CardEditForm'
 import styles from '../styles/components/CardEdit.styl'
 
-const propTypes = {
-  card: CardShape.isRequired,
-  cardIndex: PropTypes.number.isRequired,
-  deckId: PropTypes.string.isRequired,
-  editCard: PropTypes.func.isRequired,
-  removeCard: PropTypes.func.isRequired,
-  form: PropTypes.object.isRequired
-}
-
-const defaultProps = {}
-
 class CardEdit extends React.Component {
+  static propTypes = {
+    card: CardShape.isRequired,
+    cardIndex: PropTypes.number.isRequired,
+    deckId: PropTypes.string.isRequired,
+    editCard: PropTypes.func.isRequired,
+    removeCard: PropTypes.func.isRequired,
+    form: PropTypes.object.isRequired
+  }
+
+  static defaultProps = {}
+
   constructor(props) {
     super(props)
 
@@ -105,8 +105,5 @@ class CardEdit extends React.Component {
     )
   }
 }
-
-CardEdit.propTypes = propTypes
-CardEdit.defaultProps = defaultProps
 
 export default CardEdit
