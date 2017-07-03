@@ -1,29 +1,53 @@
-import PropTypes from 'prop-types'
 import React from 'react'
+import PropTypes from 'prop-types'
 import { CardShape } from './__commonShapes'
 import Markdown from './Markdown'
 import styles from '../styles/components/Card.styl'
 
-const propTypes = {
-  card: CardShape.isRequired,
-  className: PropTypes.string,
-  flipped: PropTypes.bool,
-  handleOnClick: PropTypes.func,
-  trimOverflow: PropTypes.bool,
-  trimOverflowLength: PropTypes.number,
-  children: PropTypes.node
-}
-
-const defaultProps = {
-  className: '',
-  flipped: false,
-  handleOnClick: () => {},
-  trimOverflow: false,
-  trimOverflowLength: 125,
-  children: null
-}
-
 class Card extends React.Component {
+  static propTypes = {
+    card: CardShape.isRequired,
+    className: PropTypes.string,
+    flipped: PropTypes.bool,
+    handleOnClick: PropTypes.func,
+    trimOverflow: PropTypes.bool,
+    trimOverflowLength: PropTypes.number,
+    children: PropTypes.node
+  }
+
+  static defaultProps = {
+    className: '',
+    flipped: false,
+    handleOnClick: () => {},
+    trimOverflow: false,
+    trimOverflowLength: 125,
+    children: null
+  }
+
+  static renderEmpty() {
+    return (
+      <div className={`${styles.center}`}>
+        <p className={`${styles.grey}`}>
+          This card does not have an answer yet
+        </p>
+      </div>
+    )
+  }
+
+  static renderHasAnswerIcon(card) {
+    if (!(card && card.answer && card.answer.trim() !== '')) {
+      return (
+        <div
+          className={`${styles['no-answer']}`}
+          title="This card has no answer"
+        >
+          <div>No answer</div>
+        </div>
+      )
+    }
+    return null
+  }
+
   constructor(props) {
     super(props)
 
@@ -36,16 +60,6 @@ class Card extends React.Component {
     textWithoutImg.length > this.props.trimOverflowLength
       ? `${textWithoutImg.substr(0, this.props.trimOverflowLength)}...`
       : text
-  }
-
-  renderEmpty() {
-    return (
-      <div className={`${styles.center}`}>
-        <p className={`${styles.grey}`}>
-          This card does not have an answer yet
-        </p>
-      </div>
-    )
   }
 
   renderMarkdown() {
@@ -62,23 +76,9 @@ class Card extends React.Component {
       <figcaption>
         {card.answer !== null && card.answer !== ''
           ? <Markdown text={card.answer} />
-          : this.renderEmpty()}
+          : Card.renderEmpty()}
       </figcaption>
     )
-  }
-
-  renderHasAnswerIcon(card) {
-    if (!(card && card.answer && card.answer.trim() !== '')) {
-      return (
-        <div
-          className={`${styles['no-answer']}`}
-          title="This card has no answer"
-        >
-          <div>No answer</div>
-        </div>
-      )
-    }
-    return null
   }
 
   render() {
@@ -88,18 +88,16 @@ class Card extends React.Component {
       <figure
         className={`grid-figure ${styles['grid-figure']} ${className}`}
         onClick={() => handleOnClick()}
+        role="presentation"
       >
         <div className={`${styles['card-contents']}`}>
           {this.renderMarkdown()}
         </div>
-        {this.renderHasAnswerIcon(card)}
+        {Card.renderHasAnswerIcon(card)}
         {children}
       </figure>
     )
   }
 }
-
-Card.propTypes = propTypes
-Card.defaultProps = defaultProps
 
 export default Card

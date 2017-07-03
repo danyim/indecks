@@ -27,7 +27,8 @@ const defaultProps = {
     shuffle: false
   },
   cardIndex: 1,
-  toggleShuffle: () => {}
+  shuffleOff: () => {},
+  shuffleOn: () => {}
 }
 
 function setup(props = defaultProps) {

@@ -3,7 +3,6 @@
 .nav-container
   order: 1
   height: 70px
-  background: rgba(255, 255, 255, .8)
   border-bottom: 1px solid lighten(gray, 85%)
   h1
     font: 200 2.5rem 'Dosis', sans-serif
@@ -17,7 +16,8 @@
       outline: 0
 
 .nav-outer-container
-  flex-shrink: 0
+  background: rgba(255, 255, 255, 1)
+  flex: 0 0 auto
   align-items: center
 .nav-inner-container
   max-width: pageWidth
@@ -47,41 +47,13 @@
   a.hidden
     visibility: hidden
 
-.modal-overlay
-  background-color: rgba(0, 0, 0, .15)
-  position: fixed
-  top: 0
-  left: 0
-  right: 0
-  bottom: 0
-
-.modal-content
-  width: 75%
-  max-width: 700px
-  background-color: white
-  position: absolute
-  top: 50%
-  left: 50%
-  right: auto
-  bottom: auto
-  margin-right: -50%
-  transform: translate(-50%, -50%) !important
-  border: 1px solid black
-  padding: 4rem
-  transition: all .2s
-
 @media (max-width: cardWidth)
-  .modal-content
-    width: 95%
-    position: inherit
-    top: 2%
-    left: 50%
-    transform: translate(-50%, 1%) !important
-    padding: 2rem
-    overflow: scroll
-    height: 95%
-
-@media (max-width: cardWidth)
+  .nav-outer-container
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 1000
+    width: 100%
   .nav-container, .nav-outer-container
     height: 45px
   .nav-inner-container

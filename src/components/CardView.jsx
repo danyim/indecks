@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router'
 import { CardShape, DeckShape } from './__commonShapes'
 import Card from './Card'
 import DeckNavigator from './DeckNavigator'
-// import styles from '../styles/components/CardView.styl'; // Not used, uncomment later
+// import styles from '../styles/components/CardView.styl'
 
 class CardView extends React.Component {
   static propTypes = {

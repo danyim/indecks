@@ -8,19 +8,20 @@ import CardView from '../components/CardView'
 
 const propTypes = {
   card: CardShape,
-  deck: DeckShape.isRequired
+  deck: DeckShape
 }
 
 const defaultProps = {
-  card: null
+  card: null,
+  deck: null
 }
 
 const CardViewContainer = props => {
   const { card, deck } = props
-  if (deck === null) {
+  if (!deck) {
     return <p className="center">Deck not found.</p>
   }
-  if (deck.cards.length === 0) {
+  if (!deck.cards || deck.cards.length === 0) {
     return (
       <p className="center">
         No cards have been added to this deck. Click the + on the top left to

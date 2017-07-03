@@ -18,17 +18,17 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <main className="app-container">
+        <Navbar changeActiveModal={this.props.changeActiveModal} />
         <ModalContainer
           currentModal={this.props.currentModal}
           changeActiveModal={this.props.changeActiveModal}
           closeModal={this.props.closeModal}
         />
-        <Navbar changeActiveModal={this.props.changeActiveModal} />
-        <main className="main-container">
+        <section className="main-container">
           {/* React.cloneElement(this.props.children, this.props) */}
           {this.props.children}
-        </main>
+        </section>
         <footer>
           <p>
             <a
@@ -41,7 +41,7 @@ class App extends React.Component {
             </a>
           </p>
         </footer>
-      </div>
+      </main>
     )
   }
 }

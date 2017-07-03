@@ -1,17 +1,17 @@
-import PropTypes from 'prop-types'
 import React from 'react'
+import PropTypes from 'prop-types'
 import CardPreview from './CardPreview'
 import styles from '../styles/components/CardAdd.styl'
 
-const propTypes = {
-  deckId: PropTypes.string.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired
-}
-
-const defaultProps = {}
-
 class CardAdd extends React.Component {
+  static propTypes = {
+    deckId: PropTypes.string.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    history: PropTypes.shape({ goBack: PropTypes.func.isRequired }).isRequired
+  }
+
+  static defaultProps = {}
+
   constructor(props) {
     super(props)
 
@@ -106,8 +106,5 @@ class CardAdd extends React.Component {
     )
   }
 }
-
-CardAdd.propTypes = propTypes
-CardAdd.defaultProps = defaultProps
 
 export default CardAdd

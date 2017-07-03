@@ -18,10 +18,16 @@ figure.grid-figure
   cursor: pointer
 
 @media (max-width: cardWidth)
-  figure.grid-figure figcaption
-    padding: 2rem
+  figure.grid-figure
+    min-height: unset
+    figcaption
+      padding: 2rem
+      height: calc(100vh - 100px)
+      overflow: scroll
   .card-title
     padding: 2rem
+    height: calc(100vh - 100px)
+    overflow: scroll
 
 .center
   justify-content: center
