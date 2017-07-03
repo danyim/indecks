@@ -7,7 +7,6 @@ import ImportDeck from './ImportDeck'
 
 const defaultProps = {
   addDeck: () => {},
-  handleClose: () => {},
   maxDeckTitleLength: 160,
   maxDeckDescLength: 300
 }
@@ -38,8 +37,7 @@ describe('ImportDeck', () => {
 
   it('should render a dropzone', () => {
     const { wrapper } = setupFull({
-      ...defaultProps,
-      handleClose: null
+      ...defaultProps
     })
 
     expect(wrapper.find('Dropzone').exists()).toBe(true)
@@ -53,11 +51,9 @@ describe('ImportDeck', () => {
     // spyOn(window, 'URL').and.returnValue(() => {});
 
     const handlerAdd = jest.fn()
-    const handlerClose = jest.fn()
     const { wrapper } = setupFull({
       ...defaultProps,
-      addDeck: handlerAdd,
-      handleClose: handlerClose
+      addDeck: handlerAdd
     })
 
     const dropzone = wrapper.find('Dropzone')
@@ -72,57 +68,29 @@ describe('ImportDeck', () => {
     dropzone.simulate('drop', { dataTransfer: { files } })
 
     expect(handlerAdd.mock.calls.length).toBe(1)
-    expect(handlerClose.mock.calls.length).toBe(1)
     expect(browserHistory.push).toHaveBeenCalledWith('/')
   })
 
   it('should load 4 sample decks and then navigate home', () => {
     spyOn(browserHistory, 'push')
     const handlerAdd = jest.fn()
-    const handlerClose = jest.fn()
     const { wrapper } = setup({
       ...defaultProps,
-      addDeck: handlerAdd,
-      handleClose: handlerClose
+      addDeck: handlerAdd
     })
 
     wrapper
       .find('button.button[children="Load Sample Decks"]')
       .simulate('click')
     expect(handlerAdd.mock.calls.length).toBe(4)
-    expect(handlerClose.mock.calls.length).toBe(1)
     expect(browserHistory.push).toHaveBeenCalledWith('/')
   })
 
-  it('should not render a cancel button if handleClose is not provided', () => {
-    const { wrapper } = setup({
-      ...defaultProps,
-      handleClose: null
-    })
-
-    expect(wrapper.find('button.btn-delete[children="Cancel"]').exists()).toBe(
-      false
-    )
-  })
-
-  it('should call the handleClose prop when cancel is clicked', () => {
-    const handler = jest.fn()
-    const { wrapper } = setup({
-      ...defaultProps,
-      handleClose: handler
-    })
-
-    wrapper.find('button.btn-delete[children="Cancel"]').simulate('click')
-    expect(handler.mock.calls.length).toBe(1)
-  })
-
-  it('should take a title and description and call the addDeck and handleClose props', () => {
+  it('should take a title and description and call the addDeck prop', () => {
     const handlerAdd = jest.fn()
-    const handlerClose = jest.fn()
     const { wrapper } = setup({
       ...defaultProps,
-      addDeck: handlerAdd,
-      handleClose: handlerClose
+      addDeck: handlerAdd
     })
 
     const title = wrapper.find('input[name="title"]')
@@ -134,7 +102,6 @@ describe('ImportDeck', () => {
       preventDefault: () => {}
     })
     expect(handlerAdd.mock.calls.length).toBe(1)
-    expect(handlerClose.mock.calls.length).toBe(1)
   })
 
   it('should reject an empty title', () => {

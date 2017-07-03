@@ -34,6 +34,13 @@ class Modal extends React.Component {
         overlayClassName={overlayClassName}
         contentLabel={this.props.contentLabel}
       >
+        <a
+          className="close-modal"
+          onClick={this.props.onRequestClose}
+          role="presentation"
+        >
+          Close
+        </a>
         {this.props.children}
       </ReactModal>
     )

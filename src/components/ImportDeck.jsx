@@ -33,7 +33,6 @@ class ImportDeck extends React.Component {
     this.handleDrop = this.handleDrop.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleLoadSample = this.handleLoadSample.bind(this)
-    this.renderCancelButton = this.renderCancelButton.bind(this)
 
     // Default values for the edit fields
     this.state = {
@@ -64,9 +63,9 @@ class ImportDeck extends React.Component {
       const resultJson = JSON.parse(result)
       if (Array.isArray(resultJson)) {
         // Trying to import multiple decks
-        for (const d of resultJson) {
+        resultJson.forEach(d => {
           addToDeck(d)
-        }
+        })
         // Navigate to the deck grid view
         browserHistory.push('/')
       } else {
@@ -123,32 +122,15 @@ class ImportDeck extends React.Component {
 
   handleLoadSample() {
     let sampleDeck
-    for (const d of samples) {
+    samples.forEach(d => {
       sampleDeck = { ...d }
       sampleDeck.id = ImportDeck.generateRandomString()
       this.props.addDeck(sampleDeck)
-    }
+    })
 
     // Close the modal
     this.props.handleClose()
     browserHistory.push('/')
-  }
-
-  renderCancelButton() {
-    if (this.props.handleClose) {
-      return (
-        <div>
-          <button
-            type="button"
-            className="button btn-delete"
-            onClick={() => this.props.handleClose()}
-          >
-            Cancel
-          </button>
-        </div>
-      )
-    }
-    return null
   }
 
   render() {
@@ -207,9 +189,6 @@ class ImportDeck extends React.Component {
                 Load Sample Decks
               </button>
             </div>
-            <br />
-            <br />
-            {this.renderCancelButton()}
           </form>
         </div>
       </section>

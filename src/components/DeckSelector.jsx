@@ -88,6 +88,7 @@ class DeckSelector extends React.Component {
 
     return (
       <div>
+        <h2 className={`${styles.header}`}>Deck Selector</h2>
         <ul
           ref={input => input && input.focus()}
           tabIndex={-1}

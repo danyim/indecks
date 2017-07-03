@@ -10,8 +10,15 @@
 
   :global
     .grid-figure
+      flex: 0 0 calc(33% - 2rem)
       max-height: 400px
       // This would be nice to have if it didn't bleed into the single cards
       transition: all .1s ease-out
       &:hover
         transform: scale(1.03, 1.03)
+
+@media (max-width: cardWidth)
+  .deck-grid
+    :global
+      .grid-figure
+        flex: 1 1 auto

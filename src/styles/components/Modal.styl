@@ -21,8 +21,27 @@
   margin-right: -50%
   transform: translate(-50%, -50%) !important
   border: 1px solid black
-  padding: 4rem
+  padding: 3.5rem
   transition: all .2s
+
+  :global
+    .close-modal
+      position: absolute
+      right: 3.5rem
+      top: 4.7rem
+      cursor: pointer
+      color: black
+      z-index: 100
+      // padding: 0.2rem
+      // line-height: 1rem
+      // width: 2rem
+      // height: 2rem
+      // text-align: center
+      // border: 1px solid black
+  h2
+    margin-top: 0
+    padding-bottom: .3rem
+    border-bottom: .6rem solid black
 
 @media (max-width: cardWidth)
   .modal-content

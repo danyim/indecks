@@ -90,17 +90,6 @@ exports[`ImportDeck should render self and subcomponents 1`] = `
           Load Sample Decks
         </button>
       </div>
-      <br />
-      <br />
-      <div>
-        <button
-          className="button btn-delete"
-          onClick={[Function]}
-          type="button"
-        >
-          Cancel
-        </button>
-      </div>
     </form>
   </div>
 </section>
