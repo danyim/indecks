@@ -92,11 +92,11 @@ class Navbar extends React.Component {
       )
     } else if (routeComponents[0] === 'add' && routeComponents.length === 1) {
       // @/add
-      addLink = this.renderNoAction()
+      addLink = Navbar.renderNoAction()
       listLink = Navbar.renderLink('/', 'View decks', 'fa-th')
     } else if (routeComponents[0] === 'edit' && routeComponents.length === 3) {
       // @/edit/:deckId/:cardIndex
-      addLink = this.renderNoAction()
+      addLink = Navbar.renderNoAction()
       listLink = Navbar.renderLink(
         `/view/${routeComponents[1]}`,
         'View cards',

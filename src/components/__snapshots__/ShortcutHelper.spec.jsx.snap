@@ -44,7 +44,7 @@ exports[`ShortcutHelper should render self and subcomponents 1`] = `
     </h4>
     <p>
       <kbd>
-        S
+        H
       </kbd>
        - Toggle shuffle
     </p>

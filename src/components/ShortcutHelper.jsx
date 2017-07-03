@@ -24,7 +24,7 @@ const ShortcutHelper = () =>
 
       <h4>While viewing a deck</h4>
       <p>
-        <kbd>S</kbd> - Toggle shuffle
+        <kbd>H</kbd> - Toggle shuffle
       </p>
       <p>
         <kbd>&larr;</kbd> - Previous card

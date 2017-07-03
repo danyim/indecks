@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types'
 import React from 'react'
+import PropTypes from 'prop-types'
 import Swipeable from 'react-swipeable'
 import { browserHistory } from 'react-router'
 import { CardShape, DeckShape } from './__commonShapes'
@@ -7,17 +7,22 @@ import Card from './Card'
 import DeckNavigator from './DeckNavigator'
 // import styles from '../styles/components/CardView.styl'; // Not used, uncomment later
 
-const propTypes = {
-  card: CardShape.isRequired,
-  deck: DeckShape.isRequired,
-  config: PropTypes.object.isRequired,
-  cardIndex: PropTypes.number.isRequired,
-  toggleShuffle: PropTypes.func.isRequired
-}
-
-const defaultProps = {}
-
 class CardView extends React.Component {
+  static propTypes = {
+    card: CardShape.isRequired,
+    deck: DeckShape.isRequired,
+    config: PropTypes.shape({ shuffle: PropTypes.bool.isRequired }).isRequired,
+    cardIndex: PropTypes.number.isRequired,
+    shuffleOn: PropTypes.func.isRequired,
+    shuffleOff: PropTypes.func.isRequired
+  }
+
+  static defaultProps = {}
+
+  static randomCardIndex(max) {
+    return Math.floor(Math.random() * max + 1)
+  }
+
   constructor(props) {
     super(props)
     this.state = { flipped: false }
@@ -29,10 +34,6 @@ class CardView extends React.Component {
     this.handleShuffleToggle = this.handleShuffleToggle.bind(this)
   }
 
-  randomCardIndex() {
-    return Math.floor(Math.random() * this.maxCardIndex + 1)
-  }
-
   handleNextCard() {
     if (
       this.props.cardIndex < this.props.deck.cards.length ||
@@ -41,7 +42,7 @@ class CardView extends React.Component {
       this.handleFlip(null, false)
       let nextIndex = this.props.cardIndex + 1 // Going forwards
       if (this.props.config.shuffle === true) {
-        nextIndex = this.randomCardIndex()
+        nextIndex = CardView.randomCardIndex(this.props.deck.cards.length)
       }
 
       browserHistory.push(`/view/${this.props.deck.id}/${nextIndex}`)
@@ -53,7 +54,7 @@ class CardView extends React.Component {
       this.handleFlip(null, false)
       let nextIndex = this.props.cardIndex - 1 // Going backwards
       if (this.props.config.shuffle === true) {
-        nextIndex = this.randomCardIndex()
+        nextIndex = CardView.randomCardIndex(this.props.deck.cards.length)
       }
       browserHistory.push(`/view/${this.props.deck.id}/${nextIndex}`)
     }
@@ -75,7 +76,11 @@ class CardView extends React.Component {
   }
 
   handleShuffleToggle() {
-    this.props.toggleShuffle()
+    if (this.props.config.shuffle === true) {
+      this.props.shuffleOff()
+    } else {
+      this.props.shuffleOn()
+    }
   }
 
   render() {
@@ -100,16 +105,15 @@ class CardView extends React.Component {
           cardIndex={cardIndex}
           mode={mode}
           flipped={this.state.flipped}
-          config={config}
+          shuffle={config.shuffle}
           handleFlip={this.handleFlip}
+          handleNextCard={this.handleNextCard}
+          handlePrevCard={this.handlePrevCard}
           handleShuffleToggle={this.handleShuffleToggle}
         />
       </section>
     )
   }
 }
-
-CardView.propTypes = propTypes
-CardView.defaultProps = defaultProps
 
 export default CardView

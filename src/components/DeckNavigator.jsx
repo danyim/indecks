@@ -8,19 +8,25 @@ import CardCount from './CardCount'
 import FrontBack from './FrontBack'
 import styles from '../styles/components/DeckNavigator.styl'
 
-const propTypes = {
-  deck: DeckShape.isRequired,
-  cardIndex: PropTypes.number.isRequired,
-  handleFlip: PropTypes.func.isRequired,
-  flipped: PropTypes.bool.isRequired,
-  config: PropTypes.object.isRequired,
-  handleShuffleToggle: PropTypes.func.isRequired,
-  mode: PropTypes.string.isRequired
-}
-
-const defaultProps = {}
-
 class DeckNavigator extends React.Component {
+  static propTypes = {
+    deck: DeckShape.isRequired,
+    cardIndex: PropTypes.number.isRequired,
+    handleFlip: PropTypes.func.isRequired,
+    flipped: PropTypes.bool.isRequired,
+    shuffle: PropTypes.bool.isRequired,
+    handleShuffleToggle: PropTypes.func.isRequired,
+    handleNextCard: PropTypes.func.isRequired,
+    handlePrevCard: PropTypes.func.isRequired,
+    mode: PropTypes.string.isRequired
+  }
+
+  static defaultProps = {}
+
+  static randomCardIndex(max) {
+    return Math.floor(Math.random() * max + 1)
+  }
+
   constructor(props) {
     super(props)
     this.mode = null
@@ -28,41 +34,8 @@ class DeckNavigator extends React.Component {
 
     this.handleAddCard = this.handleAddCard.bind(this)
     this.handleFlip = this.handleFlip.bind(this)
-    this.handleNextCard = this.handleNextCard.bind(this)
-    this.handlePrevCard = this.handlePrevCard.bind(this)
     this.handleReturnToDeck = this.handleReturnToDeck.bind(this)
     this.handleShuffleToggle = this.handleShuffleToggle.bind(this)
-    this.randomCardIndex = this.randomCardIndex.bind(this)
-  }
-
-  randomCardIndex() {
-    return Math.floor(Math.random() * this.maxCardIndex + 1)
-  }
-
-  handleNextCard() {
-    if (
-      this.props.cardIndex < this.maxCardIndex ||
-      this.props.config.shuffle === true
-    ) {
-      this.props.handleFlip(null, false)
-      let nextIndex = this.props.cardIndex + 1 // Going forwards
-      if (this.props.config.shuffle === true) {
-        nextIndex = this.randomCardIndex()
-      }
-
-      browserHistory.push(`/${this.mode}/${this.props.deck.id}/${nextIndex}`)
-    }
-  }
-
-  handlePrevCard() {
-    if (this.props.cardIndex > 1 || this.props.config.shuffle === true) {
-      this.props.handleFlip(null, false)
-      let nextIndex = this.props.cardIndex - 1 // Going backwards
-      if (this.props.config.shuffle === true) {
-        nextIndex = this.randomCardIndex()
-      }
-      browserHistory.push(`/${this.mode}/${this.props.deck.id}/${nextIndex}`)
-    }
   }
 
   handleFlip(flipped) {
@@ -88,18 +61,18 @@ class DeckNavigator extends React.Component {
   handleKeyDown(e) {
     if (e.keyCode === 37) {
       // <-
-      this.handlePrevCard()
+      this.props.handlePrevCard()
     } else if (e.keyCode === 39) {
       // ->
-      this.handleNextCard()
+      this.props.handleNextCard()
     } else if (e.keyCode === 69) {
       // e
       this.handleEditCard()
     } else if (e.keyCode === 68) {
       // d
       this.handleReturnToDeck()
-    } else if (e.keyCode === 83) {
-      // s
+    } else if (e.keyCode === 72) {
+      // h
       this.handleShuffleToggle()
     } else if (e.keyCode === 65) {
       // a
@@ -130,8 +103,8 @@ class DeckNavigator extends React.Component {
     // }
 
     const shuffle = classNames({
-      'btn-active': this.props.config.shuffle === true,
-      'btn-inactive': this.props.config.shuffle !== true
+      'btn-active': this.props.shuffle === true,
+      'btn-inactive': this.props.shuffle !== true
     })
 
     return (
@@ -148,9 +121,9 @@ class DeckNavigator extends React.Component {
           <button
             className="button"
             title="Previous Card"
-            onClick={this.handlePrevCard}
+            onClick={this.props.handlePrevCard}
             disabled={
-              !(this.props.cardIndex > 1 || this.props.config.shuffle === true)
+              !(this.props.cardIndex > 1 || this.props.shuffle === true)
             }
           >
             <i className="fa fa-backward" />
@@ -165,10 +138,10 @@ class DeckNavigator extends React.Component {
           <button
             className="button"
             title="Next Card"
-            onClick={this.handleNextCard}
+            onClick={this.props.handleNextCard}
             disabled={
               this.props.cardIndex >= this.maxCardIndex &&
-              this.props.config.shuffle !== true
+              this.props.shuffle !== true
             }
           >
             <i className="fa fa-forward" />
@@ -181,8 +154,5 @@ class DeckNavigator extends React.Component {
     )
   }
 }
-
-DeckNavigator.propTypes = propTypes
-DeckNavigator.defaultProps = defaultProps
 
 export default DeckNavigator
