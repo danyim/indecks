@@ -1,20 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Navbar from './Navbar'
+import ModalContainer from './ModalContainer'
 
 class App extends React.Component {
   static propTypes = {
-    children: PropTypes.node
+    changeActiveModal: PropTypes.func.isRequired,
+    closeModal: PropTypes.func.isRequired,
+    children: PropTypes.node,
+    currentModal: PropTypes.string
   }
 
   static defaultProps = {
+    currentModal: null,
     children: null
   }
 
   render() {
     return (
       <div>
-        <Navbar />
+        <ModalContainer
+          currentModal={this.props.currentModal}
+          changeActiveModal={this.props.changeActiveModal}
+          closeModal={this.props.closeModal}
+        />
+        <Navbar changeActiveModal={this.props.changeActiveModal} />
         <main className="main-container">
           {/* React.cloneElement(this.props.children, this.props) */}
           {this.props.children}

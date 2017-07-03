@@ -1,26 +1,13 @@
-/**
- * Navbar badly needs a refactor. Currently it is handling all global shortcuts
- * and is the base component for the global modals to bind to, but technically
- * those modals should be separated from here.
- */
-
-/* eslint react/jsx-no-bind: 1 */
 import React from 'react'
-// import Modal from 'react-modal'
+import PropTypes from 'prop-types'
 import { Link, browserHistory } from 'react-router'
-import DeckSelectorContainer from '../containers/DeckSelectorContainer'
-import ImportDeckContainer from '../containers/ImportDeckContainer'
-import SettingsContainer from '../containers/SettingsContainer'
-import Modal from './Modal'
-import KeyListener from './KeyListener'
-import ShortcutHelper from './ShortcutHelper'
 import ModalTypes from './ModalTypes'
 import styles from '../styles/components/Navbar.styl'
 
-// const modalTypes = [ModalTypes.Settings, ModalTypes.Import, ModalTypes.Shortcuts];
-
 class Navbar extends React.Component {
-  static propTypes = {}
+  static propTypes = {
+    changeActiveModal: PropTypes.func.isRequired
+  }
 
   static defaultProps = {}
 
@@ -50,49 +37,7 @@ class Navbar extends React.Component {
 
   constructor(props) {
     super(props)
-
-    this.openModal = this.openModal.bind(this)
-    this.closeModal = this.closeModal.bind(this)
     this.routeParser = this.routeParser.bind(this)
-
-    // TODO: Perhaps shortcut logic should be moved out into its own component
-    // outside of the NavBar? It's only here because the NavBar is global.
-    this.state = {
-      openModals: {
-        SETTINGS: false,
-        IMPORT: false,
-        SHORTCUTS: false,
-        SELECTOR: false
-      },
-      currentModal: null
-    }
-
-    this.handlers = [
-      {
-        keyCode: 73, // 'i'
-        action: this.openModal.bind(this, ModalTypes.Import)
-      },
-      {
-        keyCode: 188, // ',' comma
-        action: this.openModal.bind(this, ModalTypes.Settings)
-      },
-      {
-        keyCode: 191, // '/' forward slash
-        action: this.openModal.bind(this, ModalTypes.Shortcuts)
-      },
-      {
-        keyCode: 83, // 's'
-        action: this.openModal.bind(this, ModalTypes.Selector)
-      }
-    ]
-  }
-
-  closeModal() {
-    this.setState({ currentModal: null })
-  }
-
-  openModal(modalType) {
-    this.setState({ currentModal: modalType })
   }
 
   routeParser(path) {
@@ -104,11 +49,11 @@ class Navbar extends React.Component {
       // @/
       // addLink = Navbar.renderLink('/add', 'Add deck', 'fa-plus-square-o');
       addLink = Navbar.renderModalLink(
-        this.openModal.bind(this, ModalTypes.Import),
+        () => this.props.changeActiveModal(ModalTypes.Import),
         'fa-plus-square-o'
       )
       listLink = Navbar.renderModalLink(
-        this.openModal.bind(this, ModalTypes.Settings),
+        () => this.props.changeActiveModal(ModalTypes.Settings),
         'fa-cog'
       )
       // listLink = Navbar.renderLink('/settings', ModalTypes.Settings, 'fa-cog');
@@ -159,7 +104,7 @@ class Navbar extends React.Component {
       )
     } else {
       addLink = Navbar.renderModalLink(
-        this.openModal.bind(this, ModalTypes.Import),
+        () => this.props.changeActiveModal(ModalTypes.Import),
         'fa-plus-square-o'
       )
       listLink = null
@@ -172,62 +117,6 @@ class Navbar extends React.Component {
       addLink,
       listLink
     }
-  }
-
-  renderImportDeckModal() {
-    return (
-      <Modal
-        isOpen={this.state.currentModal === ModalTypes.Import}
-        onRequestClose={this.closeModal}
-        className={`${styles['modal-content']}`}
-        overlayClassName={`${styles['modal-overlay']}`}
-        contentLabel="Import Deck"
-      >
-        <ImportDeckContainer handleClose={this.closeModal} />
-      </Modal>
-    )
-  }
-
-  renderShortcutsModal() {
-    return (
-      <Modal
-        isOpen={this.state.currentModal === ModalTypes.Shortcuts}
-        onRequestClose={this.closeModal}
-        className={`${styles['modal-content']}`}
-        overlayClassName={`${styles['modal-overlay']}`}
-        contentLabel="Keyboard Shortcuts"
-      >
-        <ShortcutHelper handleClose={this.closeModal} />
-      </Modal>
-    )
-  }
-
-  renderSettingsModal() {
-    return (
-      <Modal
-        isOpen={this.state.currentModal === ModalTypes.Settings}
-        onRequestClose={this.closeModal}
-        className={`${styles['modal-content']}`}
-        overlayClassName={`${styles['modal-overlay']}`}
-        contentLabel="Settings"
-      >
-        <SettingsContainer handleClose={this.closeModal} />
-      </Modal>
-    )
-  }
-
-  renderDeckSelectorModal() {
-    return (
-      <Modal
-        isOpen={this.state.currentModal === ModalTypes.Selector}
-        onRequestClose={this.closeModal}
-        className={`${styles['modal-content']}`}
-        overlayClassName={`${styles['modal-overlay']}`}
-        contentLabel="Import Deck"
-      >
-        <DeckSelectorContainer handleClose={this.closeModal} />
-      </Modal>
-    )
   }
 
   render() {
@@ -260,13 +149,8 @@ class Navbar extends React.Component {
                 {listLink}
               </div>
             </span>
-            {this.renderImportDeckModal()}
-            {this.renderShortcutsModal()}
-            {this.renderSettingsModal()}
-            {this.renderDeckSelectorModal()}
           </div>
         </div>
-        <KeyListener handlers={this.handlers} />
       </nav>
     )
   }

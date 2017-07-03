@@ -1,11 +1,18 @@
 import reducer, * as actions from './config'
 
 describe('config actions', () => {
-  it('should create an action to toggle card shuffling', () => {
+  it('should create an action to turn ON card shuffling', () => {
     const expectedAction = {
-      type: 'TOGGLE_SHUFFLE'
+      type: 'config/SHUFFLE_ON'
     }
-    expect(actions.toggleShuffle()).toEqual(expectedAction)
+    expect(actions.shuffleOn()).toEqual(expectedAction)
+  })
+
+  it('should create an action to turn OFF card shuffling', () => {
+    const expectedAction = {
+      type: 'config/SHUFFLE_OFF'
+    }
+    expect(actions.shuffleOff()).toEqual(expectedAction)
   })
 })
 
@@ -14,12 +21,12 @@ describe('config reducers', () => {
     expect(reducer(undefined, {})).toEqual({})
   })
 
-  it('should handle TOGGLE_SHUFFLE', () => {
+  it('should handle SHUFFLE_ON', () => {
     expect(
       reducer(
         {},
         {
-          type: 'TOGGLE_SHUFFLE'
+          type: 'config/SHUFFLE_ON'
         }
       )
     ).toEqual({
@@ -32,7 +39,7 @@ describe('config reducers', () => {
           shuffle: false
         },
         {
-          type: 'TOGGLE_SHUFFLE'
+          type: 'config/SHUFFLE_ON'
         }
       )
     ).toEqual({
@@ -45,7 +52,7 @@ describe('config reducers', () => {
           shuffle: true
         },
         {
-          type: 'TOGGLE_SHUFFLE'
+          type: 'config/SHUFFLE_OFF'
         }
       )
     ).toEqual({
