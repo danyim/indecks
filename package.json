@@ -26,16 +26,8 @@
       "prettier --write --no-semi --single-quote",
       "git add"
     ],
-    "*.css": [
-      "stylefmt",
-      "stylelint",
-      "git add"
-    ],
-    "*.styl": [
-      "stylefmt",
-      "stylint",
-      "git add"
-    ]
+    "*.css": ["stylefmt", "stylelint", "git add"],
+    "*.styl": ["stylefmt", "stylint", "git add"]
   },
   "repository": {
     "type": "git",
@@ -152,9 +144,7 @@
   },
   "standard": {
     "parser": "babel-eslint",
-    "globals": [
-      "$"
-    ],
+    "globals": ["$"],
     "env": {
       "browser": true,
       "node": true,
