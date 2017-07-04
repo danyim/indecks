@@ -38,8 +38,6 @@ module.exports = {
   },
   // postcss: [autoPrefixer({ browsers: ['last 2 versions'] })],
   stylus: {
-    use: [
-      poststylus([autoPrefixer({ browsers: ['last 2 versions'] })])
-    ]
+    use: [poststylus([autoPrefixer({ browsers: ['last 2 versions'] })])]
   }
 }
