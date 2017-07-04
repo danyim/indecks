@@ -2,21 +2,34 @@
 import { applyMiddleware, createStore, compose } from 'redux'
 import { createLogger } from 'redux-logger'
 import { persistStore, autoRehydrate } from 'redux-persist'
-import createSagaMiddleware from 'redux-saga'
+// import createSagaMiddleware from 'redux-saga'
 import thunk from 'redux-thunk'
+import axios from 'axios'
+import { routerMiddleware } from 'react-router-redux'
+import createHistory from 'history/createBrowserHistory'
 // import rootSaga from './sagas/index'
 import { combineListeners } from './listenerMiddleware'
-import { rootReducer, rootSaga, rootListener } from './redux/index'
-import config from './data/config'
-// import decks from './data/decks';
-// import samples from './data/samples';
+import { rootReducer, /* rootSaga, */ rootListener } from './redux/index'
 
+const history = createHistory()
 const logger = createLogger()
-const sagaMiddleware = createSagaMiddleware()
+
+// const sagaMiddleware = createSagaMiddleware()
 const listenerMiddlewares = combineListeners(rootListener)
 const envMiddlewares = {
-  dev: [logger, thunk, sagaMiddleware, ...listenerMiddlewares],
-  prod: [thunk, sagaMiddleware, ...listenerMiddlewares]
+  dev: [
+    logger,
+    thunk.withExtraArgument(axios),
+    // sagaMiddleware,
+    routerMiddleware(history),
+    ...listenerMiddlewares
+  ],
+  prod: [
+    thunk.withExtraArgument(axios),
+    // sagaMiddleware,
+    routerMiddleware(history),
+    ...listenerMiddlewares
+  ]
 }
 
 /**
@@ -25,31 +38,17 @@ const envMiddlewares = {
  * @param  {Boolean} debug       Flag for debug mode
  * @return {Object}              A store object for Redux
  */
-export default function configureStore(
-  initialState = {},
-  debug = __DEVELOPMENT__
-) {
-  const middlewares = debug
-    ? applyMiddleware(...envMiddlewares.dev)
-    : applyMiddleware(...envMiddlewares.prod)
+function configureStore(initialState = {}, debug = __DEVELOPMENT__) {
   const storeEnhancers = debug
     ? compose(
-        middlewares,
+        applyMiddleware(...envMiddlewares.dev),
         autoRehydrate(),
         window.devToolsExtension ? window.devToolsExtension() : f => f
       )
-    : compose(middlewares, autoRehydrate())
+    : compose(applyMiddleware(...envMiddlewares.prod), autoRehydrate())
 
   if (debug) {
     console.warn('DEVELOPMENT: In debug mode') // eslint-disable-line
-  }
-
-  const decksCombined = null
-  // decksCombined = [...decks, ...samples]; // Comment this out for release
-  // decksCombined = [...samples]; // Comment this out for release
-  initialState = {
-    config,
-    decks: decksCombined || []
   }
 
   const store = createStore(rootReducer, initialState, storeEnhancers)
@@ -67,7 +66,9 @@ export default function configureStore(
     })
   }
 
-  sagaMiddleware.run(rootSaga)
+  // sagaMiddleware.run(rootSaga)
 
   return store
 }
+
+export { configureStore, history }

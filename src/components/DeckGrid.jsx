@@ -1,18 +1,19 @@
-import PropTypes from 'prop-types'
 import React from 'react'
+import PropTypes from 'prop-types'
 import { TransitionMotion, spring } from 'react-motion'
 import { DeckShape } from './__commonShapes'
 import Deck from './Deck'
 import styles from '../styles/components/DeckGrid.styl'
 
-const propTypes = {
-  decks: PropTypes.arrayOf(DeckShape).isRequired,
-  removeDeck: PropTypes.func.isRequired
-}
-
-const defaultProps = {}
-
 class DeckGrid extends React.Component {
+  static propTypes = {
+    push: PropTypes.func.isRequired,
+    decks: PropTypes.arrayOf(DeckShape).isRequired,
+    removeDeck: PropTypes.func.isRequired
+  }
+
+  static defaultProps = {}
+
   constructor(props) {
     super(props)
     this.handleRemoveDeck = this.handleRemoveDeck.bind(this)
@@ -44,6 +45,9 @@ class DeckGrid extends React.Component {
               <Deck
                 key={config.key}
                 deck={config.data.deck}
+                handleOnClick={() =>
+                  this.props.push(`/view/${config.data.deck.id}`)}
+                push={this.props.push}
                 style={{
                   ...config.style,
                   display: 'relative'
@@ -59,8 +63,5 @@ class DeckGrid extends React.Component {
     )
   }
 }
-
-DeckGrid.propTypes = propTypes
-DeckGrid.defaultProps = defaultProps
 
 export default DeckGrid

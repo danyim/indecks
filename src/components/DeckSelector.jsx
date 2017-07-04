@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { browserHistory } from 'react-router'
 import { DeckShape } from './__commonShapes'
 import styles from '../styles/components/DeckSelector.styl'
 
@@ -18,6 +17,7 @@ class DeckSelector extends React.Component {
     // excludedDeckIds: React.PropTypes.array,
     // maxSelected: React.PropTypes.number.isRequired,
     // minSelected: React.PropTypes.number.isRequired,
+    push: PropTypes.func.isRequired,
     handleOnSelected: PropTypes.func
   }
 
@@ -25,10 +25,6 @@ class DeckSelector extends React.Component {
     // maxSelected: 1,
     // minSelected: 1,
     handleOnSelected: () => {}
-  }
-
-  static navigateToDeck(deckId) {
-    browserHistory.push(`/view/${deckId}`)
   }
 
   constructor(props) {
@@ -54,6 +50,10 @@ class DeckSelector extends React.Component {
     }
   }
 
+  navigateToDeck(deckId) {
+    this.props.push(`/view/${deckId}`)
+  }
+
   handleKeyDown(e) {
     if (e.keyCode === 38) {
       // Up arrow
@@ -63,7 +63,7 @@ class DeckSelector extends React.Component {
       this.moveDown()
     } else if (e.keyCode === 13) {
       // Enter key
-      DeckSelector.navigateToDeck(this.props.decks[this.state.selectedIndex].id)
+      this.navigateToDeck(this.props.decks[this.state.selectedIndex].id)
       this.props.handleOnSelected()
     }
   }

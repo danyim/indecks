@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Swipeable from 'react-swipeable'
-import { browserHistory } from 'react-router'
 import { CardShape, DeckShape } from './__commonShapes'
 import Card from './Card'
 import DeckNavigator from './DeckNavigator'
@@ -14,7 +13,8 @@ class CardView extends React.Component {
     config: PropTypes.shape({ shuffle: PropTypes.bool.isRequired }).isRequired,
     cardIndex: PropTypes.number.isRequired,
     shuffleOn: PropTypes.func.isRequired,
-    shuffleOff: PropTypes.func.isRequired
+    shuffleOff: PropTypes.func.isRequired,
+    push: PropTypes.func.isRequired
   }
 
   static defaultProps = {}
@@ -45,7 +45,7 @@ class CardView extends React.Component {
         nextIndex = CardView.randomCardIndex(this.props.deck.cards.length)
       }
 
-      browserHistory.push(`/view/${this.props.deck.id}/${nextIndex}`)
+      this.props.push(`/view/${this.props.deck.id}/${nextIndex}`)
     }
   }
 
@@ -56,12 +56,12 @@ class CardView extends React.Component {
       if (this.props.config.shuffle === true) {
         nextIndex = CardView.randomCardIndex(this.props.deck.cards.length)
       }
-      browserHistory.push(`/view/${this.props.deck.id}/${nextIndex}`)
+      this.props.push(`/view/${this.props.deck.id}/${nextIndex}`)
     }
   }
 
   handleEditCard() {
-    browserHistory.push(`/edit/${this.props.deck.id}/${this.props.cardIndex}`)
+    this.props.push(`/edit/${this.props.deck.id}/${this.props.cardIndex}`)
   }
 
   /**
@@ -103,8 +103,9 @@ class CardView extends React.Component {
           deck={deck}
           cardIndex={cardIndex}
           mode={mode}
-          flipped={this.state.flipped}
+          push={this.props.push}
           shuffle={config.shuffle}
+          flipped={this.state.flipped}
           handleFlip={this.handleFlip}
           handleNextCard={this.handleNextCard}
           handlePrevCard={this.handlePrevCard}

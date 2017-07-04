@@ -1,50 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DeckGrid should render self and subcomponents 1`] = `
-<section
-  className="deck-grid wrap-row"
->
-  <figure
-    className="grid-figure grid-figure"
-    style={
+<TransitionMotion
+  didLeave={[Function]}
+  styles={
+    Array [
       Object {
-        "display": "relative",
-        "left": 0,
-        "opacity": 1,
-      }
-    }
-  >
-    <div>
-      <h1
-        className="deck-title"
-      >
-        <a
-          onClick={[Function]}
-        >
-          Deck title
-        </a>
-      </h1>
-    </div>
-    <figcaption>
-      <p>
-        0
-         cards
-      </p>
-      <p>
-        Deck description
-      </p>
-    </figcaption>
-    <div
-      className="control-buttons control-buttons"
-    >
-      <a
-        className="button"
-        onClick={[Function]}
-        style={Object {}}
-      >
-        Play Deck
-      </a>
-    </div>
-  </figure>
-</section>
+        "data": Object {
+          "deck": Object {
+            "cards": Array [],
+            "description": "Deck description",
+            "id": "ABCDEFG",
+            "title": "Deck title",
+          },
+        },
+        "key": "deck_ABCDEFG",
+        "style": Object {
+          "left": Object {
+            "damping": 26,
+            "precision": 0.01,
+            "stiffness": 170,
+            "val": 0,
+          },
+          "opacity": Object {
+            "damping": 26,
+            "precision": 0.01,
+            "stiffness": 170,
+            "val": 1,
+          },
+        },
+      },
+    ]
+  }
+  willEnter={[Function]}
+  willLeave={[Function]}
+/>
 `;

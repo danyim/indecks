@@ -28,7 +28,8 @@ const defaultProps = {
   },
   cardIndex: 1,
   shuffleOff: () => {},
-  shuffleOn: () => {}
+  shuffleOn: () => {},
+  push: () => {}
 }
 
 function setup(props = defaultProps) {

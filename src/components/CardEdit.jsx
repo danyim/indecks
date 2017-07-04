@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { browserHistory } from 'react-router'
 import KeyBinding from 'react-keybinding-component'
 import { CardShape } from './__commonShapes'
 import CardEditForm from './CardEditForm'
@@ -13,7 +12,15 @@ class CardEdit extends React.Component {
     deckId: PropTypes.string.isRequired,
     editCard: PropTypes.func.isRequired,
     removeCard: PropTypes.func.isRequired,
-    form: PropTypes.object.isRequired
+    form: PropTypes.shape({
+      cardEdit: PropTypes.shape({
+        values: PropTypes.shape({
+          cardTitle: PropTypes.string.isRequired,
+          cardAnswer: PropTypes.string.isRequired
+        })
+      })
+    }).isRequired,
+    push: PropTypes.func.isRequired
   }
 
   static defaultProps = {}
@@ -51,17 +58,17 @@ class CardEdit extends React.Component {
           'Are you sure you want to cancel? You have unsaved changes that will be lost.'
         )
       ) {
-        browserHistory.push(`/view/${this.props.deckId}`)
+        this.props.push(`/view/${this.props.deckId}`)
       }
     } else {
-      browserHistory.push(`/view/${this.props.deckId}/${this.props.cardIndex}`)
+      this.props.push(`/view/${this.props.deckId}/${this.props.cardIndex}`)
     }
   }
 
   handleDelete(cardIndex, deckId) {
     if (confirm('Are you sure?')) {
       this.props.removeCard(cardIndex, deckId)
-      browserHistory.push(`/view/${this.props.deckId}`)
+      this.props.push(`/view/${this.props.deckId}`)
     }
   }
 
@@ -73,7 +80,7 @@ class CardEdit extends React.Component {
       this.props.cardIndex,
       this.props.deckId
     )
-    browserHistory.push(`/view/${this.props.deckId}/${this.props.cardIndex}`)
+    this.props.push(`/view/${this.props.deckId}/${this.props.cardIndex}`)
   }
 
   render() {

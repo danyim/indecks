@@ -1,23 +1,35 @@
-import PropTypes from 'prop-types'
 import React from 'react'
-import { Link, browserHistory } from 'react-router'
+import PropTypes from 'prop-types'
+import stylePropType from 'react-style-proptype'
+import { Link } from 'react-router-dom'
 import { DeckShape } from './__commonShapes'
 import styles from '../styles/components/Deck.styl'
 
-const propTypes = {
-  deck: DeckShape.isRequired,
-  style: PropTypes.object,
-  children: PropTypes.node
-}
-
-const defaultProps = {
-  style: {},
-  children: null
-}
-
 class Deck extends React.Component {
+  static propTypes = {
+    push: PropTypes.func.isRequired,
+    deck: DeckShape.isRequired,
+    handleOnClick: PropTypes.func.isRequired,
+    style: stylePropType,
+    children: PropTypes.node
+  }
+
+  static defaultProps = {
+    style: {},
+    children: null
+  }
+
+  static contextTypes = {
+    router: PropTypes.object
+  }
+
+  constructor(props) {
+    super(props)
+    this.navigateToDeck = this.navigateToDeck.bind(this)
+  }
+
   navigateToDeck(deckId) {
-    browserHistory.push(`/view/${deckId}`)
+    this.props.push(`/view/${deckId}`)
   }
 
   render() {
@@ -27,10 +39,12 @@ class Deck extends React.Component {
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`} style={style}>
         <div>
-          <h1 className={`${styles['deck-title']}`}>
-            <a onClick={() => this.navigateToDeck(deckId)}>
-              {deck.title}
-            </a>
+          <h1
+            className={`${styles['deck-title']}`}
+            onClick={this.props.handleOnClick}
+            role="presentation"
+          >
+            {deck.title}
           </h1>
         </div>
 
@@ -62,8 +76,5 @@ class Deck extends React.Component {
     )
   }
 }
-
-Deck.propTypes = propTypes
-Deck.defaultProps = defaultProps
 
 export default Deck

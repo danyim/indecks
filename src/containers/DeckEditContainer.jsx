@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import * as deckActions from '../redux/modules/decks'
 import { CardShape, DeckShape } from '../components/__commonShapes'
 import DeckEdit from '../components/DeckEdit'
@@ -13,12 +14,22 @@ const propTypes = {
   editCard: PropTypes.func.isRequired,
   removeCard: PropTypes.func.isRequired,
   editDeck: PropTypes.func.isRequired,
+  push: PropTypes.func.isRequired,
   form: PropTypes.object.isRequired
 }
 const defaultProps = {}
 
 const DeckEditContainer = props => {
-  const { cards, deck, deckId, editCard, removeCard, editDeck, form } = props
+  const {
+    cards,
+    deck,
+    deckId,
+    editCard,
+    removeCard,
+    editDeck,
+    form,
+    push: pushPath // Renaming because 'push' is also defined as an import variable
+  } = props
 
   return (
     <DeckEdit
@@ -29,6 +40,7 @@ const DeckEditContainer = props => {
       removeCard={removeCard}
       editDeck={editDeck}
       form={form}
+      push={pushPath}
     />
   )
 }
@@ -47,6 +59,7 @@ const mapStateToProps = ({ decks, form }, ownProps) => {
     form
   }
 }
-const mapDispatchToProps = dispatch => bindActionCreators(deckActions, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ ...deckActions, push }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeckEditContainer)

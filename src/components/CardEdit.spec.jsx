@@ -14,7 +14,8 @@ const defaultProps = {
   deckId: 'ABCDEFG',
   editCard: () => {},
   removeCard: () => {},
-  form: {}
+  form: {},
+  push: () => {}
 }
 
 function setup(props = defaultProps) {

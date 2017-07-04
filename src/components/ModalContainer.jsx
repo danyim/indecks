@@ -13,6 +13,7 @@ class ModalContainer extends React.Component {
   static propTypes = {
     closeModal: PropTypes.func.isRequired,
     changeActiveModal: PropTypes.func.isRequired,
+    push: PropTypes.func.isRequired,
     currentModal: PropTypes.string
   }
 
@@ -53,6 +54,7 @@ class ModalContainer extends React.Component {
         <Component
           handleClose={this.props.closeModal}
           handleOnSelected={this.props.closeModal}
+          push={this.props.push}
         />
       </Modal>
     )

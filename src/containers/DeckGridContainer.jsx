@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types'
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { push } from 'react-router-redux'
 import * as deckActions from '../redux/modules/decks'
 import { DeckShape } from '../components/__commonShapes'
 import DeckGrid from '../components/DeckGrid'
@@ -23,6 +24,7 @@ DeckGridContainer.propTypes = propTypes
 DeckGridContainer.defaultProps = defaultProps
 
 const mapStateToProps = ({ decks }) => ({ decks })
-const mapDispatchToProps = dispatch => bindActionCreators(deckActions, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ ...deckActions, push }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeckGridContainer)

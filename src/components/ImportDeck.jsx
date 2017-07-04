@@ -1,24 +1,24 @@
-import PropTypes from 'prop-types'
 import React from 'react'
-import { browserHistory } from 'react-router'
+import PropTypes from 'prop-types'
 import Dropzone from 'react-dropzone'
 import samples from '../data/samples'
 import styles from '../styles/components/ImportDeck.styl'
 
-const propTypes = {
-  addDeck: PropTypes.func.isRequired,
-  handleClose: PropTypes.func,
-  maxDeckTitleLength: PropTypes.number,
-  maxDeckDescLength: PropTypes.number
-}
-
-const defaultProps = {
-  handleClose: () => {},
-  maxDeckTitleLength: 160,
-  maxDeckDescLength: 300
-}
-
 class ImportDeck extends React.Component {
+  static propTypes = {
+    push: PropTypes.func.isRequired,
+    addDeck: PropTypes.func.isRequired,
+    handleClose: PropTypes.func,
+    maxDeckTitleLength: PropTypes.number,
+    maxDeckDescLength: PropTypes.number
+  }
+
+  static defaultProps = {
+    handleClose: () => {},
+    maxDeckTitleLength: 160,
+    maxDeckDescLength: 300
+  }
+
   static generateRandomString(length = 8) {
     const chars = '0123456789abcdefABCDEFGHIJKLMNPQRSTUVWXYZ'
     let result = ''
@@ -67,14 +67,14 @@ class ImportDeck extends React.Component {
           addToDeck(d)
         })
         // Navigate to the deck grid view
-        browserHistory.push('/')
+        this.props.push('/')
       } else {
         // Add the single deck
         addToDeck(resultJson)
         // Close the modal
         this.props.handleClose()
         // Navigate to the newly imported deck
-        browserHistory.push(`/view/${resultJson.id}`)
+        this.props.push(`/view/${resultJson.id}`)
       }
       // resultJson.id = ImportDeck.generateRandomString(); // Generate a new ID regardless
       // // Absolutely no validation of the JSON here...
@@ -116,7 +116,7 @@ class ImportDeck extends React.Component {
     // Close the modal
     this.props.handleClose()
     // Don't go to the deck immediately after creating
-    // browserHistory.push(`/view/${id}`);
+    // this.props.push(`/view/${id}`);
     return undefined
   }
 
@@ -130,7 +130,7 @@ class ImportDeck extends React.Component {
 
     // Close the modal
     this.props.handleClose()
-    browserHistory.push('/')
+    this.props.push('/')
   }
 
   render() {
@@ -195,8 +195,5 @@ class ImportDeck extends React.Component {
     )
   }
 }
-
-ImportDeck.propTypes = propTypes
-ImportDeck.defaultProps = defaultProps
 
 export default ImportDeck

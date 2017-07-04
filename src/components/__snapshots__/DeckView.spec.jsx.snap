@@ -10,50 +10,57 @@ exports[`DeckView should render self and subcomponents 1`] = `
     <div
       className="title-text"
     >
-      <span
+      <RIEInput
+        change={[Function]}
+        classInvalid="invalid"
+        classLoading="loading"
         className="large editable"
-        onClick={[Function]}
-        onFocus={[Function]}
-        tabIndex="0"
-      >
-        Deck title
-      </span>
+        maxLength={160}
+        minLength="1"
+        placeholder="Click here to add a title"
+        propName="title"
+        validate={[Function]}
+        value="Deck title"
+      />
       <p>
         <strong>
           1 cards
         </strong>
       </p>
-      <span
+      <RIETextArea
+        change={[Function]}
+        classInvalid="invalid"
+        classLoading="loading"
         className="paragraph editable m-t"
-        onClick={[Function]}
-        onFocus={[Function]}
-        tabIndex="0"
-      >
-        <span>
-          Deck description
-        </span>
-      </span>
+        maxLength={300}
+        minLength="1"
+        placeholder="Click here to add a description"
+        propName="description"
+        rows="6"
+        validate={[Function]}
+        value="Deck description"
+      />
     </div>
     <div
       className="control-buttons"
     >
-      <a
+      <Link
         className="button"
-        onClick={[Function]}
-        style={Object {}}
+        replace={false}
+        to="/view/ABCDEFG/1"
       >
         <span>
           Play Deck
         </span>
-      </a>
-      <button
+      </Link>
+      <ExportDeckButton
         className="button"
         disabled={false}
-        onClick={[Function]}
+        exportFile={[Function]}
+        filename="Deck-title.json"
+        label="Export Deck"
         style={Object {}}
-      >
-        Export Deck
-      </button>
+      />
       <button
         className="btn-delete"
         onClick={[Function]}
@@ -65,66 +72,54 @@ exports[`DeckView should render self and subcomponents 1`] = `
   <div
     className="wrap-row grid"
   >
-    <figure
-      className="grid-figure grid-figure card-contents"
-      onClick={[Function]}
-      role="presentation"
+    <Card
+      card={
+        Object {
+          "answer": "Card description",
+          "index": 1,
+          "title": "Card",
+        }
+      }
+      className="card-contents"
+      flipped={false}
+      handleOnClick={[Function]}
+      trimOverflow={true}
+      trimOverflowLength={125}
     >
-      <div
-        className="card-contents card-contents"
+      <Overlay
+        className=""
       >
-        <div
-          className="card-title card-title"
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "<p>Card</p>
-            ",
-            }
-          }
-          onClick={null}
-        />
-      </div>
-      <div
-        className="overlay "
-      >
-        <div
-          className="hover-actions-container"
+        <OverlayRow
+          className=""
         >
-          <div
-            className=" hover-actions"
+          <button
+            onClick={[Function]}
           >
-            <button
-              className="hover-button"
-              onClick={[Function]}
-            >
-              View
-            </button>
-            <button
-              className="hover-button"
-              onClick={[Function]}
-            >
-              Edit
-            </button>
-            <button
-              className="hover-button btn-delete"
-              onClick={[Function]}
-            >
-              Delete
-            </button>
-          </div>
-          <div
-            className=" hover-actions"
+            View
+          </button>
+          <button
+            onClick={[Function]}
           >
-            <button
-              className="hover-button"
-              onClick={[Function]}
-            >
-              Duplicate
-            </button>
-          </div>
-        </div>
-      </div>
-    </figure>
+            Edit
+          </button>
+          <button
+            className="btn-delete"
+            onClick={[Function]}
+          >
+            Delete
+          </button>
+        </OverlayRow>
+        <OverlayRow
+          className=""
+        >
+          <button
+            onClick={[Function]}
+          >
+            Duplicate
+          </button>
+        </OverlayRow>
+      </Overlay>
+    </Card>
   </div>
 </section>
 `;

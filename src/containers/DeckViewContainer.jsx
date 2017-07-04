@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types'
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { browserHistory } from 'react-router'
+import { push } from 'react-router-redux'
 import * as deckActions from '../redux/modules/decks'
 import { DeckShape } from '../components/__commonShapes'
 import DeckView from '../components/DeckView'
@@ -14,7 +14,8 @@ const propTypes = {
   moveCard: PropTypes.func.isRequired,
   removeCard: PropTypes.func.isRequired,
   removeDeck: PropTypes.func.isRequired,
-  params: PropTypes.object.isRequired
+  push: PropTypes.func.isRequired,
+  match: PropTypes.shape({ params: PropTypes.object.isRequired }).isRequired
 }
 const defaultProps = {}
 
@@ -28,12 +29,12 @@ class DeckViewContainer extends React.Component {
   handleRemoveDeck(deckId) {
     if (confirm('Are you sure you want to delete this deck?')) {
       this.props.removeDeck(deckId)
-      browserHistory.push('/')
+      this.props.push('/')
     }
   }
 
   render() {
-    const { deckId } = this.props.params
+    const { deckId } = this.props.match.params
     // Derive the deck index
     const deckIndex = this.props.decks.findIndex(deck => deck.id === deckId)
     // Get the deck
@@ -42,6 +43,7 @@ class DeckViewContainer extends React.Component {
     if (deck) {
       return (
         <DeckView
+          {...this.props}
           deck={deck}
           handleRemoveDeck={this.handleRemoveDeck}
           handleEditDeck={this.props.editDeck}
@@ -59,6 +61,7 @@ DeckViewContainer.propTypes = propTypes
 DeckViewContainer.defaultProps = defaultProps
 
 const mapStateToProps = ({ decks, config }) => ({ decks, config })
-const mapDispatchToProps = dispatch => bindActionCreators(deckActions, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ ...deckActions, push }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeckViewContainer)

@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types'
 import React from 'react'
-import { browserHistory } from 'react-router'
+import PropTypes from 'prop-types'
 import KeyBinding from 'react-keybinding-component'
 import classNames from 'classnames'
 import { DeckShape } from './__commonShapes'
@@ -18,6 +17,7 @@ class DeckNavigator extends React.Component {
     handleShuffleToggle: PropTypes.func.isRequired,
     handleNextCard: PropTypes.func.isRequired,
     handlePrevCard: PropTypes.func.isRequired,
+    push: PropTypes.func.isRequired,
     mode: PropTypes.string.isRequired
   }
 
@@ -43,15 +43,15 @@ class DeckNavigator extends React.Component {
   }
 
   handleAddCard() {
-    browserHistory.push(`/add/${this.props.deck.id}`)
+    this.props.push(`/add/${this.props.deck.id}`)
   }
 
   handleEditCard() {
-    browserHistory.push(`/edit/${this.props.deck.id}/${this.props.cardIndex}`)
+    this.props.push(`/edit/${this.props.deck.id}/${this.props.cardIndex}`)
   }
 
   handleReturnToDeck() {
-    browserHistory.push(`/view/${this.props.deck.id}`)
+    this.props.push(`/view/${this.props.deck.id}`)
   }
 
   handleShuffleToggle() {

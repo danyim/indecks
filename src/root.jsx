@@ -1,13 +1,18 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { Router, browserHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
-import configureStore from './store'
-import routes from './routes'
+import { withRouter } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
+import { configureStore, history } from './store'
 import './styles/style.styl'
 
-const store = configureStore({})
-const history = syncHistoryWithStore(browserHistory, store)
+const initialState = {
+  decks: [],
+  config: {
+    shuffle: false
+  }
+}
+
+const store = configureStore(initialState)
 
 class Root extends React.Component {
   componentDidMount() {
@@ -16,9 +21,12 @@ class Root extends React.Component {
   }
 
   render() {
+    const App = withRouter(require('./containers/AppContainer').default) // eslint-disable-line
     return (
       <Provider store={store}>
-        <Router history={history} routes={routes} />
+        <ConnectedRouter history={history}>
+          <App />
+        </ConnectedRouter>
       </Provider>
     )
   }

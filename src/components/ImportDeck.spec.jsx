@@ -1,12 +1,12 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
 import toJson from 'enzyme-to-json'
-import { browserHistory } from 'react-router'
 import ImportDeck from './ImportDeck'
 // import samples from '../data/samples';
 
 const defaultProps = {
   addDeck: () => {},
+  push: () => {},
   maxDeckTitleLength: 160,
   maxDeckDescLength: 300
 }
@@ -44,16 +44,17 @@ describe('ImportDeck', () => {
   })
 
   xit('should process the JSON when a file is provided in the Dropzone', () => {
-    spyOn(browserHistory, 'push')
     spyOn(window, 'URL').and.returnValue({
       createObjectURL: () => {}
     })
     // spyOn(window, 'URL').and.returnValue(() => {});
 
+    const push = jest.fn()
     const handlerAdd = jest.fn()
     const { wrapper } = setupFull({
       ...defaultProps,
-      addDeck: handlerAdd
+      addDeck: handlerAdd,
+      push
     })
 
     const dropzone = wrapper.find('Dropzone')
@@ -68,22 +69,25 @@ describe('ImportDeck', () => {
     dropzone.simulate('drop', { dataTransfer: { files } })
 
     expect(handlerAdd.mock.calls.length).toBe(1)
-    expect(browserHistory.push).toHaveBeenCalledWith('/')
+    expect(push.mock.calls.length).toBe(1)
+    expect(push.mock.calls[0][0]).toBe('/')
   })
 
   it('should load 4 sample decks and then navigate home', () => {
-    spyOn(browserHistory, 'push')
+    const push = jest.fn()
     const handlerAdd = jest.fn()
     const { wrapper } = setup({
       ...defaultProps,
-      addDeck: handlerAdd
+      addDeck: handlerAdd,
+      push
     })
 
     wrapper
       .find('button.button[children="Load Sample Decks"]')
       .simulate('click')
     expect(handlerAdd.mock.calls.length).toBe(4)
-    expect(browserHistory.push).toHaveBeenCalledWith('/')
+    expect(push.mock.calls.length).toBe(1)
+    expect(push.mock.calls[0][0]).toBe('/')
   })
 
   it('should take a title and description and call the addDeck prop', () => {

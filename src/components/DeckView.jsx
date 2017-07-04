@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types'
 import React from 'react'
+import PropTypes from 'prop-types'
 import { RIEInput, RIETextArea } from 'riek'
-import { Link, browserHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 import slug from 'slug'
 import { DeckShape } from './__commonShapes'
 import Card from './Card'
@@ -10,22 +10,27 @@ import Overlay from './Overlay'
 import OverlayRow from './OverlayRow'
 import styles from '../styles/components/DeckView.styl'
 
-const propTypes = {
-  deck: DeckShape.isRequired,
-  maxDeckTitleLength: PropTypes.number,
-  maxDeckDescLength: PropTypes.number,
-  handleDuplicateCard: PropTypes.func.isRequired,
-  handleEditDeck: PropTypes.func.isRequired,
-  handleRemoveCard: PropTypes.func.isRequired,
-  handleRemoveDeck: PropTypes.func.isRequired
-}
-
-const defaultProps = {
-  maxDeckTitleLength: 160,
-  maxDeckDescLength: 300
-}
-
 class DeckView extends React.Component {
+  static propTypes = {
+    deck: DeckShape.isRequired,
+    maxDeckTitleLength: PropTypes.number,
+    maxDeckDescLength: PropTypes.number,
+    handleDuplicateCard: PropTypes.func.isRequired,
+    handleEditDeck: PropTypes.func.isRequired,
+    handleRemoveCard: PropTypes.func.isRequired,
+    handleRemoveDeck: PropTypes.func.isRequired,
+    push: PropTypes.func.isRequired
+  }
+
+  static defaultProps = {
+    maxDeckTitleLength: 160,
+    maxDeckDescLength: 300
+  }
+
+  static contextTypes = {
+    router: PropTypes.object
+  }
+
   constructor(props) {
     super(props)
 
@@ -47,7 +52,7 @@ class DeckView extends React.Component {
   // }
 
   handleCardView(deckId, i) {
-    browserHistory.push(`/view/${deckId}/${i + 1}`)
+    this.props.push(`/view/${deckId}/${i + 1}`)
   }
 
   handleCardDuplicate(deckId, i) {
@@ -62,7 +67,7 @@ class DeckView extends React.Component {
   // }
 
   handleCardEdit(deckId, i) {
-    browserHistory.push(`/edit/${deckId}/${i + 1}`)
+    this.props.push(`/edit/${deckId}/${i + 1}`)
   }
 
   handleCardDelete(deckId, i) {
@@ -71,7 +76,7 @@ class DeckView extends React.Component {
         i + 1, // expects a cardIndex, which is 1-based
         deckId
       )
-      browserHistory.push(`/view/${deckId}`)
+      this.props.push(`/view/${deckId}`)
     }
   }
 
@@ -219,8 +224,5 @@ class DeckView extends React.Component {
     )
   }
 }
-
-DeckView.propTypes = propTypes
-DeckView.defaultProps = defaultProps
 
 export default DeckView

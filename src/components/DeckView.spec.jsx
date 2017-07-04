@@ -1,7 +1,8 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
-import renderer from 'react-test-renderer'
-import { browserHistory } from 'react-router'
+import toJson from 'enzyme-to-json'
+import { MemoryRouter } from 'react-router'
+// import renderer from 'react-test-renderer'
 import DeckView from './DeckView'
 
 const defaultProps = {
@@ -22,7 +23,8 @@ const defaultProps = {
   handleDuplicateCard: jest.fn(),
   handleEditDeck: jest.fn(),
   handleRemoveCard: jest.fn(),
-  handleRemoveDeck: jest.fn()
+  handleRemoveDeck: jest.fn(),
+  push: () => {}
 }
 
 function setup(props = defaultProps) {
@@ -35,7 +37,11 @@ function setup(props = defaultProps) {
 }
 
 function setupFull(props = defaultProps) {
-  const wrapper = mount(<DeckView {...props} />)
+  const wrapper = mount(
+    <MemoryRouter initialEntries={['/view/ABCDEFG']}>
+      <DeckView {...props} />
+    </MemoryRouter>
+  )
 
   return {
     props,
@@ -46,9 +52,8 @@ function setupFull(props = defaultProps) {
 describe('DeckView', () => {
   it('should render self and subcomponents', () => {
     // const { wrapper } = setup();
-
-    const tree = renderer.create(<DeckView {...defaultProps} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const wrapper = shallow(<DeckView {...defaultProps} />)
+    expect(toJson(wrapper)).toMatchSnapshot()
   })
 
   it('should render subcomponents when there are cards in the deck', () => {
@@ -72,33 +77,44 @@ describe('DeckView', () => {
   })
 
   it('should navigate to the VIEW card route when the "View" card overlay button is clicked', () => {
-    spyOn(browserHistory, 'push')
-    const { props, wrapper } = setupFull()
+    const push = jest.fn()
+    const { props, wrapper } = setup({
+      ...defaultProps,
+      push
+    })
 
     wrapper.find('Overlay button[children="View"]').first().simulate('click')
-    expect(browserHistory.push).toHaveBeenCalledWith(`/view/${props.deck.id}/1`)
+    expect(push.mock.calls.length).toBe(1)
+    expect(push.mock.calls[0][0]).toBe(`/view/${props.deck.id}/1`)
   })
 
   it('should navigate to the EDIT card route when the "Edit" card overlay button is clicked', () => {
-    spyOn(browserHistory, 'push')
-    const { props, wrapper } = setupFull()
+    const push = jest.fn()
+    const { props, wrapper } = setup({
+      ...defaultProps,
+      push
+    })
 
     wrapper.find('Overlay button[children="Edit"]').first().simulate('click')
-    expect(browserHistory.push).toHaveBeenCalledWith(`/edit/${props.deck.id}/1`)
+    expect(push.mock.calls.length).toBe(1)
+    expect(push.mock.calls[0][0]).toBe(`/edit/${props.deck.id}/1`)
   })
 
   it('should call the handleRemoveCard prop when the "Delete" card overlay button is clicked', () => {
     const handler = jest.fn()
-    spyOn(window, 'confirm').and.returnValue(true)
-    spyOn(browserHistory, 'push')
+    const push = jest.fn()
     const { props, wrapper } = setup({
       ...defaultProps,
+      push,
       handleRemoveCard: handler
     })
 
+    spyOn(window, 'confirm').and.returnValue(true)
+
     wrapper.find('Overlay button[children="Delete"]').first().simulate('click')
     expect(handler.mock.calls.length).toBe(1)
-    expect(browserHistory.push).toHaveBeenCalledWith(`/view/${props.deck.id}`)
+    expect(push.mock.calls.length).toBe(1)
+    expect(push.mock.calls[0][0]).toBe(`/view/${props.deck.id}`)
   })
 
   it('should call the handleDuplicateCard prop when the "Duplicate" card overlay button is clicked', () => {

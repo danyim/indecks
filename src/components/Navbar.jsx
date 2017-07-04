@@ -1,12 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link, browserHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 import ModalTypes from './ModalTypes'
 import styles from '../styles/components/Navbar.styl'
 
 class Navbar extends React.Component {
   static propTypes = {
-    changeActiveModal: PropTypes.func.isRequired
+    changeActiveModal: PropTypes.func.isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired
+    }).isRequired
   }
 
   static defaultProps = {}
@@ -120,15 +123,7 @@ class Navbar extends React.Component {
   }
 
   render() {
-    let addLink
-    let listLink
-    const routeParser = this.routeParser
-
-    browserHistory.listen(ev => {
-      const { addLink: add, listLink: list } = routeParser(ev.pathname)
-      addLink = add
-      listLink = list
-    })
+    const { addLink, listLink } = this.routeParser(this.props.location.pathname)
 
     return (
       <nav className={`${styles['nav-container']}`}>

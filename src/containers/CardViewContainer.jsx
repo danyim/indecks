@@ -1,6 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import * as deckActions from '../redux/modules/decks'
 import * as configActions from '../redux/modules/config'
 import { CardShape, DeckShape } from '../components/__commonShapes'
@@ -40,7 +41,7 @@ CardViewContainer.propTypes = propTypes
 CardViewContainer.defaultProps = defaultProps
 
 const mapStateToProps = ({ decks, config }, ownProps) => {
-  const { deckId, cardIndex } = ownProps.params
+  const { deckId, cardIndex } = ownProps.match.params
   // Find the deck based on the property
   const deckIndex = deckId ? decks.findIndex(d => d.id === deckId) : null
   let card
@@ -65,6 +66,9 @@ const mapStateToProps = ({ decks, config }, ownProps) => {
   }
 }
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(Object.assign({}, deckActions, configActions), dispatch)
+  bindActionCreators(
+    Object.assign({ push }, deckActions, configActions),
+    dispatch
+  )
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardViewContainer)
