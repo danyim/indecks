@@ -2,14 +2,15 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { browserHistory } from 'react-router'
+import { push } from 'react-router-redux'
 import * as deckActions from '../redux/modules/decks'
 import { DeckShape } from '../components/__commonShapes'
 import CardAdd from '../components/CardAdd'
 
 const propTypes = {
   deck: DeckShape.isRequired,
-  addCard: PropTypes.func.isRequired
+  addCard: PropTypes.func.isRequired,
+  push: PropTypes.func.isRequired
 }
 
 const defaultProps = {}
@@ -24,7 +25,7 @@ class DeckAddContainer extends React.Component {
   handleSubmit(deckId, card) {
     this.props.addCard(card.title, card.answer, deckId)
     // View the card immediately after saving
-    browserHistory.push(`/view/${deckId}/${this.props.deck.cards.length + 1}`)
+    this.props.push(`/view/${deckId}/${this.props.deck.cards.length + 1}`)
   }
 
   render() {
@@ -40,12 +41,13 @@ DeckAddContainer.propTypes = propTypes
 DeckAddContainer.defaultProps = defaultProps
 
 const mapStateToProps = ({ decks }, ownProps) => {
-  const deckIndex = decks.findIndex(d => d.id === ownProps.params.deckId)
+  const deckIndex = decks.findIndex(d => d.id === ownProps.match.params.deckId)
   return {
     deck: decks[deckIndex],
-    deckId: ownProps.params.deckId
+    deckId: ownProps.match.params.deckId
   }
 }
-const mapDispatchToProps = dispatch => bindActionCreators(deckActions, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ ...deckActions, push }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeckAddContainer)

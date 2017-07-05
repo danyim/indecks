@@ -31,22 +31,38 @@ export const CardEditForm = props => {
 
   return (
     <form className="edit-form" onSubmit={handleSubmit}>
-      <Field
-        name="cardTitle"
-        component="textarea"
-        type="text"
-        className="large-input"
-        rows="2"
-        placeholder="Title"
-      />
-      <Field
-        name="cardAnswer"
-        component="textarea"
-        type="text"
-        className="mono"
-        rows="6"
-        placeholder="Answer (Markdown)"
-      />
+      <label htmlFor="cardTitle">
+        <span>Card Title</span>
+        <Field
+          name="cardTitle"
+          component="textarea"
+          type="text"
+          className="large-input"
+          rows="2"
+          placeholder="Title"
+        />
+      </label>
+
+      <label htmlFor="cardAnswer">
+        <span>
+          Card Contents&nbsp;&nbsp;(This input supports{' '}
+          <a
+            href="//guides.github.com/features/mastering-markdown/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Markdown
+          </a>)
+        </span>
+        <Field
+          name="cardAnswer"
+          component="textarea"
+          type="text"
+          className="mono"
+          rows="6"
+          placeholder="Answer (Markdown)"
+        />
+      </label>
 
       <CardPreview
         title={form ? form.values.cardTitle : ''}

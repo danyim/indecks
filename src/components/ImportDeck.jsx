@@ -127,21 +127,27 @@ class ImportDeck extends React.Component {
           <h2 className={`${styles.header}`}>Add/Import Deck</h2>
           <form className="edit-form" onSubmit={this.handleSubmit}>
             <h4>Create a new deck</h4>
-            <input
-              type="text"
-              className="large-input"
-              name="title"
-              placeholder="Deck Title"
-              maxLength="30"
-              onChange={e => this.handleChange(e, 'title')}
-            />
-            <textarea
-              type="text"
-              name="description"
-              placeholder="Description"
-              rows="3"
-              onChange={e => this.handleChange(e, 'description')}
-            />
+            <label htmlFor="title">
+              <span>Title</span>
+              <input
+                type="text"
+                className="large-input"
+                name="title"
+                placeholder="Study Material for Advanced Basketweaving"
+                maxLength="30"
+                onChange={e => this.handleChange(e, 'title')}
+              />
+            </label>
+            <label htmlFor="description">
+              <span>Description</span>
+              <textarea
+                type="text"
+                name="description"
+                placeholder="Methods for weaving baskets of all kind, one weave at a time."
+                rows="3"
+                onChange={e => this.handleChange(e, 'description')}
+              />
+            </label>
             <div>
               <button type="submit" className="button">
                 Create Deck

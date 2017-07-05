@@ -23,16 +23,18 @@ class CardAdd extends React.Component {
       title: '',
       description: ''
     }
+
+    this.focusInput = null
   }
 
-  // componentDidMount() {
-  //   // This happens a little too fast. If you get to this view via keyboard
-  //   // shortcut, the focus event fires before the keyup and writes the value
-  //   // into the field. Adding a 100ms delay prevents this from happening.
-  //   setTimeout(() => {
-  //     findDOMNode(this.refs.title).focus();
-  //   }, 100);
-  // }
+  componentDidMount() {
+    // This happens a little too fast. If you get to this view via keyboard
+    // shortcut, the focus event fires before the keyup and writes the value
+    // into the field. Adding a 100ms delay prevents this from happening.
+    setTimeout(() => {
+      this.focusInput.focus()
+    }, 100)
+  }
 
   handleSubmit(e, deckId) {
     e.preventDefault()
@@ -71,21 +73,29 @@ class CardAdd extends React.Component {
           className="edit-form"
           onSubmit={e => this.handleSubmit(e, deckId)}
         >
-          <input
-            type="text"
-            className="large-input"
-            name="title"
-            placeholder="Title"
-            onChange={e => this.handleChange(e, 'title')}
-          />
-          <textarea
-            type="text"
-            className="mono"
-            name="answer"
-            placeholder="Answer (Markdown)"
-            rows="4"
-            onChange={e => this.handleChange(e, 'answer')}
-          />
+          <label htmlFor="title">
+            <span>Card Title</span>
+            <input
+              type="text"
+              className="large-input"
+              name="title"
+              placeholder="Title"
+              ref={input => (this.focusInput = input)}
+              onChange={e => this.handleChange(e, 'title')}
+            />
+          </label>
+
+          <label htmlFor="answer">
+            <span>Card Contents</span>
+            <textarea
+              type="text"
+              className="mono"
+              name="answer"
+              placeholder="Answer (Markdown)"
+              rows="4"
+              onChange={e => this.handleChange(e, 'answer')}
+            />
+          </label>
 
           <CardPreview title={this.state.title} answer={this.state.answer} />
 

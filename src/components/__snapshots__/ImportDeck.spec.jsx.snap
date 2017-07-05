@@ -19,21 +19,35 @@ exports[`ImportDeck should render self and subcomponents 1`] = `
       <h4>
         Create a new deck
       </h4>
-      <input
-        className="large-input"
-        maxLength="30"
-        name="title"
-        onChange={[Function]}
-        placeholder="Deck Title"
-        type="text"
-      />
-      <textarea
-        name="description"
-        onChange={[Function]}
-        placeholder="Description"
-        rows="3"
-        type="text"
-      />
+      <label
+        htmlFor="title"
+      >
+        <span>
+          Title
+        </span>
+        <input
+          className="large-input"
+          maxLength="30"
+          name="title"
+          onChange={[Function]}
+          placeholder="Study Material for Advanced Basketweaving"
+          type="text"
+        />
+      </label>
+      <label
+        htmlFor="description"
+      >
+        <span>
+          Description
+        </span>
+        <textarea
+          name="description"
+          onChange={[Function]}
+          placeholder="Methods for weaving baskets of all kind, one weave at a time."
+          rows="3"
+          type="text"
+        />
+      </label>
       <div>
         <button
           className="button"

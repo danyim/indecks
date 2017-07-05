@@ -8,21 +8,35 @@ exports[`CardAdd should render self and subcomponents 1`] = `
     className="edit-form"
     onSubmit={[Function]}
   >
-    <input
-      className="large-input"
-      name="title"
-      onChange={[Function]}
-      placeholder="Title"
-      type="text"
-    />
-    <textarea
-      className="mono"
-      name="answer"
-      onChange={[Function]}
-      placeholder="Answer (Markdown)"
-      rows="4"
-      type="text"
-    />
+    <label
+      htmlFor="title"
+    >
+      <span>
+        Card Title
+      </span>
+      <input
+        className="large-input"
+        name="title"
+        onChange={[Function]}
+        placeholder="Title"
+        type="text"
+      />
+    </label>
+    <label
+      htmlFor="answer"
+    >
+      <span>
+        Card Contents
+      </span>
+      <textarea
+        className="mono"
+        name="answer"
+        onChange={[Function]}
+        placeholder="Answer (Markdown)"
+        rows="4"
+        type="text"
+      />
+    </label>
     <div
       className="preview"
     >

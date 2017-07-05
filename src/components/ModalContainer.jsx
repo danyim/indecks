@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import DeckSelectorContainer from '../containers/DeckSelectorContainer'
 import ImportDeckContainer from '../containers/ImportDeckContainer'
 import SettingsContainer from '../containers/SettingsContainer'
-import Splash from './Splash'
 import Modal from './Modal'
 import KeyListener from './KeyListener'
 import ShortcutHelper from './ShortcutHelper'
@@ -79,7 +78,6 @@ class ModalContainer extends React.Component {
           ModalTypes.Selector,
           'Deck Selector'
         )}
-        {this.renderModal(Splash, ModalTypes.Splash, 'Introduction')}
         <KeyListener handlers={this.handlers} />
       </div>
     )

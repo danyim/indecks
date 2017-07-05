@@ -152,6 +152,28 @@
     opacity: 0.6
     &:hover
       opacity: 1
+  label
+    > span
+      font-family: 'Dosis', sans-serif
+      text-transform: uppercase
+      font-size: 1.25rem
+      padding-left: 0.5rem
+      transition: all 0.2s
+      color: grey
+      a, a.visited, a.active, a.link
+        color: grey
+        font-weight: bold
+
+    > input[type='text'],
+    > input[type='password'],
+    > textarea
+      margin-top: 0
+    &:hover > span,
+    &:hover > span > a,
+    &:hover > span > a.visited,
+    &:hover > span > a.active,
+    &:hover > span > a.link
+      color: black
   .large-input
     font-size: 2.5rem
 

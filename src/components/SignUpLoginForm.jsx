@@ -106,13 +106,24 @@ class SignUpLoginForm extends React.Component {
         <div className={styles.error}>
           {this.state.message}
         </div>
-        <input
-          name="username"
-          type="text"
-          placeholder="jane@gmail.com"
-          onChange={this.handleChange}
-        />
-        <input name="password" type="password" onChange={this.handleChange} />
+        <label htmlFor="username">
+          <span>Email</span>
+          <input
+            name="username"
+            type="text"
+            placeholder="jane.doe@gmail.com"
+            onChange={this.handleChange}
+          />
+        </label>
+        <label htmlFor="password">
+          <span>Password</span>
+          <input
+            name="password"
+            type="password"
+            placeholder="*********"
+            onChange={this.handleChange}
+          />
+        </label>
 
         <div className={`${styles['control-buttons']}`}>
           <button
