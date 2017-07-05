@@ -27,12 +27,12 @@ class ModalHelpButton extends React.Component {
   }
 
   toggleModal(e) {
-    // console.log('screenX', e.nativeEvent.screenX)
-    // console.log('screenY', e.nativeEvent.screenY)
+    // console.log('pageX', e.nativeEvent.pageX)
+    // console.log('pageY', e.nativeEvent.pageY)
     this.setState({
       open: !this.state.open,
-      x: e.nativeEvent.screenX + 200,
-      y: e.nativeEvent.screenY
+      x: e.nativeEvent.pageX + 215,
+      y: e.nativeEvent.pageY + 75
     })
   }
 
@@ -48,7 +48,7 @@ class ModalHelpButton extends React.Component {
           onClick={this.toggleModal}
           role="presentation"
         >
-          <i className="fa fa-question-circle-o" aria-hidden="true" />
+          <i className="fa fa-question-circle-o" />
         </span>
 
         <Modal

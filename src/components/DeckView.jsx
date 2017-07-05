@@ -136,7 +136,8 @@ class DeckView extends React.Component {
               &nbsp;
               <ModalHelpButton style={{ minWidth: '350px' }}>
                 <p>
-                  Click anywhere on the title or description to edit the field
+                  Click anywhere on the deck&apos;s <strong>title</strong> or{' '}
+                  <strong>description</strong> to immediately edit the field
                 </p>
               </ModalHelpButton>
             </p>

@@ -35,7 +35,16 @@ exports[`DeckView should render self and subcomponents 1`] = `
           }
         >
           <p>
-            Click anywhere on the title or description to edit the field
+            Click anywhere on the deck's 
+            <strong>
+              title
+            </strong>
+             or
+             
+            <strong>
+              description
+            </strong>
+             to immediately edit the field
           </p>
         </ModalHelpButton>
       </p>
