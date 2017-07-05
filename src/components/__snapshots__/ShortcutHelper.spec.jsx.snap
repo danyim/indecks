@@ -23,9 +23,9 @@ exports[`ShortcutHelper should render self and subcomponents 1`] = `
     </p>
     <p>
       <kbd>
-        D
+        S
       </kbd>
-       - Deck quick selector
+       - Deck Quick Selector
     </p>
     <p>
       <kbd>

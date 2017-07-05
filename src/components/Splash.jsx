@@ -23,28 +23,30 @@ const Splash = props =>
         <br />
         <p>
           <strong>
-            To get started click on the{'  '}
+            To get started, click on the{'  '}
             <i className="fa fa-plus-square-o" />
             {'  '}on the top left to start creating a new deck.
           </strong>
           <br />
-          If you want a quick demo,{' '}
+          Is that too much work?{' '}
           <a
             className="pointer"
             onClick={props.loadSampleDecks}
             role="presentation"
           >
-            click here to load sample decks
+            Click here to load sample decks
           </a>{' '}
-          and play with them immediately.{' '}
+          to play with them immediately.{' '}
         </p>
         <br />
+        <p>It is strongly recommended to use Indecks with an account.</p>
         <p>
-          It&apos;s strongly recommended to use Indecks with an account. Signing
-          up is quick and painfree (no email verification required), and having
-          an account will allow you to log in once and have your data{' '}
+          Signing up is quick and pain-free (no email verification required).
+          Once you create your account, you will log in once and all your data
+          will be{' '}
           <strong>
-            synchronized and available on any signed-in device you have
+            synchronized and available on any signed in device{' '}
+            <em>in real-time</em>
           </strong>.
         </p>
         <div className={styles.auth}>

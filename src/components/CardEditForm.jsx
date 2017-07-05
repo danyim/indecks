@@ -39,7 +39,6 @@ const CardEditForm = props => {
           type="text"
           className="large-input"
           rows="2"
-          autoFocus
           placeholder="Title"
         />
       </label>

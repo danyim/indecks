@@ -43,7 +43,8 @@ exports[`CardView should render self and subcomponents 1`] = `
         <a
           className="front active"
           onClick={[Function]}
-          tabIndex="0"
+          role="presentation"
+          title="View front of card"
         >
           FRONT
         </a>
@@ -55,7 +56,8 @@ exports[`CardView should render self and subcomponents 1`] = `
         <a
           className="back"
           onClick={[Function]}
-          tabIndex="-1"
+          role="presentation"
+          title="View back of card"
         >
           BACK
         </a>

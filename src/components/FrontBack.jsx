@@ -22,17 +22,19 @@ const FrontBack = props => {
   return (
     <div className={styles.frontBack}>
       <a
-        tabIndex="0"
         className={classNames(front)}
         onClick={() => props.handleFlip(false)}
+        role="presentation"
+        title="View front of card"
       >
         FRONT
       </a>
       <span className={styles.separator}>|</span>
       <a
-        tabIndex="-1"
         className={classNames(back)}
         onClick={() => props.handleFlip(true)}
+        role="presentation"
+        title="View back of card"
       >
         BACK
       </a>

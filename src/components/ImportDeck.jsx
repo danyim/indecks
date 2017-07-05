@@ -201,8 +201,8 @@ class ImportDeck extends React.Component {
                   for a card
                 </p>
                 <code>
-                  Test title 1, test description<br />
-                  Test title 2, test description
+                  &quot;My Test Title&quot;,&quot;Test description&quot;<br />
+                  &quot;Another title&quot;,&quot;Yet another description&quot;
                 </code>
               </ModalHelpButton>
             </p>
@@ -214,7 +214,9 @@ class ImportDeck extends React.Component {
               multiple={false}
               accept="application/json,text/csv"
             >
-              <p>Click here to import or drag and drop the deck JSON here</p>
+              <p>
+                Click here or drag and drop the deck JSON/CSV file in the box
+              </p>
             </Dropzone>
             <div className={`${styles['or-bar']}`}>
               <hr />

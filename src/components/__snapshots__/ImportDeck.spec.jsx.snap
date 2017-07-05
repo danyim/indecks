@@ -84,9 +84,9 @@ exports[`ImportDeck should render self and subcomponents 1`] = `
             Imported CSVs should have two columns, a title and an answer for a card
           </p>
           <code>
-            Test title 1, test description
+            "My Test Title","Test description"
             <br />
-            Test title 2, test description
+            "Another title","Yet another description"
           </code>
         </ModalHelpButton>
       </p>
@@ -104,7 +104,7 @@ exports[`ImportDeck should render self and subcomponents 1`] = `
         rejectClassName="drop-reject"
       >
         <p>
-          Click here to import or drag and drop the deck JSON here
+          Click here or drag and drop the deck JSON/CSV file in the box
         </p>
       </Dropzone>
       <div

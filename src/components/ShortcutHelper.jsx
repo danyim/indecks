@@ -13,7 +13,7 @@ const ShortcutHelper = () =>
         <kbd>I</kbd> - Add/Import Deck
       </p>
       <p>
-        <kbd>D</kbd> - Deck quick selector
+        <kbd>S</kbd> - Deck Quick Selector
       </p>
       <p>
         <kbd>,</kbd> - Settings
