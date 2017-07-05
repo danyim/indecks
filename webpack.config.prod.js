@@ -18,7 +18,9 @@ module.exports = {
   },
   plugins: [
     // css files from the extract-text-plugin loader
-    new ExtractTextPlugin('[name]-[chunkhash].css', { allChunks: true }),
+    new ExtractTextPlugin('[name]-[chunkhash].css', {
+      allChunks: true
+    }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
