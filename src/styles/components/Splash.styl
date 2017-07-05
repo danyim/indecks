@@ -1,5 +1,20 @@
 @import '../_variables';
 
+.container
+  flex: 0 0 100%
+  padding: 0 1rem
+
+.splash
+  background-color: white
+  border: 1px solid lightgrey
+  width: 800px
+  padding: 2rem
+  margin: 0 auto
+
+.auth
+  width: 500px
+  margin: 0 auto
+
 h2.header
   margin-top: 0
   padding-bottom: .3rem
@@ -22,3 +37,12 @@ p
 
 .shortcut-helper-content
   //
+
+
+@media (max-width: cardWidth)
+  .splash
+    max-width: unset
+    width: 99%
+  .auth
+    width: unset
+    margin: unset

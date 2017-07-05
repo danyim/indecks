@@ -62,3 +62,17 @@ export const routeWithSubRoutes = route =>
       // </route.component>
       <route.component {...props} routes={route.routes} />}
   />
+
+/**
+ * Generates a random string
+ * @param  {Number} length Length of string
+ * @return {String}        Random string
+ */
+export const generateRandomString = (length = 8) => {
+  const chars = '0123456789abcdefABCDEFGHIJKLMNPQRSTUVWXYZ'
+  let result = ''
+  for (let i = length; i > 0; i -= 1) {
+    result += chars[Math.floor(Math.random() * chars.length)]
+  }
+  return result
+}

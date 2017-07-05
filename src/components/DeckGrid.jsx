@@ -3,13 +3,15 @@ import PropTypes from 'prop-types'
 import { TransitionMotion, spring } from 'react-motion'
 import { DeckShape } from './__commonShapes'
 import Deck from './Deck'
+import Splash from './Splash'
 import styles from '../styles/components/DeckGrid.styl'
 
 class DeckGrid extends React.Component {
   static propTypes = {
     push: PropTypes.func.isRequired,
     decks: PropTypes.arrayOf(DeckShape).isRequired,
-    removeDeck: PropTypes.func.isRequired
+    removeDeck: PropTypes.func.isRequired,
+    loadSampleDecks: PropTypes.func.isRequired
   }
 
   static defaultProps = {}
@@ -55,9 +57,12 @@ class DeckGrid extends React.Component {
               />
             )}
             {interpolatedStyles.length === 0 &&
+              /*
               <p key="no_value" className="center">
                 Click the + button on the top left to add a deck
-              </p>}
+              </p>
+              */
+              <Splash loadSampleDecks={this.props.loadSampleDecks} />}
           </section>}
       </TransitionMotion>
     )

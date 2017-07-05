@@ -1,5 +1,10 @@
 import firebase from '../../firebase'
-import { createReducer, findBestNextIndex } from '../../utils'
+import {
+  createReducer,
+  findBestNextIndex,
+  generateRandomString
+} from '../../utils'
+import samples from '../../data/samples'
 
 /**
  * Actions
@@ -254,26 +259,29 @@ export const fetchUserDecks = () => (dispatch, getState) => {
   // const deckExists = deckId =>
   //   state.decks.filter(v => v.id === deckId).length > 0
 
-  firebase.database().ref(`decks/${state.user.uid}`).on('value', decks => {
-    const deckArray = []
-    decks.forEach(deck => {
-      const val = deck.val()
-      // Bug where Firebase does not save properties with empty arrays, so
-      // we'll have to rebuild it when we receive a deck like that
-      if (!val.cards) {
-        val.cards = []
-      }
-      // // Only load the deck from Firebase if it doesn't already exist
-      // if (!deckExists(val.id)) {
-      //   dispatch(addDeck(val))
-      //   decksLoaded++
-      // } else {
-      //   decksDuplicate++
-      // }
-      deckArray.push(val)
+  return firebase
+    .database()
+    .ref(`decks/${state.user.uid}`)
+    .on('value', decks => {
+      const deckArray = []
+      decks.forEach(deck => {
+        const val = deck.val()
+        // Bug where Firebase does not save properties with empty arrays, so
+        // we'll have to rebuild it when we receive a deck like that
+        if (!val.cards) {
+          val.cards = []
+        }
+        // // Only load the deck from Firebase if it doesn't already exist
+        // if (!deckExists(val.id)) {
+        //   dispatch(addDeck(val))
+        //   decksLoaded++
+        // } else {
+        //   decksDuplicate++
+        // }
+        deckArray.push(val)
+      })
+      dispatch(loadDecks(deckArray))
     })
-    dispatch(loadDecks(deckArray))
-  })
 }
 
 export const saveDecksToFirebase = () => (dispatch, getState) => {
@@ -292,6 +300,16 @@ export const saveDecksToFirebase = () => (dispatch, getState) => {
     console.log(`saved ${promises.length} decks`)
   }
   return Promise.all(promises)
+}
+
+export const loadSampleDecks = () => dispatch => {
+  let sampleDeck
+  samples.forEach(d => {
+    sampleDeck = { ...d }
+    // Create a new ID for the new samples
+    sampleDeck.id = generateRandomString()
+    dispatch(addDeck(sampleDeck))
+  })
 }
 
 // Unused
@@ -335,7 +353,7 @@ export const saveCardToFirebase = (cardIndex, deckId) => (
  * Action Listeners
  */
 // Ensure that we dispatch the save to firebase action after these actions
-const saveDecks = (action, dispatch, state) => {
+const saveDecks = (action, dispatch /* state */) => {
   dispatch(saveDecksToFirebase())
 }
 

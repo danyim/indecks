@@ -14,7 +14,8 @@ const defaultProps = {
     }
   ],
   removeDeck: jest.fn(),
-  push: () => {}
+  push: () => {},
+  loadSampleDecks: () => {}
 }
 
 function setup(props = defaultProps) {
@@ -37,7 +38,9 @@ function setupFull(props = defaultProps) {
 
 describe('DeckGrid', () => {
   it('should render self and subcomponents', () => {
-    const wrapper = shallow(<DeckGrid {...defaultProps} />)
+    let wrapper = shallow(<DeckGrid {...defaultProps} />)
+    expect(toJson(wrapper)).toMatchSnapshot()
+    wrapper = shallow(<DeckGrid {...defaultProps} decks={[]} />)
     expect(toJson(wrapper)).toMatchSnapshot()
   })
 
@@ -67,11 +70,11 @@ describe('DeckGrid', () => {
     expect(wrapper.find('Deck').length).toBe(props.decks.length)
   })
 
-  it('should display a message if no decks are found', () => {
-    const { wrapper } = setupFull({
+  it('should display no decks if empty', () => {
+    const { wrapper } = setup({
       ...defaultProps,
       decks: []
     })
-    expect(wrapper.find('p.center').exists()).toBe(true)
+    expect(wrapper.find('Deck').length).toBe(0)
   })
 })

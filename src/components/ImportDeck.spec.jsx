@@ -7,6 +7,7 @@ import ImportDeck from './ImportDeck'
 const defaultProps = {
   addDeck: () => {},
   push: () => {},
+  loadSampleDecks: () => {},
   maxDeckTitleLength: 160,
   maxDeckDescLength: 300
 }
@@ -75,17 +76,17 @@ describe('ImportDeck', () => {
 
   it('should load 4 sample decks and then navigate home', () => {
     const push = jest.fn()
-    const handlerAdd = jest.fn()
+    const handlerSample = jest.fn()
     const { wrapper } = setup({
       ...defaultProps,
-      addDeck: handlerAdd,
+      loadSampleDecks: handlerSample,
       push
     })
 
     wrapper
       .find('button.button[children="Load Sample Decks"]')
       .simulate('click')
-    expect(handlerAdd.mock.calls.length).toBe(4)
+    expect(handlerSample.mock.calls.length).toBe(1)
     expect(push.mock.calls.length).toBe(1)
     expect(push.mock.calls[0][0]).toBe('/')
   })

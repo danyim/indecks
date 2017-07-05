@@ -4,15 +4,17 @@ import styles from '../styles/components/SignUpLoginForm.styl'
 
 class SignUpLoginForm extends React.Component {
   static propTypes = {
-    isAuthenticating: PropTypes.bool.isRequired,
     login: PropTypes.func.isRequired,
     signUpEmail: PropTypes.func.isRequired,
     signInGithub: PropTypes.func.isRequired, // eslint-disable-line
     signInTwitter: PropTypes.func.isRequired, // eslint-disable-line
-    signInGoogle: PropTypes.func.isRequired // eslint-disable-line
+    signInGoogle: PropTypes.func.isRequired, // eslint-disable-line
+    isAuthenticating: PropTypes.bool
   }
 
-  static defaultProps = {}
+  static defaultProps = {
+    isAuthenticating: false
+  }
 
   static providerMap = {
     GITHUB: 'signInGithub',
@@ -26,10 +28,12 @@ class SignUpLoginForm extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleLoginClick = this.handleLoginClick.bind(this)
     this.handleSignUpClick = this.handleSignUpClick.bind(this)
+    this.handleClickProviderAuth = this.handleClickProviderAuth.bind(this)
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      message: ''
     }
   }
 

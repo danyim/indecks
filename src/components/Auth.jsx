@@ -5,19 +5,20 @@ import styles from '../styles/components/Auth.styl'
 
 class Auth extends React.Component {
   static propTypes = {
-    authenticated: PropTypes.bool.isRequired,
+    authenticated: PropTypes.bool,
     logout: PropTypes.func.isRequired,
     saveDecksToFirebase: PropTypes.func.isRequired,
     fetchUserDecks: PropTypes.func.isRequired,
-    photoURL: PropTypes.string,
     displayName: PropTypes.string,
     email: PropTypes.string
+    // photoURL: PropTypes.string,
   }
 
   static defaultProps = {
-    photoURL: null,
+    authenticated: false,
     displayName: null,
     email: null
+    // photoURL: null,
   }
 
   constructor(props) {

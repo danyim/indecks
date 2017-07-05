@@ -9,6 +9,10 @@ const initialState = {
   decks: [],
   config: {
     shuffle: false
+  },
+  user: {
+    authenticated: false,
+    isAuthenticating: false
   }
 }
 

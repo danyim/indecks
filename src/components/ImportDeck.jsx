@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Dropzone from 'react-dropzone'
-import samples from '../data/samples'
+import { generateRandomString } from '../utils'
 import styles from '../styles/components/ImportDeck.styl'
 
 class ImportDeck extends React.Component {
   static propTypes = {
     push: PropTypes.func.isRequired,
     addDeck: PropTypes.func.isRequired,
+    loadSampleDecks: PropTypes.func.isRequired,
     handleClose: PropTypes.func,
     maxDeckTitleLength: PropTypes.number,
     maxDeckDescLength: PropTypes.number
@@ -17,15 +18,6 @@ class ImportDeck extends React.Component {
     handleClose: () => {},
     maxDeckTitleLength: 160,
     maxDeckDescLength: 300
-  }
-
-  static generateRandomString(length = 8) {
-    const chars = '0123456789abcdefABCDEFGHIJKLMNPQRSTUVWXYZ'
-    let result = ''
-    for (let i = length; i > 0; i -= 1) {
-      result += chars[Math.floor(Math.random() * chars.length)]
-    }
-    return result
   }
 
   constructor(props) {
@@ -52,7 +44,7 @@ class ImportDeck extends React.Component {
     const reader = new FileReader()
     const addToDeck = inputDeck => {
       const deck = { ...inputDeck }
-      deck.id = ImportDeck.generateRandomString() // Generate a new ID regardless
+      deck.id = generateRandomString() // Generate a new ID regardless
       // Absolutely no validation of the JSON here...
       // We're trusting that the user is providing a indecks-produced deck json
       this.props.addDeck(deck)
@@ -76,7 +68,7 @@ class ImportDeck extends React.Component {
         // Navigate to the newly imported deck
         this.props.push(`/view/${resultJson.id}`)
       }
-      // resultJson.id = ImportDeck.generateRandomString(); // Generate a new ID regardless
+      // resultJson.id = generateRandomString(); // Generate a new ID regardless
       // // Absolutely no validation of the JSON here...
       // // We're trusting that the user is providing a indecks-produced deck json
       // this.props.addDeck(resultJson);
@@ -105,7 +97,7 @@ class ImportDeck extends React.Component {
       return false
     }
 
-    const id = ImportDeck.generateRandomString()
+    const id = generateRandomString()
     this.props.addDeck({
       id,
       title: this.state.title,
@@ -121,12 +113,7 @@ class ImportDeck extends React.Component {
   }
 
   handleLoadSample() {
-    let sampleDeck
-    samples.forEach(d => {
-      sampleDeck = { ...d }
-      sampleDeck.id = ImportDeck.generateRandomString()
-      this.props.addDeck(sampleDeck)
-    })
+    this.props.loadSampleDecks()
 
     // Close the modal
     this.props.handleClose()

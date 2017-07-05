@@ -1,17 +1,58 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import AuthContainer from '../containers/AuthContainer'
 import styles from '../styles/components/Splash.styl'
 
-const propTypes = {}
+const propTypes = {
+  loadSampleDecks: PropTypes.func.isRequired
+}
 const defaultProps = {}
 
-const Splash = () =>
-  <section className={`${styles.splash}`}>
-    <h2 className={`${styles.header}`}>Welcome to Indecks</h2>
-    <div className={`${styles['shortcut-helper-content']}`}>
-      Hey there! Welcome to the Indecks app. Indecks is an interactive flipcard
-      study aid, just like how you&apos;ve used index cards in the past.
-    </div>
-  </section>
+const Splash = props =>
+  <div className={styles.container}>
+    <article className={`splash ${styles.splash}`}>
+      <h2 className={styles.header}>Dive into Indecks</h2>
+      <div className={`${styles['shortcut-helper-content']}`}>
+        <p>
+          Indecks is a interactive study aid modeled after index cards used for
+          studying material that require repetition and memorization. Just like
+          the physical object, Indecks features <em>decks</em> (or topics) of
+          flippable <em>cards</em>.
+        </p>
+        <br />
+        <p>
+          <strong>
+            To get started, click on the{'  '}
+            <i className="fa fa-plus-square-o" />
+            {'  '}on the top left to start creating a new deck.
+          </strong>
+          <br />
+          If want a quick demo,{' '}
+          <a
+            className="pointer"
+            onClick={props.loadSampleDecks}
+            role="presentation"
+          >
+            click here to load some sample decks to play around with
+          </a>.
+        </p>
+        <br />
+        <p>
+          <strong>
+            It&apos;s strongly recommended to use Indecks with an account.
+          </strong>{' '}
+          Signing up is quick and painfree (no email verification required), and
+          having an account will allow you to log in once and have your data{' '}
+          <strong>
+            synchronized and available on any signed-in device you have
+          </strong>.
+        </p>
+        <div className={styles.auth}>
+          <AuthContainer />
+        </div>
+      </div>
+    </article>
+  </div>
 
 Splash.propTypes = propTypes
 Splash.defaultProps = defaultProps
