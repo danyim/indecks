@@ -19,7 +19,7 @@ const defaultProps = {
 
 const fields = ['cardTitle', 'cardAnswer']
 
-export const CardEditForm = props => {
+const CardEditForm = props => {
   const {
     deckId,
     cardIndex,
@@ -39,6 +39,7 @@ export const CardEditForm = props => {
           type="text"
           className="large-input"
           rows="2"
+          autoFocus
           placeholder="Title"
         />
       </label>

@@ -32,6 +32,17 @@ class ImportDeck extends React.Component {
       title: '',
       description: ''
     }
+
+    this.focusInput = null
+  }
+
+  componentDidMount() {
+    // This happens a little too fast. If you get to this view via keyboard
+    // shortcut, the focus event fires before the keyup and writes the value
+    // into the field. Adding a 100ms delay prevents this from happening.
+    setTimeout(() => {
+      this.focusInput.focus()
+    }, 100)
   }
 
   handleChange(event, key) {
@@ -153,6 +164,7 @@ class ImportDeck extends React.Component {
                 type="text"
                 className="large-input"
                 name="title"
+                ref={input => (this.focusInput = input)}
                 placeholder="Enter a deck title here"
                 maxLength="30"
                 onChange={e => this.handleChange(e, 'title')}
