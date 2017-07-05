@@ -1,53 +1,58 @@
 @import '../_variables';
 
-.button
-  padding: 0 0.25rem
-  & > i
-    color: grey
-    font-size: 2.0rem
-    cursor: pointer
+.modal-overlay
+  background-color: rgba(0, 0, 0, .15)
+  transition: all .2s
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 1500
 
-.modal
-  z-index: 9000
-  width: unset
-  max-width: 400px
-  top: unset
-  left: unset
-  margin-right: unset
-  transform: unset
-  padding-top: 4rem // Extra space to accomodate the close button
-  animation: fadein .2s
+.modal-content
+  width: 75%
+  max-width: 700px
+  background-color: white
+  position: absolute
+  top: 50%
+  left: 50%
+  right: auto
+  bottom: auto
+  margin-right: -50%
+  transform: translate(-50%, -50%) !important
+  border: 1px solid black
+  padding: 3.5rem
+  transition: all .2s
+
   :global
     .close-modal
       position: absolute
-      right: 2rem
-      top: 2rem
+      right: 3.5rem
+      top: calc(3.5rem + 1.2rem)
       cursor: pointer
       color: lighten(black, 40%)
       z-index: 100
+  h2
+    margin-top: 0
+    padding-bottom: .3rem
+    border-bottom: .6rem solid black
+    // This padding covers the "Close" text when the screen width gets smaller
+    padding-right: 4rem
 
 @media (max-width: cardWidth)
-  .modal
+  .modal-content
     width: 95%
-    height: unset
-    max-height: 95%
+    height: 95%
+    min-width: unset
     position: inherit
-    top: 2% !important
-    left: 50% !important
+    top: 2%
+    left: 50%
     transform: translate(-50%, 1%) !important
     padding: 2rem
     overflow: scroll
 
-
-.overlay
-  background-color: transparent
-
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
+    :global
+      .close-modal
+        right: 2rem
+        top: calc(2rem + 1.2rem)
