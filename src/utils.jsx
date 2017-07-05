@@ -36,7 +36,7 @@ export const findMissing = (a, min = 1) => {
  * @return {Number}     Index of the best next value
  */
 export const findBestNextIndex = (a, key) =>
-  findMissing(a.map(x => x[key])) ||
+  findMissing(a.map(x => x[key]), 0) ||
   Math.max(0, Math.max.apply(null, a.map(x => x[key])) + 1)
 
 /**
@@ -75,4 +75,117 @@ export const generateRandomString = (length = 8) => {
     result += chars[Math.floor(Math.random() * chars.length)]
   }
   return result
+}
+
+const cahDirectives = [
+  ['___________: good til the last drop', '[noun]'],
+  ['Why am I sticky?', '[noun]'],
+  ['What helps Obama unwind?', '[any]'],
+  ['Daddy, why is mommy crying?', '[noun]'],
+  ['I get by with a little help from ___________', '[any]'],
+  ['I drink to forget ___________', '[any]'],
+  ['But before I kill you, Mr. Bond, I must show you ___________.', '[noun]'],
+  ['What never fails to liven up the party?', '[any]'],
+  ["Why can't I sleep at night?", '[noun]'],
+  ["___________. It's a trap!", '[noun]'],
+  ['___________. High five, bro.', '[noun]'],
+  [
+    'And the Academy Award for ___________ goes to ___________',
+    '[verb] [noun]'
+  ],
+  [
+    "I'm sorry Professor, but I couldn't complete my homework because of ___________",
+    '[noun]'
+  ],
+  ["What's that smell?", '[any]'],
+  ["What's a girl's best friend?", '[any]'],
+  ["What's there a ton of in heaven?", '[noun]']
+]
+const verbs = [
+  'Prancing',
+  'Pooping back and forth. Forever.',
+  'Being fabulous',
+  'A gentle caress of the inner thigh',
+  'Being marginalized',
+  'Throwing a virgin into a volcano',
+  'Destroying the evidence',
+  'Teaching a robot to love',
+  'Making a pouty face',
+  'Doing the right thing'
+]
+const nouns = [
+  'Racism',
+  'Old-people smell',
+  'Classist undertones',
+  'An oversized lollipop',
+  'Boogers',
+  'A tiny horse',
+  'Barack Obama',
+  'Elderly Japanese men',
+  'A really cool hat',
+  'Fear itself',
+  'Science',
+  'Elderly Japanese men',
+  'Stranger danger',
+  'The terrorists',
+  'Same-sex ice dancing',
+  'Cheating in the Special Olympics',
+  'Bingeing and purging',
+  'William Shatner',
+  'Heteronormativity',
+  'Nickelback',
+  'Tom Cruise',
+  'The profoundly handicapped',
+  'The placenta',
+  'Chainsaws for hands',
+  'Arnold Schwarzenegger',
+  'An icepick lobotomy',
+  'Goblins',
+  'Object permanence',
+  'Dying',
+  'A falcon with a cap on its head',
+  'Hormone injections',
+  'Dying of dysentery',
+  'Sexy pillow fights',
+  'Famine',
+  'Estrogen',
+  'Scientology',
+  'Italians',
+  'Children on leashes',
+  'The chinese gymnastics team',
+  'A disappointing birthday party'
+]
+
+/**
+ * Generates a Cards Against Humanity card
+ * @return {Object} Title and answer
+ */
+export const generateCAHCard = () => {
+  let title = ''
+  let answer = ''
+  const directive =
+    cahDirectives[Math.floor(Math.random() * cahDirectives.length)]
+
+  title = directive[0]
+  directive[1].split(' ').forEach(w => {
+    let word = w
+    if (w === '[any]') {
+      word = Math.random() >= 0.5 ? '[verb]' : '[noun]'
+    }
+
+    if (word === '[verb]') {
+      answer += verbs[Math.floor(Math.random() * verbs.length)]
+    } else if (word === '[noun]') {
+      answer += nouns[Math.floor(Math.random() * nouns.length)]
+    } else {
+      answer += word
+    }
+
+    answer += '\n\n'
+  })
+
+  return {
+    title,
+    answer
+  }
 }

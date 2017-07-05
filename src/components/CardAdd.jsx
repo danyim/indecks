@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import CardPreview from './CardPreview'
+import { generateCAHCard } from '../utils'
 import styles from '../styles/components/CardAdd.styl'
 
 class CardAdd extends React.Component {
@@ -38,18 +39,13 @@ class CardAdd extends React.Component {
 
   handleSubmit(e, deckId) {
     e.preventDefault()
-    if (
-      !this.state.title ||
-      !this.state.answer ||
-      this.state.title.trim() === '' ||
-      this.state.answer.trim() === ''
-    ) {
+    if (!this.state.title || this.state.title.trim() === '') {
       return
     }
 
     const card = {
       title: this.state.title,
-      answer: this.state.answer
+      answer: this.state.answer || ''
     }
     this.props.handleSubmit(deckId, card)
   }
@@ -66,6 +62,7 @@ class CardAdd extends React.Component {
 
   render() {
     const { deckId } = this.props
+    const { title, answer } = generateCAHCard()
 
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`}>
@@ -79,19 +76,30 @@ class CardAdd extends React.Component {
               type="text"
               className="large-input"
               name="title"
-              placeholder="Title"
+              tabIndex={0}
+              placeholder={title}
               ref={input => (this.focusInput = input)}
               onChange={e => this.handleChange(e, 'title')}
             />
           </label>
 
           <label htmlFor="answer">
-            <span>Card Contents</span>
+            <span>
+              Card Contents&nbsp;&nbsp;(This input supports{' '}
+              <a
+                href="//guides.github.com/features/mastering-markdown/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Markdown
+              </a>)
+            </span>
             <textarea
               type="text"
               className="mono"
               name="answer"
-              placeholder="Answer (Markdown)"
+              tabIndex={-1}
+              placeholder={answer}
               rows="4"
               onChange={e => this.handleChange(e, 'answer')}
             />

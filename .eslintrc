@@ -75,7 +75,6 @@
     "no-await-in-loop": 1,
     "object-shorthand": 1,
     "strict": [2, "never"],
-    "quotes": ["error", "single"],
     "jsx-quotes": ["error", "prefer-double"],
     "class-methods-use-this": 1,
     "no-plusplus": 0,

@@ -30,7 +30,7 @@ exports[`ImportDeck should render self and subcomponents 1`] = `
           maxLength="30"
           name="title"
           onChange={[Function]}
-          placeholder="Study Material for Advanced Basketweaving"
+          placeholder="Enter a deck title here"
           type="text"
         />
       </label>
@@ -43,7 +43,7 @@ exports[`ImportDeck should render self and subcomponents 1`] = `
         <textarea
           name="description"
           onChange={[Function]}
-          placeholder="Methods for weaving baskets of all kind, one weave at a time."
+          placeholder="Enter a short description of of the deck (Markdown supported)"
           rows="3"
           type="text"
         />
@@ -67,8 +67,11 @@ exports[`ImportDeck should render self and subcomponents 1`] = `
       <h4>
         Import an existing deck collection or deck
       </h4>
+      <p>
+        Supports a previous JSON export of your deck collections or a CSV of cards
+      </p>
       <Dropzone
-        accept="application/json"
+        accept="application/json,text/csv"
         activeClassName="drop-active"
         className="drop"
         disableClick={false}

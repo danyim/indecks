@@ -18,7 +18,8 @@ exports[`CardAdd should render self and subcomponents 1`] = `
         className="large-input"
         name="title"
         onChange={[Function]}
-        placeholder="Title"
+        placeholder="I drink to forget ___________"
+        tabIndex={0}
         type="text"
       />
     </label>
@@ -26,14 +27,26 @@ exports[`CardAdd should render self and subcomponents 1`] = `
       htmlFor="answer"
     >
       <span>
-        Card Contents
+        Card Contents  (This input supports
+         
+        <a
+          href="//guides.github.com/features/mastering-markdown/"
+          rel="noreferrer noopener"
+          target="_blank"
+        >
+          Markdown
+        </a>
+        )
       </span>
       <textarea
         className="mono"
         name="answer"
         onChange={[Function]}
-        placeholder="Answer (Markdown)"
+        placeholder="Stranger danger
+      
+      "
         rows="4"
+        tabIndex={-1}
         type="text"
       />
     </label>

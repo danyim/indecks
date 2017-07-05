@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import CSV from 'comma-separated-values'
 import Dropzone from 'react-dropzone'
 import { generateRandomString } from '../utils'
 import styles from '../styles/components/ImportDeck.styl'
@@ -39,34 +40,53 @@ class ImportDeck extends React.Component {
     this.setState(state)
   }
 
+  createShellDeck() {
+    return {
+      id: generateRandomString(),
+      title: 'Imported Deck',
+      description: 'Imported from CSV'
+    }
+  }
+
   handleDrop(files) {
     const file = files[0]
     const reader = new FileReader()
-    const addToDeck = inputDeck => {
-      const deck = { ...inputDeck }
-      deck.id = generateRandomString() // Generate a new ID regardless
-      // Absolutely no validation of the JSON here...
-      // We're trusting that the user is providing a indecks-produced deck json
-      this.props.addDeck(deck)
-    }
 
     reader.onload = e => {
       const result = e.target.result
-      const resultJson = JSON.parse(result)
-      if (Array.isArray(resultJson)) {
-        // Trying to import multiple decks
-        resultJson.forEach(d => {
-          addToDeck(d)
-        })
-        // Navigate to the deck grid view
-        this.props.push('/')
-      } else {
-        // Add the single deck
-        addToDeck(resultJson)
+      let id
+
+      if (file.type === 'text/csv') {
+        const csv = CSV.parse(result).map((row, i) => ({
+          title: row[0],
+          answer: row[1],
+          index: i
+        }))
+        const deck = this.createShellDeck()
+        deck.cards = csv
+        this.props.addDeck(deck)
         // Close the modal
         this.props.handleClose()
         // Navigate to the newly imported deck
-        this.props.push(`/view/${resultJson.id}`)
+        this.props.push(`/view/${deck.id}`)
+      } else if (file.type === 'application/json') {
+        const resultJson = JSON.parse(result)
+        if (Array.isArray(resultJson)) {
+          // Trying to import multiple decks
+          resultJson.forEach(d => {
+            this.props.addDeck({ ...d, id: generateRandomString() })
+          })
+          // Navigate to the deck grid view
+          this.props.push('/')
+        } else {
+          id = generateRandomString()
+          // Add the single deck
+          this.props.addDeck({ ...resultJson, id })
+          // Close the modal
+          this.props.handleClose()
+          // Navigate to the newly imported deck
+          this.props.push(`/view/${id}`)
+        }
       }
       // resultJson.id = generateRandomString(); // Generate a new ID regardless
       // // Absolutely no validation of the JSON here...
@@ -133,7 +153,7 @@ class ImportDeck extends React.Component {
                 type="text"
                 className="large-input"
                 name="title"
-                placeholder="Study Material for Advanced Basketweaving"
+                placeholder="Enter a deck title here"
                 maxLength="30"
                 onChange={e => this.handleChange(e, 'title')}
               />
@@ -143,7 +163,7 @@ class ImportDeck extends React.Component {
               <textarea
                 type="text"
                 name="description"
-                placeholder="Methods for weaving baskets of all kind, one weave at a time."
+                placeholder="Enter a short description of of the deck (Markdown supported)"
                 rows="3"
                 onChange={e => this.handleChange(e, 'description')}
               />
@@ -158,13 +178,17 @@ class ImportDeck extends React.Component {
               <p>or</p>
             </div>
             <h4>Import an existing deck collection or deck</h4>
+            <p>
+              Supports a previous JSON export of your deck collections or a CSV
+              of cards
+            </p>
             <Dropzone
               onDrop={this.handleDrop}
               className={`${styles.drop}`}
               activeClassName={`${styles['drop-active']}`}
               rejectClassName={`${styles['drop-reject']}`}
               multiple={false}
-              accept="application/json"
+              accept="application/json,text/csv"
             >
               <p>Click here to import or drag and drop the deck JSON here</p>
             </Dropzone>

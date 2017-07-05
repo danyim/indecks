@@ -7,11 +7,12 @@
   flex: 1 0 auto
   flex-flow: row wrap
   justify-content: flex-start
+  align-content: flex-start
 
   :global
     .grid-figure
       flex: 0 0 calc(33% - 2rem)
-      max-height: 400px
+      height: 400px
       // This would be nice to have if it didn't bleed into the single cards
       transition: all .1s ease-out
       &:hover
@@ -22,3 +23,4 @@
     :global
       .grid-figure
         flex: 1 1 auto
+        height: unset
