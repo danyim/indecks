@@ -26,6 +26,18 @@ exports[`DeckView should render self and subcomponents 1`] = `
         <strong>
           1 cards
         </strong>
+         
+        <ModalHelpButton
+          style={
+            Object {
+              "minWidth": "350px",
+            }
+          }
+        >
+          <p>
+            Click anywhere on the title or description to edit the field
+          </p>
+        </ModalHelpButton>
       </p>
       <RIETextArea
         change={[Function]}
@@ -40,6 +52,7 @@ exports[`DeckView should render self and subcomponents 1`] = `
         validate={[Function]}
         value="Deck description"
       />
+       
     </div>
     <div
       className="control-buttons"

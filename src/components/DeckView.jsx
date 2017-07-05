@@ -8,6 +8,7 @@ import Card from './Card'
 import ExportDeckButton from './ExportDeckButton'
 import Overlay from './Overlay'
 import OverlayRow from './OverlayRow'
+import ModalHelpButton from './ModalHelpButton'
 import styles from '../styles/components/DeckView.styl'
 
 class DeckView extends React.Component {
@@ -131,9 +132,13 @@ class DeckView extends React.Component {
               classInvalid="invalid"
             />
             <p>
-              <strong>
-                {`${deck.cards.length} cards`}
-              </strong>
+              <strong>{`${deck.cards.length} cards`}</strong>
+              &nbsp;
+              <ModalHelpButton style={{ minWidth: '350px' }}>
+                <p>
+                  Click anywhere on the title or description to edit the field
+                </p>
+              </ModalHelpButton>
             </p>
             <RIETextArea
               value={deck.description}
@@ -147,7 +152,7 @@ class DeckView extends React.Component {
               placeholder="Click here to add a description"
               classLoading="loading"
               classInvalid="invalid"
-            />
+            />{' '}
           </div>
           <div className={`${styles['control-buttons']}`}>
             <Link className="button" to={`/view/${deck.id}/1`}>

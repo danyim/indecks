@@ -45,7 +45,7 @@
   flex-flow: row wrap
 .title-text
   margin-top: 2rem
-  flex: 1 1 75%
+  flex: 1 1 auto
   order: 1
   text-overflow: ellipsis
   > *
@@ -57,12 +57,12 @@
 .control-buttons
   margin-top: 1.0rem
   flex-flow: column nowrap
-  flex-grow: 1
+  flex: 0 0 200px
   order: 2
   transition: all .2s ease-in
   margin-left: 2rem
   button, a
-    flex: 1 0 calc(25% - 1rem)
+    flex: 0 0 auto
     margin-top: .6rem
     // max-height: 4.0rem
   button:first-child, a:first-child
@@ -82,10 +82,11 @@
 
   .control-buttons
     flex-flow: row nowrap
+    flex: 0 0 50px
     margin-left: 0
     margin-top: 3rem
     button, a
-      flex: 1 0 calc(25% - 2rem)
+      flex: 1 0 auto
       margin-top: 0
       margin-left: .6rem
     button:first-child, a:first-child

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import CSV from 'comma-separated-values'
 import Dropzone from 'react-dropzone'
 import { generateRandomString } from '../utils'
+import ModalHelpButton from './ModalHelpButton'
 import styles from '../styles/components/ImportDeck.styl'
 
 class ImportDeck extends React.Component {
@@ -192,7 +193,18 @@ class ImportDeck extends React.Component {
             <h4>Import an existing deck collection or deck</h4>
             <p>
               Supports a previous JSON export of your deck collections or a CSV
-              of cards
+              of cards{' '}
+              <ModalHelpButton style={{ minWidth: '350px' }}>
+                <h4>Comma-Separated Values File (.csv)</h4>
+                <p>
+                  Imported CSVs should have two columns, a title and an answer
+                  for a card
+                </p>
+                <code>
+                  Test title 1, test description<br />
+                  Test title 2, test description
+                </code>
+              </ModalHelpButton>
             </p>
             <Dropzone
               onDrop={this.handleDrop}

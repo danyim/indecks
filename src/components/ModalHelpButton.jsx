@@ -1,50 +1,76 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ReactModal from 'react-modal'
-import styles from '../styles/components/Modal.styl'
+import StylePropType from 'react-style-proptype'
+import Modal from './Modal'
+import styles from '../styles/components/ModalHelpButton.styl'
 
-class Modal extends React.Component {
+class ModalHelpButton extends React.Component {
   static propTypes = {
-    onRequestClose: PropTypes.func.isRequired,
-    isOpen: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired,
-    contentLabel: PropTypes.string.isRequired,
-    onAfterOpen: PropTypes.func,
-    className: PropTypes.string,
-    overlayClassName: PropTypes.string
+    style: StylePropType
   }
 
   static defaultProps = {
-    onAfterOpen: () => {},
-    className: styles['modal-content'],
-    overlayClassName: styles['modal-overlay']
+    style: {}
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.toggleModal = this.toggleModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
+    this.state = {
+      open: false,
+      x: 0,
+      y: 0
+    }
+  }
+
+  toggleModal(e) {
+    // console.log('screenX', e.nativeEvent.screenX)
+    // console.log('screenY', e.nativeEvent.screenY)
+    this.setState({
+      open: !this.state.open,
+      x: e.nativeEvent.screenX + 200,
+      y: e.nativeEvent.screenY
+    })
+  }
+
+  closeModal() {
+    this.setState({ open: false })
   }
 
   render() {
-    const className = `${styles['modal-content']} ${this.props.className}`
-    const overlayClassName = `${styles['modal-overlay']} ${this.props
-      .overlayClassName}`
-
     return (
-      <ReactModal
-        isOpen={this.props.isOpen}
-        onRequestClose={this.props.onRequestClose}
-        onAfterOpen={this.props.onAfterOpen}
-        className={className}
-        overlayClassName={overlayClassName}
-        contentLabel={this.props.contentLabel}
-      >
-        <a
-          className="close-modal"
-          onClick={this.props.onRequestClose}
+      <span>
+        <span
+          className={styles.button}
+          onClick={this.toggleModal}
           role="presentation"
         >
-          Close
-        </a>
-        {this.props.children}
-      </ReactModal>
+          <i className="fa fa-question-circle-o" aria-hidden="true" />
+        </span>
+
+        <Modal
+          isOpen={this.state.open}
+          onRequestClose={this.closeModal}
+          contentLabel={'Help'}
+          className={styles.modal}
+          overlayClassName={styles.overlay}
+          style={{ left: this.state.x, top: this.state.y, ...this.props.style }}
+        >
+          <a
+            className="close-modal"
+            onClick={this.closeModal}
+            role="presentation"
+          >
+            Close
+          </a>
+          {this.props.children}
+        </Modal>
+      </span>
     )
   }
 }
 
-export default Modal
+export default ModalHelpButton

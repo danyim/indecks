@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import stylePropType from 'react-style-proptype'
+import StylePropType from 'react-style-proptype'
 import { Link } from 'react-router-dom'
 import { DeckShape } from './__commonShapes'
 import styles from '../styles/components/Deck.styl'
@@ -10,7 +10,7 @@ class Deck extends React.Component {
     push: PropTypes.func.isRequired,
     deck: DeckShape.isRequired,
     handleOnClick: PropTypes.func.isRequired,
-    style: stylePropType,
+    style: StylePropType,
     children: PropTypes.node
   }
 

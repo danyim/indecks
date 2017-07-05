@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ReactModal from 'react-modal'
+import StylePropType from 'react-style-proptype'
 import styles from '../styles/components/Modal.styl'
 
 class Modal extends React.Component {
@@ -9,6 +10,7 @@ class Modal extends React.Component {
     isOpen: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired,
     contentLabel: PropTypes.string.isRequired,
+    style: StylePropType,
     onAfterOpen: PropTypes.func,
     className: PropTypes.string,
     overlayClassName: PropTypes.string
@@ -17,7 +19,8 @@ class Modal extends React.Component {
   static defaultProps = {
     onAfterOpen: () => {},
     className: styles['modal-content'],
-    overlayClassName: styles['modal-overlay']
+    overlayClassName: styles['modal-overlay'],
+    style: {}
   }
 
   render() {
@@ -33,6 +36,7 @@ class Modal extends React.Component {
         className={className}
         overlayClassName={overlayClassName}
         contentLabel={this.props.contentLabel}
+        style={{ content: this.props.style }}
       >
         <a
           className="close-modal"

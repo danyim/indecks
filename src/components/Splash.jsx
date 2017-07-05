@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+// import ModalHelpButton from './ModalHelpButton'
 import AuthContainer from '../containers/AuthContainer'
 import styles from '../styles/components/Splash.styl'
 
@@ -35,7 +36,7 @@ const Splash = props =>
           >
             click here to load sample decks
           </a>{' '}
-          and play with them immediately.
+          and play with them immediately.{' '}
         </p>
         <br />
         <p>
