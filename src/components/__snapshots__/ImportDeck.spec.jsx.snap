@@ -78,15 +78,22 @@ exports[`ImportDeck should render self and subcomponents 1`] = `
           }
         >
           <h4>
-            Comma-Separated Values File (.csv)
+            CSV
           </h4>
           <p>
-            Imported CSVs should have two columns, a title and an answer for a card
+            Imported CSVs should be a standard CSV file with two columns, a title and an answer for each card
+          </p>
+          <p>
+            <strong>
+              Example
+            </strong>
           </p>
           <code>
-            "My Test Title","Test description"
+            "My test title","Test description"
             <br />
             "Another title","Yet another description"
+            <br />
+            "My demo card","Test data"
           </code>
         </ModalHelpButton>
       </p>

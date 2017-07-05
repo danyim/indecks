@@ -195,14 +195,19 @@ class ImportDeck extends React.Component {
               Supports a previous JSON export of your deck collections or a CSV
               of cards{' '}
               <ModalHelpButton style={{ minWidth: '350px' }}>
-                <h4>Comma-Separated Values File (.csv)</h4>
+                <h4>CSV</h4>
                 <p>
-                  Imported CSVs should have two columns, a title and an answer
-                  for a card
+                  Imported CSVs should be a standard CSV file with two columns,
+                  a title and an answer for each card
+                </p>
+                <p>
+                  <strong>Example</strong>
                 </p>
                 <code>
-                  &quot;My Test Title&quot;,&quot;Test description&quot;<br />
-                  &quot;Another title&quot;,&quot;Yet another description&quot;
+                  &quot;My test title&quot;,&quot;Test description&quot;<br />
+                  &quot;Another title&quot;,&quot;Yet another description&quot;<br
+                  />
+                  &quot;My demo card&quot;,&quot;Test data&quot;
                 </code>
               </ModalHelpButton>
             </p>
