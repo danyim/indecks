@@ -9,9 +9,9 @@
 
 // Individual card styles
 .grid
-  justify-content: center
+  justify-content: flex-start
   figure
-    flex-basis: calc(50% - 4rem)
+    flex-basis: calc(50% - 2rem)
     transition: all .2s
   // div > h1
   //   width: 550px
@@ -30,10 +30,10 @@
 
 @media (max-width: cardWidth)
   .grid figure
-    flex-basis: calc(100% - 4rem)
+    flex-basis: calc(100% - 2rem)
     :global
       .card-title
-        max-height: 35vh
+        max-height: 90vh
 
 .title-card
   border: 1px solid lightgrey

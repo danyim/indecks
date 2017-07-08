@@ -15,10 +15,10 @@ const Splash = props =>
       <h2 className={styles.header}>Dive into Indecks</h2>
       <div className={`${styles['shortcut-helper-content']}`}>
         <p>
-          Indecks is a interactive study aid modeled after index cards for
-          studying material that require repetition and memorization. Just like
-          the physical object, Indecks features collections of <em>decks</em>{' '}
-          (or topics), which contain a stack of flippable <em>cards</em>.
+          indecks is an interactive study aid modeled after index cards for
+          studying materials that require repetition and memorization. Just like
+          the physical object, Indecks features collections of decks (or
+          topics), which contain a stack of flippable cards.
         </p>
         <br />
         <p>
@@ -39,13 +39,12 @@ const Splash = props =>
           to play with them immediately.{' '}
         </p>
         <br />
-        <p>It is strongly recommended to use Indecks with an account.</p>
         <p>
           Signing up is quick and pain-free (no email verification required).
           Once you create your account, you will log in once and all your data
           will be{' '}
           <strong>
-            synchronized and available on any signed in device{' '}
+            synchronized and available on any signed-in device{' '}
             <em>in real-time</em>
           </strong>.
         </p>
