@@ -196,9 +196,10 @@ export default createReducer({}, reducerHandlers)
 /**
  * Action Creators
  */
-export const addDeck = deck => ({
+export const addDeck = (deck, preventSave = false) => ({
   type: ADD_DECK,
-  deck
+  deck,
+  preventSave
 })
 export const editDeck = (deckId, title, description) => ({
   type: EDIT_DECK,
@@ -297,8 +298,6 @@ export const saveDecksToFirebase = () => (dispatch, getState) => {
           .set(state.decks[d])
       )
     }
-  } else {
-    return Promise.reject(new Error('Not authenticated'))
   }
   return Promise.all(promises)
 }
@@ -310,7 +309,8 @@ export const deleteDeckFromFirebase = deckId => (dispatch, getState) => {
   if (authenticated) {
     return firebase.database().ref(`decks/${state.user.uid}/${deckId}`).remove()
   }
-  return Promise.reject(new Error('Not authenticated'))
+
+  return Promise.resolve()
 }
 
 export const loadSampleDecks = () => dispatch => {
@@ -319,7 +319,11 @@ export const loadSampleDecks = () => dispatch => {
     sampleDeck = { ...d }
     // Create a new ID for the new samples
     sampleDeck.id = generateRandomString()
-    dispatch(addDeck(sampleDeck))
+    // When we add sample decks, prevent saving after each deck is added with
+    // the second argument set to true. This causes a delay.
+    dispatch(addDeck(sampleDeck, true))
+    // Intead, we'll invoke the save automatically
+    dispatch(saveDecksToFirebase())
   })
 }
 
@@ -365,7 +369,9 @@ export const saveCardToFirebase = (cardIndex, deckId) => (
  */
 // Ensure that we dispatch the save to firebase action after these actions
 const saveDecks = (action, dispatch /* state */) => {
-  dispatch(saveDecksToFirebase())
+  if (!action.preventSave) {
+    dispatch(saveDecksToFirebase())
+  }
 }
 
 const deleteDeck = (action, dispatch /* state */) => {

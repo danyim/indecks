@@ -61,7 +61,8 @@ describe('decks redux', () => {
     it('should create an action to add a deck', () => {
       const expectedAction = {
         type: 'decks/ADD_DECK',
-        deck
+        deck,
+        preventSave: false
       }
       expect(actions.addDeck(deck)).toEqual(expectedAction)
     })
