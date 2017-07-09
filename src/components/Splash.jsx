@@ -17,7 +17,7 @@ const Splash = props =>
         <p>
           indecks is an interactive study aid modeled after index cards for
           studying materials that require repetition and memorization. Just like
-          the physical object, Indecks features collections of decks (or
+          the physical object, indecks features collections of decks (or
           topics), which contain a stack of flippable cards.
         </p>
         <br />
@@ -28,7 +28,7 @@ const Splash = props =>
             {'  '}on the top left to start creating a new deck.
           </strong>
           <br />
-          Is that too much work?{' '}
+          Too much work?{' '}
           <a
             className="pointer"
             onClick={props.loadSampleDecks}
@@ -40,7 +40,10 @@ const Splash = props =>
         </p>
         <br />
         <p>
-          Signing up is quick and pain-free (no email verification required).
+          <strong>
+            Signing up is quick and pain-free (no email verification required).
+          </strong>
+          <br />
           Once you create your account, you will log in once and all your data
           will be{' '}
           <strong>

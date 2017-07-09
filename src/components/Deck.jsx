@@ -62,8 +62,12 @@ class Deck extends React.Component {
         </figcaption>
 
         <div className={`control-buttons ${styles['control-buttons']}`}>
-          <Link className="button" to={`/view/${deckId}/1`}>
-            Play Deck
+          <Link className="button outline" to={`/view/${deckId}/1`}>
+            Play Deck&nbsp;&nbsp;
+            <i className="fa fa-play-circle" />
+          </Link>
+          <Link className="button" to={`/view/${deckId}`}>
+            Edit Deck
           </Link>
           {/*
           <a className="button btn-delete" onClick={() => this.props.handleRemoveDeck(deckId)}>

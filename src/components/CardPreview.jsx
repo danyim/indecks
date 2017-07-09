@@ -42,9 +42,23 @@ class CardPreview extends React.Component {
               display: y / 400 > 0.05 ? 'block' : 'none'
             }}
           >
-            <Markdown className={`${styles['card-title']}`} text={title} />
+            <label htmlFor="title" className="no-pad">
+              <span>Title</span>
+              <Markdown
+                name="title"
+                className={`${styles['card-title']}`}
+                text={title}
+              />
+            </label>
             <hr />
-            <Markdown className={`${styles['card-answer']}`} text={answer} />
+            <label htmlFor="answer" className="no-pad">
+              <span>Answer</span>
+              <Markdown
+                name="answer"
+                className={`${styles['card-answer']}`}
+                text={answer}
+              />
+            </label>
           </div>}
       </Motion>
     )

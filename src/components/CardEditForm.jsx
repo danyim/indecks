@@ -45,7 +45,7 @@ const CardEditForm = props => {
 
       <label htmlFor="cardAnswer">
         <span>
-          Card Contents&nbsp;&nbsp;(This input supports{' '}
+          Card Answer&nbsp;&nbsp;(
           <a
             href="//guides.github.com/features/mastering-markdown/"
             target="_blank"
@@ -70,20 +70,18 @@ const CardEditForm = props => {
       />
 
       <div className={`${styles['control-buttons']}`}>
-        <button type="submit" className="button">
-          Save Card
+        <button type="submit" className="button outline">
+          Save
         </button>
-        <button type="button" className="button" onClick={() => handleCancel()}>
-          Cancel
-        </button>
-      </div>
-      <div className={`${styles['control-buttons']}`}>
         <button
           type="button"
           className="button btn-delete"
           onClick={() => handleDelete(cardIndex, deckId)}
         >
           Remove from Deck
+        </button>
+        <button type="button" className="button" onClick={() => handleCancel()}>
+          Cancel
         </button>
       </div>
     </form>

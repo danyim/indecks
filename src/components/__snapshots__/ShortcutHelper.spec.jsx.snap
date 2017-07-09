@@ -64,6 +64,14 @@ exports[`ShortcutHelper should render self and subcomponents 1`] = `
       <kbd>
         SPACE
       </kbd>
+       / 
+      <kbd>
+        ↑
+      </kbd>
+       / 
+      <kbd>
+        ↓
+      </kbd>
        - Flip card
     </p>
     <p>

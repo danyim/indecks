@@ -136,8 +136,8 @@ class DeckView extends React.Component {
               &nbsp;
               <ModalHelpButton style={{ minWidth: '350px' }}>
                 <p>
-                  Click anywhere on the deck&apos;s <strong>title</strong> or{' '}
-                  <strong>description</strong> to immediately edit the field
+                  Click anywhere on the deck&apos;s title or description to edit
+                  the field. Your changes are saved immediately.
                 </p>
               </ModalHelpButton>
             </p>
@@ -156,8 +156,9 @@ class DeckView extends React.Component {
             />{' '}
           </div>
           <div className={`${styles['control-buttons']}`}>
-            <Link className="button" to={`/view/${deck.id}/1`}>
-              <span>Play Deck</span>
+            <Link className="button outline" to={`/view/${deck.id}/1`}>
+              Play Deck&nbsp;&nbsp;
+              <i className="fa fa-play-circle" />
             </Link>
             <ExportDeckButton
               filename={`${slug(deck.title)}.json`}
@@ -193,21 +194,30 @@ class DeckView extends React.Component {
               }
               <Overlay>
                 <OverlayRow>
-                  <button onClick={() => this.handleCardView(deck.id, i)}>
+                  <button
+                    className="button"
+                    onClick={() => this.handleCardView(deck.id, i)}
+                  >
                     View
                   </button>
-                  <button onClick={() => this.handleCardEdit(deck.id, i)}>
+                  <button
+                    className="button"
+                    onClick={() => this.handleCardEdit(deck.id, i)}
+                  >
                     Edit
                   </button>
                   <button
+                    className="button btn-delete"
                     onClick={() => this.handleCardDelete(deck.id, i)}
-                    className="btn-delete"
                   >
                     Delete
                   </button>
                 </OverlayRow>
                 <OverlayRow>
-                  <button onClick={() => this.handleCardDuplicate(deck.id, i)}>
+                  <button
+                    className="button"
+                    onClick={() => this.handleCardDuplicate(deck.id, i)}
+                  >
                     Duplicate
                   </button>
                   {/*

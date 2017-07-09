@@ -85,7 +85,7 @@ class CardAdd extends React.Component {
 
           <label htmlFor="answer">
             <span>
-              Card Contents&nbsp;&nbsp;(This input supports{' '}
+              Card Answer&nbsp;&nbsp;(
               <a
                 href="//guides.github.com/features/mastering-markdown/"
                 target="_blank"
@@ -108,7 +108,7 @@ class CardAdd extends React.Component {
           <CardPreview title={this.state.title} answer={this.state.answer} />
 
           <div className={`${styles['control-buttons']}`}>
-            <button type="submit" className="button">
+            <button type="submit" className="button outline">
               Save
             </button>
             <button

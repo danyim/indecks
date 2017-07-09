@@ -42,7 +42,8 @@
   ul
     margin-before: 0.5rem
     // li
-  // .editable
+  .editable
+    outline: 0
   //   &:hover:after
   //     position: absolute
   //     top: 0
@@ -114,7 +115,7 @@
     margin: 0.50rem 0
     text-align: center
     color: blue
-    transition: all 0.2s
+    transition: all 0.5s
     box-sizing: padding-box
     cursor: pointer
     user-select: none // Disallow selection of button text
@@ -130,6 +131,18 @@
     &[disabled]:hover
       border-color: lightgrey
 
+  .button.inverse
+    background-color: blue
+    border-color: blue
+    color: white
+    &:hover, &:focus
+      background-color: darken(blue, 25%)
+      border-color: blue
+  .button.outline
+    border-color: blue
+    &:hover, &:focus
+      color: saturate(blue, 70%)
+      border-color: saturate(blue, 70%)
   .btn-inactive
     color: lightgrey
   .btn-active
@@ -184,6 +197,8 @@
     &:hover > span > a.active,
     &:hover > span > a.link
       color: black
+  label.no-pad > span
+      padding: 0
 
   // Taken from https://github.com/michaelhue/keyscss/blob/master/keys.css
   kbd
