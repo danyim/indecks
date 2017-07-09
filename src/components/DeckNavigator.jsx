@@ -77,8 +77,8 @@ class DeckNavigator extends React.Component {
     } else if (e.keyCode === 65) {
       // a
       this.handleAddCard()
-    } else if (e.keyCode === 32) {
-      // space
+    } else if (e.keyCode === 32 || e.keyCode === 38 || e.keyCode === 40) {
+      // space, up arrow, down arrow
       this.handleFlip()
     }
 

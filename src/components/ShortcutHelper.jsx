@@ -33,7 +33,7 @@ const ShortcutHelper = () =>
         <kbd>&rarr;</kbd> - Next card
       </p>
       <p>
-        <kbd>SPACE</kbd> - Flip card
+        <kbd>SPACE</kbd> / <kbd>&uarr;</kbd> / <kbd>&darr;</kbd> - Flip card
       </p>
       <p>
         <kbd>A</kbd> - Add a card to the current deck
