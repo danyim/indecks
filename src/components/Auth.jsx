@@ -71,7 +71,11 @@ class Auth extends React.Component {
               >
                 Reload decks from account
               </button>
-              <button type="button" className="btn" onClick={this.props.logout}>
+              <button
+                type="button"
+                className="button outline"
+                onClick={this.props.logout}
+              >
                 Log out
               </button>
             </div>}

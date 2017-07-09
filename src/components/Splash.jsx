@@ -34,9 +34,13 @@ const Splash = props =>
             onClick={props.loadSampleDecks}
             role="presentation"
           >
-            Click here to load sample decks
-          </a>{' '}
-          to play with them immediately.{' '}
+            Click here to play with sample decks
+          </a>.
+        </p>
+        <br />
+        <p>
+          <strong>Power users:</strong> Press <kbd>/</kbd> to open the keyboard
+          shortcuts panel.
         </p>
         <br />
         <p>

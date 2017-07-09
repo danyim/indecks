@@ -128,7 +128,7 @@ class SignUpLoginForm extends React.Component {
         <div className={`${styles['control-buttons']}`}>
           <button
             type="button"
-            className="button"
+            className="button outline"
             disabled={this.props.isAuthenticating}
             onClick={this.handleLoginClick}
           >

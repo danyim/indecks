@@ -190,7 +190,7 @@ class ImportDeck extends React.Component {
               />
             </label>
             <div>
-              <button type="submit" className="button">
+              <button type="submit" className="button outline">
                 Create Deck
               </button>
             </div>
@@ -269,7 +269,7 @@ class ImportDeck extends React.Component {
             <div>
               <button
                 type="button"
-                className="button"
+                className="button outline"
                 onClick={() => this.handleLoadSample()}
               >
                 Load Sample Decks

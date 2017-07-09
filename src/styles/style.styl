@@ -139,10 +139,13 @@
       background-color: darken(blue, 25%)
       border-color: blue
   .button.outline
+    color blue
     border-color: blue
     &:hover, &:focus
-      color: saturate(blue, 70%)
-      border-color: saturate(blue, 70%)
+      color: white
+      border-color: desaturate(blue, 30%)
+      background-color: desaturate(blue, 30%)
+
   .btn-inactive
     color: lightgrey
   .btn-active
@@ -151,7 +154,13 @@
     color: red
     &:hover, &:focus
       border-color: red
-
+  .btn-delete.outline
+    color red
+    border-color: red
+    &:hover, &:focus
+      color: white
+      border-color: desaturate(red, 30%)
+      background-color: desaturate(red, 30%)
   /*
     Forms
   */
