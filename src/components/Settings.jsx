@@ -38,7 +38,17 @@ class Settings extends React.Component {
   handleExport() {
     if (this.state.exportType === 1) {
       // JSON
-      return JSON.stringify(this.props.decks, null, 2)
+      // Strip out all the metadata from the cards (such as the createdOn and
+      // editedOn fields)
+      const sanitizedDeck = this.props.decks.map(d => ({
+        ...d,
+        cards: d.cards.map(c => ({
+          title: c.title,
+          answer: c.answer,
+          index: c.index
+        }))
+      }))
+      return JSON.stringify(sanitizedDeck, null, 2)
     }
     // Else, it's a CSV
     const fields = ['title', 'description', 'cards']

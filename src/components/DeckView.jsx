@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { RIEInput, RIETextArea } from 'riek'
 import { Link } from 'react-router-dom'
 import slug from 'slug'
+import classnames from 'classnames'
 import { DeckShape } from './__commonShapes'
 import Card from './Card'
 import ExportDeckButton from './ExportDeckButton'
@@ -32,12 +33,34 @@ class DeckView extends React.Component {
     router: PropTypes.object
   }
 
+  static arrangements = {
+    two: '2COL',
+    three: '3COL',
+    list: 'LIST'
+  }
+
+  static sorts = {
+    created: 'CREATED',
+    edited: 'EDITED',
+    unanswered: 'UNANSWERED'
+  }
+
   constructor(props) {
     super(props)
 
     this.handleEditDeckDetails = this.handleEditDeckDetails.bind(this)
+    this.handleChangeArrangement = this.handleChangeArrangement.bind(this)
+    this.handleChangeSort = this.handleChangeSort.bind(this)
+    this.handleChangeSearch = this.handleChangeSearch.bind(this)
+    this.handleExport = this.handleExport.bind(this)
     this.validateDescription = this.validateDescription.bind(this)
     this.validateTitle = this.validateTitle.bind(this)
+
+    this.state = {
+      arrangement: DeckView.arrangements.two,
+      sort: DeckView.sorts.created,
+      search: null
+    }
   }
 
   // // Parses all the cards of a deck object and performs a special replacement
@@ -51,6 +74,19 @@ class DeckView extends React.Component {
   //   }
   //   return v;
   // }
+
+  handleExport() {
+    const sanitizedDeck = {
+      ...this.props.deck,
+      cards: this.props.deck.cards.map(c => ({
+        index: c.index,
+        title: c.title,
+        answer: c.answer
+      }))
+    }
+
+    return JSON.stringify(sanitizedDeck, null, 2)
+  }
 
   handleCardView(deckId, i) {
     this.props.push(`/view/${deckId}/${i + 1}`)
@@ -89,6 +125,27 @@ class DeckView extends React.Component {
     )
   }
 
+  handleChangeArrangement(arrangement) {
+    this.setState({ arrangement })
+    // if(arrangement === DeckView.arrangements.two) {
+    //   this.setState({ arrangement: })
+    // } else if(arrangement === DeckView.arrangements.three) {
+
+    // } else if(arrangement === DeckView.arrangements.list) {
+
+    // }
+  }
+
+  handleChangeSearch(value) {
+    this.setState({
+      search: value
+    })
+  }
+
+  handleChangeSort(sort) {
+    this.setState({ sort })
+  }
+
   validateDescription(text) {
     return (
       text.trim() !== '' &&
@@ -114,6 +171,11 @@ class DeckView extends React.Component {
 
   render() {
     const { deck, maxDeckTitleLength, maxDeckDescLength } = this.props
+
+    const gridClassName = classnames({
+      'two-col': this.state.arrangement === DeckView.arrangements.two,
+      'three-col': this.state.arrangement === DeckView.arrangements.three
+    })
 
     return (
       <section className={`${styles['deck-view']}`}>
@@ -169,7 +231,7 @@ class DeckView extends React.Component {
                 // Use this if you want to use the replacer
                 exportFile={() =>  JSON.stringify(deck, this.mdReplacer, 2)}
               */
-              exportFile={() => JSON.stringify(deck, null, 2)}
+              exportFile={this.handleExport}
             />
             <button
               className="btn-delete"
@@ -179,48 +241,130 @@ class DeckView extends React.Component {
             </button>
           </div>
         </div>
-
-        <div className={`wrap-row ${styles.grid}`}>
-          {deck.cards.map((c, i) =>
-            <Card
-              card={c}
-              key={`card_${deck.id}__${c.index}`}
-              className={`${styles['card-contents']}`}
-              trimOverflow
+        <div className={styles.options}>
+          <div className={`${styles.search}`}>
+            <input
+              type="text"
+              placeholder="Search card titles..."
+              onChange={e => this.handleChangeSearch(e.target.value)}
+            />
+          </div>
+          <div className={`${styles.sort} dosis`}>
+            <span>Sort by</span>
+            <a
+              onClick={() => this.handleChangeSort(DeckView.sorts.created)}
+              role="presentation"
+              className={classnames({
+                [styles.selected]: this.state.sort === DeckView.sorts.created
+              })}
             >
-              {
-                // TODO: Break this into an Overlay component and use on Card
-                // and Deck
+              Last created
+            </a>&nbsp;
+            <a
+              onClick={() => this.handleChangeSort(DeckView.sorts.edited)}
+              role="presentation"
+              className={classnames({
+                [styles.selected]: this.state.sort === DeckView.sorts.edited
+              })}
+            >
+              Last edited
+            </a>&nbsp;
+            <a
+              onClick={() => this.handleChangeSort(DeckView.sorts.unanswered)}
+              role="presentation"
+              className={classnames({
+                [styles.selected]: this.state.sort === DeckView.sorts.unanswered
+              })}
+            >
+              Unanswered
+            </a>
+          </div>
+          <div className={`${styles.arrange} dosis`}>
+            <span>Arrangement</span>
+            <a
+              onClick={() =>
+                this.handleChangeArrangement(DeckView.arrangements.two)}
+              role="presentation"
+              className={classnames({
+                [styles.selected]:
+                  this.state.arrangement === DeckView.arrangements.two
+              })}
+            >
+              Two columns
+            </a>&nbsp;
+            <a
+              onClick={() =>
+                this.handleChangeArrangement(DeckView.arrangements.three)}
+              role="presentation"
+              className={classnames({
+                [styles.selected]:
+                  this.state.arrangement === DeckView.arrangements.three
+              })}
+            >
+              Three columns
+            </a>&nbsp;
+            {/*
+            <a
+              onClick={() =>
+                this.handleChangeArrangement(DeckView.arrangements.list)}
+              role="presentation"
+            >
+              List
+            </a>
+             */}
+          </div>
+        </div>
+
+        <div className={`wrap-row ${styles.grid} ${gridClassName}`}>
+          {deck.cards
+            .filter(c => {
+              if (this.state.search && this.state.search !== '') {
+                return c.title
+                  .toLowerCase()
+                  .includes(this.state.search.toLowerCase())
               }
-              <Overlay>
-                <OverlayRow>
-                  <button
-                    className="button"
-                    onClick={() => this.handleCardView(deck.id, i)}
-                  >
-                    View
-                  </button>
-                  <button
-                    className="button"
-                    onClick={() => this.handleCardEdit(deck.id, i)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="button btn-delete"
-                    onClick={() => this.handleCardDelete(deck.id, i)}
-                  >
-                    Delete
-                  </button>
-                </OverlayRow>
-                <OverlayRow>
-                  <button
-                    className="button"
-                    onClick={() => this.handleCardDuplicate(deck.id, i)}
-                  >
-                    Duplicate
-                  </button>
-                  {/*
+              return true
+            })
+            .map((c, i) =>
+              <Card
+                card={c}
+                key={`card_${deck.id}__${c.index}`}
+                className={`${styles['card-contents']}`}
+                trimOverflow
+              >
+                {
+                  // TODO: Break this into an Overlay component and use on Card
+                  // and Deck
+                }
+                <Overlay>
+                  <OverlayRow>
+                    <button
+                      className="button"
+                      onClick={() => this.handleCardView(deck.id, i)}
+                    >
+                      View
+                    </button>
+                    <button
+                      className="button"
+                      onClick={() => this.handleCardEdit(deck.id, i)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="button btn-delete"
+                      onClick={() => this.handleCardDelete(deck.id, i)}
+                    >
+                      Delete
+                    </button>
+                  </OverlayRow>
+                  <OverlayRow>
+                    <button
+                      className="button"
+                      onClick={() => this.handleCardDuplicate(deck.id, i)}
+                    >
+                      Duplicate
+                    </button>
+                    {/*
                     <button
                       onClick={
                         () => this.handleCardMove(deck.id, i)
@@ -230,10 +374,10 @@ class DeckView extends React.Component {
                       Copy To..
                     </button>
                     */}
-                </OverlayRow>
-              </Overlay>
-            </Card>
-          )}
+                  </OverlayRow>
+                </Overlay>
+              </Card>
+            )}
           {this.renderEmpty(deck.cards.length)}
         </div>
       </section>

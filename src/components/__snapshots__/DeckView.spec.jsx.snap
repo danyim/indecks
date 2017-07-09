@@ -84,7 +84,73 @@ exports[`DeckView should render self and subcomponents 1`] = `
     </div>
   </div>
   <div
-    className="wrap-row grid"
+    className="options"
+  >
+    <div
+      className="search"
+    >
+      <input
+        onChange={[Function]}
+        placeholder="Search card titles..."
+        type="text"
+      />
+    </div>
+    <div
+      className="sort dosis"
+    >
+      <span>
+        Sort by
+      </span>
+      <a
+        className="selected"
+        onClick={[Function]}
+        role="presentation"
+      >
+        Last created
+      </a>
+       
+      <a
+        className=""
+        onClick={[Function]}
+        role="presentation"
+      >
+        Last edited
+      </a>
+       
+      <a
+        className=""
+        onClick={[Function]}
+        role="presentation"
+      >
+        Unanswered
+      </a>
+    </div>
+    <div
+      className="arrange dosis"
+    >
+      <span>
+        Arrangement
+      </span>
+      <a
+        className="selected"
+        onClick={[Function]}
+        role="presentation"
+      >
+        Two columns
+      </a>
+       
+      <a
+        className=""
+        onClick={[Function]}
+        role="presentation"
+      >
+        Three columns
+      </a>
+       
+    </div>
+  </div>
+  <div
+    className="wrap-row grid two-col"
   >
     <Card
       card={

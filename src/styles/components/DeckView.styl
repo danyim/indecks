@@ -19,6 +19,13 @@
   //   overflow: hidden
   //   text-overflow: ellipsis
 
+:global
+  .two-col figure
+    flex-basis: calc(50% - 2rem)
+  .three-col figure
+    flex-basis: calc(33% - 1.6rem)
+
+
 .card-contents
   > div:first-child  // Targets the <div className="card-contents">
     opacity: 1
@@ -39,7 +46,7 @@
   border: 1px solid lightgrey
   background-color: white
   border-bottom: 5px solid black
-  margin: 0 1rem 2rem 1rem
+  margin: 0 1rem 0 1rem
   padding: 2rem
   padding-top: 4rem
   flex-flow: row wrap
@@ -53,6 +60,42 @@
   :global
     .editable
       min-height: 5rem
+
+.options
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 1.5rem 0
+  margin: 0 1rem;
+  margin-bottom: 2rem;
+  // background-color: white;
+
+  > div > span // Labels for sort/arrange options
+    margin-right: 1.5rem
+    text-transform: uppercase
+    font-weight: bold
+  a
+    cursor: pointer
+    user-select: none
+    font-weight: normal;
+    color: grey
+    text-transform: uppercase
+    margin: 0 .5rem
+  a.selected
+    color: blue
+    border-bottom: 1px solid blue
+  .arrange, .search
+    flex: 1 1 auto
+    flex-flow: row nowrap;
+    align-self: flex-start;
+  .arrange, .sort
+    align-self: flex-end;
+    justify-content: flex-end;
+  .search input
+    background-color: transparent
+    border-bottom: 2px solid grey
+  // TODO: Disable the sorting feature until it's built out
+  .sort
+    display: none
 
 .control-buttons
   margin-top: 1.0rem
@@ -79,6 +122,13 @@
     :global
       .large.editable
         font-size: 2.5rem
+  .options
+    flex-flow: column nowrap
+    & > div
+      align-self: flex-start
+      margin: 1rem;
+    .arrange
+      display: none
 
   .control-buttons
     flex-flow: row nowrap

@@ -1,3 +1,4 @@
+import moment from 'moment'
 import reducer, * as actions from './decks'
 
 describe('decks redux', () => {
@@ -189,13 +190,17 @@ describe('decks redux', () => {
       const title = 'Title'
       const answer = 'Answer'
       const deckId = 'ABCDEFG'
+      const createdOn = moment().format()
       const expectedAction = {
         type: 'decks/ADD_CARD',
         title,
         answer,
-        deckId
+        deckId,
+        createdOn
       }
-      expect(actions.addCard(title, answer, deckId)).toEqual(expectedAction)
+      expect(actions.addCard(title, answer, deckId, createdOn)).toEqual(
+        expectedAction
+      )
     })
 
     it('should handle adding a card to a non-existent deck', () => {
@@ -210,17 +215,20 @@ describe('decks redux', () => {
     })
 
     it('should handle adding a card to an existing deck', () => {
+      // spyOn(moment, 'confirm').and.returnValue(true)
       const newCard = {
         title: 'Title',
-        answer: 'Answer'
+        answer: 'Answer',
+        createdOn: moment().format()
       }
 
       expect(
         reducer([deck, deck2, deck3], {
           type: 'decks/ADD_CARD',
-          title: 'Title',
-          answer: 'Answer',
-          deckId: deck2.id
+          title: newCard.title,
+          answer: newCard.answer,
+          deckId: deck2.id,
+          createdOn: newCard.createdOn
         })
       ).toEqual([
         deck,
@@ -230,6 +238,7 @@ describe('decks redux', () => {
             ...deck2.cards,
             {
               ...newCard,
+              editedOn: null,
               index: 3 // 3 because deck2 already has two cards
             }
           ]
@@ -243,20 +252,27 @@ describe('decks redux', () => {
     it('should create an action to add a card to a deck', () => {
       const cardIndex = 4
       const deckId = 'ABCDEFG'
+      const createdOn = moment().format()
+
       const expectedAction = {
         type: 'decks/DUPLICATE_CARD',
         cardIndex,
-        deckId
+        deckId,
+        createdOn
       }
-      expect(actions.duplicateCard(cardIndex, deckId)).toEqual(expectedAction)
+      expect(actions.duplicateCard(cardIndex, deckId, createdOn)).toEqual(
+        expectedAction
+      )
     })
 
     it('should handle duplicating a card', () => {
+      const createdOn = moment().format()
       expect(
         reducer([deck, deck2, deck3], {
           type: 'decks/DUPLICATE_CARD',
           cardIndex: 2,
-          deckId: deck2.id
+          deckId: deck2.id,
+          createdOn
         })
       ).toEqual([
         deck,
@@ -266,6 +282,8 @@ describe('decks redux', () => {
             ...deck2.cards,
             {
               ...deck2.cards[1],
+              createdOn,
+              editedOn: null,
               index: 3 // 3 because deck2 already has two cards
             }
           ]
@@ -281,22 +299,25 @@ describe('decks redux', () => {
       const answer = 'Answer'
       const cardIndex = 1
       const deckId = 'ABCDEFG'
+      const editedOn = moment().format()
       const expectedAction = {
         type: 'decks/EDIT_CARD',
         title,
         answer,
         cardIndex,
-        deckId
+        deckId,
+        editedOn
       }
-      expect(actions.editCard(title, answer, cardIndex, deckId)).toEqual(
-        expectedAction
-      )
+      expect(
+        actions.editCard(title, answer, cardIndex, deckId, editedOn)
+      ).toEqual(expectedAction)
     })
 
     it('should handle editing a card in a deck', () => {
       const newCard = {
         title: 'Title',
-        answer: 'Answer'
+        answer: 'Answer',
+        editedOn: moment().format()
       }
 
       expect(
@@ -305,7 +326,8 @@ describe('decks redux', () => {
           title: newCard.title,
           answer: newCard.answer,
           cardIndex: 1,
-          deckId: deck2.id
+          deckId: deck2.id,
+          editedOn: newCard.editedOn
         })
       ).toEqual([
         deck,
@@ -315,6 +337,7 @@ describe('decks redux', () => {
             {
               title: newCard.title,
               answer: newCard.answer,
+              editedOn: newCard.editedOn,
               index: 1
             },
             { ...deck2.cards[1] }

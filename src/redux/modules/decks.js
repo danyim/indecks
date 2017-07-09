@@ -1,3 +1,4 @@
+import moment from 'moment'
 import firebase from '../../firebase'
 import {
   createReducer,
@@ -25,14 +26,16 @@ const REMOVE_ALL_DECKS = 'decks/REMOVE_ALL_DECKS'
  * Reducers
  */
 const reducers = {
-  addCard: (state, { deckId, title, answer }) => {
+  addCard: (state, { deckId, title, answer, createdOn }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
     if (deckIndex === -1) return state
     const deck = state[deckIndex]
     const newCard = {
       title,
       answer,
-      index: findBestNextIndex(deck.cards, 'index')
+      index: findBestNextIndex(deck.cards, 'index'),
+      createdOn,
+      editedOn: null
     }
 
     const newDeck = {
@@ -47,13 +50,17 @@ const reducers = {
     ]
   },
 
-  duplicateCard: (state, { deckId, cardIndex }) => {
+  duplicateCard: (state, { deckId, cardIndex, createdOn }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
     if (deckIndex === -1) return state
     const adjCardIndex = parseInt(cardIndex, 10) - 1
     const deck = state[deckIndex]
-    const newCard = Object.assign({}, deck.cards[adjCardIndex])
-    newCard.index = findBestNextIndex(deck.cards, 'index')
+    const newCard = {
+      ...deck.cards[adjCardIndex],
+      index: findBestNextIndex(deck.cards, 'index'),
+      createdOn,
+      editedOn: null
+    }
     const newDeck = {
       ...deck,
       cards: [...deck.cards, newCard]
@@ -66,15 +73,18 @@ const reducers = {
     ]
   },
 
-  editCard: (state, { deckId, cardIndex, title, answer }) => {
+  editCard: (state, { deckId, cardIndex, title, answer, editedOn }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
     if (deckIndex === -1) return state
     // The card index coming in isn't 0-based and also a string, so convert
     const adjCardIndex = parseInt(cardIndex, 10) - 1
     const deck = { ...state[deckIndex] }
-    const newCard = Object.assign({}, deck.cards[adjCardIndex])
-    newCard.title = title
-    newCard.answer = answer
+    const newCard = {
+      ...deck.cards[adjCardIndex],
+      title,
+      answer,
+      editedOn
+    }
 
     const newDeck = {
       ...deck,
@@ -215,23 +225,41 @@ export const shuffleDeck = deckId => ({
   type: SHUFFLE_DECK,
   deckId
 })
-export const addCard = (title, answer, deckId) => ({
+export const addCard = (
+  title,
+  answer,
+  deckId,
+  createdOn = moment().format()
+) => ({
   type: ADD_CARD,
   title,
   answer,
-  deckId
+  deckId,
+  createdOn
 })
-export const duplicateCard = (cardIndex, deckId) => ({
+export const duplicateCard = (
+  cardIndex,
+  deckId,
+  createdOn = moment().format()
+) => ({
   type: DUPLICATE_CARD,
   cardIndex,
-  deckId
+  deckId,
+  createdOn
 })
-export const editCard = (title, answer, cardIndex, deckId) => ({
+export const editCard = (
+  title,
+  answer,
+  cardIndex,
+  deckId,
+  editedOn = moment().format()
+) => ({
   type: EDIT_CARD,
   title,
   answer,
   cardIndex,
-  deckId
+  deckId,
+  editedOn
 })
 export const moveCard = (cardIndex, srcDeckId, destDeckId) => ({
   type: MOVE_CARD,
