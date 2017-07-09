@@ -21,14 +21,32 @@ exports[`Settings should render self and subcomponents 1`] = `
       .
     </p>
     <Connect(AuthContainer) />
-    <ExportDeckButton
-      className="button"
-      disabled={false}
-      exportFile={[Function]}
-      filename="indecks.json"
-      label="Download your entire deck collection as JSON"
-      style={Object {}}
-    />
+    <div
+      className="control-buttons horizontal"
+    >
+      <label
+        htmlFor="export"
+      >
+        Export your deck collection as
+      </label>
+      <BinarySelector
+        buttonStyle={Object {}}
+        containerStyle={Object {}}
+        handleClick={[Function]}
+        leftLabel="JSON"
+        rightLabel="CSV"
+        selection={1}
+      />
+      <ExportDeckButton
+        className="button"
+        disabled={false}
+        exportFile={[Function]}
+        filename="indecks.json"
+        label="Export"
+        style={Object {}}
+      />
+    </div>
+    <br />
     <button
       className="btn-delete"
       name="delete-all-decks"
@@ -37,13 +55,6 @@ exports[`Settings should render self and subcomponents 1`] = `
       Delete all 
       1
        deck(s) from local storage
-    </button>
-    <button
-      className="btn-delete"
-      name="clear-storage"
-      onClick={[Function]}
-    >
-      Clear local storage
     </button>
   </div>
 </section>

@@ -81,20 +81,64 @@ exports[`ImportDeck should render self and subcomponents 1`] = `
             CSV
           </h4>
           <p>
-            Imported CSVs should be a standard CSV file with two columns, a title and an answer for each card
+            Imported CSVs should be a standard CSV file with a header row in either of these formats:
+            <ol>
+              <li>
+                Two columns with the headers 
+                <code>
+                  title
+                </code>
+                 and
+                 
+                <code>
+                  column
+                </code>
+                . This option is easiest if you want to quickly create a deck from existing data.
+              </li>
+              <li>
+                Four columns with the headers: 
+                <code>
+                  title
+                </code>
+                ,
+                 
+                <code>
+                  description
+                </code>
+                , and 
+                <code>
+                  cards
+                </code>
+                . This option is best paired with the CSV export function in the Settings.
+              </li>
+            </ol>
           </p>
           <p>
             <strong>
               Example
             </strong>
           </p>
-          <code>
-            "My test title","Test description"
-            <br />
-            "Another title","Yet another description"
-            <br />
-            "My demo card","Test data"
-          </code>
+          <ol>
+            <li>
+              <code>
+                "title","answer"
+                <br />
+                "My test title","Test description"
+                <br />
+                "Another title","Yet another description"
+                <br />
+                "My demo card","Test data"
+              </code>
+            </li>
+            <li>
+              <code>
+                "title","description","cards"
+                <br />
+                "My Deck","Description of Deck","[ ... ]"
+                <br />
+              </code>
+            </li>
+          </ol>
         </ModalHelpButton>
       </p>
       <Dropzone
