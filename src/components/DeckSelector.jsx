@@ -63,8 +63,11 @@ class DeckSelector extends React.Component {
       this.moveDown()
     } else if (e.keyCode === 13) {
       // Enter key
-      this.navigateToDeck(this.props.decks[this.state.selectedIndex].id)
-      this.props.handleOnSelected()
+      if (this.props.decks.length > 0) {
+        // Only navigate if there are decks available
+        this.navigateToDeck(this.props.decks[this.state.selectedIndex].id)
+        this.props.handleOnSelected()
+      }
     }
   }
 
