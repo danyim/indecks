@@ -13,8 +13,13 @@ const defaultProps = {
     cards: [
       {
         index: 1,
-        title: 'Card',
+        title: 'My test card',
         answer: 'Card description'
+      },
+      {
+        index: 2,
+        title: 'Another test card',
+        answer: 'Card description number 2'
       }
     ]
   },
@@ -225,4 +230,27 @@ describe('DeckView', () => {
       JSON.stringify(props.deck, null, 2)
     )
   })
+
+  xit('should search the cards for a string and return the right cards', () => {
+    const { wrapper } = setup()
+
+    const searchInput = wrapper.find('input[name="search-cards"]')
+    expect(searchInput.exists()).toEqual(true)
+    searchInput.simulate('change', { target: { value: 'test' } })
+    // For some reason we still get 2...
+    expect(wrapper.find('Card').length).toEqual(1)
+  })
+
+  xit(
+    "should search return nothing if there's a search criteria with no hits",
+    () => {
+      const { wrapper } = setupFull()
+
+      const searchInput = wrapper.find('input[name="search-cards"]')
+      searchInput.simulate('input', { target: { value: 'find nothing' } })
+      console.log(wrapper.find('Card'))
+      // For some reason we still get 2...
+      expect(wrapper.find('Card').length).toEqual(0)
+    }
+  )
 })

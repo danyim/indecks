@@ -90,9 +90,23 @@
   .arrange, .sort
     align-self: flex-end;
     justify-content: flex-end;
-  .search input
-    background-color: transparent
-    border-bottom: 2px solid grey
+  .search
+    > input
+      flex: 0 0 80%;
+      background-color: transparent
+      border-bottom: 2px solid grey
+    > div
+      flex: 0 0 20%;
+      flex-flow: row nowrap;
+      justify-content: flex-end;
+      color: black
+      margin: 0 1rem
+      > span
+        width: 100px;
+        align-self: flex-end
+        text-transform: uppercase
+        position: relative
+        top: -0.3rem
   // TODO: Disable the sorting feature until it's built out
   .sort
     display: none
@@ -124,8 +138,10 @@
         font-size: 2.5rem
   .options
     flex-flow: column nowrap
-    & > div
-      align-self: flex-start
+    & > .arrange,
+    & > .search,
+    & > .sort
+      align-self: stretch
       margin: 1rem;
     .arrange
       display: none

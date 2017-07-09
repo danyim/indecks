@@ -24,7 +24,7 @@ exports[`DeckView should render self and subcomponents 1`] = `
       />
       <p>
         <strong>
-          1 cards
+          2 cards
         </strong>
          
         <ModalHelpButton
@@ -90,10 +90,17 @@ exports[`DeckView should render self and subcomponents 1`] = `
       className="search"
     >
       <input
+        maxLength={50}
+        name="search-cards"
         onChange={[Function]}
         placeholder="Search card titles..."
         type="text"
       />
+      <div>
+        <span
+          className="dosis"
+        />
+      </div>
     </div>
     <div
       className="sort dosis"
@@ -157,7 +164,58 @@ exports[`DeckView should render self and subcomponents 1`] = `
         Object {
           "answer": "Card description",
           "index": 1,
-          "title": "Card",
+          "title": "My test card",
+        }
+      }
+      className="card-contents"
+      flipped={false}
+      handleOnClick={[Function]}
+      trimOverflow={true}
+      trimOverflowLength={125}
+    >
+      <Overlay
+        className=""
+      >
+        <OverlayRow
+          className=""
+        >
+          <button
+            className="button"
+            onClick={[Function]}
+          >
+            View
+          </button>
+          <button
+            className="button"
+            onClick={[Function]}
+          >
+            Edit
+          </button>
+          <button
+            className="button btn-delete"
+            onClick={[Function]}
+          >
+            Delete
+          </button>
+        </OverlayRow>
+        <OverlayRow
+          className=""
+        >
+          <button
+            className="button"
+            onClick={[Function]}
+          >
+            Duplicate
+          </button>
+        </OverlayRow>
+      </Overlay>
+    </Card>
+    <Card
+      card={
+        Object {
+          "answer": "Card description number 2",
+          "index": 2,
+          "title": "Another test card",
         }
       }
       className="card-contents"

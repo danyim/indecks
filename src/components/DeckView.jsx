@@ -177,6 +177,13 @@ class DeckView extends React.Component {
       'three-col': this.state.arrangement === DeckView.arrangements.three
     })
 
+    const filteredCards = deck.cards.filter(c => {
+      if (this.state.search && this.state.search !== '') {
+        return c.title.toLowerCase().includes(this.state.search.toLowerCase())
+      }
+      return true
+    })
+
     return (
       <section className={`${styles['deck-view']}`}>
         <div className={`${styles['title-card']}`}>
@@ -245,9 +252,20 @@ class DeckView extends React.Component {
           <div className={`${styles.search}`}>
             <input
               type="text"
+              name="search-cards"
               placeholder="Search card titles..."
+              maxLength={50}
               onChange={e => this.handleChangeSearch(e.target.value)}
             />
+            <div>
+              <span className="dosis">
+                {this.state.search &&
+                  this.state.search !== '' &&
+                  <span>
+                    <strong>{filteredCards.length}</strong>&nbsp;&nbsp;matching
+                  </span>}
+              </span>
+            </div>
           </div>
           <div className={`${styles.sort} dosis`}>
             <span>Sort by</span>
@@ -316,55 +334,46 @@ class DeckView extends React.Component {
         </div>
 
         <div className={`wrap-row ${styles.grid} ${gridClassName}`}>
-          {deck.cards
-            .filter(c => {
-              if (this.state.search && this.state.search !== '') {
-                return c.title
-                  .toLowerCase()
-                  .includes(this.state.search.toLowerCase())
+          {filteredCards.map((c, i) =>
+            <Card
+              card={c}
+              key={`card_${deck.id}__${c.index}`}
+              className={`${styles['card-contents']}`}
+              trimOverflow
+            >
+              {
+                // TODO: Break this into an Overlay component and use on Card
+                // and Deck
               }
-              return true
-            })
-            .map((c, i) =>
-              <Card
-                card={c}
-                key={`card_${deck.id}__${c.index}`}
-                className={`${styles['card-contents']}`}
-                trimOverflow
-              >
-                {
-                  // TODO: Break this into an Overlay component and use on Card
-                  // and Deck
-                }
-                <Overlay>
-                  <OverlayRow>
-                    <button
-                      className="button"
-                      onClick={() => this.handleCardView(deck.id, i)}
-                    >
-                      View
-                    </button>
-                    <button
-                      className="button"
-                      onClick={() => this.handleCardEdit(deck.id, i)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="button btn-delete"
-                      onClick={() => this.handleCardDelete(deck.id, i)}
-                    >
-                      Delete
-                    </button>
-                  </OverlayRow>
-                  <OverlayRow>
-                    <button
-                      className="button"
-                      onClick={() => this.handleCardDuplicate(deck.id, i)}
-                    >
-                      Duplicate
-                    </button>
-                    {/*
+              <Overlay>
+                <OverlayRow>
+                  <button
+                    className="button"
+                    onClick={() => this.handleCardView(deck.id, i)}
+                  >
+                    View
+                  </button>
+                  <button
+                    className="button"
+                    onClick={() => this.handleCardEdit(deck.id, i)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="button btn-delete"
+                    onClick={() => this.handleCardDelete(deck.id, i)}
+                  >
+                    Delete
+                  </button>
+                </OverlayRow>
+                <OverlayRow>
+                  <button
+                    className="button"
+                    onClick={() => this.handleCardDuplicate(deck.id, i)}
+                  >
+                    Duplicate
+                  </button>
+                  {/*
                     <button
                       onClick={
                         () => this.handleCardMove(deck.id, i)
@@ -374,10 +383,10 @@ class DeckView extends React.Component {
                       Copy To..
                     </button>
                     */}
-                  </OverlayRow>
-                </Overlay>
-              </Card>
-            )}
+                </OverlayRow>
+              </Overlay>
+            </Card>
+          )}
           {this.renderEmpty(deck.cards.length)}
         </div>
       </section>
