@@ -297,9 +297,20 @@ export const saveDecksToFirebase = () => (dispatch, getState) => {
           .set(state.decks[d])
       )
     }
-    console.log(`saved ${promises.length} decks`)
+  } else {
+    return Promise.reject(new Error('Not authenticated'))
   }
   return Promise.all(promises)
+}
+
+export const deleteDeckFromFirebase = deckId => (dispatch, getState) => {
+  const state = getState()
+  const authenticated = state.user.authenticated
+
+  if (authenticated) {
+    return firebase.database().ref(`decks/${state.user.uid}/${deckId}`).remove()
+  }
+  return Promise.reject(new Error('Not authenticated'))
 }
 
 export const loadSampleDecks = () => dispatch => {
@@ -357,10 +368,15 @@ const saveDecks = (action, dispatch /* state */) => {
   dispatch(saveDecksToFirebase())
 }
 
+const deleteDeck = (action, dispatch /* state */) => {
+  dispatch(deleteDeckFromFirebase(action.deckId))
+}
+
 export const listeners = {
   [ADD_CARD]: saveDecks,
   [ADD_DECK]: saveDecks,
   [EDIT_DECK]: saveDecks,
+  [REMOVE_DECK]: deleteDeck,
   [DUPLICATE_CARD]: saveDecks,
   [REMOVE_CARD]: saveDecks,
   [EDIT_CARD]: saveDecks
