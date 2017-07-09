@@ -7,8 +7,8 @@
     -webkit-font-smoothing: antialiased
     -moz-osx-font-smoothing: grayscale
     font-family: 'Helvetica', sans-serif
-    font-size: 14px
-    font-size: 1.4rem
+    font-size: 15px
+    font-size: 1.5rem
 
   h1, .large
     font-size: 4.0rem
@@ -29,13 +29,26 @@
     &:hover, &:active, &:visited
       text-decoration: none
 
-  textarea.mono, code
+  input[type='text'],
+  input[type='password'],
+  textarea
+    font-size: 1.4rem
+  label > span
+    text-transform: uppercase
+    letter-spacing: -0.03rem
+    font-weight: bold;
+    font-size: 1.25rem
+    a, a.visited, a.active, a.link
+      font-weight: bold
+  textarea.mono, code, pre
     font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace
     font-size: 1.5rem
     line-height: 1.5
   code
     font-size: inherit
 
+  kbd
+    font: bold .85em/1 "Helvetica", Arial, sans-serif
   button, .button
     font-size: 1.5rem
     font-weight: bold
@@ -43,6 +56,9 @@
   p, .paragraph
     font-size: 1.6rem
     line-height: 1.5
+
+  .large-input
+    font-size: 2.5rem
 
   footer
     p, a, a:active, a:hover, a:visited

@@ -23,6 +23,9 @@
   .m-b
     margin-bottom: 1.0rem
 
+  .error
+    color: red
+
   .wrap-row
     flex-flow: row wrap
     justify-content: space-between
@@ -82,8 +85,23 @@
     width: 100%
     flex-flow: row wrap
     .button
-      flex-grow: 1
+      flex: 1 1 auto
       margin-right: 1rem
+    label
+      // (n + 2 px) below accounts for the button border
+      padding: calc(0.90rem + 2px) 2rem calc(0.90rem + 2px) 0
+      margin: 0.50rem 0 // Matching .button's margin
+  .control-buttons.horizontal
+    display: flex
+    flex-flow: row nowrap
+    .button:last-child
+      margin-right: 0
+    .button:first-child
+      margin-left: 0
+
+  @media (max-width: cardWidth)
+    .control-buttons.horizontal
+      flex-flow: column nowrap
 
   button, .button
     border: 2px solid lightgrey
@@ -91,7 +109,6 @@
     background: none
     flex-basis: 50%
     display: inline-block
-    // line-height 2
     text-decoration: none
     padding: 0.90rem 0.75rem
     margin: 0.50rem 0
@@ -140,7 +157,6 @@
   textarea
     width: 100%
     border: 0
-    font-size: 1.4rem
     padding: 1rem 0.5rem
     border-bottom: 1px solid lightgrey
     outline: none
@@ -152,28 +168,22 @@
   label
     margin-top: 1rem
     > span
-      font-family: 'Dosis', sans-serif
-      text-transform: uppercase
-      font-size: 1.25rem
       padding-left: 0.5rem
       transition: all 0.2s
-      color: grey
+      color: #393939
       a, a.visited, a.active, a.link
-        color: grey
-        font-weight: bold
+        color: #393939
 
     > input[type='text'],
     > input[type='password'],
     > textarea
       margin-top: 0
-    &:hover > span,
+    // &:hover > span,
     &:hover > span > a,
     &:hover > span > a.visited,
     &:hover > span > a.active,
     &:hover > span > a.link
       color: black
-  .large-input
-    font-size: 2.5rem
 
   // Taken from https://github.com/michaelhue/keyscss/blob/master/keys.css
   kbd
@@ -181,7 +191,6 @@
     display: inline-block
     min-width: 1.25em
     padding: .3em .5em
-    font: bold .85em/1 "Helvetica", Arial, sans-serif
     text-align: center
     text-decoration: none
     -moz-border-radius: .3em

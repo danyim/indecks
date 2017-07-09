@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import json2csv from 'json2csv'
 import { DeckShape } from './__commonShapes'
+import BinarySelector from './BinarySelector'
 import ExportDeckButton from './ExportDeckButton'
 import AuthContainer from '../containers/AuthContainer'
 import styles from '../styles/components/Settings.styl'
@@ -12,12 +14,6 @@ class Settings extends React.Component {
     removeAllDecks: PropTypes.func.isRequired
   }
 
-  // articles: PropTypes.arrayOf(PropTypes.shape({
-  //   url: PropTypes.string.isRequired,
-  //   title: PropTypes.string.isRequired,
-  //   author: PropTypes.string.isRequired,
-  // }).isRequired).isRequired,
-
   static defaultProps = {}
 
   static handleClearLocalStorage() {
@@ -27,6 +23,26 @@ class Settings extends React.Component {
   constructor(props) {
     super(props)
     this.removeAllDecks = this.removeAllDecks.bind(this)
+    this.handleChangeExportType = this.handleChangeExportType.bind(this)
+    this.handleExport = this.handleExport.bind(this)
+
+    this.state = {
+      exportType: 1
+    }
+  }
+
+  handleChangeExportType(value) {
+    this.setState({ exportType: value })
+  }
+
+  handleExport() {
+    if (this.state.exportType === 1) {
+      // JSON
+      return JSON.stringify(this.props.decks, null, 2)
+    }
+    // Else, it's a CSV
+    const fields = ['title', 'description', 'cards']
+    return json2csv({ data: this.props.decks, fields })
   }
 
   removeAllDecks(count) {
@@ -81,22 +97,36 @@ class Settings extends React.Component {
           */}
 
           <AuthContainer />
-          <ExportDeckButton
-            filename="indecks.json"
-            label="Download your entire deck collection as JSON"
-            className="button"
-            disabled={deckCount === 0}
-            style={{}}
-            exportFile={() => JSON.stringify(this.props.decks, null, 2)}
-          />
+          <div className="control-buttons horizontal">
+            <label htmlFor="export">Export your deck collection as</label>
+            <BinarySelector
+              selection={this.state.exportType}
+              leftLabel="JSON"
+              rightLabel="CSV"
+              handleClick={this.handleChangeExportType}
+            />
+            <ExportDeckButton
+              filename={
+                this.state.exportType === 1 ? 'indecks.json' : 'indecks.csv'
+              }
+              label="Export"
+              className="button"
+              disabled={deckCount === 0}
+              style={{}}
+              exportFile={this.handleExport}
+            />
+          </div>
+          <br />
           {this.renderDeleteAll(deckCount)}
-          <button
-            name="clear-storage"
-            className="btn-delete"
-            onClick={Settings.handleClearLocalStorage}
-          >
-            Clear local storage
-          </button>
+          {/*
+            <button
+              name="clear-storage"
+              className="btn-delete"
+              onClick={Settings.handleClearLocalStorage}
+            >
+              Clear local storage
+            </button>
+          */}
         </div>
       </section>
     )
