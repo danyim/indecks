@@ -334,7 +334,7 @@ class DeckView extends React.Component {
         </div>
 
         <div className={`wrap-row ${styles.grid} ${gridClassName}`}>
-          {filteredCards.map(c =>
+          {filteredCards.map((c, i) =>
             <Card
               card={c}
               key={`card_${deck.id}__${c.index}`}
@@ -349,19 +349,19 @@ class DeckView extends React.Component {
                 <OverlayRow>
                   <button
                     className="button"
-                    onClick={() => this.handleCardView(deck.id, c.index)}
+                    onClick={() => this.handleCardView(deck.id, i)}
                   >
                     View
                   </button>
                   <button
                     className="button"
-                    onClick={() => this.handleCardEdit(deck.id, c.index)}
+                    onClick={() => this.handleCardEdit(deck.id, i)}
                   >
                     Edit
                   </button>
                   <button
                     className="button btn-delete"
-                    onClick={() => this.handleCardDelete(deck.id, c.index)}
+                    onClick={() => this.handleCardDelete(deck.id, i)}
                   >
                     Delete
                   </button>
@@ -369,14 +369,14 @@ class DeckView extends React.Component {
                 <OverlayRow>
                   <button
                     className="button"
-                    onClick={() => this.handleCardDuplicate(deck.id, c.index)}
+                    onClick={() => this.handleCardDuplicate(deck.id, i)}
                   >
                     Duplicate
                   </button>
                   {/*
                     <button
                       onClick={
-                        () => this.handleCardMove(deck.id, c.index)
+                        () => this.handleCardMove(deck.id, i)
                       }
                       className={`${styles['hover-button']}`}
                     >
