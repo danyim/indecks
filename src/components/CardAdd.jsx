@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import CardPreview from './CardPreview'
-import { generateCAHCard } from '../utils'
 import styles from '../styles/components/CardAdd.styl'
 
 class CardAdd extends React.Component {
@@ -9,10 +8,16 @@ class CardAdd extends React.Component {
     deckId: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     // history: PropTypes.shape({ goBack: PropTypes.func.isRequired }).isRequired,
-    push: PropTypes.func.isRequired
+    push: PropTypes.func.isRequired,
+    placeholderGenerator: PropTypes.func
   }
 
-  static defaultProps = {}
+  static defaultProps = {
+    placeholderGenerator: () => ({
+      title: 'Card title here...',
+      answer: 'Card answer here (supports Markdown)...'
+    })
+  }
 
   constructor(props) {
     super(props)
@@ -77,7 +82,7 @@ class CardAdd extends React.Component {
 
   render() {
     const { deckId } = this.props
-    const { title, answer } = generateCAHCard()
+    const { title, answer } = this.props.placeholderGenerator()
 
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`}>

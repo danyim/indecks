@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { push } from 'react-router-redux'
 import * as deckActions from '../redux/modules/decks'
 import { DeckShape } from '../components/__commonShapes'
+import { generateCAHCard } from '../utils'
 import CardAdd from '../components/CardAdd'
 
 const propTypes = {
@@ -31,7 +32,11 @@ class DeckAddContainer extends React.Component {
   render() {
     return (
       <section className="single">
-        <CardAdd {...this.props} handleSubmit={this.handleSubmit} />
+        <CardAdd
+          {...this.props}
+          handleSubmit={this.handleSubmit}
+          placeholderGenerator={generateCAHCard}
+        />
       </section>
     )
   }
