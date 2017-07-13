@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BinarySelector should render self and subcomponents 1`] = `
+.jiFHpl {
+  margin: 0.5rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  overflow: none;
+}
+
+.wAXXP {
+  -webkit-flex: 1 1 50%;
+  -ms-flex: 1 1 50%;
+  flex: 1 1 50%;
+  margin: 0;
+  -webkit-transition: .2s all;
+  transition: .2s all;
+  padding: .2rem 1rem;
+  border-radius: .5rem 0 0 .5rem;
+  border-right-width: 0;
+  border-left-width: 2px;
+  border-color: #125688;
+  background-color: #125688;
+  color: white;
+}
+
+.wAXXP:hover {
+  color: white;
+}
+
+.elbUxh {
+  -webkit-flex: 1 1 50%;
+  -ms-flex: 1 1 50%;
+  flex: 1 1 50%;
+  margin: 0;
+  -webkit-transition: .2s all;
+  transition: .2s all;
+  padding: .2rem 1rem;
+  border-radius: 0 .5rem .5rem 0;
+  border-right-width: 2px;
+  border-left-width: 0;
+  border-color: #125688;
+  background-color: none;
+  color: #edeeed;
+}
+
+.elbUxh:hover {
+  color: #125688;
+}
+
+<BinarySelector
+  buttonStyle={null}
+  containerStyle={null}
+  handleClick={[Function]}
+  leftLabel=""
+  rightLabel=""
+  selection={1}
+>
+  <styled.div
+    style={null}
+  >
+    <div
+      className="sc-bdVaJa jiFHpl"
+      style={null}
+    >
+      <styled.button
+        left={true}
+        onClick={[Function]}
+        selected={true}
+        style={null}
+      >
+        <button
+          className="sc-bwzfXH wAXXP"
+          onClick={[Function]}
+          selected={true}
+          style={null}
+        />
+      </styled.button>
+      <styled.button
+        onClick={[Function]}
+        right={true}
+        selected={false}
+        style={null}
+      >
+        <button
+          className="sc-bwzfXH elbUxh"
+          onClick={[Function]}
+          selected={false}
+          style={null}
+        />
+      </styled.button>
+    </div>
+  </styled.div>
+</BinarySelector>
+`;
