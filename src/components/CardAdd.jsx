@@ -8,7 +8,8 @@ class CardAdd extends React.Component {
   static propTypes = {
     deckId: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    history: PropTypes.shape({ goBack: PropTypes.func.isRequired }).isRequired
+    // history: PropTypes.shape({ goBack: PropTypes.func.isRequired }).isRequired,
+    push: PropTypes.func.isRequired
   }
 
   static defaultProps = {}
@@ -22,7 +23,7 @@ class CardAdd extends React.Component {
     // Default values for the edit fields
     this.state = {
       title: '',
-      description: ''
+      answer: ''
     }
 
     this.focusInput = null
@@ -50,8 +51,22 @@ class CardAdd extends React.Component {
     this.props.handleSubmit(deckId, card)
   }
 
+  checkIfDirty = () => this.state.title !== '' || this.state.answer !== ''
+
   handleCancel() {
-    this.props.history.goBack()
+    if (this.checkIfDirty()) {
+      if (
+        confirm(
+          'Are you sure you want to cancel? You have unsaved changes that will be lost.'
+        )
+      ) {
+        this.props.push(`/view/${this.props.deckId}`)
+      }
+    } else {
+      this.props.push(`/view/${this.props.deckId}`)
+    }
+    // We can't simply do the below because users get confused.
+    // this.props.history.goBack()
   }
 
   handleChange(event, key) {
