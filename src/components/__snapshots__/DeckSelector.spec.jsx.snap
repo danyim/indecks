@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeckSelector should render self and subcomponents 1`] = `
+<DeckSelector
+  decks={
+    Array [
+      Object {
+        "cards": Array [],
+        "description": "Deck description",
+        "id": "ABCDEFG",
+        "title": "Deck title",
+      },
+      Object {
+        "cards": Array [],
+        "description": "Deck description",
+        "id": "123455",
+        "title": "Deck title",
+      },
+      Object {
+        "cards": Array [],
+        "description": "Deck description",
+        "id": "121451",
+        "title": "Deck title",
+      },
+    ]
+  }
+  handleOnSelected={[Function]}
+  push={[Function]}
+>
+  <div>
+    <h2
+      className="header"
+    >
+      Deck Selector
+    </h2>
+    <p
+      className="help"
+    >
+      Use the up and down arrows to select a deck. Press enter to navigate to the deck.
+    </p>
+    <ul
+      className="deck-list"
+      onKeyDown={[Function]}
+      role="presentation"
+      tabIndex={-1}
+    >
+      <li
+        className="selected"
+        value="ABCDEFG"
+      >
+        Deck title
+         
+        <small>
+          0
+           cards
+        </small>
+      </li>
+      <li
+        className=""
+        value="123455"
+      >
+        Deck title
+         
+        <small>
+          0
+           cards
+        </small>
+      </li>
+      <li
+        className=""
+        value="121451"
+      >
+        Deck title
+         
+        <small>
+          0
+           cards
+        </small>
+      </li>
+    </ul>
+  </div>
+</DeckSelector>
+`;

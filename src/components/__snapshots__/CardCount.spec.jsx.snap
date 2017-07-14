@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardCount should render self and subcomponents 1`] = `
+<CardCount
+  current={25}
+  max={100}
+>
+  <div
+    className="cardCount"
+  >
+    <span
+      className="current"
+    >
+      25
+    </span>
+    <span
+      className="separator"
+    />
+    <span
+      className="max"
+    >
+      100
+    </span>
+  </div>
+</CardCount>
+`;

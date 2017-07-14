@@ -11,14 +11,14 @@ class DeckNavigator extends React.Component {
   static propTypes = {
     deck: DeckShape.isRequired,
     cardIndex: PropTypes.number.isRequired,
-    handleFlip: PropTypes.func.isRequired,
     flipped: PropTypes.bool.isRequired,
     shuffle: PropTypes.bool.isRequired,
+    push: PropTypes.func.isRequired,
+    mode: PropTypes.string.isRequired,
+    handleFlip: PropTypes.func.isRequired,
     handleShuffleToggle: PropTypes.func.isRequired,
     handleNextCard: PropTypes.func.isRequired,
-    handlePrevCard: PropTypes.func.isRequired,
-    push: PropTypes.func.isRequired,
-    mode: PropTypes.string.isRequired
+    handlePrevCard: PropTypes.func.isRequired
   }
 
   static defaultProps = {}

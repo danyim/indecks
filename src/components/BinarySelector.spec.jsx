@@ -1,7 +1,6 @@
-import React from 'react'
-import { mount } from 'enzyme'
 import toJSON from 'enzyme-to-json'
 import 'jest-styled-components' // eslint-disable-line
+import { shallow, mount, setup, setupFull } from '../testUtils' // eslint-disable-line no-unused-vars
 import BinarySelector from './BinarySelector'
 
 const defaultProps = {
@@ -13,24 +12,15 @@ const defaultProps = {
   handleClick: () => {}
 }
 
-function setup(props = defaultProps) {
-  const wrapper = mount(<BinarySelector {...props} />)
-
-  return {
-    props,
-    wrapper
-  }
-}
-
 describe('BinarySelector', () => {
   it('should render self and subcomponents', () => {
-    const { wrapper } = setup()
+    const { wrapper } = mount(BinarySelector, defaultProps)
     const tree = toJSON(wrapper)
     expect(tree).toMatchStyledComponentsSnapshot()
   })
 
   it('should correctly highlight the selected value', () => {
-    let { wrapper } = setup({
+    let { wrapper } = setupFull(BinarySelector, {
       ...defaultProps,
       selection: 2
     })
@@ -44,7 +34,7 @@ describe('BinarySelector', () => {
     expect(buttonSelected.exists()).toEqual(true)
     expect(buttonSelected.html()).toEqual(buttonRight.html())
 
-    wrapper = setup({
+    wrapper = setupFull(BinarySelector, {
       ...defaultProps,
       selection: 1
     }).wrapper
@@ -54,7 +44,7 @@ describe('BinarySelector', () => {
 
   it('should call handleClick when any selection is clicked', () => {
     const handler = jest.fn()
-    const { wrapper } = setup({
+    const { wrapper } = setupFull(BinarySelector, {
       ...defaultProps,
       handleClick: handler
     })

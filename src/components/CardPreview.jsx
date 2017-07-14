@@ -70,6 +70,7 @@ class CardPreview extends React.Component {
     return (
       <div className={styles.preview}>
         <button
+          name="preview-toggle"
           type="button"
           className="btn pointer m-t"
           onClick={() => this.togglePreview()}

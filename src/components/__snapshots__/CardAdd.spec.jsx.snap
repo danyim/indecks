@@ -1,127 +1,167 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CardAdd should render self and subcomponents 1`] = `
-<figure
-  className="grid-figure grid-figure"
+<CardAdd
+  deckId="ABCDEFG"
+  handleSubmit={[Function]}
+  placeholderGenerator={[Function]}
+  push={[Function]}
 >
-  <form
-    className="edit-form"
-    onSubmit={[Function]}
+  <figure
+    className="grid-figure grid-figure"
   >
-    <label
-      htmlFor="title"
+    <form
+      className="edit-form"
+      onSubmit={[Function]}
     >
-      <span>
-        Card Title
-      </span>
-      <input
-        className="large-input"
-        name="title"
-        onChange={[Function]}
-        placeholder="Card title here..."
-        tabIndex={0}
-        type="text"
-      />
-    </label>
-    <label
-      htmlFor="answer"
-    >
-      <span>
-        Card Answer  (
-        <a
-          href="//guides.github.com/features/mastering-markdown/"
-          rel="noreferrer noopener"
-          target="_blank"
-        >
-          Markdown
-        </a>
-        )
-      </span>
-      <textarea
-        className="mono"
-        name="answer"
-        onChange={[Function]}
-        placeholder="Card answer here (supports Markdown)..."
-        rows="4"
-        tabIndex={-1}
-        type="text"
-      />
-    </label>
-    <div
-      className="preview"
-    >
-      <button
-        className="btn pointer m-t"
-        onClick={[Function]}
-        type="button"
+      <label
+        htmlFor="title"
       >
-        Preview [
-        +
-        ]
-      </button>
+        <span>
+          Card Title
+        </span>
+        <input
+          className="large-input"
+          name="title"
+          onChange={[Function]}
+          placeholder="Card title here..."
+          tabIndex={0}
+          type="text"
+        />
+      </label>
+      <label
+        htmlFor="answer"
+      >
+        <span>
+          Card Answer  (
+          <a
+            href="//guides.github.com/features/mastering-markdown/"
+            rel="noreferrer noopener"
+            target="_blank"
+          >
+            Markdown
+          </a>
+          )
+        </span>
+        <textarea
+          className="mono"
+          name="answer"
+          onChange={[Function]}
+          placeholder="Card answer here (supports Markdown)..."
+          rows="4"
+          tabIndex={-1}
+          type="text"
+        />
+      </label>
+      <CardPreview
+        answer=""
+        title=""
+      >
+        <div
+          className="preview"
+        >
+          <button
+            className="btn pointer m-t"
+            name="preview-toggle"
+            onClick={[Function]}
+            type="button"
+          >
+            Preview [
+            +
+            ]
+          </button>
+          <Motion
+            style={
+              Object {
+                "y": Object {
+                  "damping": 26,
+                  "precision": 0.01,
+                  "stiffness": 170,
+                  "val": 0,
+                },
+              }
+            }
+          >
+            <div
+              className="preview-pane"
+              style={
+                Object {
+                  "display": "none",
+                  "height": 0,
+                }
+              }
+            >
+              <label
+                className="no-pad"
+                htmlFor="title"
+              >
+                <span>
+                  Title
+                </span>
+                <Markdown
+                  className="card-title"
+                  handleOnClick={null}
+                  name="title"
+                  text=""
+                >
+                  <div
+                    className="card-title"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "",
+                      }
+                    }
+                    onClick={null}
+                  />
+                </Markdown>
+              </label>
+              <hr />
+              <label
+                className="no-pad"
+                htmlFor="answer"
+              >
+                <span>
+                  Answer
+                </span>
+                <Markdown
+                  className="card-answer"
+                  handleOnClick={null}
+                  name="answer"
+                  text=""
+                >
+                  <div
+                    className="card-answer"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "",
+                      }
+                    }
+                    onClick={null}
+                  />
+                </Markdown>
+              </label>
+            </div>
+          </Motion>
+        </div>
+      </CardPreview>
       <div
-        className="preview-pane"
-        style={
-          Object {
-            "display": "none",
-            "height": 0,
-          }
-        }
+        className="control-buttons"
       >
-        <label
-          className="no-pad"
-          htmlFor="title"
+        <button
+          className="button outline"
+          type="submit"
         >
-          <span>
-            Title
-          </span>
-          <div
-            className="card-title"
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "",
-              }
-            }
-            onClick={null}
-          />
-        </label>
-        <hr />
-        <label
-          className="no-pad"
-          htmlFor="answer"
+          Save
+        </button>
+        <button
+          className="button"
+          onClick={[Function]}
+          type="button"
         >
-          <span>
-            Answer
-          </span>
-          <div
-            className="card-answer"
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "",
-              }
-            }
-            onClick={null}
-          />
-        </label>
+          Cancel
+        </button>
       </div>
-    </div>
-    <div
-      className="control-buttons"
-    >
-      <button
-        className="button outline"
-        type="submit"
-      >
-        Save
-      </button>
-      <button
-        className="button"
-        onClick={[Function]}
-        type="button"
-      >
-        Cancel
-      </button>
-    </div>
-  </form>
-</figure>
+    </form>
+  </figure>
+</CardAdd>
 `;

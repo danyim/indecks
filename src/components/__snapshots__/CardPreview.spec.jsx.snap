@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardPreview should render self and subcomponents 1`] = `
+<CardPreview
+  answer="test"
+  title="Test"
+>
+  <div
+    className="preview"
+  >
+    <button
+      className="btn pointer m-t"
+      name="preview-toggle"
+      onClick={[Function]}
+      type="button"
+    >
+      Preview [
+      +
+      ]
+    </button>
+    <Motion
+      style={
+        Object {
+          "y": Object {
+            "damping": 26,
+            "precision": 0.01,
+            "stiffness": 170,
+            "val": 0,
+          },
+        }
+      }
+    >
+      <div
+        className="preview-pane"
+        style={
+          Object {
+            "display": "none",
+            "height": 0,
+          }
+        }
+      >
+        <label
+          className="no-pad"
+          htmlFor="title"
+        >
+          <span>
+            Title
+          </span>
+          <Markdown
+            className="card-title"
+            handleOnClick={null}
+            name="title"
+            text="Test"
+          >
+            <div
+              className="card-title"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<p>Test</p>
+                ",
+                }
+              }
+              onClick={null}
+            />
+          </Markdown>
+        </label>
+        <hr />
+        <label
+          className="no-pad"
+          htmlFor="answer"
+        >
+          <span>
+            Answer
+          </span>
+          <Markdown
+            className="card-answer"
+            handleOnClick={null}
+            name="answer"
+            text="test"
+          >
+            <div
+              className="card-answer"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<p>test</p>
+                ",
+                }
+              }
+              onClick={null}
+            />
+          </Markdown>
+        </label>
+      </div>
+    </Motion>
+  </div>
+</CardPreview>
+`;

@@ -1,6 +1,5 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import renderer from 'react-test-renderer'
+import toJson from 'enzyme-to-json'
+import { shallow, mount, setup, setupFull } from '../testUtils' // eslint-disable-line no-unused-vars
 import CardAdd from './CardAdd'
 
 const defaultProps = {
@@ -12,27 +11,15 @@ const defaultProps = {
   // }
 }
 
-function setup(props = defaultProps) {
-  const wrapper = shallow(<CardAdd {...props} />)
-
-  return {
-    props,
-    wrapper
-  }
-}
-
 describe('CardAdd', () => {
   it('should render self and subcomponents', () => {
-    const { wrapper } = setup()
-    expect(wrapper.find('figure.grid-figure').exists()).toBe(true)
-
-    const tree = renderer.create(<CardAdd {...defaultProps} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const wrapper = mount(CardAdd, defaultProps)
+    expect(toJson(wrapper)).toMatchSnapshot()
   })
 
   it('should call the handleSubmit prop when submitting the form', () => {
     const handler = jest.fn()
-    const { wrapper } = setup({
+    const { wrapper } = setup(CardAdd, {
       ...defaultProps,
       handleSubmit: handler
     })
@@ -51,7 +38,7 @@ describe('CardAdd', () => {
 
   it('should not allow a blank title', () => {
     const handler = jest.fn()
-    const { wrapper } = setup({
+    const { wrapper } = setup(CardAdd, {
       ...defaultProps,
       handleSubmit: handler
     })
@@ -70,7 +57,7 @@ describe('CardAdd', () => {
 
   it('should allow a blank answer', () => {
     const handler = jest.fn()
-    const { wrapper } = setup({
+    const { wrapper } = setup(CardAdd, {
       ...defaultProps,
       handleSubmit: handler
     })
@@ -89,7 +76,7 @@ describe('CardAdd', () => {
 
   xit('should NOT allow a blank answer', () => {
     const handler = jest.fn()
-    const { wrapper } = setup({
+    const { wrapper } = setup(CardAdd, {
       ...defaultProps,
       handleSubmit: handler
     })
@@ -109,7 +96,7 @@ describe('CardAdd', () => {
   it('should navigate to the deck view when cancel is clicked without a confirm', () => {
     spyOn(window, 'confirm').and.returnValue(true)
     const handler = jest.fn()
-    const { wrapper } = setup({
+    const { wrapper } = setup(CardAdd, {
       ...defaultProps,
       push: handler
     })
@@ -128,7 +115,7 @@ describe('CardAdd', () => {
   it('should NOT navigate to the deck view when changes are made, cancel is clicked, and the user does not accept the confirmation dialog', () => {
     spyOn(window, 'confirm').and.returnValue(false)
     const handler = jest.fn()
-    const { wrapper } = setup({
+    const { wrapper } = setup(CardAdd, {
       ...defaultProps,
       push: handler
     })
@@ -147,7 +134,7 @@ describe('CardAdd', () => {
   it('should display a confirmation if changes are made', () => {
     spyOn(window, 'confirm').and.returnValue(false)
     const handler = jest.fn()
-    const { wrapper } = setup({
+    const { wrapper } = setup(CardAdd, {
       ...defaultProps,
       push: handler
     })
@@ -172,7 +159,7 @@ describe('CardAdd', () => {
   it('should not display a confirmation if changes have not been made', () => {
     spyOn(window, 'confirm').and.returnValue(false)
     const handler = jest.fn()
-    const { wrapper } = setup({
+    const { wrapper } = setup(CardAdd, {
       ...defaultProps,
       push: handler
     })

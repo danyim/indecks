@@ -1,5 +1,5 @@
-import React from 'react'
-import { shallow } from 'enzyme'
+import toJSON from 'enzyme-to-json'
+import { shallow, mount, setup, setupFull } from '../testUtils' // eslint-disable-line no-unused-vars
 import Card from './Card'
 
 const defaultProps = {
@@ -16,25 +16,15 @@ const defaultProps = {
   children: null
 }
 
-function setup(props = defaultProps) {
-  const wrapper = shallow(<Card {...props} />)
-
-  return {
-    props,
-    wrapper
-  }
-}
-
 describe('Card', () => {
   it('should render self and subcomponents', () => {
-    const { wrapper } = setup()
-    expect(wrapper.find('figure').hasClass('grid-figure')).toBe(true)
-    expect(wrapper.find('div').hasClass('card-contents')).toBe(true)
+    const wrapper = mount(Card, defaultProps)
+    expect(toJSON(wrapper)).toMatchSnapshot()
   })
 
   it('should call the handleOnClick once when card is clicked', () => {
     const handler = jest.fn()
-    const { wrapper } = setup({
+    const { wrapper } = setup(Card, {
       ...defaultProps,
       handleOnClick: handler
     })
@@ -44,7 +34,7 @@ describe('Card', () => {
   })
 
   it('should render the title if flipped is FALSE', () => {
-    const { wrapper } = setup({
+    const { wrapper } = setup(Card, {
       ...defaultProps,
       flipped: false
     })
@@ -53,7 +43,7 @@ describe('Card', () => {
   })
 
   it('should render the answer if flipped is TRUE', () => {
-    const { wrapper } = setup({
+    const { wrapper } = setup(Card, {
       ...defaultProps,
       flipped: true
     })
@@ -62,7 +52,7 @@ describe('Card', () => {
   })
 
   it('should render the no answer indicator on the title if a null or blank answer is provided', () => {
-    const { wrapper } = setup({
+    const { wrapper } = setup(Card, {
       ...defaultProps,
       card: {
         ...defaultProps.card,
@@ -74,7 +64,7 @@ describe('Card', () => {
   })
 
   it('should render an empty answer notice if the card is flipped', () => {
-    const { wrapper } = setup({
+    const { wrapper } = setup(Card, {
       ...defaultProps,
       card: {
         ...defaultProps.card,
@@ -93,7 +83,7 @@ describe('Card', () => {
     const title = 'Testing long title'
     const trimOverflowLength = 5
 
-    const { wrapper } = setup({
+    const { wrapper } = setup(Card, {
       ...defaultProps,
       card: {
         ...defaultProps.card,
@@ -116,7 +106,7 @@ describe('Card', () => {
     const title = 'Testing long title with an image'
     const trimOverflowLength = 5
 
-    const { wrapper } = setup({
+    const { wrapper } = setup(Card, {
       ...defaultProps,
       card: {
         ...defaultProps.card,

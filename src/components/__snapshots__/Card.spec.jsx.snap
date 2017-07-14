@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card should render self and subcomponents 1`] = `
+<Card
+  card={
+    Object {
+      "answer": "Answer",
+      "index": 0,
+      "title": "Title",
+    }
+  }
+  className=""
+  flipped={false}
+  handleOnClick={[Function]}
+  trimOverflow={false}
+  trimOverflowLength={125}
+>
+  <figure
+    className="grid-figure grid-figure "
+    onClick={[Function]}
+    role="presentation"
+  >
+    <div
+      className="card-contents card-contents"
+    >
+      <Markdown
+        className="card-title card-title"
+        handleOnClick={null}
+        text="Title"
+      >
+        <div
+          className="card-title card-title"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<p>Title</p>
+            ",
+            }
+          }
+          onClick={null}
+        />
+      </Markdown>
+    </div>
+  </figure>
+</Card>
+`;

@@ -7,7 +7,6 @@ import styles from '../styles/components/Deck.styl'
 
 class Deck extends React.Component {
   static propTypes = {
-    push: PropTypes.func.isRequired,
     deck: DeckShape.isRequired,
     handleOnClick: PropTypes.func.isRequired,
     style: StylePropType,
@@ -21,15 +20,6 @@ class Deck extends React.Component {
 
   static contextTypes = {
     router: PropTypes.object
-  }
-
-  constructor(props) {
-    super(props)
-    this.navigateToDeck = this.navigateToDeck.bind(this)
-  }
-
-  navigateToDeck(deckId) {
-    this.props.push(`/view/${deckId}`)
   }
 
   render() {
