@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar should render self and subcomponents 1`] = `
+<nav
+  className="nav-container"
+>
+  <div
+    className="nav-outer-container"
+  >
+    <div
+      className="nav-inner-container"
+    >
+      <span
+        className="nav-left"
+      >
+        <div
+          className="rounded-button"
+        >
+          <a
+            className="pointer"
+            onClick={[Function]}
+            role="presentation"
+          >
+            <i
+              className="fa fa-plus-square-o"
+            />
+          </a>
+        </div>
+      </span>
+      <h1>
+        <Link
+          replace={false}
+          to="/"
+        >
+          in
+          <span
+            className="title-bold"
+          >
+            decks
+          </span>
+        </Link>
+      </h1>
+      <span
+        className="nav-right"
+      >
+        <div
+          className="rounded-button"
+        >
+          <a
+            className="pointer"
+            onClick={[Function]}
+            role="presentation"
+          >
+            <i
+              className="fa fa-cog"
+            />
+          </a>
+        </div>
+      </span>
+    </div>
+  </div>
+</nav>
+`;

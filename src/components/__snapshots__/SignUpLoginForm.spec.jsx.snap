@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUpLoginForm should render self and subcomponents 1`] = `
+<form
+  className="form"
+>
+  <div
+    className="error"
+  />
+  <label
+    htmlFor="username"
+  >
+    <span>
+      Email
+    </span>
+    <input
+      name="username"
+      onChange={[Function]}
+      placeholder="jane.doe@gmail.com"
+      type="text"
+    />
+  </label>
+  <label
+    htmlFor="password"
+  >
+    <span>
+      Password
+    </span>
+    <input
+      name="password"
+      onChange={[Function]}
+      placeholder="*********"
+      type="password"
+    />
+  </label>
+  <div
+    className="control-buttons"
+  >
+    <button
+      className="button outline"
+      disabled={false}
+      name="login"
+      onClick={[Function]}
+      type="button"
+    >
+      Login
+    </button>
+    <button
+      className="button"
+      disabled={false}
+      name="signup"
+      onClick={[Function]}
+      type="button"
+    >
+      Sign up using email
+    </button>
+  </div>
+  <div
+    className="txt-center m-t"
+  >
+    <p>
+      or sign in using a provider below
+    </p>
+  </div>
+  <div
+    className="control-buttons"
+  >
+    <button
+      className="button github"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fa fa-github fa-2x"
+      />
+      GitHub
+    </button>
+    <button
+      className="button google"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fa fa-google fa-2x"
+      />
+      Google
+    </button>
+    <button
+      className="button twitter"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fa fa-twitter fa-2x"
+      />
+      Twitter
+    </button>
+  </div>
+</form>
+`;

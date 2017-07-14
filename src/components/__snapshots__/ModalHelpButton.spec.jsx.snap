@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalHelpButton should render self and subcomponents 1`] = `
+<span>
+  <span
+    className="button"
+    name="toggle-modal-icon"
+    onClick={[Function]}
+    role="presentation"
+  >
+    <i
+      className="fa fa-question-circle-o"
+    />
+  </span>
+  <Modal
+    className="modal"
+    contentLabel="Help"
+    isOpen={false}
+    onAfterOpen={[Function]}
+    onRequestClose={[Function]}
+    overlayClassName="overlay"
+    style={
+      Object {
+        "left": 0,
+        "top": 0,
+      }
+    }
+  >
+    <a
+      className="close-modal"
+      onClick={[Function]}
+      role="presentation"
+    >
+      Close
+    </a>
+    <div />
+  </Modal>
+</span>
+`;

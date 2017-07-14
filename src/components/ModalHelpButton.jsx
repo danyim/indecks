@@ -27,12 +27,13 @@ class ModalHelpButton extends React.Component {
   }
 
   toggleModal(e) {
-    // console.log('pageX', e.nativeEvent.pageX)
-    // console.log('pageY', e.nativeEvent.pageY)
+    const offsetX = 215
+    const offsetY = 75
+
     this.setState({
       open: !this.state.open,
-      x: e.nativeEvent.pageX + 215,
-      y: e.nativeEvent.pageY + 75
+      x: e.nativeEvent.pageX + offsetX,
+      y: e.nativeEvent.pageY + offsetY
     })
   }
 
@@ -44,6 +45,7 @@ class ModalHelpButton extends React.Component {
     return (
       <span>
         <span
+          name="toggle-modal-icon"
           className={styles.button}
           onClick={this.toggleModal}
           role="presentation"

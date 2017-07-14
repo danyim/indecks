@@ -127,6 +127,7 @@ class SignUpLoginForm extends React.Component {
 
         <div className={`${styles['control-buttons']}`}>
           <button
+            name="login"
             type="button"
             className="button outline"
             disabled={this.props.isAuthenticating}
@@ -135,6 +136,7 @@ class SignUpLoginForm extends React.Component {
             Login
           </button>
           <button
+            name="signup"
             type="button"
             className="button"
             disabled={this.props.isAuthenticating}
