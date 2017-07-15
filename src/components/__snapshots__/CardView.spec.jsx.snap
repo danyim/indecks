@@ -4,119 +4,54 @@ exports[`CardView should render self and subcomponents 1`] = `
 <section
   className="single"
 >
-  <div
-    onMouseDown={[Function]}
-    onTouchEnd={[Function]}
-    onTouchMove={[Function]}
-    onTouchStart={[Function]}
+  <Swipeable
+    delta={10}
+    flickThreshold={0.6}
+    nodeName="div"
+    onSwipedLeft={[Function]}
+    onSwipedRight={[Function]}
+    preventDefaultTouchmoveEvent={false}
+    stopPropagation={false}
   >
-    <figure
-      className="grid-figure grid-figure "
-      onClick={[Function]}
-      role="presentation"
-    >
-      <div
-        className="card-contents card-contents"
-      >
-        <div
-          className="card-title card-title"
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "<p>Card</p>
-            ",
-            }
-          }
-          onClick={null}
-        />
-      </div>
-    </figure>
-  </div>
-  <div
-    className="deck-navigator"
-  >
-    <div
-      className="left"
-    >
-      <div
-        className="frontBack"
-      >
-        <a
-          className="front active"
-          onClick={[Function]}
-          role="presentation"
-          title="View front of card"
-        >
-          FRONT
-        </a>
-        <span
-          className="separator"
-        >
-          |
-        </span>
-        <a
-          className="back"
-          onClick={[Function]}
-          role="presentation"
-          title="View back of card"
-        >
-          BACK
-        </a>
-      </div>
-    </div>
-    <div
-      className="deck-nav-controls"
-    >
-      <button
-        className="button"
-        disabled={true}
-        onClick={[Function]}
-        title="Previous Card"
-      >
-        <i
-          className="fa fa-backward"
-        />
-      </button>
-      <button
-        className="button btn-inactive"
-        onClick={[Function]}
-        title="Shuffle"
-      >
-        <i
-          className="fa fa-random"
-        />
-      </button>
-      <button
-        className="button"
-        disabled={true}
-        onClick={[Function]}
-        title="Next Card"
-      >
-        <i
-          className="fa fa-forward"
-        />
-      </button>
-    </div>
-    <div
-      className="right"
-    >
-      <div
-        className="cardCount"
-      >
-        <span
-          className="current"
-        >
-          1
-        </span>
-        <span
-          className="separator"
-        />
-        <span
-          className="max"
-        >
-          1
-        </span>
-      </div>
-    </div>
-  </div>
+    <Card
+      card={
+        Object {
+          "answer": "Card description",
+          "index": 1,
+          "title": "Card",
+        }
+      }
+      className=""
+      flipped={false}
+      handleOnClick={[Function]}
+      trimOverflow={false}
+      trimOverflowLength={125}
+    />
+  </Swipeable>
+  <DeckNavigator
+    cardIndex={1}
+    deck={
+      Object {
+        "cards": Array [
+          Object {
+            "answer": "Card description",
+            "index": 1,
+            "title": "Card",
+          },
+        ],
+        "description": "Deck description",
+        "id": "ABCDEFG",
+        "title": "Deck title",
+      }
+    }
+    flipped={false}
+    handleFlip={[Function]}
+    handleNextCard={[Function]}
+    handlePrevCard={[Function]}
+    handleShuffleToggle={[Function]}
+    mode="view"
+    push={[Function]}
+    shuffle={false}
+  />
 </section>
 `;

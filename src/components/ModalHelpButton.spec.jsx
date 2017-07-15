@@ -1,6 +1,6 @@
 import React from 'react'
 import toJson from 'enzyme-to-json'
-import { shallow, mount, setup, setupFull } from '../testUtils' // eslint-disable-line no-unused-vars
+import { shallow, mount, setup, setupFull } from '../test/utils' // eslint-disable-line no-unused-vars
 import ModalHelpButton from './ModalHelpButton'
 
 describe('ModalHelpButton', () => {
@@ -35,11 +35,11 @@ describe('ModalHelpButton', () => {
       })
     }
 
-    expect(wrapper.state().open).toBe(false)
+    expect(wrapper.state('open')).toBe(false)
     toggle()
-    expect(wrapper.state().open).toBe(true)
+    expect(wrapper.state('open')).toBe(true)
     toggle()
-    expect(wrapper.state().open).toBe(false)
+    expect(wrapper.state('open')).toBe(false)
   })
 
   it('should close the modal when close is clicked', () => {
@@ -56,9 +56,9 @@ describe('ModalHelpButton', () => {
     }
     const closeButton = wrapper.find('a.close-modal')
     toggle()
-    expect(wrapper.state().open).toBe(true)
+    expect(wrapper.state('open')).toBe(true)
     closeButton.simulate('click')
-    expect(wrapper.state().open).toBe(false)
+    expect(wrapper.state('open')).toBe(false)
   })
 
   it('should render the contents of its children', () => {

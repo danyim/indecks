@@ -1,5 +1,5 @@
 import toJson from 'enzyme-to-json'
-import { shallow, mount, setup, setupFull } from '../testUtils' // eslint-disable-line no-unused-vars
+import { shallow, mount, setup, setupFull } from '../test/utils' // eslint-disable-line no-unused-vars
 import Deck from './Deck'
 
 const defaultProps = {

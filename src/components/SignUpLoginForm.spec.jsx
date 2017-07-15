@@ -1,5 +1,5 @@
 import toJson from 'enzyme-to-json'
-import { shallow, mount, setup, setupFull } from '../testUtils' // eslint-disable-line no-unused-vars
+import { shallow, mount, setup, setupFull } from '../test/utils' // eslint-disable-line no-unused-vars
 import SignUpLoginForm from './SignUpLoginForm'
 
 describe('SignUpLoginForm', () => {
@@ -52,7 +52,7 @@ describe('SignUpLoginForm', () => {
       target: { value: password, name: 'password' }
     })
     buttonLogin.simulate('click', { preventDefault: () => {} })
-    expect(handler.mock.calls.length).toEqual(1)
+    expect(handler).toHaveBeenCalled()
   })
 
   it('should call signUpEmail if signup is clicked', () => {
@@ -76,7 +76,7 @@ describe('SignUpLoginForm', () => {
       target: { value: password, name: 'password' }
     })
     buttonSignup.simulate('click', { preventDefault: () => {} })
-    expect(handler.mock.calls.length).toEqual(1)
+    expect(handler).toHaveBeenCalled()
   })
 
   it('should call signInGithub if the Github provider button is clicked', () => {
@@ -91,7 +91,7 @@ describe('SignUpLoginForm', () => {
     const button = wrapper.find('button.github')
 
     button.simulate('click', { preventDefault: () => {} })
-    expect(handler.mock.calls.length).toEqual(1)
+    expect(handler).toHaveBeenCalled()
   })
 
   it('should call signInTwitter if the Twitter provider button is clicked', () => {
@@ -106,7 +106,7 @@ describe('SignUpLoginForm', () => {
     const button = wrapper.find('button.twitter')
 
     button.simulate('click', { preventDefault: () => {} })
-    expect(handler.mock.calls.length).toEqual(1)
+    expect(handler).toHaveBeenCalled()
   })
 
   it('should call signInGoogle if the Google provider button is clicked', () => {
@@ -121,7 +121,7 @@ describe('SignUpLoginForm', () => {
     const button = wrapper.find('button.google')
 
     button.simulate('click', { preventDefault: () => {} })
-    expect(handler.mock.calls.length).toEqual(1)
+    expect(handler).toHaveBeenCalled()
   })
 
   describe('Validation', () => {
@@ -154,8 +154,8 @@ describe('SignUpLoginForm', () => {
 
         // Empty form
         button.simulate('click', { preventDefault: () => {} })
-        expect(handler.mock.calls.length).toEqual(0)
-        expect(wrapper.state().message !== '').toBe(true)
+        expect(handler).not.toHaveBeenCalled()
+        expect(wrapper.state('message') !== '').toBe(true)
       })
 
       it(`should not allow empty passwords when ${testButton.title}`, () => {
@@ -171,8 +171,8 @@ describe('SignUpLoginForm', () => {
           target: { value: username, name: 'username' }
         })
         button.simulate('click', { preventDefault: () => {} })
-        expect(handler.mock.calls.length).toEqual(0)
-        expect(wrapper.state().message !== '').toBe(true)
+        expect(handler).not.toHaveBeenCalled()
+        expect(wrapper.state('message') !== '').toBe(true)
       })
 
       it(`should not allow empty usernames when ${testButton.title}`, () => {
@@ -188,8 +188,8 @@ describe('SignUpLoginForm', () => {
           target: { value: password, name: 'password' }
         })
         button.simulate('click', { preventDefault: () => {} })
-        expect(handler.mock.calls.length).toEqual(0)
-        expect(wrapper.state().message !== '').toBe(true)
+        expect(handler).not.toHaveBeenCalled()
+        expect(wrapper.state('message') !== '').toBe(true)
       })
     })
   })

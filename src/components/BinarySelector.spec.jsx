@@ -1,6 +1,6 @@
 import toJSON from 'enzyme-to-json'
 import 'jest-styled-components' // eslint-disable-line
-import { shallow, mount, setup, setupFull } from '../testUtils' // eslint-disable-line no-unused-vars
+import { shallow, mount, setup, setupFull } from '../test/utils' // eslint-disable-line no-unused-vars
 import BinarySelector from './BinarySelector'
 
 const defaultProps = {
@@ -53,8 +53,8 @@ describe('BinarySelector', () => {
     const buttonRight = wrapper.find('button').last()
 
     buttonLeft.simulate('click')
-    expect(handler.mock.calls.length).toEqual(1)
+    expect(handler).toHaveBeenCalled()
     buttonRight.simulate('click')
-    expect(handler.mock.calls.length).toEqual(2)
+    expect(handler).toHaveBeenCalledTimes(2)
   })
 })

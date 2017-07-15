@@ -6,43 +6,40 @@ import styles from '../styles/components/Auth.styl'
 class Auth extends React.Component {
   static propTypes = {
     authenticated: PropTypes.bool,
-    logout: PropTypes.func.isRequired,
     saveDecksToFirebase: PropTypes.func.isRequired,
-    fetchUserDecks: PropTypes.func.isRequired,
     displayName: PropTypes.string,
-    email: PropTypes.string
+    email: PropTypes.string,
+    isAuthenticating: PropTypes.bool,
+    logout: PropTypes.func.isRequired,
+    fetchUserDecks: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
+    signUpEmail: PropTypes.func.isRequired,
+    signInGithub: PropTypes.func.isRequired, // eslint-disable-line
+    signInTwitter: PropTypes.func.isRequired, // eslint-disable-line
+    signInGoogle: PropTypes.func.isRequired // eslint-disable-line
     // photoURL: PropTypes.string,
   }
 
   static defaultProps = {
+    isAuthenticating: false,
     authenticated: false,
     displayName: null,
     email: null
     // photoURL: null,
   }
 
-  constructor(props) {
-    super(props)
-
-    this.handleClickSaveDecks = this.handleClickSaveDecks.bind(this)
-  }
-
-  handleClickSaveDecks() {
-    this.props
-      .saveDecksToFirebase()
-      .then(() => {
-        // console.log('saved all decks to firebase!')
-      })
-      .catch(() => {
-        // console.log('error occurred while saving to firebase')
-      })
-  }
-
   render() {
     return (
       <div className={styles.auth}>
         {!this.props.authenticated
-          ? <SignUpLoginForm {...this.props} />
+          ? <SignUpLoginForm
+              isAuthenticating={this.props.isAuthenticating}
+              login={this.props.login}
+              signUpEmail={this.props.signUpEmail}
+              signInGithub={this.props.signInGithub}
+              signInTwitter={this.props.signInTwitter}
+              signInGoogle={this.props.signInGoogle}
+            />
           : <div>
               <p>
                 {/*

@@ -1,6 +1,6 @@
 import React from 'react'
 import toJson from 'enzyme-to-json'
-import { shallow, mount, setup, setupFull } from '../testUtils' // eslint-disable-line no-unused-vars
+import { shallow, mount, setup, setupFull } from '../test/utils' // eslint-disable-line no-unused-vars
 import Modal from './Modal'
 
 const defaultProps = {
@@ -29,7 +29,7 @@ describe('Modal', () => {
 
     const closeButton = wrapper.find('a.close-modal')
     closeButton.simulate('click')
-    expect(handler.mock.calls.length).toEqual(1)
+    expect(handler).toHaveBeenCalled()
   })
 
   it('should render the contents of its children', () => {

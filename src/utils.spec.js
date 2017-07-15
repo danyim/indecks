@@ -66,4 +66,21 @@ describe('utils', () => {
       )
     })
   })
+
+  describe('generateRandomString', () => {
+    it('should generate a random 8-char string', () => {
+      const result = utils.generateRandomString()
+
+      expect(result).toBeTruthy()
+      expect(result.length).toBe(8)
+    })
+
+    it('should generate a random n-char string when parameter is present', () => {
+      const len = 82
+      const result = utils.generateRandomString(len)
+
+      expect(result).toBeTruthy()
+      expect(result.length).toBe(len)
+    })
+  })
 })
