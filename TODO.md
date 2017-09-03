@@ -11,8 +11,8 @@ Below are some ongoing "best practices" employed/to be employed in this project.
 - [ ] The Redux state object is an [ImmutableJS](https://facebook.github.io/immutable-js/) map to force immutability throughout the application
 - [ ] Uses selectors to retrieve data via [reselect](https://github.com/reactjs/reselect) (**Coming soon**)
 - [ ] Fix overlapping modals when opening multiple modals via keyboard shortcuts
-- [ ] Create a shared proptypes file
+- [x] Create a shared proptypes file
     - [https://goshakkk.name/redux-antipattern-mapstatetoprops/](https://goshakkk.name/redux-antipattern-mapstatetoprops/)
     - [https://github.com/reactjs/react-docgen/issues/33](https://github.com/reactjs/react-docgen/issues/33)
-- [ ] Migrate to [`styled-components`](https://github.com/styled-components/styled-components) instead of CSS modules
+- [x] Migrate to [`styled-components`](https://github.com/styled-components/styled-components) instead of CSS modules
 
