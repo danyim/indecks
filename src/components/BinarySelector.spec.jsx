@@ -16,7 +16,7 @@ describe('BinarySelector', () => {
   it('should render self and subcomponents', () => {
     const { wrapper } = mount(BinarySelector, defaultProps)
     const tree = toJSON(wrapper)
-    expect(tree).toMatchStyledComponentsSnapshot()
+    expect(tree).toMatchSnapshot()
   })
 
   it('should correctly highlight the selected value', () => {
