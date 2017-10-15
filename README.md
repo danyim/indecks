@@ -8,10 +8,7 @@ Indecks is an interactive index card study app built using React/Redux. Use it t
   Live Demo: <a href="https://indecks.netlify.com/" target="_blank">https://indecks.netlify.com/</a>
 </h3>
 
-
 ![](https://github.com/danyim/indecks/raw/master/screenshot.png)
-
-
 
 
 ### Features
