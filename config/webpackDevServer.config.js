@@ -1,5 +1,6 @@
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware')
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware')
+const ignoredFiles = require('react-dev-utils/ignoredFiles')
 const config = require('./webpack.config.dev')
 const paths = require('./paths')
 
@@ -62,21 +63,23 @@ module.exports = function(proxy, allowedHost) {
     quiet: true,
     // Reportedly, this avoids CPU overload on some systems.
     // https://github.com/facebookincubator/create-react-app/issues/293
+    // src/node_modules is not ignored to support absolute imports
+    // https://github.com/facebookincubator/create-react-app/issues/1065
     watchOptions: {
-      ignored: /node_modules/
+      ignored: ignoredFiles(paths.appSrc),
     },
     // Enable HTTPS if the HTTPS environment variable is set to 'true'
     https: protocol === 'https',
-    host,
+    host: host,
     overlay: false,
     historyApiFallback: {
       // Paths with dots should still use the history fallback.
       // See https://github.com/facebookincubator/create-react-app/issues/387.
-      disableDotRule: true
+      disableDotRule: true,
     },
     public: allowedHost,
     proxy,
-    setup(app) {
+    before(app) {
       // This lets us open files from the runtime error overlay.
       app.use(errorOverlayMiddleware())
       // This service worker file is effectively a 'no-op' that will reset any
@@ -85,6 +88,6 @@ module.exports = function(proxy, allowedHost) {
       // it used the same host and port.
       // https://github.com/facebookincubator/create-react-app/issues/2272#issuecomment-302832432
       app.use(noopServiceWorkerMiddleware())
-    }
+    },
   }
 }
