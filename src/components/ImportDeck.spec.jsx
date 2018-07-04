@@ -9,7 +9,7 @@ const defaultProps = {
   push: () => {},
   loadSampleDecks: () => {},
   maxDeckTitleLength: 160,
-  maxDeckDescLength: 300
+  maxDeckDescLength: 300,
 }
 
 function setup(props = defaultProps) {
@@ -17,7 +17,7 @@ function setup(props = defaultProps) {
 
   return {
     props,
-    wrapper
+    wrapper,
   }
 }
 
@@ -26,7 +26,7 @@ function setupFull(props = defaultProps) {
 
   return {
     props,
-    wrapper
+    wrapper,
   }
 }
 
@@ -36,17 +36,17 @@ describe('ImportDeck', () => {
     expect(toJson(wrapper)).toMatchSnapshot()
   })
 
-  it('should render a dropzone', () => {
+  it.only('should render a dropzone', () => {
     const { wrapper } = setupFull({
-      ...defaultProps
+      ...defaultProps,
     })
 
-    expect(wrapper.find('Dropzone').exists()).toBe(true)
+    expect(wrapper.find('[onDrop]').exists()).toBe(true)
   })
 
   xit('should process the JSON when a file is provided in the Dropzone', () => {
-    spyOn(window, 'URL').and.returnValue({
-      createObjectURL: () => {}
+    jest.spyOn(window, 'URL').and.returnValue({
+      createObjectURL: () => {},
     })
     // spyOn(window, 'URL').and.returnValue(() => {});
 
@@ -55,7 +55,7 @@ describe('ImportDeck', () => {
     const { wrapper } = setupFull({
       ...defaultProps,
       addDeck: handlerAdd,
-      push
+      push,
     })
 
     const dropzone = wrapper.find('Dropzone')
@@ -63,8 +63,8 @@ describe('ImportDeck', () => {
       {
         name: 'test.json',
         size: 1111,
-        type: 'application/json'
-      }
+        type: 'application/json',
+      },
     ]
 
     dropzone.simulate('drop', { dataTransfer: { files } })
@@ -80,7 +80,7 @@ describe('ImportDeck', () => {
     const { wrapper } = setup({
       ...defaultProps,
       loadSampleDecks: handlerSample,
-      push
+      push,
     })
 
     wrapper
@@ -95,16 +95,15 @@ describe('ImportDeck', () => {
     const handlerAdd = jest.fn()
     const { wrapper } = setup({
       ...defaultProps,
-      addDeck: handlerAdd
+      addDeck: handlerAdd,
     })
 
     const title = wrapper.find('input[name="title"]')
     const description = wrapper.find('textarea[name="description"]')
     title.simulate('change', { target: { value: 'Test title' } })
     description.simulate('change', { target: { value: 'Test description' } })
-    // console.log(wrapper.state());
     wrapper.find('form').simulate('submit', {
-      preventDefault: () => {}
+      preventDefault: () => {},
     })
     expect(handlerAdd.mock.calls.length).toBe(1)
   })
@@ -113,14 +112,14 @@ describe('ImportDeck', () => {
     const handlerAdd = jest.fn()
     const { wrapper } = setup({
       ...defaultProps,
-      addDeck: handlerAdd
+      addDeck: handlerAdd,
     })
 
     const title = wrapper.find('input[name="title"]')
     title.simulate('change', { target: { value: '' } })
 
     wrapper.find('form').simulate('submit', {
-      preventDefault: () => {}
+      preventDefault: () => {},
     })
     expect(handlerAdd.mock.calls.length).toBe(0)
   })
@@ -129,7 +128,7 @@ describe('ImportDeck', () => {
     const handlerAdd = jest.fn()
     const { props, wrapper } = setup({
       ...defaultProps,
-      addDeck: handlerAdd
+      addDeck: handlerAdd,
     })
 
     const longTitle = 'a'.repeat(props.maxDeckTitleLength + 1)
@@ -140,7 +139,7 @@ describe('ImportDeck', () => {
     description.simulate('change', { target: { value: '' } })
 
     wrapper.find('form').simulate('submit', {
-      preventDefault: () => {}
+      preventDefault: () => {},
     })
 
     expect(handlerAdd.mock.calls.length).toBe(0)
@@ -150,7 +149,7 @@ describe('ImportDeck', () => {
     const handlerAdd = jest.fn()
     const { props, wrapper } = setup({
       ...defaultProps,
-      addDeck: handlerAdd
+      addDeck: handlerAdd,
     })
 
     const longDesc = 'a'.repeat(props.maxDeckDescLength + 1)
@@ -161,7 +160,7 @@ describe('ImportDeck', () => {
     description.simulate('change', { target: { value: longDesc } })
 
     wrapper.find('form').simulate('submit', {
-      preventDefault: () => {}
+      preventDefault: () => {},
     })
 
     expect(handlerAdd.mock.calls.length).toBe(0)

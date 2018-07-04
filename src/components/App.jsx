@@ -21,9 +21,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // if (document) {
-    //   document.documentElement.requestFullscreen()
-    // }
     if (window) {
       window.scrollTo(0, 1)
     }
@@ -35,7 +32,10 @@ class App extends React.Component {
   render() {
     return (
       <main className="app-container">
-        <Navbar changeActiveModal={this.props.changeActiveModal} location={this.props.location} />
+        <Navbar
+          changeActiveModal={this.props.changeActiveModal}
+          location={this.props.location}
+        />
         <ModalContainer
           currentModal={this.props.currentModal}
           changeActiveModal={this.props.changeActiveModal}

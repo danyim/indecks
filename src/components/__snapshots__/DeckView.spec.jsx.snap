@@ -15,10 +15,12 @@ exports[`DeckView should render self and subcomponents 1`] = `
         classInvalid="invalid"
         classLoading="loading"
         className="large editable"
+        defaultValue="CLICK TO EDIT"
         maxLength={160}
         minLength="1"
         placeholder="Click here to add a title"
         propName="title"
+        shouldStartEditOnDoubleClick={false}
         validate={[Function]}
         value="Deck title"
       />
@@ -44,11 +46,13 @@ exports[`DeckView should render self and subcomponents 1`] = `
         classInvalid="invalid"
         classLoading="loading"
         className="paragraph editable m-t"
+        defaultValue="CLICK TO EDIT"
         maxLength={300}
         minLength="1"
         placeholder="Click here to add a description"
         propName="description"
         rows="6"
+        shouldStartEditOnDoubleClick={false}
         validate={[Function]}
         value="Deck description"
       />
