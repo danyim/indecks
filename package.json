@@ -123,7 +123,8 @@
       "src/**/*.{js,jsx}"
     ],
     "setupFiles": [
-      "<rootDir>/config/polyfills.js"
+      "<rootDir>/config/polyfills.js",
+      "<rootDir>/config/enzyme/setup.js"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.js?(x)",
@@ -140,6 +141,7 @@
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
     ],
     "moduleNameMapper": {
+      "\\.(css|styl)": "identity-obj-proxy",
       "^react-native$": "react-native-web"
     },
     "moduleFileExtensions": [
@@ -149,8 +151,7 @@
       "web.jsx",
       "jsx",
       "node"
-    ],
-    "setupTestFrameworkScriptFile": "<rootDir>/config/enzyme/setup.js"
+    ]
   },
   "babel": {
     "presets": [
@@ -164,5 +165,8 @@
     "semi": false,
     "singleQuote": true,
     "trailingComma": "all"
+  },
+  "devDependencies": {
+    "identity-obj-proxy": "^3.0.0"
   }
 }
