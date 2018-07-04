@@ -2,13 +2,13 @@
 
 exports[`ImportDeck should render self and subcomponents 1`] = `
 <section
-  className="undefined"
+  className="deck-import"
 >
   <div
-    className="undefined"
+    className="grid-figure"
   >
     <h2
-      className="undefined"
+      className="header"
     >
       Add/Import Deck
     </h2>
@@ -57,7 +57,7 @@ exports[`ImportDeck should render self and subcomponents 1`] = `
         </button>
       </div>
       <div
-        className="undefined"
+        className="or-bar"
       >
         <hr />
         <p>
@@ -143,8 +143,8 @@ exports[`ImportDeck should render self and subcomponents 1`] = `
       </p>
       <t
         accept="application/json,text/csv"
-        activeClassName="undefined"
-        className="undefined"
+        activeClassName="drop-active"
+        className="drop"
         disableClick={false}
         disablePreview={false}
         disabled={false}
@@ -154,14 +154,14 @@ exports[`ImportDeck should render self and subcomponents 1`] = `
         multiple={false}
         onDrop={[Function]}
         preventDropOnDocument={true}
-        rejectClassName="undefined"
+        rejectClassName="drop-reject"
       >
         <p>
           Click here or drag and drop the deck JSON/CSV file in the box
         </p>
       </t>
       <div
-        className="undefined"
+        className="or-bar"
       >
         <hr />
         <p>

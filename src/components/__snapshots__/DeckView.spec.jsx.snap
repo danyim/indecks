@@ -2,13 +2,13 @@
 
 exports[`DeckView should render self and subcomponents 1`] = `
 <section
-  className="undefined"
+  className="deck-view"
 >
   <div
-    className="undefined"
+    className="title-card"
   >
     <div
-      className="undefined"
+      className="title-text"
     >
       <RIEInput
         change={[Function]}
@@ -55,7 +55,7 @@ exports[`DeckView should render self and subcomponents 1`] = `
        
     </div>
     <div
-      className="undefined"
+      className="control-buttons"
     >
       <Link
         className="button outline"
@@ -83,9 +83,11 @@ exports[`DeckView should render self and subcomponents 1`] = `
       </button>
     </div>
   </div>
-  <div>
+  <div
+    className="options"
+  >
     <div
-      className="function search() { [native code] }"
+      className="search"
     >
       <input
         maxLength={50}
@@ -101,13 +103,13 @@ exports[`DeckView should render self and subcomponents 1`] = `
       </div>
     </div>
     <div
-      className="undefined dosis"
+      className="sort dosis"
     >
       <span>
         Sort by
       </span>
       <a
-        className="undefined"
+        className="selected"
         onClick={[Function]}
         role="presentation"
       >
@@ -131,13 +133,13 @@ exports[`DeckView should render self and subcomponents 1`] = `
       </a>
     </div>
     <div
-      className="undefined dosis"
+      className="arrange dosis"
     >
       <span>
         Arrangement
       </span>
       <a
-        className="undefined"
+        className="selected"
         onClick={[Function]}
         role="presentation"
       >
@@ -155,7 +157,7 @@ exports[`DeckView should render self and subcomponents 1`] = `
     </div>
   </div>
   <div
-    className="wrap-row undefined two-col"
+    className="wrap-row grid two-col"
   >
     <Card
       card={
@@ -165,7 +167,7 @@ exports[`DeckView should render self and subcomponents 1`] = `
           "title": "My test card",
         }
       }
-      className="undefined"
+      className="card-contents"
       flipped={false}
       handleOnClick={[Function]}
       key="card_ABCDEFG__1"
@@ -217,7 +219,7 @@ exports[`DeckView should render self and subcomponents 1`] = `
           "title": "Another test card",
         }
       }
-      className="undefined"
+      className="card-contents"
       flipped={false}
       handleOnClick={[Function]}
       key="card_ABCDEFG__2"

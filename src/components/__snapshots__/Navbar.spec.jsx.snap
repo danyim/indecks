@@ -2,19 +2,19 @@
 
 exports[`Navbar should render self and subcomponents 1`] = `
 <nav
-  className="undefined"
+  className="nav-container"
 >
   <div
-    className="undefined"
+    className="nav-outer-container"
   >
     <div
-      className="undefined"
+      className="nav-inner-container"
     >
       <span
-        className="undefined"
+        className="nav-left"
       >
         <div
-          className="undefined"
+          className="rounded-button"
         >
           <a
             className="pointer"
@@ -34,17 +34,17 @@ exports[`Navbar should render self and subcomponents 1`] = `
         >
           in
           <span
-            className="undefined"
+            className="title-bold"
           >
             decks
           </span>
         </Link>
       </h1>
       <span
-        className="undefined"
+        className="nav-right"
       >
         <div
-          className="undefined"
+          className="rounded-button"
         >
           <a
             className="pointer"

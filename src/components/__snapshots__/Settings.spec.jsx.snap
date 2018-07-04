@@ -2,15 +2,15 @@
 
 exports[`Settings should render self and subcomponents 1`] = `
 <section
-  className="undefined"
+  className="settings"
 >
   <h2
-    className="undefined"
+    className="header"
   >
     Settings
   </h2>
   <div
-    className="undefined"
+    className="settings-content"
   >
     <p>
       If you're logged in, any changes made to your decks will automatically be saved and synchronized in

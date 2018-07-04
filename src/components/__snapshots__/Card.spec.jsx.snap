@@ -16,20 +16,20 @@ exports[`Card should render self and subcomponents 1`] = `
   trimOverflowLength={125}
 >
   <figure
-    className="grid-figure undefined "
+    className="grid-figure grid-figure "
     onClick={[Function]}
     role="presentation"
   >
     <div
-      className="card-contents undefined"
+      className="card-contents card-contents"
     >
       <Markdown
-        className="card-title undefined"
+        className="card-title card-title"
         handleOnClick={null}
         text="Title"
       >
         <div
-          className="card-title undefined"
+          className="card-title card-title"
           dangerouslySetInnerHTML={
             Object {
               "__html": "<p>Title</p>

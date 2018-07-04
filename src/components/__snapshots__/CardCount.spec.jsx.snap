@@ -5,12 +5,20 @@ exports[`CardCount should render self and subcomponents 1`] = `
   current={25}
   max={100}
 >
-  <div>
-    <span>
+  <div
+    className="cardCount"
+  >
+    <span
+      className="current"
+    >
       25
     </span>
-    <span />
-    <span>
+    <span
+      className="separator"
+    />
+    <span
+      className="max"
+    >
       100
     </span>
   </div>

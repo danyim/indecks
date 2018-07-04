@@ -5,7 +5,9 @@ exports[`CardPreview should render self and subcomponents 1`] = `
   answer="test"
   title="Test"
 >
-  <div>
+  <div
+    className="preview"
+  >
     <button
       className="btn pointer m-t"
       name="preview-toggle"
@@ -29,7 +31,7 @@ exports[`CardPreview should render self and subcomponents 1`] = `
       }
     >
       <div
-        className="undefined"
+        className="preview-pane"
         style={
           Object {
             "display": "none",
@@ -45,13 +47,13 @@ exports[`CardPreview should render self and subcomponents 1`] = `
             Title
           </span>
           <Markdown
-            className="undefined"
+            className="card-title"
             handleOnClick={null}
             name="title"
             text="Test"
           >
             <div
-              className="undefined"
+              className="card-title"
               dangerouslySetInnerHTML={
                 Object {
                   "__html": "<p>Test</p>
@@ -71,13 +73,13 @@ exports[`CardPreview should render self and subcomponents 1`] = `
             Answer
           </span>
           <Markdown
-            className="undefined"
+            className="card-answer"
             handleOnClick={null}
             name="answer"
             text="test"
           >
             <div
-              className="undefined"
+              className="card-answer"
               dangerouslySetInnerHTML={
                 Object {
                   "__html": "<p>test</p>
