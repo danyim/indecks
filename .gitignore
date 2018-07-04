@@ -5,4 +5,4 @@ samples
 coverage
 *.sublime-workspace
 .env
-.env
+build

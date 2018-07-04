@@ -3,8 +3,9 @@ import { Provider } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { ConnectedRouter } from 'connected-react-router'
 import { configureStore, history } from './store'
-// import './styles/style.styl'
+import './styles/style.styl'
 
+// TODO: Move the initial state to the ducks
 const initialState = {
   decks: [],
   config: {
