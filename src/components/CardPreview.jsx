@@ -6,23 +6,23 @@ import styles from '../styles/components/CardPreview.styl'
 
 const propTypes = {
   title: PropTypes.string,
-  answer: PropTypes.string
+  answer: PropTypes.string,
 }
 
 const defaultProps = {
   title: '',
-  answer: ''
+  answer: '',
 }
 
 class CardPreview extends React.Component {
+  state = {
+    display: false,
+  }
+
   constructor(props) {
     super(props)
 
     this.togglePreview.bind(this, this.togglePreview)
-
-    this.state = {
-      display: false
-    }
   }
 
   togglePreview() {
@@ -34,12 +34,12 @@ class CardPreview extends React.Component {
   renderPreview(title, answer) {
     return (
       <Motion style={{ y: spring(this.state.display ? 400 : 0) }}>
-        {({ y }) =>
+        {({ y }) => (
           <div
             className={`${styles['preview-pane']}`}
             style={{
               height: y,
-              display: y / 400 > 0.05 ? 'block' : 'none'
+              display: y / 400 > 0.05 ? 'block' : 'none',
             }}
           >
             <label htmlFor="title" className="no-pad">
@@ -59,7 +59,8 @@ class CardPreview extends React.Component {
                 text={answer}
               />
             </label>
-          </div>}
+          </div>
+        )}
       </Motion>
     )
   }

@@ -13,13 +13,20 @@ class ImportDeck extends React.Component {
     loadSampleDecks: PropTypes.func.isRequired,
     handleClose: PropTypes.func,
     maxDeckTitleLength: PropTypes.number,
-    maxDeckDescLength: PropTypes.number
+    maxDeckDescLength: PropTypes.number,
   }
 
   static defaultProps = {
     handleClose: () => {},
     maxDeckTitleLength: 160,
-    maxDeckDescLength: 300
+    maxDeckDescLength: 300,
+  }
+
+  // Default values for the edit fields
+  state = {
+    title: '',
+    description: '',
+    error: null,
   }
 
   constructor(props) {
@@ -27,13 +34,6 @@ class ImportDeck extends React.Component {
     this.handleDrop = this.handleDrop.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleLoadSample = this.handleLoadSample.bind(this)
-
-    // Default values for the edit fields
-    this.state = {
-      title: '',
-      description: '',
-      error: null
-    }
 
     this.focusInput = null
   }
@@ -57,7 +57,7 @@ class ImportDeck extends React.Component {
     return {
       id: generateRandomString(),
       title: 'Imported Deck',
-      description: 'Imported from CSV'
+      description: 'Imported from CSV',
     }
   }
 
@@ -73,7 +73,7 @@ class ImportDeck extends React.Component {
         const csv = CSV.parse(result).map((row, i) => ({
           title: row[0],
           answer: row[1],
-          index: i
+          index: i,
         }))
         const deck = this.createShellDeck()
         deck.cards = csv
@@ -121,7 +121,7 @@ class ImportDeck extends React.Component {
       reader.readAsText(file)
     } catch (e) {
       this.setState({
-        error: 'Invalid file. Must be a valid .csv or .json file'
+        error: 'Invalid file. Must be a valid .csv or .json file',
       })
     }
   }
@@ -142,7 +142,7 @@ class ImportDeck extends React.Component {
       id,
       title: this.state.title,
       description: this.state.description,
-      cards: []
+      cards: [],
     })
 
     // Close the modal
@@ -228,8 +228,7 @@ class ImportDeck extends React.Component {
                   <li>
                     <code>
                       &quot;title&quot;,&quot;answer&quot;<br />
-                      &quot;My test title&quot;,&quot;Test description&quot;<br
-                      />
+                      &quot;My test title&quot;,&quot;Test description&quot;<br />
                       &quot;Another title&quot;,&quot;Yet another
                       description&quot;<br />
                       &quot;My demo card&quot;,&quot;Test data&quot;
@@ -256,10 +255,11 @@ class ImportDeck extends React.Component {
               <p>
                 Click here or drag and drop the deck JSON/CSV file in the box
               </p>
-              {this.state.error !== null &&
+              {this.state.error !== null && (
                 <div className={`error ${styles.error}`}>
                   {this.state.error}
-                </div>}
+                </div>
+              )}
             </Dropzone>
             <div className={`${styles['or-bar']}`}>
               <hr />

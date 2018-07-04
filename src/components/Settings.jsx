@@ -1,38 +1,38 @@
-import React from "react";
-import PropTypes from "prop-types";
-import json2csv from "json2csv";
-import { DeckShape } from "./__commonShapes";
-import BinarySelector from "./BinarySelector";
-import ExportDeckButton from "./ExportDeckButton";
-import AuthContainer from "../containers/AuthContainer";
-import styles from "../styles/components/Settings.styl";
+import React from 'react'
+import PropTypes from 'prop-types'
+import json2csv from 'json2csv'
+import { DeckShape } from './__commonShapes'
+import BinarySelector from './BinarySelector'
+import ExportDeckButton from './ExportDeckButton'
+import AuthContainer from '../containers/AuthContainer'
+import styles from '../styles/components/Settings.styl'
 
 class Settings extends React.Component {
   static propTypes = {
     decks: PropTypes.arrayOf(DeckShape.isRequired).isRequired,
     deckCount: PropTypes.number.isRequired,
-    removeAllDecks: PropTypes.func.isRequired
-  };
+    removeAllDecks: PropTypes.func.isRequired,
+  }
 
-  static defaultProps = {};
+  static defaultProps = {}
 
   static handleClearLocalStorage() {
-    localStorage.clear();
+    localStorage.clear()
+  }
+
+  state = {
+    exportType: 1,
   }
 
   constructor(props) {
-    super(props);
-    this.removeAllDecks = this.removeAllDecks.bind(this);
-    this.handleChangeExportType = this.handleChangeExportType.bind(this);
-    this.handleExport = this.handleExport.bind(this);
-
-    this.state = {
-      exportType: 1
-    };
+    super(props)
+    this.removeAllDecks = this.removeAllDecks.bind(this)
+    this.handleChangeExportType = this.handleChangeExportType.bind(this)
+    this.handleExport = this.handleExport.bind(this)
   }
 
   handleChangeExportType(value) {
-    this.setState({ exportType: value });
+    this.setState({ exportType: value })
   }
 
   handleExport() {
@@ -45,24 +45,24 @@ class Settings extends React.Component {
         cards: d.cards.map(c => ({
           title: c.title,
           answer: c.answer,
-          index: c.index
-        }))
-      }));
-      return JSON.stringify(sanitizedDeck, null, 2);
+          index: c.index,
+        })),
+      }))
+      return JSON.stringify(sanitizedDeck, null, 2)
     }
     // Else, it's a CSV
-    const fields = ["title", "description", "cards"];
-    return json2csv({ data: this.props.decks, fields });
+    const fields = ['title', 'description', 'cards']
+    return json2csv({ data: this.props.decks, fields })
   }
 
   removeAllDecks(count) {
     if (
       window.confirm(
         `Are you sure you want to delete all ${count} decks? ` +
-          "This action is permanent."
+          'This action is permanent.'
       )
     ) {
-      this.props.removeAllDecks();
+      this.props.removeAllDecks()
     }
   }
 
@@ -83,19 +83,19 @@ class Settings extends React.Component {
       >
         Delete all {deckCount} deck(s) from local storage
       </button>
-    );
+    )
   }
 
   render() {
-    const { deckCount } = this.props;
+    const { deckCount } = this.props
 
     return (
       <section className={`${styles.settings}`}>
         <h2 className={`${styles.header}`}>Settings</h2>
-        <div className={`${styles["settings-content"]}`}>
+        <div className={`${styles['settings-content']}`}>
           <p>
             If you&apos;re logged in, any changes made to your decks will
-            automatically be saved and synchronized in{" "}
+            automatically be saved and synchronized in{' '}
             <strong>real-time</strong>.
           </p>
 
@@ -119,7 +119,7 @@ class Settings extends React.Component {
             />
             <ExportDeckButton
               filename={
-                this.state.exportType === 1 ? "indecks.json" : "indecks.csv"
+                this.state.exportType === 1 ? 'indecks.json' : 'indecks.csv'
               }
               label="Export"
               className="button"
@@ -141,8 +141,8 @@ class Settings extends React.Component {
           */}
         </div>
       </section>
-    );
+    )
   }
 }
 
-export default Settings;
+export default Settings

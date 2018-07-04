@@ -45,6 +45,12 @@ class DeckView extends React.Component {
     unanswered: 'UNANSWERED',
   }
 
+  state = {
+    arrangement: DeckView.arrangements.two,
+    sort: DeckView.sorts.created,
+    search: null,
+  }
+
   constructor(props) {
     super(props)
 
@@ -55,12 +61,6 @@ class DeckView extends React.Component {
     this.handleExport = this.handleExport.bind(this)
     this.validateDescription = this.validateDescription.bind(this)
     this.validateTitle = this.validateTitle.bind(this)
-
-    this.state = {
-      arrangement: DeckView.arrangements.two,
-      sort: DeckView.sorts.created,
-      search: null,
-    }
   }
 
   // // Parses all the cards of a deck object and performs a special replacement
@@ -95,7 +95,7 @@ class DeckView extends React.Component {
   handleCardDuplicate(deckId, i) {
     this.props.handleDuplicateCard(
       i + 1, // expects a cardIndex, which is 1-based
-      deckId,
+      deckId
     )
   }
 
@@ -111,7 +111,7 @@ class DeckView extends React.Component {
     if (window.confirm('Are you sure?')) {
       this.props.handleRemoveCard(
         i + 1, // expects a cardIndex, which is 1-based
-        deckId,
+        deckId
       )
       this.props.push(`/view/${deckId}`)
     }
@@ -121,7 +121,7 @@ class DeckView extends React.Component {
     this.props.handleEditDeck(
       this.props.deck.id,
       data.title ? data.title : this.props.deck.title,
-      data.description ? data.description : this.props.deck.description,
+      data.description ? data.description : this.props.deck.description
     )
   }
 

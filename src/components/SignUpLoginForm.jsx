@@ -9,17 +9,23 @@ class SignUpLoginForm extends React.Component {
     signInGithub: PropTypes.func.isRequired, // eslint-disable-line
     signInTwitter: PropTypes.func.isRequired, // eslint-disable-line
     signInGoogle: PropTypes.func.isRequired, // eslint-disable-line
-    isAuthenticating: PropTypes.bool
+    isAuthenticating: PropTypes.bool,
   }
 
   static defaultProps = {
-    isAuthenticating: false
+    isAuthenticating: false,
   }
 
   static providerMap = {
     GITHUB: 'signInGithub',
     TWITTER: 'signInTwitter',
-    GOOGLE: 'signInGoogle'
+    GOOGLE: 'signInGoogle',
+  }
+
+  state = {
+    username: '',
+    password: '',
+    message: '',
   }
 
   constructor(props) {
@@ -29,12 +35,6 @@ class SignUpLoginForm extends React.Component {
     this.handleLoginClick = this.handleLoginClick.bind(this)
     this.handleSignUpClick = this.handleSignUpClick.bind(this)
     this.handleClickProviderAuth = this.handleClickProviderAuth.bind(this)
-
-    this.state = {
-      username: '',
-      password: '',
-      message: ''
-    }
   }
 
   handleChange(e) {
@@ -43,7 +43,7 @@ class SignUpLoginForm extends React.Component {
     const name = target.name
 
     this.setState({
-      [name]: value
+      [name]: value,
     })
   }
 
@@ -103,9 +103,7 @@ class SignUpLoginForm extends React.Component {
   render() {
     return (
       <form className={styles.form}>
-        <div className={styles.error}>
-          {this.state.message}
-        </div>
+        <div className={styles.error}>{this.state.message}</div>
         <label htmlFor="username">
           <span>Email</span>
           <input
