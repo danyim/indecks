@@ -7,11 +7,11 @@ const defaultProps = {
     id: 'ABCDEFG',
     title: 'Deck title',
     description: 'Deck description',
-    cards: []
+    cards: [],
   },
   handleOnClick: () => {},
   style: null,
-  children: null
+  children: null,
 }
 
 describe('Deck', () => {
@@ -24,7 +24,7 @@ describe('Deck', () => {
     const handler = jest.fn()
     const { wrapper } = setup(Deck, {
       ...defaultProps,
-      handleOnClick: handler
+      handleOnClick: handler,
     })
 
     const title = wrapper.find('figure.grid-figure h1')
@@ -38,7 +38,7 @@ describe('Deck', () => {
     const testStyle = { color: 'red' }
     const { wrapper } = setup(Deck, {
       ...defaultProps,
-      style: testStyle
+      style: testStyle,
     })
 
     const figure = wrapper.find('figure')

@@ -30,7 +30,7 @@ const reducers = {
   register: (state, action) => ({
     ...state,
     username: action.username,
-    authenticated: false
+    authenticated: false,
   }),
   login: (state, action) => ({
     ...state,
@@ -42,7 +42,7 @@ const reducers = {
     uid: action.user.uid,
     providerData: action.user.providerData,
     authenticated: true,
-    isAuthenticating: false
+    isAuthenticating: false,
   }),
   logout: (state, action) => ({
     ...state,
@@ -54,33 +54,33 @@ const reducers = {
     uid: null,
     providerData: null,
     authenticated: false,
-    isAuthenticating: false
+    isAuthenticating: false,
   }),
   userAuthSuccess: (state, action) => ({
     ...state,
     authenticated: true,
-    isAuthenticating: false
+    isAuthenticating: false,
   }),
   userAuthRequest: (state, action) => ({
     ...state,
-    isAuthenticating: true
+    isAuthenticating: true,
   }),
   userAuthFail: (state, action) => ({
     ...state,
-    isAuthenticating: false
+    isAuthenticating: false,
   }),
   stopAuthenticating: (state, action) => ({
     ...state,
-    isAuthenticating: false
+    isAuthenticating: false,
   }),
   updateDeckCount: (state, action) => ({
     ...state,
-    deckCount: action.count
+    deckCount: action.count,
   }),
   setToken: (state, action) => ({
     ...state,
-    token: action.token
-  })
+    token: action.token,
+  }),
 }
 
 const handlers = {
@@ -92,7 +92,7 @@ const handlers = {
   [USER_AUTH_REQUEST]: reducers.userAuthRequest,
   [USER_AUTH_COMPLETE]: reducers.stopAuthenticating,
   [UPDATE_DECK_COUNT]: reducers.updateDeckCount,
-  [SET_TOKEN]: reducers.setToken
+  [SET_TOKEN]: reducers.setToken,
 }
 
 export default createReducer({}, handlers)
@@ -101,16 +101,16 @@ export default createReducer({}, handlers)
  * Action Creators
  */
 export const userAuthSuccess = () => ({
-  type: USER_AUTH_SUCCESS
+  type: USER_AUTH_SUCCESS,
 })
 export const userAuthRequest = () => ({
-  type: USER_AUTH_REQUEST
+  type: USER_AUTH_REQUEST,
 })
 export const userAuthFail = () => ({
-  type: USER_AUTH_FAIL
+  type: USER_AUTH_FAIL,
 })
 export const stopAuthenticating = () => ({
-  type: USER_AUTH_COMPLETE
+  type: USER_AUTH_COMPLETE,
 })
 export function register(username, password) {
   return { type: REGISTER, username, password }

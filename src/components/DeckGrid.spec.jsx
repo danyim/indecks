@@ -10,12 +10,12 @@ const defaultProps = {
       id: 'ABCDEFG',
       title: 'Deck title',
       description: 'Deck description',
-      cards: []
-    }
+      cards: [],
+    },
   ],
   removeDeck: jest.fn(),
   push: () => {},
-  loadSampleDecks: () => {}
+  loadSampleDecks: () => {},
 }
 
 function setup(props = defaultProps) {
@@ -23,7 +23,7 @@ function setup(props = defaultProps) {
 
   return {
     props,
-    wrapper
+    wrapper,
   }
 }
 
@@ -32,7 +32,7 @@ function setupFull(props = defaultProps) {
 
   return {
     props,
-    wrapper
+    wrapper,
   }
 }
 
@@ -45,23 +45,20 @@ describe('DeckGrid', () => {
   })
 
   // This method is implemented but not used anywhere
-  it.skip(
-    'should call the removeDeck prop when the "Delete" deck overlay button is clicked',
-    () => {
-      const handler = jest.fn()
-      spyOn(window, 'confirm').and.returnValue(true)
-      const { wrapper } = setup({
-        ...defaultProps,
-        removeDeck: handler
-      })
+  it.skip('should call the removeDeck prop when the "Delete" deck overlay button is clicked', () => {
+    const handler = jest.fn()
+    spyOn(window, 'confirm').and.returnValue(true)
+    const { wrapper } = setup({
+      ...defaultProps,
+      removeDeck: handler,
+    })
 
-      wrapper
-        .find('Overlay button[children="Delete"]')
-        .first()
-        .simulate('click')
-      expect(handler.mock.calls.length).toBe(1)
-    }
-  )
+    wrapper
+      .find('Overlay button[children="Delete"]')
+      .first()
+      .simulate('click')
+    expect(handler.mock.calls.length).toBe(1)
+  })
 
   // Too deep of a test
   xit('should display the correct amount of decks', () => {
@@ -73,7 +70,7 @@ describe('DeckGrid', () => {
   it('should display no decks if empty', () => {
     const { wrapper } = setup({
       ...defaultProps,
-      decks: []
+      decks: [],
     })
     expect(wrapper.find('Deck').length).toBe(0)
   })

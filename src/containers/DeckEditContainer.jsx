@@ -15,7 +15,7 @@ const propTypes = {
   removeCard: PropTypes.func.isRequired,
   editDeck: PropTypes.func.isRequired,
   push: PropTypes.func.isRequired,
-  form: PropTypes.object.isRequired
+  form: PropTypes.object.isRequired,
 }
 const defaultProps = {}
 
@@ -28,7 +28,7 @@ const DeckEditContainer = props => {
     removeCard,
     editDeck,
     form,
-    push: pushPath // Renaming because 'push' is also defined as an import variable
+    push: pushPath, // Renaming because 'push' is also defined as an import variable
   } = props
 
   return (
@@ -56,10 +56,13 @@ const mapStateToProps = ({ decks, form }, ownProps) => {
     cards: decks[deckIndex].cards,
     deck: decks[deckIndex],
     deckId,
-    form
+    form,
   }
 }
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ ...deckActions, push }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeckEditContainer)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DeckEditContainer)

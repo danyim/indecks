@@ -9,8 +9,8 @@ describe('Navbar', () => {
     props = {
       changeActiveModal: () => {},
       location: {
-        pathname: '/'
-      }
+        pathname: '/',
+      },
     }
   })
 

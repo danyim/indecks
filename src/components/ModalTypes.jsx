@@ -3,5 +3,5 @@ export default {
   Import: 'IMPORT',
   Shortcuts: 'SHORTCUTS',
   Selector: 'SELECTOR',
-  Splash: 'SPLASH'
+  Splash: 'SPLASH',
 }

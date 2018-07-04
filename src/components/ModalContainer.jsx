@@ -13,11 +13,11 @@ class ModalContainer extends React.Component {
     closeModal: PropTypes.func.isRequired,
     changeActiveModal: PropTypes.func.isRequired,
     push: PropTypes.func.isRequired,
-    currentModal: PropTypes.string
+    currentModal: PropTypes.string,
   }
 
   static defaultProps = {
-    currentModal: null
+    currentModal: null,
   }
 
   constructor(props) {
@@ -26,20 +26,20 @@ class ModalContainer extends React.Component {
     this.handlers = [
       {
         keyCode: 73, // 'i'
-        action: () => this.props.changeActiveModal(ModalTypes.Import)
+        action: () => this.props.changeActiveModal(ModalTypes.Import),
       },
       {
         keyCode: 188, // ',' comma
-        action: () => this.props.changeActiveModal(ModalTypes.Settings)
+        action: () => this.props.changeActiveModal(ModalTypes.Settings),
       },
       {
         keyCode: 191, // '/' forward slash
-        action: () => this.props.changeActiveModal(ModalTypes.Shortcuts)
+        action: () => this.props.changeActiveModal(ModalTypes.Shortcuts),
       },
       {
         keyCode: 83, // 's'
-        action: () => this.props.changeActiveModal(ModalTypes.Selector)
-      }
+        action: () => this.props.changeActiveModal(ModalTypes.Selector),
+      },
     ]
   }
 

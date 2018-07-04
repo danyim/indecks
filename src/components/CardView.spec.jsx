@@ -2,7 +2,7 @@ import toJSON from 'enzyme-to-json'
 import { shallow, mount, setup, setupFull } from '../test/utils' // eslint-disable-line no-unused-vars
 import {
   createStartTouchEventObject,
-  createMoveTouchEventObject
+  createMoveTouchEventObject,
 } from '../test/eventHelpers.js'
 import CardView from './CardView'
 
@@ -14,7 +14,7 @@ describe('CardView', () => {
       card: {
         index: 1,
         title: 'Card',
-        answer: 'Card description'
+        answer: 'Card description',
       },
       deck: {
         id: 'ABCDEFG',
@@ -24,17 +24,17 @@ describe('CardView', () => {
           {
             index: 1,
             title: 'Card',
-            answer: 'Card description'
-          }
-        ]
+            answer: 'Card description',
+          },
+        ],
       },
       config: {
-        shuffle: false
+        shuffle: false,
       },
       cardIndex: 1,
       shuffleOff: () => {},
       shuffleOn: () => {},
-      push: () => {}
+      push: () => {},
     }
   })
   it('should render self and subcomponents', () => {
@@ -59,7 +59,7 @@ describe('CardView', () => {
     const handler = jest.fn()
     const { wrapper } = setupFull(CardView, {
       ...props,
-      push: handler
+      push: handler,
     })
     const subject = wrapper.find('Swipeable')
     expect(subject.exists()).toBe(true)
@@ -76,7 +76,7 @@ describe('CardView', () => {
     const handler = jest.fn()
     const { wrapper } = setupFull(CardView, {
       ...props,
-      push: handler
+      push: handler,
     })
     const subject = wrapper.find('Swipeable')
     expect(subject.exists()).toBe(true)

@@ -5,11 +5,11 @@ import AuthContainer from '../containers/AuthContainer'
 import styles from '../styles/components/Splash.styl'
 
 const propTypes = {
-  loadSampleDecks: PropTypes.func.isRequired
+  loadSampleDecks: PropTypes.func.isRequired,
 }
 const defaultProps = {}
 
-const Splash = props =>
+const Splash = props => (
   <div className={styles.container}>
     <article className={`splash ${styles.splash}`}>
       <h2 className={styles.header}>Dive into Indecks</h2>
@@ -61,6 +61,7 @@ const Splash = props =>
       </div>
     </article>
   </div>
+)
 
 Splash.propTypes = propTypes
 Splash.defaultProps = defaultProps

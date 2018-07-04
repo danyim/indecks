@@ -10,7 +10,7 @@ class BinarySelector extends React.Component {
     selection: PropTypes.oneOf([1, 2, null]).isRequired,
     containerStyle: StylePropType,
     buttonStyle: StylePropType,
-    handleClick: PropTypes.func.isRequired
+    handleClick: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -18,7 +18,7 @@ class BinarySelector extends React.Component {
     rightLabel: 'Option 2',
     containerStyle: {},
     buttonStyle: {},
-    selection: null
+    selection: null,
   }
 
   static container = styled.div`

@@ -8,10 +8,13 @@ import Auth from '../components/Auth'
 const AuthContainer = props => <Auth {...props} />
 
 const mapStateToProps = ({ user }) => ({
-  ...user
+  ...user,
 })
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(Object.assign({}, deckActions, userActions), dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AuthContainer)

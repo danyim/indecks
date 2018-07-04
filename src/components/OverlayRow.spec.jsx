@@ -5,7 +5,7 @@ import OverlayRow from './OverlayRow'
 
 const defaultProps = {
   className: '',
-  children: null
+  children: null,
 }
 
 function setup(props = defaultProps) {
@@ -13,7 +13,7 @@ function setup(props = defaultProps) {
 
   return {
     props,
-    wrapper
+    wrapper,
   }
 }
 
@@ -30,7 +30,7 @@ describe('OverlayRow', () => {
     const className = 'test-class'
     const { wrapper } = setup({
       ...defaultProps,
-      className
+      className,
     })
 
     expect(wrapper.find('div').exists()).toBe(true)
@@ -47,11 +47,11 @@ describe('OverlayRow', () => {
       </b>,
       <span key="3" name="test">
         Test
-      </span>
+      </span>,
     ]
     const { wrapper } = setup({
       ...defaultProps,
-      children
+      children,
     })
 
     expect(wrapper.find('a[name="test"]').exists()).toBe(true)
@@ -68,7 +68,7 @@ describe('OverlayRow', () => {
     const children = <a className="test">Test</a>
     const { wrapper } = setup({
       ...defaultProps,
-      children
+      children,
     })
 
     expect(wrapper.find('a').exists()).toBe(true)

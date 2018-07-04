@@ -5,13 +5,13 @@ import Remarkable from 'remarkable'
 const propTypes = {
   className: PropTypes.string,
   text: PropTypes.string,
-  handleOnClick: PropTypes.func
+  handleOnClick: PropTypes.func,
 }
 
 const defaultProps = {
   className: '',
   text: '',
-  handleOnClick: null
+  handleOnClick: null,
 }
 
 class Markdown extends React.Component {
@@ -26,8 +26,10 @@ class Markdown extends React.Component {
       <div
         className={this.props.className}
         onClick={this.props.handleOnClick}
-        dangerouslySetInnerHTML={// eslint-disable-line
-        this.convertToMarkdown(this.props.text)}
+        dangerouslySetInnerHTML={
+          // eslint-disable-line
+          this.convertToMarkdown(this.props.text)
+        }
       />
     )
   }

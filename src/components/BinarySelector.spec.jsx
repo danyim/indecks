@@ -9,7 +9,7 @@ const defaultProps = {
   selection: 1,
   containerStyle: null,
   buttonStyle: null,
-  handleClick: () => {}
+  handleClick: () => {},
 }
 
 describe('BinarySelector', () => {
@@ -22,7 +22,7 @@ describe('BinarySelector', () => {
   it('should correctly highlight the selected value', () => {
     let { wrapper } = setupFull(BinarySelector, {
       ...defaultProps,
-      selection: 2
+      selection: 2,
     })
 
     const button = wrapper.find('button')
@@ -36,7 +36,7 @@ describe('BinarySelector', () => {
 
     wrapper = setupFull(BinarySelector, {
       ...defaultProps,
-      selection: 1
+      selection: 1,
     }).wrapper
 
     expect(buttonSelected.html()).toEqual(buttonLeft.html())
@@ -46,7 +46,7 @@ describe('BinarySelector', () => {
     const handler = jest.fn()
     const { wrapper } = setupFull(BinarySelector, {
       ...defaultProps,
-      handleClick: handler
+      handleClick: handler,
     })
 
     const buttonLeft = wrapper.find('button').last()

@@ -10,11 +10,11 @@ const propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
-  formValues: PropTypes.object
+  formValues: PropTypes.object,
 }
 
 const defaultProps = {
-  formValues: null
+  formValues: null,
 }
 
 const fields = ['cardTitle', 'cardAnswer']
@@ -26,7 +26,7 @@ const CardEditForm = props => {
     handleSubmit,
     handleDelete,
     handleCancel,
-    formValues: form
+    formValues: form,
   } = props
 
   return (
@@ -93,5 +93,5 @@ CardEditForm.defaultProps = defaultProps
 
 export default reduxForm({
   form: 'cardEdit',
-  fields
+  fields,
 })(CardEditForm)

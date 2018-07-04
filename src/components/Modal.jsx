@@ -13,20 +13,21 @@ class Modal extends React.Component {
     style: StylePropType,
     onAfterOpen: PropTypes.func,
     className: PropTypes.string,
-    overlayClassName: PropTypes.string
+    overlayClassName: PropTypes.string,
   }
 
   static defaultProps = {
     onAfterOpen: () => {},
     className: styles['modal-content'],
     overlayClassName: styles['modal-overlay'],
-    style: {}
+    style: {},
   }
 
   render() {
     const className = `${styles['modal-content']} ${this.props.className}`
-    const overlayClassName = `${styles['modal-overlay']} ${this.props
-      .overlayClassName}`
+    const overlayClassName = `${styles['modal-overlay']} ${
+      this.props.overlayClassName
+    }`
 
     return (
       <ReactModal

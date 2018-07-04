@@ -19,4 +19,7 @@ ImportDeckContainer.defaultProps = defaultProps
 const mapStateToProps = () => ({})
 const mapDispatchToProps = dispatch => bindActionCreators(deckActions, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImportDeckContainer)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ImportDeckContainer)

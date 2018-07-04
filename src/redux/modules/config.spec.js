@@ -3,14 +3,14 @@ import reducer, * as actions from './config'
 describe('config actions', () => {
   it('should create an action to turn ON card shuffling', () => {
     const expectedAction = {
-      type: 'config/SHUFFLE_ON'
+      type: 'config/SHUFFLE_ON',
     }
     expect(actions.shuffleOn()).toEqual(expectedAction)
   })
 
   it('should create an action to turn OFF card shuffling', () => {
     const expectedAction = {
-      type: 'config/SHUFFLE_OFF'
+      type: 'config/SHUFFLE_OFF',
     }
     expect(actions.shuffleOff()).toEqual(expectedAction)
   })
@@ -26,37 +26,37 @@ describe('config reducers', () => {
       reducer(
         {},
         {
-          type: 'config/SHUFFLE_ON'
+          type: 'config/SHUFFLE_ON',
         }
       )
     ).toEqual({
-      shuffle: true
+      shuffle: true,
     })
 
     expect(
       reducer(
         {
-          shuffle: false
+          shuffle: false,
         },
         {
-          type: 'config/SHUFFLE_ON'
+          type: 'config/SHUFFLE_ON',
         }
       )
     ).toEqual({
-      shuffle: true
+      shuffle: true,
     })
 
     expect(
       reducer(
         {
-          shuffle: true
+          shuffle: true,
         },
         {
-          type: 'config/SHUFFLE_OFF'
+          type: 'config/SHUFFLE_OFF',
         }
       )
     ).toEqual({
-      shuffle: false
+      shuffle: false,
     })
   })
 })

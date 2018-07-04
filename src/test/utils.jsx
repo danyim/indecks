@@ -15,7 +15,7 @@ export const setup = (Component, props) => {
 
   return {
     props,
-    wrapper
+    wrapper,
   }
 }
 
@@ -24,6 +24,6 @@ export const setupFull = (Component, props) => {
 
   return {
     props,
-    wrapper
+    wrapper,
   }
 }

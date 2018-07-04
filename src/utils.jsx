@@ -36,7 +36,8 @@ export const findMissing = (a, min = 1) => {
  * @return {Number}     Index of the best next value
  */
 export const findBestNextIndex = (a, key) =>
-  findMissing(a.map(x => x[key]), 0) || Math.max(0, Math.max.apply(null, a.map(x => x[key])) + 1)
+  findMissing(a.map(x => x[key]), 0) ||
+  Math.max(0, Math.max.apply(null, a.map(x => x[key])) + 1)
 
 /**
  * Helper function to generate routes
@@ -50,7 +51,12 @@ export const findBestNextIndex = (a, key) =>
  * @return {Component}        Returns a <Route> component to plug into a <Switch>
  */
 export const routeWithSubRoutes = ({ Component, path, exact = false }) => (
-  <Route key={_.uniqueId()} exact={exact} path={path} render={props => <Component {...props} />} />
+  <Route
+    key={_.uniqueId()}
+    exact={exact}
+    path={path}
+    render={props => <Component {...props} />}
+  />
 )
 
 /**
@@ -79,8 +85,14 @@ const cahDirectives = [
   ["Why can't I sleep at night?", '[noun]'],
   ["___________. It's a trap!", '[noun]'],
   ['___________. High five, bro.', '[noun]'],
-  ['And the Academy Award for ___________ goes to ___________', '[verb] [noun]'],
-  ["I'm sorry Professor, but I couldn't complete my homework because of ___________", '[noun]'],
+  [
+    'And the Academy Award for ___________ goes to ___________',
+    '[verb] [noun]',
+  ],
+  [
+    "I'm sorry Professor, but I couldn't complete my homework because of ___________",
+    '[noun]',
+  ],
   ["What's that smell?", '[any]'],
   ["What's a girl's best friend?", '[any]'],
   ["What's there a ton of in heaven?", '[noun]'],
@@ -147,7 +159,8 @@ const nouns = [
 export const generateCAHCard = () => {
   let title = ''
   let answer = ''
-  const directive = cahDirectives[Math.floor(Math.random() * cahDirectives.length)]
+  const directive =
+    cahDirectives[Math.floor(Math.random() * cahDirectives.length)]
 
   title = directive[0]
   directive[1].split(' ').forEach(w => {

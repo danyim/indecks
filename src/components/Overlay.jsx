@@ -4,20 +4,21 @@ import styles from '../styles/components/Overlay.styl'
 
 const propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
 }
 
 const defaultProps = {
   className: '',
-  children: null
+  children: null,
 }
 
-const Overlay = props =>
+const Overlay = props => (
   <div className={`${styles.overlay} ${props.className}`}>
     <div className={`${styles['hover-actions-container']}`}>
       {props.children}
     </div>
   </div>
+)
 
 Overlay.propTypes = propTypes
 Overlay.defaultProps = defaultProps

@@ -4,21 +4,21 @@ import styles from '../styles/components/Overlay.styl'
 
 const propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
 }
 
 const defaultProps = {
   className: '',
-  children: null
+  children: null,
 }
 
 const OverlayRow = props => {
   // Prepends the hover class to the original class on the child
   const modifiedChildren = React.Children.map(props.children, c =>
     React.cloneElement(c, {
-      className: `${styles['hover-button']}${c.props.className
-        ? ` ${c.props.className}`
-        : ''}`
+      className: `${styles['hover-button']}${
+        c.props.className ? ` ${c.props.className}` : ''
+      }`,
     })
   )
 

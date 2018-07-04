@@ -6,7 +6,7 @@ import Markdown from './Markdown'
 const defaultProps = {
   className: 'class',
   text: 'Text',
-  handleOnClick: jest.fn()
+  handleOnClick: jest.fn(),
 }
 
 function setup(props = defaultProps) {
@@ -14,7 +14,7 @@ function setup(props = defaultProps) {
 
   return {
     props,
-    wrapper
+    wrapper,
   }
 }
 
@@ -33,7 +33,7 @@ describe('Markdown', () => {
     const handler = jest.fn()
     const { wrapper } = setup({
       ...defaultProps,
-      handleOnClick: handler
+      handleOnClick: handler,
     })
 
     wrapper.find('div').simulate('click')

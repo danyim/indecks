@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import KeyBinding from "react-keybinding-component";
-import { CardShape } from "./__commonShapes";
-import CardEditForm from "./CardEditForm";
-import styles from "../styles/components/CardEdit.styl";
+import React from 'react'
+import PropTypes from 'prop-types'
+import KeyBinding from 'react-keybinding-component'
+import { CardShape } from './__commonShapes'
+import CardEditForm from './CardEditForm'
+import styles from '../styles/components/CardEdit.styl'
 
 class CardEdit extends React.Component {
   static propTypes = {
@@ -16,85 +16,85 @@ class CardEdit extends React.Component {
       cardEdit: PropTypes.shape({
         values: PropTypes.shape({
           cardTitle: PropTypes.string.isRequired,
-          cardAnswer: PropTypes.string.isRequired
-        })
-      })
+          cardAnswer: PropTypes.string.isRequired,
+        }),
+      }),
     }).isRequired,
-    push: PropTypes.func.isRequired
-  };
+    push: PropTypes.func.isRequired,
+  }
 
-  static defaultProps = {};
+  static defaultProps = {}
 
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.checkIfDirty = this.checkIfDirty.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.checkIfDirty = this.checkIfDirty.bind(this)
+    this.handleCancel = this.handleCancel.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   checkIfDirty() {
-    const { title, answer } = this.props.card;
+    const { title, answer } = this.props.card
     return (
       this.props.form.cardEdit.values.cardTitle !== title ||
       this.props.form.cardEdit.values.cardAnswer !== answer
-    );
+    )
   }
 
   handleKeyDown(e) {
     if (e.keyCode === 27) {
       // escape
-      this.handleCancel();
+      this.handleCancel()
     }
 
-    e.stopPropagation();
+    e.stopPropagation()
   }
 
   handleCancel() {
     if (this.checkIfDirty()) {
       if (
         window.confirm(
-          "Are you sure you want to cancel? You have unsaved changes that will be lost."
+          'Are you sure you want to cancel? You have unsaved changes that will be lost.'
         )
       ) {
-        this.props.push(`/view/${this.props.deckId}`);
+        this.props.push(`/view/${this.props.deckId}`)
       }
     } else {
-      this.props.push(`/view/${this.props.deckId}/${this.props.cardIndex}`);
+      this.props.push(`/view/${this.props.deckId}/${this.props.cardIndex}`)
     }
   }
 
   handleDelete(cardIndex, deckId) {
-    if (window.confirm("Are you sure?")) {
-      this.props.removeCard(cardIndex, deckId);
-      this.props.push(`/view/${this.props.deckId}`);
+    if (window.confirm('Are you sure?')) {
+      this.props.removeCard(cardIndex, deckId)
+      this.props.push(`/view/${this.props.deckId}`)
     }
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
     this.props.editCard(
       this.props.form.cardEdit.values.cardTitle,
       this.props.form.cardEdit.values.cardAnswer,
       this.props.cardIndex,
       this.props.deckId
-    );
-    this.props.push(`/view/${this.props.deckId}/${this.props.cardIndex}`);
+    )
+    this.props.push(`/view/${this.props.deckId}/${this.props.cardIndex}`)
   }
 
   render() {
-    const { card, deckId, cardIndex } = this.props;
-    const { title = "", answer = "" } = card;
+    const { card, deckId, cardIndex } = this.props
+    const { title = '', answer = '' } = card
 
     const initialValues = {
       cardTitle: title,
-      cardAnswer: answer
-    };
+      cardAnswer: answer,
+    }
 
     return (
       <section className="single">
-        <figure className={`grid-figure ${styles["grid-figure"]}`}>
+        <figure className={`grid-figure ${styles['grid-figure']}`}>
           <KeyBinding onKey={e => this.handleKeyDown(e)} />
           <CardEditForm
             deckId={deckId}
@@ -109,8 +109,8 @@ class CardEdit extends React.Component {
           />
         </figure>
       </section>
-    );
+    )
   }
 }
 
-export default CardEdit;
+export default CardEdit

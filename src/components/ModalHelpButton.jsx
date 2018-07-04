@@ -7,11 +7,17 @@ import styles from '../styles/components/ModalHelpButton.styl'
 class ModalHelpButton extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    style: StylePropType
+    style: StylePropType,
   }
 
   static defaultProps = {
-    style: {}
+    style: {},
+  }
+
+  state = {
+    open: false,
+    x: 0,
+    y: 0,
   }
 
   constructor(props) {
@@ -19,11 +25,6 @@ class ModalHelpButton extends React.Component {
 
     this.toggleModal = this.toggleModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
-    this.state = {
-      open: false,
-      x: 0,
-      y: 0
-    }
   }
 
   toggleModal(e) {
@@ -33,7 +34,7 @@ class ModalHelpButton extends React.Component {
     this.setState({
       open: !this.state.open,
       x: e.nativeEvent.pageX + offsetX,
-      y: e.nativeEvent.pageY + offsetY
+      y: e.nativeEvent.pageY + offsetY,
     })
   }
 

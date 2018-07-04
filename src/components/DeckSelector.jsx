@@ -18,13 +18,17 @@ class DeckSelector extends React.Component {
     // maxSelected: React.PropTypes.number.isRequired,
     // minSelected: React.PropTypes.number.isRequired,
     push: PropTypes.func.isRequired,
-    handleOnSelected: PropTypes.func
+    handleOnSelected: PropTypes.func,
   }
 
   static defaultProps = {
     // maxSelected: 1,
     // minSelected: 1,
-    handleOnSelected: () => {}
+    handleOnSelected: () => {},
+  }
+
+  state = {
+    selectedIndex: 0,
   }
 
   constructor(props) {
@@ -46,7 +50,7 @@ class DeckSelector extends React.Component {
     }
 
     this.state = {
-      selectedIndex: index || 0
+      selectedIndex: index || 0,
     }
   }
 
@@ -76,13 +80,13 @@ class DeckSelector extends React.Component {
       selectedIndex: Math.min(
         this.props.decks.length - 1,
         this.state.selectedIndex + 1
-      )
+      ),
     })
   }
 
   moveUp() {
     this.setState({
-      selectedIndex: Math.max(0, this.state.selectedIndex - 1)
+      selectedIndex: Math.max(0, this.state.selectedIndex - 1),
     })
   }
 
@@ -103,7 +107,7 @@ class DeckSelector extends React.Component {
           onKeyDown={this.handleKeyDown}
           role="presentation"
         >
-          {decks.map((deck, index) =>
+          {decks.map((deck, index) => (
             <li
               key={deck.id}
               value={deck.id}
@@ -111,7 +115,7 @@ class DeckSelector extends React.Component {
             >
               {deck.title} <small>{deck.cards.length} cards</small>
             </li>
-          )}
+          ))}
           {(!decks || decks.length === 0) && <p>No decks available</p>}
           {/*
           <button onClick={this.moveUp}>Up</button>

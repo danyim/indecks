@@ -10,14 +10,14 @@ describe('Card', () => {
       card: {
         title: 'Title',
         answer: 'Answer',
-        index: 0
+        index: 0,
       },
       className: '',
       flipped: false,
       handleOnClick: jest.fn(),
       trimOverflow: false,
       trimOverflowLength: 125,
-      children: null
+      children: null,
     }
   })
   it('should render self and subcomponents', () => {
@@ -29,7 +29,7 @@ describe('Card', () => {
     const handler = jest.fn()
     const { wrapper } = setup(Card, {
       ...props,
-      handleOnClick: handler
+      handleOnClick: handler,
     })
 
     wrapper.find('figure').simulate('click')
@@ -39,7 +39,7 @@ describe('Card', () => {
   it('should render the title if flipped is FALSE', () => {
     const { wrapper } = setup(Card, {
       ...props,
-      flipped: false
+      flipped: false,
     })
 
     expect(wrapper.find('Markdown.card-title').exists()).toEqual(true)
@@ -48,7 +48,7 @@ describe('Card', () => {
   it('should render the answer if flipped is TRUE', () => {
     const { wrapper } = setup(Card, {
       ...props,
-      flipped: true
+      flipped: true,
     })
 
     expect(wrapper.find('figcaption Markdown').exists()).toEqual(true)
@@ -59,8 +59,8 @@ describe('Card', () => {
       ...props,
       card: {
         ...props.card,
-        answer: ''
-      }
+        answer: '',
+      },
     })
 
     expect(wrapper.find('div.no-answer > div').text()).toBe('No answer')
@@ -71,9 +71,9 @@ describe('Card', () => {
       ...props,
       card: {
         ...props.card,
-        answer: ''
+        answer: '',
       },
-      flipped: true
+      flipped: true,
     })
 
     expect(wrapper.find('figcaption Markdown').exists()).toEqual(false)
@@ -90,11 +90,11 @@ describe('Card', () => {
       ...props,
       card: {
         ...props.card,
-        title
+        title,
       },
       flipped: false,
       trimOverflow: true,
-      trimOverflowLength
+      trimOverflowLength,
     })
 
     expect(
@@ -113,11 +113,11 @@ describe('Card', () => {
       ...props,
       card: {
         ...props.card,
-        title: extra + title
+        title: extra + title,
       },
       flipped: false,
       trimOverflow: true,
-      trimOverflowLength
+      trimOverflowLength,
     })
 
     expect(

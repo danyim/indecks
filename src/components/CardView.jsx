@@ -14,7 +14,7 @@ class CardView extends React.Component {
     cardIndex: PropTypes.number.isRequired,
     shuffleOn: PropTypes.func.isRequired,
     shuffleOff: PropTypes.func.isRequired,
-    push: PropTypes.func.isRequired
+    push: PropTypes.func.isRequired,
   }
 
   static defaultProps = {}
@@ -23,9 +23,10 @@ class CardView extends React.Component {
     return Math.floor(Math.random() * max + 1)
   }
 
+  state = { flipped: false }
+
   constructor(props) {
     super(props)
-    this.state = { flipped: false }
 
     this.handleEditCard = this.handleEditCard.bind(this)
     this.handleNextCard = this.handleNextCard.bind(this)
