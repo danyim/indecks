@@ -3,28 +3,28 @@ const routes = [
   {
     path: '/',
     exact: true,
-    component: require('./containers/DeckGridContainer').default
+    Component: require('./containers/DeckGridContainer').default,
   },
   {
     path: '/add/:deckId',
     exact: true,
-    component: require('./containers/DeckAddContainer').default
+    Component: require('./containers/DeckAddContainer').default,
   },
   {
     path: '/view/:deckId',
     exact: true,
-    component: require('./containers/DeckViewContainer').default
+    Component: require('./containers/DeckViewContainer').default,
   },
   {
     path: '/edit/:deckId/:cardIndex',
     exact: true,
-    component: require('./containers/CardEditContainer').default
+    Component: require('./containers/CardEditContainer').default,
   },
   {
     path: '/view/:deckId/:cardIndex',
     exact: true,
-    component: require('./containers/CardViewContainer').default
-  }
+    Component: require('./containers/CardViewContainer').default,
+  },
 ]
 
 export default routes

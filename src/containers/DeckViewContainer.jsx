@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { push } from 'react-router-redux'
+import { push } from 'connected-react-router'
 import * as deckActions from '../redux/modules/decks'
 import { DeckShape } from '../components/__commonShapes'
 import DeckView from '../components/DeckView'
@@ -15,7 +15,7 @@ const propTypes = {
   removeCard: PropTypes.func.isRequired,
   removeDeck: PropTypes.func.isRequired,
   push: PropTypes.func.isRequired,
-  match: PropTypes.shape({ params: PropTypes.object.isRequired }).isRequired
+  match: PropTypes.shape({ params: PropTypes.object.isRequired }).isRequired,
 }
 const defaultProps = {}
 
@@ -27,7 +27,7 @@ class DeckViewContainer extends React.Component {
   }
 
   handleRemoveDeck(deckId) {
-    if (confirm('Are you sure you want to delete this deck?')) {
+    if (window.confirm('Are you sure you want to delete this deck?')) {
       this.props.removeDeck(deckId)
       this.props.push('/')
     }
@@ -61,7 +61,9 @@ DeckViewContainer.propTypes = propTypes
 DeckViewContainer.defaultProps = defaultProps
 
 const mapStateToProps = ({ decks, config }) => ({ decks, config })
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...deckActions, push }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ ...deckActions, push }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeckViewContainer)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(DeckViewContainer)

@@ -1,15 +1,15 @@
-/* globals FIREBASE_KEY FIREBASE_ID */
-import firebase from 'firebase'
+import firebase from "firebase";
 
+console.log(process.env.REACT_APP_FIREBASE_KEY);
 const config = {
-  apiKey: FIREBASE_KEY,
-  authDomain: `${FIREBASE_ID}.firebaseapp.com`,
-  databaseURL: `https://${FIREBASE_ID}.firebaseio.com`,
-  projectId: FIREBASE_ID,
-  storageBucket: `${FIREBASE_ID}.appspot.com`
-}
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
+  authDomain: `${process.env.REACT_APP_FIREBASE_ID}.firebaseapp.com`,
+  databaseURL: `https://${process.env.REACT_APP_FIREBASE_ID}.firebaseio.com`,
+  projectId: process.env.REACT_APP_FIREBASE_ID,
+  storageBucket: `${process.env.REACT_APP_FIREBASE_ID}.appspot.com`
+};
 
-export const firebaseApp = firebase.initializeApp(config)
-export const db = firebaseApp.database()
-export const auth = firebaseApp.auth()
-export default firebase
+export const firebaseApp = firebase.initializeApp(config);
+export const db = firebaseApp.database();
+export const auth = firebaseApp.auth();
+export default firebase;

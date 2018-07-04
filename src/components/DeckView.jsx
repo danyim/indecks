@@ -1,16 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { RIEInput, RIETextArea } from 'riek'
-import { Link } from 'react-router-dom'
-import slug from 'slug'
-import classnames from 'classnames'
-import { DeckShape } from './__commonShapes'
-import Card from './Card'
-import ExportDeckButton from './ExportDeckButton'
-import Overlay from './Overlay'
-import OverlayRow from './OverlayRow'
-import ModalHelpButton from './ModalHelpButton'
-import styles from '../styles/components/DeckView.styl'
+import React from "react";
+import PropTypes from "prop-types";
+import { RIEInput, RIETextArea } from "riek";
+import { Link } from "react-router-dom";
+import slug from "slug";
+import classnames from "classnames";
+import { DeckShape } from "./__commonShapes";
+import Card from "./Card";
+import ExportDeckButton from "./ExportDeckButton";
+import Overlay from "./Overlay";
+import OverlayRow from "./OverlayRow";
+import ModalHelpButton from "./ModalHelpButton";
+import styles from "../styles/components/DeckView.styl";
 
 class DeckView extends React.Component {
   static propTypes = {
@@ -22,45 +22,45 @@ class DeckView extends React.Component {
     handleRemoveCard: PropTypes.func.isRequired,
     handleRemoveDeck: PropTypes.func.isRequired,
     push: PropTypes.func.isRequired
-  }
+  };
 
   static defaultProps = {
     maxDeckTitleLength: 160,
     maxDeckDescLength: 300
-  }
+  };
 
   static contextTypes = {
     router: PropTypes.object
-  }
+  };
 
   static arrangements = {
-    two: '2COL',
-    three: '3COL',
-    list: 'LIST'
-  }
+    two: "2COL",
+    three: "3COL",
+    list: "LIST"
+  };
 
   static sorts = {
-    created: 'CREATED',
-    edited: 'EDITED',
-    unanswered: 'UNANSWERED'
-  }
+    created: "CREATED",
+    edited: "EDITED",
+    unanswered: "UNANSWERED"
+  };
 
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.handleEditDeckDetails = this.handleEditDeckDetails.bind(this)
-    this.handleChangeArrangement = this.handleChangeArrangement.bind(this)
-    this.handleChangeSort = this.handleChangeSort.bind(this)
-    this.handleChangeSearch = this.handleChangeSearch.bind(this)
-    this.handleExport = this.handleExport.bind(this)
-    this.validateDescription = this.validateDescription.bind(this)
-    this.validateTitle = this.validateTitle.bind(this)
+    this.handleEditDeckDetails = this.handleEditDeckDetails.bind(this);
+    this.handleChangeArrangement = this.handleChangeArrangement.bind(this);
+    this.handleChangeSort = this.handleChangeSort.bind(this);
+    this.handleChangeSearch = this.handleChangeSearch.bind(this);
+    this.handleExport = this.handleExport.bind(this);
+    this.validateDescription = this.validateDescription.bind(this);
+    this.validateTitle = this.validateTitle.bind(this);
 
     this.state = {
       arrangement: DeckView.arrangements.two,
       sort: DeckView.sorts.created,
       search: null
-    }
+    };
   }
 
   // // Parses all the cards of a deck object and performs a special replacement
@@ -83,20 +83,20 @@ class DeckView extends React.Component {
         title: c.title,
         answer: c.answer
       }))
-    }
+    };
 
-    return JSON.stringify(sanitizedDeck, null, 2)
+    return JSON.stringify(sanitizedDeck, null, 2);
   }
 
   handleCardView(deckId, i) {
-    this.props.push(`/view/${deckId}/${i + 1}`)
+    this.props.push(`/view/${deckId}/${i + 1}`);
   }
 
   handleCardDuplicate(deckId, i) {
     this.props.handleDuplicateCard(
       i + 1, // expects a cardIndex, which is 1-based
       deckId
-    )
+    );
   }
 
   // handleCardMove(deckId, i) {
@@ -104,16 +104,16 @@ class DeckView extends React.Component {
   // }
 
   handleCardEdit(deckId, i) {
-    this.props.push(`/edit/${deckId}/${i + 1}`)
+    this.props.push(`/edit/${deckId}/${i + 1}`);
   }
 
   handleCardDelete(deckId, i) {
-    if (confirm('Are you sure?')) {
+    if (window.confirm("Are you sure?")) {
       this.props.handleRemoveCard(
         i + 1, // expects a cardIndex, which is 1-based
         deckId
-      )
-      this.props.push(`/view/${deckId}`)
+      );
+      this.props.push(`/view/${deckId}`);
     }
   }
 
@@ -122,11 +122,11 @@ class DeckView extends React.Component {
       this.props.deck.id,
       data.title ? data.title : this.props.deck.title,
       data.description ? data.description : this.props.deck.description
-    )
+    );
   }
 
   handleChangeArrangement(arrangement) {
-    this.setState({ arrangement })
+    this.setState({ arrangement });
     // if(arrangement === DeckView.arrangements.two) {
     //   this.setState({ arrangement: })
     // } else if(arrangement === DeckView.arrangements.three) {
@@ -139,23 +139,23 @@ class DeckView extends React.Component {
   handleChangeSearch(value) {
     this.setState({
       search: value
-    })
+    });
   }
 
   handleChangeSort(sort) {
-    this.setState({ sort })
+    this.setState({ sort });
   }
 
   validateDescription(text) {
     return (
-      text.trim() !== '' &&
+      text.trim() !== "" &&
       text.length > 0 &&
       text.length <= this.props.maxDeckDescLength
-    )
+    );
   }
 
   validateTitle(text) {
-    return text.length > 0 && text.length <= this.props.maxDeckTitleLength
+    return text.length > 0 && text.length <= this.props.maxDeckTitleLength;
   }
 
   renderEmpty(numCards) {
@@ -164,30 +164,30 @@ class DeckView extends React.Component {
         <p className="center">
           Click the + button on the top left to add a card
         </p>
-      )
+      );
     }
-    return null
+    return null;
   }
 
   render() {
-    const { deck, maxDeckTitleLength, maxDeckDescLength } = this.props
+    const { deck, maxDeckTitleLength, maxDeckDescLength } = this.props;
 
     const gridClassName = classnames({
-      'two-col': this.state.arrangement === DeckView.arrangements.two,
-      'three-col': this.state.arrangement === DeckView.arrangements.three
-    })
+      "two-col": this.state.arrangement === DeckView.arrangements.two,
+      "three-col": this.state.arrangement === DeckView.arrangements.three
+    });
 
     const filteredCards = deck.cards.filter(c => {
-      if (this.state.search && this.state.search !== '') {
-        return c.title.toLowerCase().includes(this.state.search.toLowerCase())
+      if (this.state.search && this.state.search !== "") {
+        return c.title.toLowerCase().includes(this.state.search.toLowerCase());
       }
-      return true
-    })
+      return true;
+    });
 
     return (
-      <section className={`${styles['deck-view']}`}>
-        <div className={`${styles['title-card']}`}>
-          <div className={`${styles['title-text']}`}>
+      <section className={`${styles["deck-view"]}`}>
+        <div className={`${styles["title-card"]}`}>
+          <div className={`${styles["title-text"]}`}>
             <RIEInput
               value={deck.title}
               change={this.handleEditDeckDetails}
@@ -203,7 +203,7 @@ class DeckView extends React.Component {
             <p>
               <strong>{`${deck.cards.length} cards`}</strong>
               &nbsp;
-              <ModalHelpButton style={{ minWidth: '350px' }}>
+              <ModalHelpButton style={{ minWidth: "350px" }}>
                 <p>
                   Click anywhere on the deck&apos;s title or description to edit
                   the field. Your changes are saved immediately.
@@ -222,9 +222,9 @@ class DeckView extends React.Component {
               placeholder="Click here to add a description"
               classLoading="loading"
               classInvalid="invalid"
-            />{' '}
+            />{" "}
           </div>
-          <div className={`${styles['control-buttons']}`}>
+          <div className={`${styles["control-buttons"]}`}>
             <Link className="button outline" to={`/view/${deck.id}/1`}>
               Play Deck&nbsp;&nbsp;
               <i className="fa fa-play-circle" />
@@ -260,10 +260,11 @@ class DeckView extends React.Component {
             <div>
               <span className="dosis">
                 {this.state.search &&
-                  this.state.search !== '' &&
-                  <span>
-                    <strong>{filteredCards.length}</strong>&nbsp;&nbsp;matching
-                  </span>}
+                  this.state.search !== "" && (
+                    <span>
+                      <strong>{filteredCards.length}</strong>&nbsp;&nbsp;matching
+                    </span>
+                  )}
               </span>
             </div>
           </div>
@@ -301,7 +302,8 @@ class DeckView extends React.Component {
             <span>Arrangement</span>
             <a
               onClick={() =>
-                this.handleChangeArrangement(DeckView.arrangements.two)}
+                this.handleChangeArrangement(DeckView.arrangements.two)
+              }
               role="presentation"
               className={classnames({
                 [styles.selected]:
@@ -312,7 +314,8 @@ class DeckView extends React.Component {
             </a>&nbsp;
             <a
               onClick={() =>
-                this.handleChangeArrangement(DeckView.arrangements.three)}
+                this.handleChangeArrangement(DeckView.arrangements.three)
+              }
               role="presentation"
               className={classnames({
                 [styles.selected]:
@@ -334,11 +337,11 @@ class DeckView extends React.Component {
         </div>
 
         <div className={`wrap-row ${styles.grid} ${gridClassName}`}>
-          {filteredCards.map((c, i) =>
+          {filteredCards.map((c, i) => (
             <Card
               card={c}
               key={`card_${deck.id}__${c.index}`}
-              className={`${styles['card-contents']}`}
+              className={`${styles["card-contents"]}`}
               trimOverflow
             >
               {
@@ -386,12 +389,12 @@ class DeckView extends React.Component {
                 </OverlayRow>
               </Overlay>
             </Card>
-          )}
+          ))}
           {this.renderEmpty(deck.cards.length)}
         </div>
       </section>
-    )
+    );
   }
 }
 
-export default DeckView
+export default DeckView;

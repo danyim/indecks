@@ -36,8 +36,7 @@ export const findMissing = (a, min = 1) => {
  * @return {Number}     Index of the best next value
  */
 export const findBestNextIndex = (a, key) =>
-  findMissing(a.map(x => x[key]), 0) ||
-  Math.max(0, Math.max.apply(null, a.map(x => x[key])) + 1)
+  findMissing(a.map(x => x[key]), 0) || Math.max(0, Math.max.apply(null, a.map(x => x[key])) + 1)
 
 /**
  * Helper function to generate routes
@@ -50,18 +49,9 @@ export const findBestNextIndex = (a, key) =>
  *                         }
  * @return {Component}        Returns a <Route> component to plug into a <Switch>
  */
-export const routeWithSubRoutes = route =>
-  <Route
-    key={_.uniqueId()}
-    exact={route.exact || false}
-    path={route.path}
-    render={props =>
-      // Pass the sub-routes down to keep nesting
-      // <route.component {...props}>
-      //   { route.children ? route.children.map(child => routeWithSubRoutes(child)) : null }
-      // </route.component>
-      <route.component {...props} routes={route.routes} />}
-  />
+export const routeWithSubRoutes = ({ Component, path, exact = false }) => (
+  <Route key={_.uniqueId()} exact={exact} path={path} render={props => <Component {...props} />} />
+)
 
 /**
  * Generates a random string
@@ -89,17 +79,11 @@ const cahDirectives = [
   ["Why can't I sleep at night?", '[noun]'],
   ["___________. It's a trap!", '[noun]'],
   ['___________. High five, bro.', '[noun]'],
-  [
-    'And the Academy Award for ___________ goes to ___________',
-    '[verb] [noun]'
-  ],
-  [
-    "I'm sorry Professor, but I couldn't complete my homework because of ___________",
-    '[noun]'
-  ],
+  ['And the Academy Award for ___________ goes to ___________', '[verb] [noun]'],
+  ["I'm sorry Professor, but I couldn't complete my homework because of ___________", '[noun]'],
   ["What's that smell?", '[any]'],
   ["What's a girl's best friend?", '[any]'],
-  ["What's there a ton of in heaven?", '[noun]']
+  ["What's there a ton of in heaven?", '[noun]'],
 ]
 const verbs = [
   'Prancing',
@@ -111,7 +95,7 @@ const verbs = [
   'Destroying the evidence',
   'Teaching a robot to love',
   'Making a pouty face',
-  'Doing the right thing'
+  'Doing the right thing',
 ]
 const nouns = [
   'Racism',
@@ -153,7 +137,7 @@ const nouns = [
   'Italians',
   'Children on leashes',
   'The chinese gymnastics team',
-  'A disappointing birthday party'
+  'A disappointing birthday party',
 ]
 
 /**
@@ -163,8 +147,7 @@ const nouns = [
 export const generateCAHCard = () => {
   let title = ''
   let answer = ''
-  const directive =
-    cahDirectives[Math.floor(Math.random() * cahDirectives.length)]
+  const directive = cahDirectives[Math.floor(Math.random() * cahDirectives.length)]
 
   title = directive[0]
   directive[1].split(' ').forEach(w => {
@@ -186,6 +169,6 @@ export const generateCAHCard = () => {
 
   return {
     title,
-    answer
+    answer,
   }
 }

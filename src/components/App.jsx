@@ -9,15 +9,15 @@ class App extends React.Component {
     closeModal: PropTypes.func.isRequired,
     push: PropTypes.func.isRequired,
     location: PropTypes.shape({
-      pathname: PropTypes.string.isRequired
+      pathname: PropTypes.string.isRequired,
     }).isRequired,
     children: PropTypes.node,
-    currentModal: PropTypes.string
+    currentModal: PropTypes.string,
   }
 
   static defaultProps = {
     currentModal: null,
-    children: null
+    children: null,
   }
 
   componentDidMount() {
@@ -35,19 +35,14 @@ class App extends React.Component {
   render() {
     return (
       <main className="app-container">
-        <Navbar
-          changeActiveModal={this.props.changeActiveModal}
-          location={this.props.location}
-        />
+        <Navbar changeActiveModal={this.props.changeActiveModal} location={this.props.location} />
         <ModalContainer
           currentModal={this.props.currentModal}
           changeActiveModal={this.props.changeActiveModal}
           closeModal={this.props.closeModal}
           push={this.props.push}
         />
-        <section className="main-container">
-          {this.props.children}
-        </section>
+        <section className="main-container">{this.props.children}</section>
         <footer>
           <p>
             <a

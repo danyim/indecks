@@ -1,10 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { TransitionMotion, spring } from 'react-motion'
-import { DeckShape } from './__commonShapes'
-import Deck from './Deck'
-import Splash from './Splash'
-import styles from '../styles/components/DeckGrid.styl'
+import React from "react";
+import PropTypes from "prop-types";
+import { TransitionMotion, spring } from "react-motion";
+import { DeckShape } from "./__commonShapes";
+import Deck from "./Deck";
+import Splash from "./Splash";
+import styles from "../styles/components/DeckGrid.styl";
 
 class DeckGrid extends React.Component {
   static propTypes = {
@@ -12,18 +12,18 @@ class DeckGrid extends React.Component {
     decks: PropTypes.arrayOf(DeckShape).isRequired,
     removeDeck: PropTypes.func.isRequired,
     loadSampleDecks: PropTypes.func.isRequired
-  }
+  };
 
-  static defaultProps = {}
+  static defaultProps = {};
 
   constructor(props) {
-    super(props)
-    this.handleRemoveDeck = this.handleRemoveDeck.bind(this)
+    super(props);
+    this.handleRemoveDeck = this.handleRemoveDeck.bind(this);
   }
 
   handleRemoveDeck(deckId) {
-    if (confirm('Are you sure you want to delete this deck?')) {
-      this.props.removeDeck(deckId)
+    if (window.confirm("Are you sure you want to delete this deck?")) {
+      this.props.removeDeck(deckId);
     }
   }
 
@@ -41,32 +41,35 @@ class DeckGrid extends React.Component {
           }
         }))}
       >
-        {interpolatedStyles =>
-          <section className={`${styles['deck-grid']} wrap-row`}>
-            {interpolatedStyles.map(config =>
+        {interpolatedStyles => (
+          <section className={`${styles["deck-grid"]} wrap-row`}>
+            {interpolatedStyles.map(config => (
               <Deck
                 key={config.key}
                 deck={config.data.deck}
                 handleOnClick={() =>
-                  this.props.push(`/view/${config.data.deck.id}`)}
+                  this.props.push(`/view/${config.data.deck.id}`)
+                }
                 push={this.props.push}
                 style={{
                   ...config.style,
-                  display: 'relative'
+                  display: "relative"
                 }}
               />
-            )}
-            {interpolatedStyles.length === 0 &&
+            ))}
+            {interpolatedStyles.length === 0 && (
               /*
               <p key="no_value" className="center">
                 Click the + button on the top left to add a deck
               </p>
               */
-              <Splash loadSampleDecks={this.props.loadSampleDecks} />}
-          </section>}
+              <Splash loadSampleDecks={this.props.loadSampleDecks} />
+            )}
+          </section>
+        )}
       </TransitionMotion>
-    )
+    );
   }
 }
 
-export default DeckGrid
+export default DeckGrid;

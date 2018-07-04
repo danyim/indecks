@@ -1,36 +1,12 @@
-/* globals __DEVELOPMENT__ */
 import { applyMiddleware, createStore, compose } from 'redux'
-import { createLogger } from 'redux-logger'
-import { persistStore, autoRehydrate } from 'redux-persist'
-// import createSagaMiddleware from 'redux-saga'
+import { routerMiddleware, connectRouter } from 'connected-react-router'
 import thunk from 'redux-thunk'
 import axios from 'axios'
-import { routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
-// import rootSaga from './sagas/index'
-import { combineListeners } from './listenerMiddleware'
-import { rootReducer, /* rootSaga, */ rootListener } from './redux/index'
+import { rootReducer } from './redux/index'
 
-const history = createHistory()
-const logger = createLogger()
-
-// const sagaMiddleware = createSagaMiddleware()
-const listenerMiddlewares = combineListeners(rootListener)
-const envMiddlewares = {
-  dev: [
-    logger,
-    thunk.withExtraArgument(axios),
-    // sagaMiddleware,
-    routerMiddleware(history),
-    ...listenerMiddlewares
-  ],
-  prod: [
-    thunk.withExtraArgument(axios),
-    // sagaMiddleware,
-    routerMiddleware(history),
-    ...listenerMiddlewares
-  ]
-}
+const IS_DEVELOPMENT = process.env.NODE_ENV === 'development'
+export const history = createHistory()
 
 /**
  * Applies reducers, middleware, and enhancers to the store
@@ -38,25 +14,20 @@ const envMiddlewares = {
  * @param  {Boolean} debug       Flag for debug mode
  * @return {Object}              A store object for Redux
  */
-function configureStore(initialState = {}, debug = __DEVELOPMENT__) {
+export function configureStore(initialState = {}, debug = IS_DEVELOPMENT) {
+  const envMiddlewares = {
+    dev: [thunk.withExtraArgument(axios), routerMiddleware(history)],
+    prod: [thunk.withExtraArgument(axios), routerMiddleware(history)],
+  }
+
   const storeEnhancers = debug
     ? compose(
         applyMiddleware(...envMiddlewares.dev),
-        autoRehydrate(),
-        window.devToolsExtension ? window.devToolsExtension() : f => f
+        window.devToolsExtension ? window.devToolsExtension() : f => f,
       )
-    : compose(applyMiddleware(...envMiddlewares.prod), autoRehydrate())
+    : compose(applyMiddleware(...envMiddlewares.prod))
 
-  if (debug) {
-    console.warn('DEVELOPMENT: In debug mode') // eslint-disable-line
-  }
-
-  const store = createStore(rootReducer, initialState, storeEnhancers)
-
-  // Loads state from local storage
-  persistStore(store, {
-    blacklist: ['routing', 'form', 'config', 'user']
-  })
+  const store = createStore(connectRouter(history)(rootReducer), initialState, storeEnhancers)
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
@@ -66,9 +37,7 @@ function configureStore(initialState = {}, debug = __DEVELOPMENT__) {
     })
   }
 
-  // sagaMiddleware.run(rootSaga)
-
   return store
 }
 
-export { configureStore, history }
+export default { configureStore, history }
