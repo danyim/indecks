@@ -152,18 +152,20 @@ module.exports = {
           // In production, we use a plugin to extract that CSS to a file, but
           // in development "style" loader enables hot editing of CSS.
           {
-            test: /\.css$/,
+            test: /\.(css|styl)$/,
             use: [
               require.resolve('style-loader'),
               {
                 loader: require.resolve('css-loader'),
                 options: {
-                  importLoaders: 1,
+                  modules: true,
+                  importLoaders: 2,
                 },
               },
               {
                 loader: require.resolve('postcss-loader'),
                 options: {
+                  sourceMap: true,
                   // Necessary for external CSS imports to work
                   // https://github.com/facebookincubator/create-react-app/issues/2677
                   ident: 'postcss',
@@ -181,6 +183,7 @@ module.exports = {
                   ],
                 },
               },
+              'stylus-loader',
             ],
           },
           // "file" loader makes sure those assets get served by WebpackDevServer.

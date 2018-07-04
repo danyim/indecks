@@ -161,7 +161,7 @@ module.exports = {
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
           {
-            test: /\.css$/,
+            test: /\.(css|styl)$/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
@@ -175,7 +175,8 @@ module.exports = {
                     {
                       loader: require.resolve('css-loader'),
                       options: {
-                        importLoaders: 1,
+                        modules: true,
+                        importLoaders: 2,
                         minimize: true,
                         sourceMap: shouldUseSourceMap,
                       },
@@ -186,6 +187,7 @@ module.exports = {
                         // Necessary for external CSS imports to work
                         // https://github.com/facebookincubator/create-react-app/issues/2677
                         ident: 'postcss',
+                        sourceMap: true,
                         plugins: () => [
                           require('postcss-flexbugs-fixes'),
                           autoprefixer({
@@ -200,6 +202,7 @@ module.exports = {
                         ],
                       },
                     },
+                    'stylus-loader',
                   ],
                 },
                 extractTextPluginOptions,
