@@ -29,23 +29,21 @@ exports[`DeckSelector should render self and subcomponents 1`] = `
 >
   <div>
     <h2
-      className="header"
+      className="undefined"
     >
       Deck Selector
     </h2>
-    <p
-      className="help"
-    >
+    <p>
       Use the up and down arrows to select a deck. Press enter to navigate to the deck.
     </p>
     <ul
-      className="deck-list"
       onKeyDown={[Function]}
       role="presentation"
       tabIndex={-1}
     >
       <li
         className="selected"
+        key="ABCDEFG"
         value="ABCDEFG"
       >
         Deck title
@@ -57,6 +55,7 @@ exports[`DeckSelector should render self and subcomponents 1`] = `
       </li>
       <li
         className=""
+        key="123455"
         value="123455"
       >
         Deck title
@@ -68,6 +67,7 @@ exports[`DeckSelector should render self and subcomponents 1`] = `
       </li>
       <li
         className=""
+        key="121451"
         value="121451"
       >
         Deck title

@@ -12,7 +12,7 @@
   "homepage": "https://github.com/danyim/indecks",
   "scripts": {
     "precommit": "lint-staged",
-    "prepush": "yarn test --coverage",
+    "prepush": "yarn test -- --coverage",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"

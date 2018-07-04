@@ -11,29 +11,29 @@ exports[`Card should render self and subcomponents 1`] = `
   }
   className=""
   flipped={false}
-  handleOnClick={[Function]}
+  handleOnClick={[MockFunction]}
   trimOverflow={false}
   trimOverflowLength={125}
 >
   <figure
-    className="grid-figure grid-figure "
+    className="grid-figure undefined "
     onClick={[Function]}
     role="presentation"
   >
     <div
-      className="card-contents card-contents"
+      className="card-contents undefined"
     >
       <Markdown
-        className="card-title card-title"
+        className="card-title undefined"
         handleOnClick={null}
         text="Title"
       >
         <div
-          className="card-title card-title"
+          className="card-title undefined"
           dangerouslySetInnerHTML={
             Object {
               "__html": "<p>Title</p>
-            ",
+",
             }
           }
           onClick={null}

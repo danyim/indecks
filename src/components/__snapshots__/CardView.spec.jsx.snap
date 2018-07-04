@@ -12,6 +12,7 @@ exports[`CardView should render self and subcomponents 1`] = `
     onSwipedLeft={[Function]}
     onSwipedRight={[Function]}
     preventDefaultTouchmoveEvent={false}
+    rotationAngle={0}
     stopPropagation={false}
   >
     <Card

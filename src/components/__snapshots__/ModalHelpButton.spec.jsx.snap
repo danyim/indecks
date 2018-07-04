@@ -3,7 +3,6 @@
 exports[`ModalHelpButton should render self and subcomponents 1`] = `
 <span>
   <span
-    className="button"
     name="toggle-modal-icon"
     onClick={[Function]}
     role="presentation"
@@ -13,12 +12,10 @@ exports[`ModalHelpButton should render self and subcomponents 1`] = `
     />
   </span>
   <Modal
-    className="modal"
     contentLabel="Help"
     isOpen={false}
     onAfterOpen={[Function]}
     onRequestClose={[Function]}
-    overlayClassName="overlay"
     style={
       Object {
         "left": 0,

@@ -1,12 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SignUpLoginForm should render self and subcomponents 1`] = `
-<form
-  className="form"
->
-  <div
-    className="error"
-  />
+<form>
+  <div />
   <label
     htmlFor="username"
   >
@@ -34,7 +30,7 @@ exports[`SignUpLoginForm should render self and subcomponents 1`] = `
     />
   </label>
   <div
-    className="control-buttons"
+    className="undefined"
   >
     <button
       className="button outline"
@@ -63,7 +59,7 @@ exports[`SignUpLoginForm should render self and subcomponents 1`] = `
     </p>
   </div>
   <div
-    className="control-buttons"
+    className="undefined"
   >
     <button
       className="button github"

@@ -8,7 +8,7 @@ exports[`CardAdd should render self and subcomponents 1`] = `
   push={[Function]}
 >
   <figure
-    className="grid-figure grid-figure"
+    className="grid-figure undefined"
   >
     <form
       className="edit-form"
@@ -57,9 +57,7 @@ exports[`CardAdd should render self and subcomponents 1`] = `
         answer=""
         title=""
       >
-        <div
-          className="preview"
-        >
+        <div>
           <button
             className="btn pointer m-t"
             name="preview-toggle"
@@ -83,7 +81,7 @@ exports[`CardAdd should render self and subcomponents 1`] = `
             }
           >
             <div
-              className="preview-pane"
+              className="undefined"
               style={
                 Object {
                   "display": "none",
@@ -99,13 +97,13 @@ exports[`CardAdd should render self and subcomponents 1`] = `
                   Title
                 </span>
                 <Markdown
-                  className="card-title"
+                  className="undefined"
                   handleOnClick={null}
                   name="title"
                   text=""
                 >
                   <div
-                    className="card-title"
+                    className="undefined"
                     dangerouslySetInnerHTML={
                       Object {
                         "__html": "",
@@ -124,13 +122,13 @@ exports[`CardAdd should render self and subcomponents 1`] = `
                   Answer
                 </span>
                 <Markdown
-                  className="card-answer"
+                  className="undefined"
                   handleOnClick={null}
                   name="answer"
                   text=""
                 >
                   <div
-                    className="card-answer"
+                    className="undefined"
                     dangerouslySetInnerHTML={
                       Object {
                         "__html": "",
@@ -145,7 +143,7 @@ exports[`CardAdd should render self and subcomponents 1`] = `
         </div>
       </CardPreview>
       <div
-        className="control-buttons"
+        className="undefined"
       >
         <button
           className="button outline"
