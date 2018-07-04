@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { RIEInput, RIETextArea } from 'riek'
+import { RIEInput, RIETextArea } from '@attently/riek'
 import { Link } from 'react-router-dom'
 import slug from 'slug'
 import classnames from 'classnames'
@@ -21,28 +21,28 @@ class DeckView extends React.Component {
     handleEditDeck: PropTypes.func.isRequired,
     handleRemoveCard: PropTypes.func.isRequired,
     handleRemoveDeck: PropTypes.func.isRequired,
-    push: PropTypes.func.isRequired
+    push: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
     maxDeckTitleLength: 160,
-    maxDeckDescLength: 300
+    maxDeckDescLength: 300,
   }
 
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
   }
 
   static arrangements = {
     two: '2COL',
     three: '3COL',
-    list: 'LIST'
+    list: 'LIST',
   }
 
   static sorts = {
     created: 'CREATED',
     edited: 'EDITED',
-    unanswered: 'UNANSWERED'
+    unanswered: 'UNANSWERED',
   }
 
   constructor(props) {
@@ -59,7 +59,7 @@ class DeckView extends React.Component {
     this.state = {
       arrangement: DeckView.arrangements.two,
       sort: DeckView.sorts.created,
-      search: null
+      search: null,
     }
   }
 
@@ -81,8 +81,8 @@ class DeckView extends React.Component {
       cards: this.props.deck.cards.map(c => ({
         index: c.index,
         title: c.title,
-        answer: c.answer
-      }))
+        answer: c.answer,
+      })),
     }
 
     return JSON.stringify(sanitizedDeck, null, 2)
@@ -95,7 +95,7 @@ class DeckView extends React.Component {
   handleCardDuplicate(deckId, i) {
     this.props.handleDuplicateCard(
       i + 1, // expects a cardIndex, which is 1-based
-      deckId
+      deckId,
     )
   }
 
@@ -108,10 +108,10 @@ class DeckView extends React.Component {
   }
 
   handleCardDelete(deckId, i) {
-    if (confirm('Are you sure?')) {
+    if (window.confirm('Are you sure?')) {
       this.props.handleRemoveCard(
         i + 1, // expects a cardIndex, which is 1-based
-        deckId
+        deckId,
       )
       this.props.push(`/view/${deckId}`)
     }
@@ -121,7 +121,7 @@ class DeckView extends React.Component {
     this.props.handleEditDeck(
       this.props.deck.id,
       data.title ? data.title : this.props.deck.title,
-      data.description ? data.description : this.props.deck.description
+      data.description ? data.description : this.props.deck.description,
     )
   }
 
@@ -138,7 +138,7 @@ class DeckView extends React.Component {
 
   handleChangeSearch(value) {
     this.setState({
-      search: value
+      search: value,
     })
   }
 
@@ -174,7 +174,7 @@ class DeckView extends React.Component {
 
     const gridClassName = classnames({
       'two-col': this.state.arrangement === DeckView.arrangements.two,
-      'three-col': this.state.arrangement === DeckView.arrangements.three
+      'three-col': this.state.arrangement === DeckView.arrangements.three,
     })
 
     const filteredCards = deck.cards.filter(c => {
@@ -260,10 +260,11 @@ class DeckView extends React.Component {
             <div>
               <span className="dosis">
                 {this.state.search &&
-                  this.state.search !== '' &&
-                  <span>
-                    <strong>{filteredCards.length}</strong>&nbsp;&nbsp;matching
-                  </span>}
+                  this.state.search !== '' && (
+                    <span>
+                      <strong>{filteredCards.length}</strong>&nbsp;&nbsp;matching
+                    </span>
+                  )}
               </span>
             </div>
           </div>
@@ -273,7 +274,7 @@ class DeckView extends React.Component {
               onClick={() => this.handleChangeSort(DeckView.sorts.created)}
               role="presentation"
               className={classnames({
-                [styles.selected]: this.state.sort === DeckView.sorts.created
+                [styles.selected]: this.state.sort === DeckView.sorts.created,
               })}
             >
               Last created
@@ -282,7 +283,7 @@ class DeckView extends React.Component {
               onClick={() => this.handleChangeSort(DeckView.sorts.edited)}
               role="presentation"
               className={classnames({
-                [styles.selected]: this.state.sort === DeckView.sorts.edited
+                [styles.selected]: this.state.sort === DeckView.sorts.edited,
               })}
             >
               Last edited
@@ -291,7 +292,8 @@ class DeckView extends React.Component {
               onClick={() => this.handleChangeSort(DeckView.sorts.unanswered)}
               role="presentation"
               className={classnames({
-                [styles.selected]: this.state.sort === DeckView.sorts.unanswered
+                [styles.selected]:
+                  this.state.sort === DeckView.sorts.unanswered,
               })}
             >
               Unanswered
@@ -301,22 +303,24 @@ class DeckView extends React.Component {
             <span>Arrangement</span>
             <a
               onClick={() =>
-                this.handleChangeArrangement(DeckView.arrangements.two)}
+                this.handleChangeArrangement(DeckView.arrangements.two)
+              }
               role="presentation"
               className={classnames({
                 [styles.selected]:
-                  this.state.arrangement === DeckView.arrangements.two
+                  this.state.arrangement === DeckView.arrangements.two,
               })}
             >
               Two columns
             </a>&nbsp;
             <a
               onClick={() =>
-                this.handleChangeArrangement(DeckView.arrangements.three)}
+                this.handleChangeArrangement(DeckView.arrangements.three)
+              }
               role="presentation"
               className={classnames({
                 [styles.selected]:
-                  this.state.arrangement === DeckView.arrangements.three
+                  this.state.arrangement === DeckView.arrangements.three,
               })}
             >
               Three columns
@@ -334,7 +338,7 @@ class DeckView extends React.Component {
         </div>
 
         <div className={`wrap-row ${styles.grid} ${gridClassName}`}>
-          {filteredCards.map((c, i) =>
+          {filteredCards.map((c, i) => (
             <Card
               card={c}
               key={`card_${deck.id}__${c.index}`}
@@ -386,7 +390,7 @@ class DeckView extends React.Component {
                 </OverlayRow>
               </Overlay>
             </Card>
-          )}
+          ))}
           {this.renderEmpty(deck.cards.length)}
         </div>
       </section>

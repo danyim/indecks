@@ -13,8 +13,10 @@ exports[`Modal should render self and subcomponents 1`] = `
   overlayClassName="modal-overlay null"
   parentSelector={[Function]}
   portalClassName="ReactModalPortal"
+  shouldCloseOnEsc={true}
   shouldCloseOnOverlayClick={true}
   shouldFocusAfterRender={true}
+  shouldReturnFocusAfterClose={true}
   style={
     Object {
       "content": null,

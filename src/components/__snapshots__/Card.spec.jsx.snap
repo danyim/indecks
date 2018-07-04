@@ -11,7 +11,7 @@ exports[`Card should render self and subcomponents 1`] = `
   }
   className=""
   flipped={false}
-  handleOnClick={[Function]}
+  handleOnClick={[MockFunction]}
   trimOverflow={false}
   trimOverflowLength={125}
 >
@@ -33,7 +33,7 @@ exports[`Card should render self and subcomponents 1`] = `
           dangerouslySetInnerHTML={
             Object {
               "__html": "<p>Title</p>
-            ",
+",
             }
           }
           onClick={null}

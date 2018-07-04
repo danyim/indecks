@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { push } from 'react-router-redux'
+import { push } from 'connected-react-router'
 import * as deckActions from '../redux/modules/decks'
 import { CardShape } from '../components/__commonShapes'
 import CardEdit from '../components/CardEdit'
@@ -14,7 +14,7 @@ const propTypes = {
   editCard: PropTypes.func.isRequired,
   removeCard: PropTypes.func.isRequired,
   push: PropTypes.func.isRequired,
-  form: PropTypes.object.isRequired
+  form: PropTypes.object.isRequired,
 }
 const defaultProps = {}
 
@@ -45,10 +45,12 @@ const mapStateToProps = ({ decks, form }, ownProps) => {
     card: decks[deckIndex].cards[cardIndex - 1],
     deckId,
     cardIndex: parseInt(cardIndex, 10),
-    form
+    form,
   }
 }
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...deckActions, push }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ ...deckActions, push }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardEditContainer)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CardEditContainer)

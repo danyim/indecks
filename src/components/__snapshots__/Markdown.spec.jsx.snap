@@ -6,7 +6,7 @@ exports[`Markdown should render self and subcomponents 1`] = `
   dangerouslySetInnerHTML={
     Object {
       "__html": "<p>Test</p>
-    ",
+",
     }
   }
   onClick={null}

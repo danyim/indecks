@@ -4,7 +4,7 @@ import FrontBack from './FrontBack'
 
 const defaultProps = {
   handleFlip: jest.fn(),
-  flipped: false
+  flipped: false,
 }
 
 function setup(props = defaultProps) {
@@ -12,7 +12,7 @@ function setup(props = defaultProps) {
 
   return {
     props,
-    wrapper
+    wrapper,
   }
 }
 
@@ -27,7 +27,7 @@ describe('FrontBack', () => {
   it('should apply the active class to "BACK" when flipped prop is TRUE', () => {
     const { wrapper } = setup({
       ...defaultProps,
-      flipped: true
+      flipped: true,
     })
     expect(wrapper.find('a.active').text()).toBe('BACK')
   })
@@ -35,7 +35,7 @@ describe('FrontBack', () => {
   it('should apply the active class to "FRONT" when flipped prop is FALSE', () => {
     const { wrapper } = setup({
       ...defaultProps,
-      flipped: false
+      flipped: false,
     })
     expect(wrapper.find('a.active').text()).toBe('FRONT')
   })
@@ -44,7 +44,7 @@ describe('FrontBack', () => {
     const handler = jest.fn()
     const { wrapper } = setup({
       ...defaultProps,
-      handleFlip: handler
+      handleFlip: handler,
     })
 
     wrapper.find('a.front').simulate('click')
@@ -55,7 +55,7 @@ describe('FrontBack', () => {
     const handler = jest.fn()
     const { wrapper } = setup({
       ...defaultProps,
-      handleFlip: handler
+      handleFlip: handler,
     })
 
     wrapper.find('a.back').simulate('click')

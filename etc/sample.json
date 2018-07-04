@@ -1,0 +1,27 @@
+{
+  "id": "90JDJ@3dD",
+  "title": "Sample Deck",
+  "description": "This is a sample deck for uploading purposes",
+  "url": "https://example.com/doesnt/exist.json",
+  "cards": [
+    {
+      "title": "In Pin Latin what is \"amplesay\"?",
+      "answer":
+        "# The answer would be.. \n_Sample_, Alex. This is a **test** of the markdown capabilities."
+    },
+    {
+      "title":
+        "A cheesy answer would suit the following: ____ crisp snacks are the best",
+      "answer": "Parmesan"
+    },
+    {
+      "title": "What is the color of the sky?",
+      "answer": "Azure blue"
+    },
+    {
+      "title":
+        "On that note, which is the absolute worst cloud infrastructure provider: AWS, Azure, or Google?",
+      "answer": "Microsoft Azure"
+    }
+  ]
+}
