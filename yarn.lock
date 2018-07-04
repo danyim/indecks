@@ -2159,9 +2159,13 @@ core-js@^1.0.0:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
 
-core-js@^2.4.0, core-js@^2.5.0:
+core-js@^2.4.0:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.1.tgz#ae6874dc66937789b80754ff5428df66819ca50b"
+
+core-js@^2.5.0:
+  version "2.5.7"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.7.tgz#f972608ff0cead68b841a16a932d0b183791814e"
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -2788,6 +2792,10 @@ dot-prop@^4.1.0, dot-prop@^4.1.1:
   resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-4.2.0.tgz#1f19e0c2e1aa0e32797c49799f2837ac6af69c57"
   dependencies:
     is-obj "^1.0.0"
+
+dotenv-expand@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-4.2.0.tgz#def1f1ca5d6059d24a766e587942c21106ce1275"
 
 dotenv@^6.0.0:
   version "6.0.0"
@@ -7456,8 +7464,8 @@ react-dom@^16.0.0:
     prop-types "^15.6.0"
 
 react-dropzone@^4.2.12:
-  version "4.2.12"
-  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-4.2.12.tgz#b57f5b490102f24e1e8a970d46ef82f8cd71e222"
+  version "4.2.13"
+  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-4.2.13.tgz#31393c079b4e5ddcc176c095cebc3545d1248b9d"
   dependencies:
     attr-accept "^1.0.3"
     prop-types "^15.5.7"

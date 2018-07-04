@@ -34,11 +34,6 @@
       "git add"
     ]
   },
-  "devDependencies": {
-    "prettier": "^1.13.7",
-    "stylefmt": "^6.0.0",
-    "stylelint": "^9.3.0"
-  },
   "dependencies": {
     "autoprefixer": "7.1.2",
     "axios": "^0.18.0",
@@ -56,6 +51,7 @@
     "css-loader": "0.28.4",
     "date-fns": "^1.29.0",
     "dotenv": "^6.0.0",
+    "dotenv-expand": "^4.2.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.4",
@@ -85,6 +81,7 @@
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.6",
+    "prettier": "^1.13.7",
     "promise": "8.0.1",
     "prop-types": "^15.6.2",
     "react": "^16.0.0",
@@ -111,6 +108,8 @@
     "slug": "^0.9.1",
     "style-loader": "0.18.2",
     "styled-components": "^3.3.3",
+    "stylefmt": "^6.0.0",
+    "stylelint": "^9.3.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "sw-precache-webpack-plugin": "0.11.4",
