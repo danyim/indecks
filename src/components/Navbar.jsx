@@ -8,8 +8,8 @@ class Navbar extends React.Component {
   static propTypes = {
     changeActiveModal: PropTypes.func.isRequired,
     location: PropTypes.shape({
-      pathname: PropTypes.string.isRequired
-    }).isRequired
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
   }
 
   static defaultProps = {}
@@ -118,7 +118,7 @@ class Navbar extends React.Component {
 
     return {
       addLink,
-      listLink
+      listLink,
     }
   }
 
@@ -130,9 +130,7 @@ class Navbar extends React.Component {
         <div className={`${styles['nav-outer-container']}`}>
           <div className={`${styles['nav-inner-container']}`}>
             <span className={`${styles['nav-left']}`}>
-              <div className={`${styles['rounded-button']}`}>
-                {addLink}
-              </div>
+              <div className={`${styles['rounded-button']}`}>{addLink}</div>
             </span>
             <h1>
               <Link to="/">
@@ -140,9 +138,7 @@ class Navbar extends React.Component {
               </Link>
             </h1>
             <span className={`${styles['nav-right']}`}>
-              <div className={`${styles['rounded-button']}`}>
-                {listLink}
-              </div>
+              <div className={`${styles['rounded-button']}`}>{listLink}</div>
             </span>
           </div>
         </div>

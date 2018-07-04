@@ -12,7 +12,7 @@ describe('SignUpLoginForm', () => {
       signInGithub: () => {},
       signInTwitter: () => {},
       signInGoogle: () => {},
-      isAuthenticating: false
+      isAuthenticating: false,
     }
   })
 
@@ -38,7 +38,7 @@ describe('SignUpLoginForm', () => {
     const handler = jest.fn().mockReturnValue({ then: () => {} })
     const { wrapper } = setup(SignUpLoginForm, {
       ...props,
-      login: handler
+      login: handler,
     })
 
     const inputEmail = wrapper.find('input[name="username"]')
@@ -46,10 +46,10 @@ describe('SignUpLoginForm', () => {
     const buttonLogin = wrapper.find('button[name="login"]')
 
     inputEmail.simulate('change', {
-      target: { value: username, name: 'username' }
+      target: { value: username, name: 'username' },
     })
     inputPass.simulate('change', {
-      target: { value: password, name: 'password' }
+      target: { value: password, name: 'password' },
     })
     buttonLogin.simulate('click', { preventDefault: () => {} })
     expect(handler).toHaveBeenCalled()
@@ -62,7 +62,7 @@ describe('SignUpLoginForm', () => {
     const handler = jest.fn().mockReturnValue({ then: () => {} })
     const { wrapper } = setup(SignUpLoginForm, {
       ...props,
-      signUpEmail: handler
+      signUpEmail: handler,
     })
 
     const inputEmail = wrapper.find('input[name="username"]')
@@ -70,10 +70,10 @@ describe('SignUpLoginForm', () => {
     const buttonSignup = wrapper.find('button[name="signup"]')
 
     inputEmail.simulate('change', {
-      target: { value: username, name: 'username' }
+      target: { value: username, name: 'username' },
     })
     inputPass.simulate('change', {
-      target: { value: password, name: 'password' }
+      target: { value: password, name: 'password' },
     })
     buttonSignup.simulate('click', { preventDefault: () => {} })
     expect(handler).toHaveBeenCalled()
@@ -85,7 +85,7 @@ describe('SignUpLoginForm', () => {
       .mockReturnValue({ then: () => ({ catch: () => {} }) })
     const { wrapper } = setup(SignUpLoginForm, {
       ...props,
-      signInGithub: handler
+      signInGithub: handler,
     })
 
     const button = wrapper.find('button.github')
@@ -100,7 +100,7 @@ describe('SignUpLoginForm', () => {
       .mockReturnValue({ then: () => ({ catch: () => {} }) })
     const { wrapper } = setup(SignUpLoginForm, {
       ...props,
-      signInTwitter: handler
+      signInTwitter: handler,
     })
 
     const button = wrapper.find('button.twitter')
@@ -115,7 +115,7 @@ describe('SignUpLoginForm', () => {
       .mockReturnValue({ then: () => ({ catch: () => {} }) })
     const { wrapper } = setup(SignUpLoginForm, {
       ...props,
-      signInGoogle: handler
+      signInGoogle: handler,
     })
 
     const button = wrapper.find('button.google')
@@ -131,12 +131,12 @@ describe('SignUpLoginForm', () => {
     const testButtons = [
       {
         title: 'logging in',
-        selector: 'button[name="signup"]'
+        selector: 'button[name="signup"]',
       },
       {
         title: 'signing up',
-        selector: 'button[name="signup"]'
-      }
+        selector: 'button[name="signup"]',
+      },
     ]
 
     beforeEach(() => {
@@ -144,10 +144,12 @@ describe('SignUpLoginForm', () => {
     })
 
     testButtons.forEach(testButton => {
-      it(`should not allow empty usernames for the username and password when ${testButton.title}`, () => {
+      it(`should not allow empty usernames for the username and password when ${
+        testButton.title
+      }`, () => {
         const { wrapper } = setup(SignUpLoginForm, {
           ...props,
-          signUpEmail: handler
+          signUpEmail: handler,
         })
 
         const button = wrapper.find(testButton.selector)
@@ -161,14 +163,14 @@ describe('SignUpLoginForm', () => {
       it(`should not allow empty passwords when ${testButton.title}`, () => {
         const { wrapper } = setup(SignUpLoginForm, {
           ...props,
-          signUpEmail: handler
+          signUpEmail: handler,
         })
 
         const inputEmail = wrapper.find('input[name="username"]')
         const button = wrapper.find(testButton.selector)
 
         inputEmail.simulate('change', {
-          target: { value: username, name: 'username' }
+          target: { value: username, name: 'username' },
         })
         button.simulate('click', { preventDefault: () => {} })
         expect(handler).not.toHaveBeenCalled()
@@ -178,14 +180,14 @@ describe('SignUpLoginForm', () => {
       it(`should not allow empty usernames when ${testButton.title}`, () => {
         const { wrapper } = setup(SignUpLoginForm, {
           ...props,
-          signUpEmail: handler
+          signUpEmail: handler,
         })
 
         const inputPass = wrapper.find('input[name="password"]')
         const button = wrapper.find(testButton.selector)
 
         inputPass.simulate('change', {
-          target: { value: password, name: 'password' }
+          target: { value: password, name: 'password' },
         })
         button.simulate('click', { preventDefault: () => {} })
         expect(handler).not.toHaveBeenCalled()

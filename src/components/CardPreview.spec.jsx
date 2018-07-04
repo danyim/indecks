@@ -4,7 +4,7 @@ import CardPreview from './CardPreview'
 
 const defaultProps = {
   title: 'Test',
-  answer: 'test'
+  answer: 'test',
 }
 
 describe('CardPreview', () => {
@@ -15,7 +15,7 @@ describe('CardPreview', () => {
 
   it('should display the preview pane when the button is pressed', () => {
     const { wrapper } = setupFull(CardPreview, {
-      ...defaultProps
+      ...defaultProps,
     })
 
     const button = wrapper.find('button[name="preview-toggle"]')

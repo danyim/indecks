@@ -46,7 +46,7 @@ function setupFull(props = defaultProps) {
   const wrapper = mount(
     <MemoryRouter initialEntries={['/view/ABCDEFG']}>
       <DeckView {...props} />
-    </MemoryRouter>,
+    </MemoryRouter>
   )
 
   return {
@@ -78,7 +78,7 @@ describe('DeckView', () => {
       },
     })
     expect(wrapper.find('p.center').text()).toEqual(
-      'Click the + button on the top left to add a card',
+      'Click the + button on the top left to add a card'
     )
   })
 
@@ -246,7 +246,7 @@ describe('DeckView', () => {
 
     const exportButton = wrapper.find('ExportDeckButton')
     expect(exportButton.prop('exportFile')()).toEqual(
-      JSON.stringify(props.deck, null, 2),
+      JSON.stringify(props.deck, null, 2)
     )
   })
 

@@ -1,29 +1,29 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { TransitionMotion, spring } from "react-motion";
-import { DeckShape } from "./__commonShapes";
-import Deck from "./Deck";
-import Splash from "./Splash";
-import styles from "../styles/components/DeckGrid.styl";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { TransitionMotion, spring } from 'react-motion'
+import { DeckShape } from './__commonShapes'
+import Deck from './Deck'
+import Splash from './Splash'
+import styles from '../styles/components/DeckGrid.styl'
 
 class DeckGrid extends React.Component {
   static propTypes = {
     push: PropTypes.func.isRequired,
     decks: PropTypes.arrayOf(DeckShape).isRequired,
     removeDeck: PropTypes.func.isRequired,
-    loadSampleDecks: PropTypes.func.isRequired
-  };
+    loadSampleDecks: PropTypes.func.isRequired,
+  }
 
-  static defaultProps = {};
+  static defaultProps = {}
 
   constructor(props) {
-    super(props);
-    this.handleRemoveDeck = this.handleRemoveDeck.bind(this);
+    super(props)
+    this.handleRemoveDeck = this.handleRemoveDeck.bind(this)
   }
 
   handleRemoveDeck(deckId) {
-    if (window.confirm("Are you sure you want to delete this deck?")) {
-      this.props.removeDeck(deckId);
+    if (window.confirm('Are you sure you want to delete this deck?')) {
+      this.props.removeDeck(deckId)
     }
   }
 
@@ -37,12 +37,12 @@ class DeckGrid extends React.Component {
           data: { deck: d },
           style: {
             opacity: spring(1),
-            left: spring(0)
-          }
+            left: spring(0),
+          },
         }))}
       >
         {interpolatedStyles => (
-          <section className={`${styles["deck-grid"]} wrap-row`}>
+          <section className={`${styles['deck-grid']} wrap-row`}>
             {interpolatedStyles.map(config => (
               <Deck
                 key={config.key}
@@ -53,7 +53,7 @@ class DeckGrid extends React.Component {
                 push={this.props.push}
                 style={{
                   ...config.style,
-                  display: "relative"
+                  display: 'relative',
                 }}
               />
             ))}
@@ -68,8 +68,8 @@ class DeckGrid extends React.Component {
           </section>
         )}
       </TransitionMotion>
-    );
+    )
   }
 }
 
-export default DeckGrid;
+export default DeckGrid

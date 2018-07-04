@@ -3,7 +3,7 @@ import firebase from '../../firebase'
 import {
   createReducer,
   findBestNextIndex,
-  generateRandomString
+  generateRandomString,
 } from '../../utils'
 import samples from '../../data/samples'
 
@@ -35,18 +35,18 @@ const reducers = {
       answer,
       index: findBestNextIndex(deck.cards, 'index'),
       createdOn,
-      editedOn: null
+      editedOn: null,
     }
 
     const newDeck = {
       ...deck,
-      cards: [...deck.cards, newCard]
+      cards: [...deck.cards, newCard],
     }
 
     return [
       ...state.slice(0, deckIndex),
       newDeck,
-      ...state.slice(deckIndex + 1)
+      ...state.slice(deckIndex + 1),
     ]
   },
 
@@ -59,17 +59,17 @@ const reducers = {
       ...deck.cards[adjCardIndex],
       index: findBestNextIndex(deck.cards, 'index'),
       createdOn,
-      editedOn: null
+      editedOn: null,
     }
     const newDeck = {
       ...deck,
-      cards: [...deck.cards, newCard]
+      cards: [...deck.cards, newCard],
     }
 
     return [
       ...state.slice(0, deckIndex),
       newDeck,
-      ...state.slice(deckIndex + 1)
+      ...state.slice(deckIndex + 1),
     ]
   },
 
@@ -83,7 +83,7 @@ const reducers = {
       ...deck.cards[adjCardIndex],
       title,
       answer,
-      editedOn
+      editedOn,
     }
 
     const newDeck = {
@@ -91,14 +91,14 @@ const reducers = {
       cards: [
         ...deck.cards.slice(0, adjCardIndex),
         newCard,
-        ...deck.cards.slice(adjCardIndex + 1)
-      ]
+        ...deck.cards.slice(adjCardIndex + 1),
+      ],
     }
 
     return [
       ...state.slice(0, deckIndex),
       newDeck,
-      ...state.slice(deckIndex + 1)
+      ...state.slice(deckIndex + 1),
     ]
   },
 
@@ -119,7 +119,7 @@ const reducers = {
     // Remove from the source deck
     srcDeck.cards = [
       ...srcDeck.cards.slice(0, targetCardIndex),
-      ...srcDeck.cards.slice(targetCardIndex + 1)
+      ...srcDeck.cards.slice(targetCardIndex + 1),
     ]
 
     // Add to the destination deck
@@ -131,7 +131,7 @@ const reducers = {
         srcDeck,
         ...state.slice(srcDeckIndex + 1, destDeckIndex),
         destDeck,
-        ...state.slice(destDeckIndex + 1)
+        ...state.slice(destDeckIndex + 1),
       ]
     }
     return [
@@ -139,7 +139,7 @@ const reducers = {
       destDeck,
       ...state.slice(destDeckIndex + 1, srcDeckIndex),
       srcDeck,
-      ...state.slice(srcDeckIndex + 1)
+      ...state.slice(srcDeckIndex + 1),
     ]
   },
 
@@ -153,14 +153,14 @@ const reducers = {
       ...deck,
       cards: [
         ...deck.cards.slice(0, adjCardIndex),
-        ...deck.cards.slice(adjCardIndex + 1)
-      ]
+        ...deck.cards.slice(adjCardIndex + 1),
+      ],
     }
 
     return [
       ...state.slice(0, deckIndex),
       newDeck,
-      ...state.slice(deckIndex + 1)
+      ...state.slice(deckIndex + 1),
     ]
   },
 
@@ -185,7 +185,7 @@ const reducers = {
   shuffleDeck: state => state,
 
   removeAllDecks: () => [],
-  loadDecks: (state, action) => action.decks
+  loadDecks: (state, action) => action.decks,
 }
 
 const reducerHandlers = {
@@ -199,7 +199,7 @@ const reducerHandlers = {
   [REMOVE_DECK]: reducers.removeDeck,
   [SHUFFLE_DECK]: reducers.shuffleDeck,
   [REMOVE_ALL_DECKS]: reducers.removeAllDecks,
-  [LOAD_DECKS]: reducers.loadDecks
+  [LOAD_DECKS]: reducers.loadDecks,
 }
 export default createReducer({}, reducerHandlers)
 
@@ -209,21 +209,21 @@ export default createReducer({}, reducerHandlers)
 export const addDeck = (deck, preventSave = false) => ({
   type: ADD_DECK,
   deck,
-  preventSave
+  preventSave,
 })
 export const editDeck = (deckId, title, description) => ({
   type: EDIT_DECK,
   deckId,
   title,
-  description
+  description,
 })
 export const removeDeck = deckId => ({
   type: REMOVE_DECK,
-  deckId
+  deckId,
 })
 export const shuffleDeck = deckId => ({
   type: SHUFFLE_DECK,
-  deckId
+  deckId,
 })
 export const addCard = (
   title,
@@ -235,7 +235,7 @@ export const addCard = (
   title,
   answer,
   deckId,
-  createdOn
+  createdOn,
 })
 export const duplicateCard = (
   cardIndex,
@@ -245,7 +245,7 @@ export const duplicateCard = (
   type: DUPLICATE_CARD,
   cardIndex,
   deckId,
-  createdOn
+  createdOn,
 })
 export const editCard = (
   title,
@@ -259,25 +259,25 @@ export const editCard = (
   answer,
   cardIndex,
   deckId,
-  editedOn
+  editedOn,
 })
 export const moveCard = (cardIndex, srcDeckId, destDeckId) => ({
   type: MOVE_CARD,
   cardIndex,
   srcDeckId,
-  destDeckId
+  destDeckId,
 })
 export const removeCard = (cardIndex, deckId) => ({
   type: REMOVE_CARD,
   cardIndex,
-  deckId
+  deckId,
 })
 export const removeAllDecks = () => ({
-  type: REMOVE_ALL_DECKS
+  type: REMOVE_ALL_DECKS,
 })
 export const loadDecks = decks => ({
   type: LOAD_DECKS,
-  decks
+  decks,
 })
 
 /**
@@ -335,7 +335,10 @@ export const deleteDeckFromFirebase = deckId => (dispatch, getState) => {
   const authenticated = state.user.authenticated
 
   if (authenticated) {
-    return firebase.database().ref(`decks/${state.user.uid}/${deckId}`).remove()
+    return firebase
+      .database()
+      .ref(`decks/${state.user.uid}/${deckId}`)
+      .remove()
   }
 
   return Promise.resolve()
@@ -413,5 +416,5 @@ export const listeners = {
   [REMOVE_DECK]: deleteDeck,
   [DUPLICATE_CARD]: saveDecks,
   [REMOVE_CARD]: saveDecks,
-  [EDIT_CARD]: saveDecks
+  [EDIT_CARD]: saveDecks,
 }

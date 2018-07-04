@@ -4,7 +4,7 @@ import styles from '../styles/components/ShortcutHelper.styl'
 const propTypes = {}
 const defaultProps = {}
 
-const ShortcutHelper = () =>
+const ShortcutHelper = () => (
   <section className={`${styles['shortcut-helper']}`}>
     <h2 className={`${styles.header}`}>Keyboard Shortcuts</h2>
     <div className={`${styles['shortcut-helper-content']}`}>
@@ -46,6 +46,7 @@ const ShortcutHelper = () =>
       </p>
     </div>
   </section>
+)
 
 ShortcutHelper.propTypes = propTypes
 ShortcutHelper.defaultProps = defaultProps

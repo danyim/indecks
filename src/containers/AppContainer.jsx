@@ -21,8 +21,16 @@ const AppContainer = props => (
       <Route path="/" exact component={DeckGridContainer} />
       <Route path="/add/:deckId" exact component={DeckAddContainer} />
       <Route path="/view/:deckId" exact component={DeckViewContainer} />
-      <Route path="/edit/:deckId/:cardIndex" exact component={CardEditContainer} />
-      <Route path="/view/:deckId/:cardIndex" exact component={CardViewContainer} />
+      <Route
+        path="/edit/:deckId/:cardIndex"
+        exact
+        component={CardEditContainer}
+      />
+      <Route
+        path="/view/:deckId/:cardIndex"
+        exact
+        component={CardViewContainer}
+      />
     </Switch>
   </App>
 )
@@ -37,11 +45,11 @@ const mapDispatchToProps = dispatch => {
 
   return bindActionCreators(
     Object.assign({ push }, configActions, deckActions, userActions),
-    dispatch,
+    dispatch
   )
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(AppContainer)

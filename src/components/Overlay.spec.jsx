@@ -5,7 +5,7 @@ import Overlay from './Overlay'
 
 const defaultProps = {
   className: '',
-  children: null
+  children: null,
 }
 
 function setup(props = defaultProps) {
@@ -13,7 +13,7 @@ function setup(props = defaultProps) {
 
   return {
     props,
-    wrapper
+    wrapper,
   }
 }
 

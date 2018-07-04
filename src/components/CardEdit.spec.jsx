@@ -7,14 +7,14 @@ const defaultProps = {
   card: {
     title: '',
     answer: '',
-    index: 0
+    index: 0,
   },
   cardIndex: 1,
   deckId: 'ABCDEFG',
   editCard: () => {},
   removeCard: () => {},
   form: {},
-  push: () => {}
+  push: () => {},
 }
 
 describe('CardEdit', () => {
@@ -32,7 +32,7 @@ describe('CardEdit', () => {
     const handler = jest.fn()
     const { wrapper } = setup(CardEdit, {
       ...defaultProps,
-      push: handler
+      push: handler,
     })
 
     const element = wrapper.find('figure')

@@ -9,11 +9,11 @@ const defaultProps = {
       id: 'ABCDEFG',
       title: 'Sample Deck',
       description: 'Deck description',
-      cards: []
-    }
+      cards: [],
+    },
   ],
   deckCount: 1,
-  removeAllDecks: () => {}
+  removeAllDecks: () => {},
 }
 
 function setup(props = defaultProps) {
@@ -21,7 +21,7 @@ function setup(props = defaultProps) {
 
   return {
     props,
-    wrapper
+    wrapper,
   }
 }
 
@@ -35,7 +35,7 @@ describe('Settings', () => {
     const deckCount = 5
     const { wrapper } = setup({
       ...defaultProps,
-      deckCount
+      deckCount,
     })
 
     const button = wrapper.findWhere(
@@ -48,7 +48,7 @@ describe('Settings', () => {
     const deckCount = 0
     const { wrapper } = setup({
       ...defaultProps,
-      deckCount
+      deckCount,
     })
 
     const button = wrapper.find(
@@ -63,7 +63,7 @@ describe('Settings', () => {
     const handler = jest.fn()
     const { wrapper } = setup({
       ...defaultProps,
-      removeAllDecks: handler
+      removeAllDecks: handler,
     })
 
     const button = wrapper.find('button.btn-delete[name="delete-all-decks"]')

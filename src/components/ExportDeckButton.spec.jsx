@@ -12,9 +12,9 @@ const defaultProps = {
     margin: '5px 5px 0px 0px',
     textDecoration: 'underline',
     color: 'blue',
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
-  exportFile: () => {}
+  exportFile: () => {},
 }
 
 function setup(props = defaultProps) {
@@ -22,7 +22,7 @@ function setup(props = defaultProps) {
 
   return {
     props,
-    wrapper
+    wrapper,
   }
 }
 

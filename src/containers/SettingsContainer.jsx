@@ -8,27 +8,31 @@ import Settings from '../components/Settings'
 
 const propTypes = {
   deckCount: PropTypes.number.isRequired,
-  removeAllDecks: PropTypes.func.isRequired
+  removeAllDecks: PropTypes.func.isRequired,
 }
 
 const defaultProps = {}
 
-const SettingsContainer = props =>
+const SettingsContainer = props => (
   <Settings
     deckCount={props.deckCount}
     removeAllDecks={props.removeAllDecks}
     {...props}
   />
+)
 
 SettingsContainer.propTypes = propTypes
 SettingsContainer.defaultProps = defaultProps
 
 const mapStateToProps = ({ decks }) => ({
   decks,
-  deckCount: decks.length
+  deckCount: decks.length,
 })
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(Object.assign({}, deckActions, userActions), dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SettingsContainer)

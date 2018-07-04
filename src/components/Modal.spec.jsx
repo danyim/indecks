@@ -11,7 +11,7 @@ const defaultProps = {
   style: null,
   onAfterOpen: null,
   className: null,
-  overlayClassName: null
+  overlayClassName: null,
 }
 
 describe('Modal', () => {
@@ -24,7 +24,7 @@ describe('Modal', () => {
     const handler = jest.fn()
     const { wrapper } = setup(Modal, {
       ...defaultProps,
-      onRequestClose: handler
+      onRequestClose: handler,
     })
 
     const closeButton = wrapper.find('a.close-modal')
@@ -36,7 +36,7 @@ describe('Modal', () => {
     const testDOM = <div className="test-dom">Test</div>
     const { wrapper } = setup(Modal, {
       ...defaultProps,
-      children: testDOM
+      children: testDOM,
     })
 
     const dom = wrapper.find('div.test-dom')

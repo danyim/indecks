@@ -5,7 +5,7 @@ import CardAdd from './CardAdd'
 const defaultProps = {
   deckId: 'ABCDEFG',
   handleSubmit: () => {},
-  push: () => {}
+  push: () => {},
   // history: {
   //   goBack: () => {}
   // }
@@ -21,7 +21,7 @@ describe('CardAdd', () => {
     const handler = jest.fn()
     const { wrapper } = setup(CardAdd, {
       ...defaultProps,
-      handleSubmit: handler
+      handleSubmit: handler,
     })
 
     const title = wrapper.find('input[name="title"]')
@@ -30,7 +30,7 @@ describe('CardAdd', () => {
     answer.simulate('change', { target: { value: 'Test description' } })
 
     wrapper.find('form').simulate('submit', {
-      preventDefault: () => {}
+      preventDefault: () => {},
     })
 
     expect(handler.mock.calls.length).toBe(1)
@@ -40,7 +40,7 @@ describe('CardAdd', () => {
     const handler = jest.fn()
     const { wrapper } = setup(CardAdd, {
       ...defaultProps,
-      handleSubmit: handler
+      handleSubmit: handler,
     })
 
     const title = wrapper.find('input[name="title"]')
@@ -49,7 +49,7 @@ describe('CardAdd', () => {
     answer.simulate('change', { target: { value: 'Test' } })
 
     wrapper.find('form').simulate('submit', {
-      preventDefault: () => {}
+      preventDefault: () => {},
     })
 
     expect(handler.mock.calls.length).toBe(0)
@@ -59,7 +59,7 @@ describe('CardAdd', () => {
     const handler = jest.fn()
     const { wrapper } = setup(CardAdd, {
       ...defaultProps,
-      handleSubmit: handler
+      handleSubmit: handler,
     })
 
     const title = wrapper.find('input[name="title"]')
@@ -68,7 +68,7 @@ describe('CardAdd', () => {
     answer.simulate('change', { target: { value: '' } })
 
     wrapper.find('form').simulate('submit', {
-      preventDefault: () => {}
+      preventDefault: () => {},
     })
 
     expect(handler.mock.calls.length).toBe(1)
@@ -78,7 +78,7 @@ describe('CardAdd', () => {
     const handler = jest.fn()
     const { wrapper } = setup(CardAdd, {
       ...defaultProps,
-      handleSubmit: handler
+      handleSubmit: handler,
     })
 
     const title = wrapper.find('input[name="title"]')
@@ -87,7 +87,7 @@ describe('CardAdd', () => {
     answer.simulate('change', { target: { value: '' } })
 
     wrapper.find('form').simulate('submit', {
-      preventDefault: () => {}
+      preventDefault: () => {},
     })
 
     expect(handler.mock.calls.length).toBe(0)
@@ -98,14 +98,14 @@ describe('CardAdd', () => {
     const handler = jest.fn()
     const { wrapper } = setup(CardAdd, {
       ...defaultProps,
-      push: handler
+      push: handler,
     })
 
     const input = wrapper.find('input.large-input')
     const cancel = wrapper.find('button[children="Cancel"]')
 
     input.simulate('change', {
-      target: { value: 'Test' }
+      target: { value: 'Test' },
     })
     cancel.simulate('click')
     expect(window.confirm).toHaveBeenCalled()
@@ -117,14 +117,14 @@ describe('CardAdd', () => {
     const handler = jest.fn()
     const { wrapper } = setup(CardAdd, {
       ...defaultProps,
-      push: handler
+      push: handler,
     })
 
     const input = wrapper.find('input.large-input')
     const cancel = wrapper.find('button[children="Cancel"]')
 
     input.simulate('change', {
-      target: { value: 'Test' }
+      target: { value: 'Test' },
     })
     cancel.simulate('click')
     expect(window.confirm).toHaveBeenCalled()
@@ -136,7 +136,7 @@ describe('CardAdd', () => {
     const handler = jest.fn()
     const { wrapper } = setup(CardAdd, {
       ...defaultProps,
-      push: handler
+      push: handler,
     })
 
     const inputTitle = wrapper.find('input.large-input')
@@ -144,13 +144,13 @@ describe('CardAdd', () => {
     const cancel = wrapper.find('button[children="Cancel"]')
 
     inputTitle.simulate('change', {
-      target: { value: 'Test' }
+      target: { value: 'Test' },
     })
     cancel.simulate('click')
     expect(window.confirm).toHaveBeenCalled()
 
     inputAnswer.simulate('change', {
-      target: { value: 'Test' }
+      target: { value: 'Test' },
     })
     cancel.simulate('click')
     expect(window.confirm).toHaveBeenCalled()
@@ -161,7 +161,7 @@ describe('CardAdd', () => {
     const handler = jest.fn()
     const { wrapper } = setup(CardAdd, {
       ...defaultProps,
-      push: handler
+      push: handler,
     })
     const cancel = wrapper.find('button[children="Cancel"]')
     cancel.simulate('click')

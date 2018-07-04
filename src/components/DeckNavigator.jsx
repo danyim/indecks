@@ -18,7 +18,7 @@ class DeckNavigator extends React.Component {
     handleFlip: PropTypes.func.isRequired,
     handleShuffleToggle: PropTypes.func.isRequired,
     handleNextCard: PropTypes.func.isRequired,
-    handlePrevCard: PropTypes.func.isRequired
+    handlePrevCard: PropTypes.func.isRequired,
   }
 
   static defaultProps = {}
@@ -104,7 +104,7 @@ class DeckNavigator extends React.Component {
 
     const shuffle = classNames({
       'btn-active': this.props.shuffle === true,
-      'btn-inactive': this.props.shuffle !== true
+      'btn-inactive': this.props.shuffle !== true,
     })
 
     return (

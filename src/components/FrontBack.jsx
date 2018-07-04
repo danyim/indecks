@@ -5,7 +5,7 @@ import styles from '../styles/components/FrontBack.styl'
 
 const propTypes = {
   handleFlip: PropTypes.func.isRequired,
-  flipped: PropTypes.bool.isRequired
+  flipped: PropTypes.bool.isRequired,
 }
 
 const defaultProps = {}

@@ -25,8 +25,8 @@ const CardViewContainer = props => {
   if (!deck.cards || deck.cards.length === 0) {
     return (
       <p className="center m-t">
-        No cards have been added to this deck. Click the <i className="fa fa-plus-square-o" /> on
-        the top left to add a card.
+        No cards have been added to this deck. Click the{' '}
+        <i className="fa fa-plus-square-o" /> on the top left to add a card.
       </p>
     )
   }
@@ -66,9 +66,12 @@ const mapStateToProps = ({ decks, config }, ownProps) => {
   }
 }
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(Object.assign({ push }, deckActions, configActions), dispatch)
+  bindActionCreators(
+    Object.assign({ push }, deckActions, configActions),
+    dispatch
+  )
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(CardViewContainer)

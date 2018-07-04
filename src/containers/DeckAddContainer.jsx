@@ -52,9 +52,10 @@ const mapStateToProps = ({ decks }, ownProps) => {
     deckId: ownProps.match.params.deckId,
   }
 }
-const mapDispatchToProps = dispatch => bindActionCreators({ ...deckActions, push }, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ ...deckActions, push }, dispatch)
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(DeckAddContainer)

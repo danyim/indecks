@@ -11,11 +11,11 @@ import KeyBinding from 'react-keybinding-component'
  */
 class KeyListener extends React.Component {
   static propTypes = {
-    handlers: PropTypes.arrayOf(PropTypes.object).isRequired
+    handlers: PropTypes.arrayOf(PropTypes.object).isRequired,
   }
 
   static defaultProps = {
-    handlers: []
+    handlers: [],
   }
 
   constructor(props) {

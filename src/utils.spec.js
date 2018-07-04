@@ -48,7 +48,7 @@ describe('utils', () => {
         { index: 5 },
         { index: 7 },
         { index: 9 },
-        { index: 10 }
+        { index: 10 },
       ]
       expect(utils.findBestNextIndex(data, 'index')).toEqual(6)
     })
@@ -61,7 +61,7 @@ describe('utils', () => {
       expect(result).toEqual(
         expect.objectContaining({
           title: expect.any(String),
-          answer: expect.any(String)
+          answer: expect.any(String),
         })
       )
     })

@@ -10,16 +10,16 @@ class Deck extends React.Component {
     deck: DeckShape.isRequired,
     handleOnClick: PropTypes.func.isRequired,
     style: StylePropType,
-    children: PropTypes.node
+    children: PropTypes.node,
   }
 
   static defaultProps = {
     style: {},
-    children: null
+    children: null,
   }
 
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
   }
 
   render() {
@@ -43,12 +43,8 @@ class Deck extends React.Component {
           <p><code>{deck.id}</code></p>
           <p>URL: <a href={deck.url}>Link</a></p>
           */}
-          <p>
-            {deck.cards ? deck.cards.length : 0} cards
-          </p>
-          <p>
-            {deck.description}
-          </p>
+          <p>{deck.cards ? deck.cards.length : 0} cards</p>
+          <p>{deck.description}</p>
         </figcaption>
 
         <div className={`control-buttons ${styles['control-buttons']}`}>

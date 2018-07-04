@@ -12,7 +12,7 @@ class Card extends React.Component {
     handleOnClick: PropTypes.func,
     trimOverflow: PropTypes.bool,
     trimOverflowLength: PropTypes.number,
-    children: PropTypes.node
+    children: PropTypes.node,
   }
 
   static defaultProps = {
@@ -21,7 +21,7 @@ class Card extends React.Component {
     handleOnClick: () => {},
     trimOverflow: false,
     trimOverflowLength: 125,
-    children: null
+    children: null,
   }
 
   static renderEmpty() {
@@ -57,7 +57,7 @@ class Card extends React.Component {
   trimOverflowTitle(text) {
     const textWithoutImg = text.replace(/!\[.*\]\(.*\)/g, '')
     return this.props.trimOverflow &&
-    textWithoutImg.length > this.props.trimOverflowLength
+      textWithoutImg.length > this.props.trimOverflowLength
       ? `${textWithoutImg.substr(0, this.props.trimOverflowLength)}...`
       : text
   }
@@ -74,9 +74,11 @@ class Card extends React.Component {
     }
     return (
       <figcaption>
-        {card.answer !== null && card.answer !== ''
-          ? <Markdown text={card.answer} />
-          : Card.renderEmpty()}
+        {card.answer !== null && card.answer !== '' ? (
+          <Markdown text={card.answer} />
+        ) : (
+          Card.renderEmpty()
+        )}
       </figcaption>
     )
   }

@@ -7,7 +7,7 @@ const defaultProps = {
     id: 'ABCDEFG',
     title: 'Deck title',
     description: 'Deck description',
-    cards: []
+    cards: [],
   },
   cardIndex: 0,
   flipped: false,
@@ -17,7 +17,7 @@ const defaultProps = {
   handleFlip: () => {},
   handleShuffleToggle: () => {},
   handleNextCard: () => {},
-  handlePrevCard: () => {}
+  handlePrevCard: () => {},
 }
 
 describe('DeckNavigator', () => {
@@ -29,7 +29,7 @@ describe('DeckNavigator', () => {
 
   xit('should display the preview pane when the button is pressed', () => {
     const { wrapper } = setupFull(DeckNavigator, {
-      ...defaultProps
+      ...defaultProps,
     })
 
     const button = wrapper.find('button[name="preview-toggle"]')

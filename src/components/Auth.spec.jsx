@@ -19,7 +19,7 @@ describe('Auth', () => {
       signUpEmail: () => {},
       signInGithub: () => {},
       signInTwitter: () => {},
-      signInGoogle: () => {}
+      signInGoogle: () => {},
     }
   })
 
@@ -32,7 +32,7 @@ describe('Auth', () => {
   it('should show the signup/login form when not authenticated', () => {
     const { wrapper } = setupFull(Auth, {
       ...props,
-      authenticated: false
+      authenticated: false,
     })
 
     const form = wrapper.find('SignUpLoginForm')
@@ -43,7 +43,7 @@ describe('Auth', () => {
   it('should display the username or email when authenticated', () => {
     const { wrapper } = setupFull(Auth, {
       ...props,
-      authenticated: true
+      authenticated: true,
     })
 
     const subject = wrapper.find('p')
@@ -56,7 +56,7 @@ describe('Auth', () => {
     const { wrapper } = setupFull(Auth, {
       ...props,
       authenticated: true,
-      displayName: 'test'
+      displayName: 'test',
     })
 
     const subject = wrapper.find('strong')
@@ -70,7 +70,7 @@ describe('Auth', () => {
       ...props,
       authenticated: true,
       displayName: null,
-      email: 'test@gmail.com'
+      email: 'test@gmail.com',
     })
 
     const subject = wrapper.find('strong')

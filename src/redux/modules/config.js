@@ -14,27 +14,27 @@ const CLOSE_MODAL = 'config/CLOSE_MODAL'
 const reducers = {
   shuffleOn: state => ({
     ...state,
-    shuffle: true
+    shuffle: true,
   }),
   shuffleOff: state => ({
     ...state,
-    shuffle: false
+    shuffle: false,
   }),
   changeActiveModal: (state, action) => ({
     ...state,
-    currentModal: action.modalType
+    currentModal: action.modalType,
   }),
   closeModal: state => ({
     ...state,
-    currentModal: null
-  })
+    currentModal: null,
+  }),
 }
 
 const handlers = {
   [SHUFFLE_ON]: reducers.shuffleOn,
   [SHUFFLE_OFF]: reducers.shuffleOff,
   [CHANGE_ACTIVE_MODAL]: reducers.changeActiveModal,
-  [CLOSE_MODAL]: reducers.closeModal
+  [CLOSE_MODAL]: reducers.closeModal,
 }
 
 export default createReducer({}, handlers)
@@ -43,17 +43,17 @@ export default createReducer({}, handlers)
  * Action Creators
  */
 export const shuffleOn = () => ({
-  type: SHUFFLE_ON
+  type: SHUFFLE_ON,
 })
 export const shuffleOff = () => ({
-  type: SHUFFLE_OFF
+  type: SHUFFLE_OFF,
 })
 export const changeActiveModal = modalType => ({
   type: CHANGE_ACTIVE_MODAL,
-  modalType
+  modalType,
 })
 export const closeModal = () => ({
-  type: CLOSE_MODAL
+  type: CLOSE_MODAL,
 })
 
 /**

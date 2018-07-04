@@ -9,7 +9,7 @@ describe('ModalHelpButton', () => {
   beforeEach(() => {
     props = {
       children: <div />,
-      style: null
+      style: null,
     }
   })
 
@@ -22,7 +22,7 @@ describe('ModalHelpButton', () => {
     const testDOM = <div className="test-dom">Test</div>
     const { wrapper } = setup(ModalHelpButton, {
       ...props,
-      children: testDOM
+      children: testDOM,
     })
 
     const toggleModalIcon = wrapper.find('span[name="toggle-modal-icon"]')
@@ -30,8 +30,8 @@ describe('ModalHelpButton', () => {
       toggleModalIcon.simulate('click', {
         nativeEvent: {
           x: 100,
-          y: 100
-        }
+          y: 100,
+        },
       })
     }
 
@@ -50,8 +50,8 @@ describe('ModalHelpButton', () => {
       toggleModalIcon.simulate('click', {
         nativeEvent: {
           x: 100,
-          y: 100
-        }
+          y: 100,
+        },
       })
     }
     const closeButton = wrapper.find('a.close-modal')
@@ -65,7 +65,7 @@ describe('ModalHelpButton', () => {
     const testDOM = <div className="test-dom">Test</div>
     const { wrapper } = setup(ModalHelpButton, {
       ...props,
-      children: testDOM
+      children: testDOM,
     })
 
     const dom = wrapper.find('div.test-dom')

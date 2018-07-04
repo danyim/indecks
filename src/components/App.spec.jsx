@@ -12,10 +12,10 @@ describe('App', () => {
       closeModal: () => {},
       push: () => {},
       location: {
-        pathname: '/'
+        pathname: '/',
       },
       children: null,
-      currentModal: ''
+      currentModal: '',
     }
   })
 

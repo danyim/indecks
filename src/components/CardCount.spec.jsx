@@ -4,7 +4,7 @@ import CardCount from './CardCount'
 
 const defaultProps = {
   current: 25,
-  max: 100
+  max: 100,
 }
 
 describe('CardCount', () => {

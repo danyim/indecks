@@ -8,23 +8,23 @@ const defaultProps = {
       id: 'ABCDEFG',
       title: 'Deck title',
       description: 'Deck description',
-      cards: []
+      cards: [],
     },
     {
       id: '123455',
       title: 'Deck title',
       description: 'Deck description',
-      cards: []
+      cards: [],
     },
     {
       id: '121451',
       title: 'Deck title',
       description: 'Deck description',
-      cards: []
-    }
+      cards: [],
+    },
   ],
   push: () => {},
-  handleOnSelected: () => {}
+  handleOnSelected: () => {},
 }
 
 describe('DeckSelector', () => {
