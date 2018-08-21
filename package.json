@@ -156,6 +156,7 @@
   },
   "babel": {
     "presets": [
+      "flow",
       "react-app"
     ]
   },
@@ -175,6 +176,9 @@
     "trailingComma": "es5"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.79.1",
     "identity-obj-proxy": "^3.0.0"
   }
 }
