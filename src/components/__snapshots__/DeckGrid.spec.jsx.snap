@@ -34,7 +34,9 @@ exports[`DeckGrid should render self and subcomponents 1`] = `
   }
   willEnter={[Function]}
   willLeave={[Function]}
-/>
+>
+  <Component />
+</TransitionMotion>
 `;
 
 exports[`DeckGrid should render self and subcomponents 2`] = `
@@ -43,5 +45,7 @@ exports[`DeckGrid should render self and subcomponents 2`] = `
   styles={Array []}
   willEnter={[Function]}
   willLeave={[Function]}
-/>
+>
+  <Component />
+</TransitionMotion>
 `;
