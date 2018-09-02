@@ -261,7 +261,6 @@ export const login = (username: string, password: string) => (dispatch: *) => {
   // Disable the login/signup buttons while we're authenticating with Firebase
   dispatch(userAuthRequest())
 
-  debugger // eslint-disable-line
   return auth
     .signInWithEmailAndPassword(username, password)
     .then(user => {

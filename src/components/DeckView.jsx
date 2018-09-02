@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { RIEInput, RIETextArea } from '@attently/riek'
@@ -10,9 +11,28 @@ import ExportDeckButton from './ExportDeckButton'
 import Overlay from './Overlay'
 import OverlayRow from './OverlayRow'
 import ModalHelpButton from './ModalHelpButton'
+import { VIEW_STYLES, SORT_TYPES } from 'indecks/constants'
+import type { Deck } from 'indecks/redux/modules/decks'
 import styles from '../styles/components/DeckView.styl'
 
-class DeckView extends React.Component {
+type Props = {
+  deck: Deck,
+  maxDeckTitleLength: number,
+  maxDeckDescLength: number,
+  handleDuplicateCard: *,
+  handleEditDeck: *,
+  handleRemoveCard: *,
+  handleRemoveDeck: *,
+  push: *,
+}
+
+type State = {
+  arrangement: $Keys<typeof VIEW_STYLES>,
+  sort: $Keys<typeof SORT_TYPES>,
+  search: ?string,
+}
+
+class DeckView extends React.Component<Props, State> {
   static propTypes = {
     deck: DeckShape.isRequired,
     maxDeckTitleLength: PropTypes.number,
@@ -32,35 +52,10 @@ class DeckView extends React.Component {
   static contextTypes = {
     router: PropTypes.object,
   }
-
-  static arrangements = {
-    two: '2COL',
-    three: '3COL',
-    list: 'LIST',
-  }
-
-  static sorts = {
-    created: 'CREATED',
-    edited: 'EDITED',
-    unanswered: 'UNANSWERED',
-  }
-
   state = {
-    arrangement: DeckView.arrangements.two,
-    sort: DeckView.sorts.created,
+    arrangement: VIEW_STYLES.TWO_COL,
+    sort: SORT_TYPES.CREATED,
     search: null,
-  }
-
-  constructor(props) {
-    super(props)
-
-    this.handleEditDeckDetails = this.handleEditDeckDetails.bind(this)
-    this.handleChangeArrangement = this.handleChangeArrangement.bind(this)
-    this.handleChangeSort = this.handleChangeSort.bind(this)
-    this.handleChangeSearch = this.handleChangeSearch.bind(this)
-    this.handleExport = this.handleExport.bind(this)
-    this.validateDescription = this.validateDescription.bind(this)
-    this.validateTitle = this.validateTitle.bind(this)
   }
 
   // // Parses all the cards of a deck object and performs a special replacement
@@ -75,7 +70,7 @@ class DeckView extends React.Component {
   //   return v;
   // }
 
-  handleExport() {
+  handleExport = () => {
     const sanitizedDeck = {
       ...this.props.deck,
       cards: this.props.deck.cards.map(c => ({
@@ -88,11 +83,11 @@ class DeckView extends React.Component {
     return JSON.stringify(sanitizedDeck, null, 2)
   }
 
-  handleCardView(deckId, i) {
+  handleCardView = (deckId: string, i: number) => {
     this.props.push(`/view/${deckId}/${i + 1}`)
   }
 
-  handleCardDuplicate(deckId, i) {
+  handleCardDuplicate = (deckId: string, i: number) => {
     this.props.handleDuplicateCard(
       i + 1, // expects a cardIndex, which is 1-based
       deckId
@@ -103,11 +98,11 @@ class DeckView extends React.Component {
   //   // TODO: Some implementation here
   // }
 
-  handleCardEdit(deckId, i) {
+  handleCardEdit = (deckId: string, i: number) => {
     this.props.push(`/edit/${deckId}/${i + 1}`)
   }
 
-  handleCardDelete(deckId, i) {
+  handleCardDelete = (deckId: string, i: number) => {
     if (window.confirm('Are you sure?')) {
       this.props.handleRemoveCard(
         i + 1, // expects a cardIndex, which is 1-based
@@ -117,7 +112,7 @@ class DeckView extends React.Component {
     }
   }
 
-  handleEditDeckDetails(data) {
+  handleEditDeckDetails = (data: Deck) => {
     this.props.handleEditDeck(
       this.props.deck.id,
       data.title ? data.title : this.props.deck.title,
@@ -125,46 +120,38 @@ class DeckView extends React.Component {
     )
   }
 
-  handleChangeArrangement(arrangement) {
+  handleChangeArrangement = (arrangement: $Keys<typeof VIEW_STYLES>) => {
     this.setState({ arrangement })
-    // if(arrangement === DeckView.arrangements.two) {
+    // if(arrangement === VIEW_STYLES.TWO_COL) {
     //   this.setState({ arrangement: })
-    // } else if(arrangement === DeckView.arrangements.three) {
+    // } else if(arrangement === VIEW_STYLES.THREE_COL) {
 
-    // } else if(arrangement === DeckView.arrangements.list) {
+    // } else if(arrangement === VIEW_STYLES.LIST) {
 
     // }
   }
 
-  handleChangeSearch(value) {
+  handleChangeSearch = (value: string) => {
     this.setState({
       search: value,
     })
   }
 
-  handleChangeSort(sort) {
+  handleChangeSort = (sort: $Keys<typeof SORT_TYPES>) => {
     this.setState({ sort })
   }
 
-  validateDescription(text) {
-    return (
-      text.trim() !== '' &&
-      text.length > 0 &&
-      text.length <= this.props.maxDeckDescLength
-    )
+  validateDescription = (text: string): boolean => {
+    return text.trim() !== '' && text.length > 0 && text.length <= this.props.maxDeckDescLength
   }
 
-  validateTitle(text) {
+  validateTitle = (text: string): boolean => {
     return text.length > 0 && text.length <= this.props.maxDeckTitleLength
   }
 
-  renderEmpty(numCards) {
+  renderEmpty = (numCards: number) => {
     if (numCards === 0) {
-      return (
-        <p className="center">
-          Click the + button on the top left to add a card
-        </p>
-      )
+      return <p className="center">Click the + button on the top left to add a card</p>
     }
     return null
   }
@@ -173,13 +160,14 @@ class DeckView extends React.Component {
     const { deck, maxDeckTitleLength, maxDeckDescLength } = this.props
 
     const gridClassName = classnames({
-      'two-col': this.state.arrangement === DeckView.arrangements.two,
-      'three-col': this.state.arrangement === DeckView.arrangements.three,
+      'two-col': this.state.arrangement === VIEW_STYLES.TWO_COL,
+      'three-col': this.state.arrangement === VIEW_STYLES.THREE_COL,
     })
 
     const filteredCards = deck.cards.filter(c => {
-      if (this.state.search && this.state.search !== '') {
-        return c.title.toLowerCase().includes(this.state.search.toLowerCase())
+      const search = this.state.search
+      if (search && search !== '') {
+        return c.title.toLowerCase().includes(search.toLowerCase())
       }
       return true
     })
@@ -205,8 +193,8 @@ class DeckView extends React.Component {
               &nbsp;
               <ModalHelpButton style={{ minWidth: '350px' }}>
                 <p>
-                  Click anywhere on the deck&apos;s title or description to edit
-                  the field. Your changes are saved immediately.
+                  Click anywhere on the deck&apos;s title or description to edit the field. Your
+                  changes are saved immediately.
                 </p>
               </ModalHelpButton>
             </p>
@@ -240,10 +228,7 @@ class DeckView extends React.Component {
               */
               exportFile={this.handleExport}
             />
-            <button
-              className="btn-delete"
-              onClick={() => this.props.handleRemoveDeck(deck.id)}
-            >
+            <button className="btn-delete" onClick={() => this.props.handleRemoveDeck(deck.id)}>
               Delete Deck
             </button>
           </div>
@@ -258,7 +243,7 @@ class DeckView extends React.Component {
               onChange={e => this.handleChangeSearch(e.target.value)}
             />
             <div>
-              <span className="dosis">
+              <span>
                 {this.state.search &&
                   this.state.search !== '' && (
                     <span>
@@ -271,64 +256,60 @@ class DeckView extends React.Component {
           <div className={`${styles.sort} dosis`}>
             <span>Sort by</span>
             <a
-              onClick={() => this.handleChangeSort(DeckView.sorts.created)}
+              onClick={() => this.handleChangeSort(SORT_TYPES.CREATED)}
               role="presentation"
               className={classnames({
-                [styles.selected]: this.state.sort === DeckView.sorts.created,
+                [styles.selected]: this.state.sort === SORT_TYPES.CREATED,
               })}
             >
               Last created
             </a>&nbsp;
             <a
-              onClick={() => this.handleChangeSort(DeckView.sorts.edited)}
+              onClick={() => this.handleChangeSort(SORT_TYPES.EDITED)}
               role="presentation"
               className={classnames({
-                [styles.selected]: this.state.sort === DeckView.sorts.edited,
+                [styles.selected]: this.state.sort === SORT_TYPES.EDITED,
               })}
             >
               Last edited
             </a>&nbsp;
             <a
-              onClick={() => this.handleChangeSort(DeckView.sorts.unanswered)}
+              onClick={() => this.handleChangeSort(SORT_TYPES.UNANSWERED)}
               role="presentation"
               className={classnames({
-                [styles.selected]:
-                  this.state.sort === DeckView.sorts.unanswered,
+                [styles.selected]: this.state.sort === SORT_TYPES.UNANSWERED,
               })}
             >
               Unanswered
             </a>
           </div>
-          <div className={`${styles.arrange} dosis`}>
-            <span>Arrangement</span>
-            <a
-              onClick={() =>
-                this.handleChangeArrangement(DeckView.arrangements.two)
-              }
-              role="presentation"
-              className={classnames({
-                [styles.selected]:
-                  this.state.arrangement === DeckView.arrangements.two,
-              })}
-            >
-              Two columns
-            </a>&nbsp;
-            <a
-              onClick={() =>
-                this.handleChangeArrangement(DeckView.arrangements.three)
-              }
-              role="presentation"
-              className={classnames({
-                [styles.selected]:
-                  this.state.arrangement === DeckView.arrangements.three,
-              })}
-            >
-              Three columns
-            </a>&nbsp;
+          <div className={`${styles.arrange}`}>
+            {this.state.arrangement === VIEW_STYLES.TWO_COL && (
+              <a
+                onClick={() => this.handleChangeArrangement(VIEW_STYLES.THREE_COL)}
+                role="presentation"
+                className={classnames({
+                  [styles.selected]: this.state.arrangement === VIEW_STYLES.TWO_COL,
+                })}
+              >
+                Three columns
+              </a>
+            )}
+            {this.state.arrangement === VIEW_STYLES.THREE_COL && (
+              <a
+                onClick={() => this.handleChangeArrangement(VIEW_STYLES.TWO_COL)}
+                role="presentation"
+                className={classnames({
+                  [styles.selected]: this.state.arrangement === VIEW_STYLES.THREE_COL,
+                })}
+              >
+                Two columns
+              </a>
+            )}
             {/*
             <a
               onClick={() =>
-                this.handleChangeArrangement(DeckView.arrangements.list)}
+                this.handleChangeArrangement(VIEW_STYLES.LIST)}
               role="presentation"
             >
               List
@@ -351,16 +332,10 @@ class DeckView extends React.Component {
               }
               <Overlay>
                 <OverlayRow>
-                  <button
-                    className="button"
-                    onClick={() => this.handleCardView(deck.id, i)}
-                  >
+                  <button className="button" onClick={() => this.handleCardView(deck.id, i)}>
                     View
                   </button>
-                  <button
-                    className="button"
-                    onClick={() => this.handleCardEdit(deck.id, i)}
-                  >
+                  <button className="button" onClick={() => this.handleCardEdit(deck.id, i)}>
                     Edit
                   </button>
                   <button
@@ -371,10 +346,7 @@ class DeckView extends React.Component {
                   </button>
                 </OverlayRow>
                 <OverlayRow>
-                  <button
-                    className="button"
-                    onClick={() => this.handleCardDuplicate(deck.id, i)}
-                  >
+                  <button className="button" onClick={() => this.handleCardDuplicate(deck.id, i)}>
                     Duplicate
                   </button>
                   {/*

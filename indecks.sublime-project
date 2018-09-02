@@ -8,7 +8,8 @@
         "node_modules",
         "dist",
         "coverage",
-        "__snapshots__"
+        "__snapshots__",
+        "flow-typed"
       ],
       "file_exclude_patterns": [
         "*.sublime-workspace",

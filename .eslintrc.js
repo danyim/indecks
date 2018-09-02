@@ -1,0 +1,78 @@
+module.exports = {
+  parser: 'babel-eslint',
+  plugins: ['flowtype', 'import'],
+  env: {
+    es6: true,
+    browser: true,
+    jest: true,
+    node: true,
+  },
+  extends: ['eslint:recommended', 'plugin:react/recommended'],
+  parserOptions: {
+    sourceType: 'module',
+    ecmaVersion: 8,
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  rules: {
+    'linebreak-style': ['error', 'unix'],
+    semi: ['error', 'always'],
+    'arrow-spacing': 'error',
+    complexity: 0,
+    'consistent-return': 'warn',
+    curly: 'error',
+    'no-console': ['error', { allow: ['warn', 'error'] }],
+    'no-duplicate-imports': 'off', // prefer import plugin for flow types
+    'no-else-return': 'error',
+    'no-extra-semi': 'error',
+    'no-loop-func': 'error',
+    'no-proto': 'error',
+    'no-return-await': 'error',
+    'no-useless-constructor': 'error',
+    'react/prop-types': [0],
+    'space-before-function-paren': ['error', 'never'],
+    'react/display-name': 0,
+    'import/no-duplicates': 'error',
+    // Flow settings
+    'flowtype/boolean-style': [2, 'boolean'],
+    'flowtype/define-flow-type': 2,
+    'flowtype/delimiter-dangle': 0,
+    'flowtype/generic-spacing': [2, 'never'],
+    'flowtype/no-dupe-keys': 2,
+    'flowtype/no-primitive-constructor-types': 2,
+    'flowtype/no-types-missing-file-annotation': 2,
+    'flowtype/no-unused-expressions': 1,
+    'flowtype/no-weak-types': [
+      1,
+      {
+        any: true,
+        Object: false,
+        Function: true,
+      },
+    ],
+    'flowtype/object-type-delimiter': [2, 'comma'],
+    'flowtype/require-parameter-type': 0,
+    'flowtype/require-return-type': 0,
+    'flowtype/require-valid-file-annotation': [
+      2,
+      'always',
+      {
+        annotationStyle: 'block',
+      },
+    ],
+    'flowtype/semi': 2,
+    'flowtype/space-after-type-colon': [2, 'always'],
+    'flowtype/space-before-generic-bracket': [2, 'never'],
+    'flowtype/space-before-type-colon': [2, 'never'],
+    'flowtype/type-id-match': 0,
+    'flowtype/union-intersection-spacing': [2, 'always'],
+    'flowtype/use-flow-type': 1,
+    'flowtype/valid-syntax': 1,
+  },
+  settings: {
+    flowtype: {
+      onlyFilesWithFlowAnnotation: true,
+    },
+  },
+}

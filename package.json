@@ -61,7 +61,7 @@
     "eslint-loader": "1.9.0",
     "eslint-plugin-babel": "^5.1.0",
     "eslint-plugin-chai-expect": "^1.1.1",
-    "eslint-plugin-flowtype": "2.35.0",
+    "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "5.1.1",
     "eslint-plugin-prettier": "^2.6.1",
@@ -163,16 +163,6 @@
       "flow",
       "react-app"
     ]
-  },
-  "eslintConfig": {
-    "extends": "react-app",
-    "env": {
-      "browser": true,
-      "node": true,
-      "es6": true,
-      "jest": true,
-      "jasmine": true
-    }
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
