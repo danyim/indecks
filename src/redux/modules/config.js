@@ -1,3 +1,4 @@
+/* @flow */
 import { createReducer } from '../../utils'
 
 /**
@@ -8,23 +9,32 @@ const SHUFFLE_OFF = 'config/SHUFFLE_OFF'
 const CHANGE_ACTIVE_MODAL = 'config/CHANGE_ACTIVE_MODAL'
 const CLOSE_MODAL = 'config/CLOSE_MODAL'
 
+export type State = {
+  shuffle: boolean,
+  currentModal: ?string,
+}
+const initialState: State = {
+  shuffle: false,
+  currentModal: null,
+}
+
 /**
  * Reducers
  */
 const reducers = {
-  shuffleOn: state => ({
+  shuffleOn: (state: State) => ({
     ...state,
     shuffle: true,
   }),
-  shuffleOff: state => ({
+  shuffleOff: (state: State) => ({
     ...state,
     shuffle: false,
   }),
-  changeActiveModal: (state, action) => ({
+  changeActiveModal: (state: State, action) => ({
     ...state,
     currentModal: action.modalType,
   }),
-  closeModal: state => ({
+  closeModal: (state: State) => ({
     ...state,
     currentModal: null,
   }),
@@ -37,7 +47,7 @@ const handlers = {
   [CLOSE_MODAL]: reducers.closeModal,
 }
 
-export default createReducer({}, handlers)
+export default createReducer(initialState, handlers)
 
 /**
  * Action Creators
@@ -48,7 +58,7 @@ export const shuffleOn = () => ({
 export const shuffleOff = () => ({
   type: SHUFFLE_OFF,
 })
-export const changeActiveModal = modalType => ({
+export const changeActiveModal = (modalType: string) => ({
   type: CHANGE_ACTIVE_MODAL,
   modalType,
 })

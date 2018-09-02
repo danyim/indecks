@@ -1,20 +1,20 @@
-import React from 'react'
+/* @flow */
+import * as React from 'react'
 import PropTypes from 'prop-types'
 import Navbar from './Navbar'
 import ModalContainer from './ModalContainer'
+import type { Location } from 'react-router-dom'
 
-class App extends React.Component {
-  static propTypes = {
-    changeActiveModal: PropTypes.func.isRequired,
-    closeModal: PropTypes.func.isRequired,
-    push: PropTypes.func.isRequired,
-    location: PropTypes.shape({
-      pathname: PropTypes.string.isRequired,
-    }).isRequired,
-    children: PropTypes.node,
-    currentModal: PropTypes.string,
-  }
+type Props = {
+  changeActiveModal: *,
+  closeModal: PropTypes.func.isRequired,
+  push: string => void,
+  location: Location,
+  children: React.Node,
+  currentModal: string,
+}
 
+class App extends React.Component<Props> {
   static defaultProps = {
     currentModal: null,
     children: null,
@@ -32,10 +32,7 @@ class App extends React.Component {
   render() {
     return (
       <main className="app-container">
-        <Navbar
-          changeActiveModal={this.props.changeActiveModal}
-          location={this.props.location}
-        />
+        <Navbar changeActiveModal={this.props.changeActiveModal} location={this.props.location} />
         <ModalContainer
           currentModal={this.props.currentModal}
           changeActiveModal={this.props.changeActiveModal}

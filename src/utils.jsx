@@ -1,9 +1,10 @@
-import React from 'react'
+/* @flow */
+import * as React from 'react'
 import { Route } from 'react-router-dom'
 import _ from 'lodash'
 
-export const createReducer = (initialState, handlers) =>
-  function reducer(state = initialState, action = {}) {
+export const createReducer = (initialState: *, handlers: *) =>
+  function reducer(state: * = initialState, action: * = {}) {
     if (Object.prototype.hasOwnProperty.call(handlers, action.type)) {
       return handlers[action.type](state, action)
     }
@@ -17,7 +18,7 @@ export const createReducer = (initialState, handlers) =>
  * @param  {Number} min Minimum value (0 or 1)
  * @return {Number}     Missing value
  */
-export const findMissing = (a, min = 1) => {
+export const findMissing = (a: Array<number>, min: number = 1): ?number => {
   let expected = min
   for (let k = 0; k < a.length; k++) {
     if (a[k] !== expected) {
@@ -35,9 +36,8 @@ export const findMissing = (a, min = 1) => {
  * @param  {String} key Key to look for
  * @return {Number}     Index of the best next value
  */
-export const findBestNextIndex = (a, key) =>
-  findMissing(a.map(x => x[key]), 0) ||
-  Math.max(0, Math.max.apply(null, a.map(x => x[key])) + 1)
+export const findBestNextIndex = (a: Array<Object>, key: string): number =>
+  findMissing(a.map(x => x[key]), 0) || Math.max(0, Math.max.apply(null, a.map(x => x[key])) + 1)
 
 /**
  * Helper function to generate routes
@@ -50,13 +50,16 @@ export const findBestNextIndex = (a, key) =>
  *                         }
  * @return {Component}        Returns a <Route> component to plug into a <Switch>
  */
-export const routeWithSubRoutes = ({ Component, path, exact = false }) => (
-  <Route
-    key={_.uniqueId()}
-    exact={exact}
-    path={path}
-    render={props => <Component {...props} />}
-  />
+export const routeWithSubRoutes = ({
+  Component,
+  path,
+  exact = false,
+}: {
+  Component: *,
+  path: string,
+  exact: boolean,
+}): * => (
+  <Route key={_.uniqueId()} exact={exact} path={path} render={props => <Component {...props} />} />
 )
 
 /**
@@ -64,7 +67,7 @@ export const routeWithSubRoutes = ({ Component, path, exact = false }) => (
  * @param  {Number} length Length of string
  * @return {String}        Random string
  */
-export const generateRandomString = (length = 8) => {
+export const generateRandomString = (length?: number = 8) => {
   const chars = '0123456789abcdefABCDEFGHIJKLMNPQRSTUVWXYZ'
   let result = ''
   for (let i = length; i > 0; i -= 1) {
@@ -85,14 +88,8 @@ const cahDirectives = [
   ["Why can't I sleep at night?", '[noun]'],
   ["___________. It's a trap!", '[noun]'],
   ['___________. High five, bro.', '[noun]'],
-  [
-    'And the Academy Award for ___________ goes to ___________',
-    '[verb] [noun]',
-  ],
-  [
-    "I'm sorry Professor, but I couldn't complete my homework because of ___________",
-    '[noun]',
-  ],
+  ['And the Academy Award for ___________ goes to ___________', '[verb] [noun]'],
+  ["I'm sorry Professor, but I couldn't complete my homework because of ___________", '[noun]'],
   ["What's that smell?", '[any]'],
   ["What's a girl's best friend?", '[any]'],
   ["What's there a ton of in heaven?", '[noun]'],
@@ -159,8 +156,7 @@ const nouns = [
 export const generateCAHCard = () => {
   let title = ''
   let answer = ''
-  const directive =
-    cahDirectives[Math.floor(Math.random() * cahDirectives.length)]
+  const directive = cahDirectives[Math.floor(Math.random() * cahDirectives.length)]
 
   title = directive[0]
   directive[1].split(' ').forEach(w => {

@@ -1,11 +1,9 @@
+/* @flow */
 import moment from 'moment'
 import firebase from '../../firebase'
-import {
-  createReducer,
-  findBestNextIndex,
-  generateRandomString,
-} from '../../utils'
+import { createReducer, findBestNextIndex, generateRandomString } from '../../utils'
 import samples from '../../data/samples'
+import type { State as AppState } from '../index.js'
 
 /**
  * Actions
@@ -22,11 +20,27 @@ const SHUFFLE_DECK = 'decks/SHUFFLE_DECK'
 const LOAD_DECKS = 'decks/LOAD_DECKS'
 const REMOVE_ALL_DECKS = 'decks/REMOVE_ALL_DECKS'
 
+export type Card = {|
+  title: string,
+  answer: string,
+  index: number,
+|}
+
+export type Deck = {|
+  id: string,
+  title: string,
+  description: string,
+  cards: Array<Card>,
+|}
+
+export type State = Array<Deck>
+const initialState: State = []
+
 /**
  * Reducers
  */
 const reducers = {
-  addCard: (state, { deckId, title, answer, createdOn }) => {
+  addCard: (state: State, { deckId, title, answer, createdOn }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
     if (deckIndex === -1) return state
     const deck = state[deckIndex]
@@ -43,14 +57,10 @@ const reducers = {
       cards: [...deck.cards, newCard],
     }
 
-    return [
-      ...state.slice(0, deckIndex),
-      newDeck,
-      ...state.slice(deckIndex + 1),
-    ]
+    return [...state.slice(0, deckIndex), newDeck, ...state.slice(deckIndex + 1)]
   },
 
-  duplicateCard: (state, { deckId, cardIndex, createdOn }) => {
+  duplicateCard: (state: State, { deckId, cardIndex, createdOn }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
     if (deckIndex === -1) return state
     const adjCardIndex = parseInt(cardIndex, 10) - 1
@@ -66,14 +76,10 @@ const reducers = {
       cards: [...deck.cards, newCard],
     }
 
-    return [
-      ...state.slice(0, deckIndex),
-      newDeck,
-      ...state.slice(deckIndex + 1),
-    ]
+    return [...state.slice(0, deckIndex), newDeck, ...state.slice(deckIndex + 1)]
   },
 
-  editCard: (state, { deckId, cardIndex, title, answer, editedOn }) => {
+  editCard: (state: State, { deckId, cardIndex, title, answer, editedOn }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
     if (deckIndex === -1) return state
     // The card index coming in isn't 0-based and also a string, so convert
@@ -88,21 +94,13 @@ const reducers = {
 
     const newDeck = {
       ...deck,
-      cards: [
-        ...deck.cards.slice(0, adjCardIndex),
-        newCard,
-        ...deck.cards.slice(adjCardIndex + 1),
-      ],
+      cards: [...deck.cards.slice(0, adjCardIndex), newCard, ...deck.cards.slice(adjCardIndex + 1)],
     }
 
-    return [
-      ...state.slice(0, deckIndex),
-      newDeck,
-      ...state.slice(deckIndex + 1),
-    ]
+    return [...state.slice(0, deckIndex), newDeck, ...state.slice(deckIndex + 1)]
   },
 
-  moveCard: (state, { srcDeckId, destDeckId, cardIndex }) => {
+  moveCard: (state: State, { srcDeckId, destDeckId, cardIndex }) => {
     // TODO: Is it possible to call another action from one action?
     // Yes, though redux-thunk
     const srcDeckIndex = state.findIndex(v => v.id === srcDeckId)
@@ -112,8 +110,7 @@ const reducers = {
     const destDeck = Object.assign({}, state[destDeckIndex])
 
     const targetCardFilter = srcDeck.cards.filter(x => x.index === cardIndex)
-    const targetCard =
-      targetCardFilter.length === 0 ? null : targetCardFilter[0]
+    const targetCard = targetCardFilter.length === 0 ? null : targetCardFilter[0]
     const targetCardIndex = srcDeck.cards.indexOf(targetCard)
 
     // Remove from the source deck
@@ -143,7 +140,7 @@ const reducers = {
     ]
   },
 
-  removeCard: (state, { deckId, cardIndex }) => {
+  removeCard: (state: State, { deckId, cardIndex }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
 
     // The card index coming in isn't 0-based and also a string, so convert
@@ -151,22 +148,15 @@ const reducers = {
     const deck = state[deckIndex]
     const newDeck = {
       ...deck,
-      cards: [
-        ...deck.cards.slice(0, adjCardIndex),
-        ...deck.cards.slice(adjCardIndex + 1),
-      ],
+      cards: [...deck.cards.slice(0, adjCardIndex), ...deck.cards.slice(adjCardIndex + 1)],
     }
 
-    return [
-      ...state.slice(0, deckIndex),
-      newDeck,
-      ...state.slice(deckIndex + 1),
-    ]
+    return [...state.slice(0, deckIndex), newDeck, ...state.slice(deckIndex + 1)]
   },
 
-  addDeck: (state, { deck }) => [...state, Object.assign({}, deck)],
+  addDeck: (state: State, { deck }) => [...state, Object.assign({}, deck)],
 
-  editDeck: (state, { deckId, title, description }) => {
+  editDeck: (state: State, { deckId, title, description }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
     if (deckIndex === -1) return state
     const deck = { ...state[deckIndex] }
@@ -175,17 +165,17 @@ const reducers = {
     return [...state.slice(0, deckIndex), deck, ...state.slice(deckIndex + 1)]
   },
 
-  removeDeck: (state, { deckId }) => {
+  removeDeck: (state: State, { deckId }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
     if (deckIndex === -1) return state
     return [...state.slice(0, deckIndex), ...state.slice(deckIndex + 1)]
   },
 
   // Should this really be an action?
-  shuffleDeck: state => state,
+  shuffleDeck: (state: State) => state,
 
   removeAllDecks: () => [],
-  loadDecks: (state, action) => action.decks,
+  loadDecks: (state: State, action) => action.decks,
 }
 
 const reducerHandlers = {
@@ -201,35 +191,35 @@ const reducerHandlers = {
   [REMOVE_ALL_DECKS]: reducers.removeAllDecks,
   [LOAD_DECKS]: reducers.loadDecks,
 }
-export default createReducer({}, reducerHandlers)
+export default createReducer(initialState, reducerHandlers)
 
 /**
  * Action Creators
  */
-export const addDeck = (deck, preventSave = false) => ({
+export const addDeck = (deck: Deck, preventSave: boolean = false) => ({
   type: ADD_DECK,
   deck,
   preventSave,
 })
-export const editDeck = (deckId, title, description) => ({
+export const editDeck = (deckId: string, title: string, description: string) => ({
   type: EDIT_DECK,
   deckId,
   title,
   description,
 })
-export const removeDeck = deckId => ({
+export const removeDeck = (deckId: string) => ({
   type: REMOVE_DECK,
   deckId,
 })
-export const shuffleDeck = deckId => ({
+export const shuffleDeck = (deckId: string) => ({
   type: SHUFFLE_DECK,
   deckId,
 })
 export const addCard = (
-  title,
-  answer,
-  deckId,
-  createdOn = moment().format()
+  title: string,
+  answer: string,
+  deckId: string,
+  createdOn: string = moment().format()
 ) => ({
   type: ADD_CARD,
   title,
@@ -238,9 +228,9 @@ export const addCard = (
   createdOn,
 })
 export const duplicateCard = (
-  cardIndex,
-  deckId,
-  createdOn = moment().format()
+  cardIndex: number,
+  deckId: string,
+  createdOn: string = moment().format()
 ) => ({
   type: DUPLICATE_CARD,
   cardIndex,
@@ -248,11 +238,11 @@ export const duplicateCard = (
   createdOn,
 })
 export const editCard = (
-  title,
-  answer,
-  cardIndex,
-  deckId,
-  editedOn = moment().format()
+  title: string,
+  answer: string,
+  cardIndex: number,
+  deckId: string,
+  editedOn: string = moment().format()
 ) => ({
   type: EDIT_CARD,
   title,
@@ -261,13 +251,13 @@ export const editCard = (
   deckId,
   editedOn,
 })
-export const moveCard = (cardIndex, srcDeckId, destDeckId) => ({
+export const moveCard = (cardIndex: number, srcDeckId: string, destDeckId: string) => ({
   type: MOVE_CARD,
   cardIndex,
   srcDeckId,
   destDeckId,
 })
-export const removeCard = (cardIndex, deckId) => ({
+export const removeCard = (cardIndex: number, deckId: string) => ({
   type: REMOVE_CARD,
   cardIndex,
   deckId,
@@ -275,7 +265,7 @@ export const removeCard = (cardIndex, deckId) => ({
 export const removeAllDecks = () => ({
   type: REMOVE_ALL_DECKS,
 })
-export const loadDecks = decks => ({
+export const loadDecks = (decks: Array<Deck>) => ({
   type: LOAD_DECKS,
   decks,
 })
@@ -283,7 +273,7 @@ export const loadDecks = decks => ({
 /**
  * Side Effects
  */
-export const fetchUserDecks = () => (dispatch, getState) => {
+export const fetchUserDecks = () => (dispatch: *, getState: () => AppState) => {
   const state = getState()
   // const deckExists = deckId =>
   //   state.decks.filter(v => v.id === deckId).length > 0
@@ -313,7 +303,7 @@ export const fetchUserDecks = () => (dispatch, getState) => {
     })
 }
 
-export const saveDecksToFirebase = () => (dispatch, getState) => {
+export const saveDecksToFirebase = () => (dispatch: *, getState: () => AppState) => {
   const state = getState()
   const authenticated = state.user.authenticated
   const promises = []
@@ -330,7 +320,10 @@ export const saveDecksToFirebase = () => (dispatch, getState) => {
   return Promise.all(promises)
 }
 
-export const deleteDeckFromFirebase = deckId => (dispatch, getState) => {
+export const deleteDeckFromFirebase = (deckId: string) => (
+  dispatch: *,
+  getState: () => AppState
+) => {
   const state = getState()
   const authenticated = state.user.authenticated
 
@@ -344,10 +337,10 @@ export const deleteDeckFromFirebase = deckId => (dispatch, getState) => {
   return Promise.resolve()
 }
 
-export const loadSampleDecks = () => dispatch => {
+export const loadSampleDecks = () => (dispatch: *) => {
   let sampleDeck
-  samples.forEach(d => {
-    sampleDeck = { ...d }
+  samples.forEach(deck => {
+    sampleDeck = { ...deck }
     // Create a new ID for the new samples
     sampleDeck.id = generateRandomString()
     // When we add sample decks, prevent saving after each deck is added with
@@ -358,54 +351,25 @@ export const loadSampleDecks = () => dispatch => {
   })
 }
 
-// Unused
-export const saveCardToFirebase = (cardIndex, deckId) => (
-  dispatch,
-  getState
-) => {
-  const state = getState()
-  const authenticated = state.user.authenticated
-  if (authenticated) {
-    return firebase
-      .database()
-      .ref(`decks/${state.user.uid}/${deckId}/cards/${cardIndex}`)
-      .set(state.decks[deckId].cards[cardIndex])
-  }
-  return Promise.resolve()
-}
-
 // TODO: Eventually we want to make a call to Firebase on card add/delete/move
 // and deck add/delete/move
 
 /**
- * Sagas
- */
-// function * saveDecksToFirebaseSaga (dispatch) {
-//   debugger
-//   yield put(saveDecksToFirebase)
-// }
-
-// function * addCardSaga () {
-//   yield takeEvery('decks/ADD_CARD', saveDecksToFirebaseSaga)
-// }
-
-// export function * sagas () {
-//   yield all([
-//     addCardSaga()
-//   ])
-// }
-
-/**
  * Action Listeners
  */
+
+type SaveDecksAction = { type: string, preventSave: boolean }
+type DeleteDeckAction = { type: string, deckId: string }
+export type Action = SaveDecksAction | DeleteDeckAction
+
 // Ensure that we dispatch the save to firebase action after these actions
-const saveDecks = (action, dispatch /* state */) => {
+const saveDecks = (action: SaveDecksAction, dispatch: *) => {
   if (!action.preventSave) {
     dispatch(saveDecksToFirebase())
   }
 }
 
-const deleteDeck = (action, dispatch /* state */) => {
+const deleteDeck = (action: DeleteDeckAction, dispatch: *) => {
   dispatch(deleteDeckFromFirebase(action.deckId))
 }
 

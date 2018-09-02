@@ -18,7 +18,10 @@ describe('config actions', () => {
 
 describe('config reducers', () => {
   it('should return the initial state', () => {
-    expect(reducer(undefined, {})).toEqual({})
+    expect(reducer(undefined, {})).toEqual({
+      currentModal: null,
+      shuffle: false,
+    })
   })
 
   it('should handle SHUFFLE_ON', () => {

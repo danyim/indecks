@@ -1,3 +1,4 @@
+/* @flow */
 // import axios from 'axios'
 import firebase, { auth } from '../../firebase'
 import { fetchUserDecks, removeAllDecks } from './decks'
@@ -23,16 +24,43 @@ const LOGOUT = 'user/LOGOUT'
 const UPDATE_DECK_COUNT = 'user/UPDATE_DECK_COUNT'
 const SET_TOKEN = 'user/SET_TOKEN'
 
+export type User = {
+  displayName: string,
+  email: string,
+  emailVerified: boolean,
+  photoURL: string,
+  isAnonymous: boolean,
+  uid: string, // ?
+  providerData: Object,
+}
+export type State = {
+  authenticated: boolean,
+  isAuthenticating: boolean,
+} & User
+
+const initialState: State = {
+  authenticated: false,
+  isAuthenticating: false,
+
+  displayName: '',
+  email: '',
+  emailVerified: false,
+  photoURL: '',
+  isAnonymous: false,
+  uid: '',
+  providerData: {},
+}
+
 /**
  * Reducers
  */
 const reducers = {
-  register: (state, action) => ({
+  register: (state: State, action) => ({
     ...state,
     username: action.username,
     authenticated: false,
   }),
-  login: (state, action) => ({
+  login: (state: State, action) => ({
     ...state,
     displayName: action.user.displayName,
     email: action.user.email,
@@ -44,7 +72,7 @@ const reducers = {
     authenticated: true,
     isAuthenticating: false,
   }),
-  logout: (state, action) => ({
+  logout: (state: State, action) => ({
     ...state,
     displayName: null,
     email: null,
@@ -56,28 +84,28 @@ const reducers = {
     authenticated: false,
     isAuthenticating: false,
   }),
-  userAuthSuccess: (state, action) => ({
+  userAuthSuccess: (state: State, action) => ({
     ...state,
     authenticated: true,
     isAuthenticating: false,
   }),
-  userAuthRequest: (state, action) => ({
+  userAuthRequest: (state: State, action) => ({
     ...state,
     isAuthenticating: true,
   }),
-  userAuthFail: (state, action) => ({
+  userAuthFail: (state: State, action) => ({
     ...state,
     isAuthenticating: false,
   }),
-  stopAuthenticating: (state, action) => ({
+  stopAuthenticating: (state: State, action) => ({
     ...state,
     isAuthenticating: false,
   }),
-  updateDeckCount: (state, action) => ({
+  updateDeckCount: (state: State, action) => ({
     ...state,
     deckCount: action.count,
   }),
-  setToken: (state, action) => ({
+  setToken: (state: State, action) => ({
     ...state,
     token: action.token,
   }),
@@ -95,7 +123,7 @@ const handlers = {
   [SET_TOKEN]: reducers.setToken,
 }
 
-export default createReducer({}, handlers)
+export default createReducer(initialState, handlers)
 
 /**
  * Action Creators
@@ -112,26 +140,26 @@ export const userAuthFail = () => ({
 export const stopAuthenticating = () => ({
   type: USER_AUTH_COMPLETE,
 })
-export function register(username, password) {
+export function register(username: string, password: string) {
   return { type: REGISTER, username, password }
 }
-export function loginUser(user) {
+export function loginUser(user: User) {
   return { type: LOGIN, user }
 }
-export function logoutUser(username) {
+export function logoutUser(username: string) {
   return { type: LOGOUT, username }
 }
-export function updateDeckCount(count) {
+export function updateDeckCount(count: number) {
   return { type: UPDATE_DECK_COUNT, count }
 }
-export function setToken(token) {
+export function setToken(token: string) {
   return { type: SET_TOKEN, token }
 }
 
 /**
  * Side Effects
  */
-export const logout = username => dispatch => {
+export const logout = (username: string) => (dispatch: *) => {
   auth.signOut()
   // dispatch(setToken(null))
   // localStorage.setItem(storageKey, {})
@@ -139,15 +167,15 @@ export const logout = username => dispatch => {
   localStorage.clear()
 }
 
-export const signUpEmail = (username, password) => dispatch => {
+export const signUpEmail = (username: string, password: string) => (dispatch: *) => {
   // Disable the login/signup buttons while we're authenticating with Firebase
   dispatch(userAuthRequest())
 
   return auth
     .createUserWithEmailAndPassword(username, password)
-    .then(e => {
+    .then(() => {
+      // Firebase automatically logs you in after a successful signup
       dispatch(userAuthSuccess())
-      dispatch(login(e.providerData[0]))
     })
     .catch(err => {
       dispatch(userAuthFail())
@@ -172,7 +200,7 @@ export const signUpEmail = (username, password) => dispatch => {
     })
 }
 
-export const signInWithProvider = provider => dispatch => {
+export const signInWithProvider = (provider: string) => (dispatch: *) => {
   // Disable the login/signup buttons while we're authenticating with Firebase
   dispatch(userAuthRequest())
 
@@ -212,27 +240,28 @@ export const signInWithProvider = provider => dispatch => {
     })
 }
 
-export const signInGithub = () => dispatch => {
+export const signInGithub = () => (dispatch: *) => {
   const provider = new firebase.auth.GithubAuthProvider()
   // Can add additional permissions here
   // provider.addScope('repo')
   return dispatch(signInWithProvider(provider))
 }
 
-export const signInTwitter = () => dispatch => {
+export const signInTwitter = () => (dispatch: *) => {
   const provider = new firebase.auth.TwitterAuthProvider()
   return dispatch(signInWithProvider(provider))
 }
 
-export const signInGoogle = () => dispatch => {
+export const signInGoogle = () => (dispatch: *) => {
   const provider = new firebase.auth.GoogleAuthProvider()
   return dispatch(signInWithProvider(provider))
 }
 
-export const login = (username, password) => dispatch => {
+export const login = (username: string, password: string) => (dispatch: *) => {
   // Disable the login/signup buttons while we're authenticating with Firebase
   dispatch(userAuthRequest())
 
+  debugger // eslint-disable-line
   return auth
     .signInWithEmailAndPassword(username, password)
     .then(user => {
@@ -256,13 +285,12 @@ export const login = (username, password) => dispatch => {
     })
 }
 
-export const isAuthenticated = () =>
-  !!auth.currentUser || !!localStorage.getItem(storageKey)
+export const isAuthenticated = () => !!auth.currentUser || !!localStorage.getItem(storageKey)
 
 // Dispatching an action to set up the firebase auth listener probably isn't the
 // best way to do this. Using this pattern for now, but needs revision
-export const setupAuthHook = dispatch => {
-  auth.onAuthStateChanged(user => {
+export const setupAuthHook = (dispatch: *) => {
+  auth.onAuthStateChanged((user: User) => {
     if (user) {
       dispatch(loginUser(user))
       dispatch(fetchUserDecks())

@@ -2,6 +2,7 @@ import moment from 'moment'
 import reducer, * as actions from './decks'
 
 describe('decks redux', () => {
+  let initialState
   const deck = {
     cards: [
       {
@@ -54,8 +55,12 @@ describe('decks redux', () => {
     description: 'Test deck 3 description.',
   }
 
+  beforeEach(() => {
+    initialState = []
+  })
+
   it('should return the initial state', () => {
-    expect(reducer(undefined, {})).toEqual({})
+    expect(reducer(initialState, {})).toEqual(initialState)
   })
 
   describe('ADD_DECK', () => {
@@ -98,9 +103,7 @@ describe('decks redux', () => {
         title,
         description,
       }
-      expect(actions.editDeck(deckId, title, description)).toEqual(
-        expectedAction
-      )
+      expect(actions.editDeck(deckId, title, description)).toEqual(expectedAction)
     })
 
     it('should handle editing a non-existent deck', () => {
@@ -198,9 +201,7 @@ describe('decks redux', () => {
         deckId,
         createdOn,
       }
-      expect(actions.addCard(title, answer, deckId, createdOn)).toEqual(
-        expectedAction
-      )
+      expect(actions.addCard(title, answer, deckId, createdOn)).toEqual(expectedAction)
     })
 
     it('should handle adding a card to a non-existent deck', () => {
@@ -260,9 +261,7 @@ describe('decks redux', () => {
         deckId,
         createdOn,
       }
-      expect(actions.duplicateCard(cardIndex, deckId, createdOn)).toEqual(
-        expectedAction
-      )
+      expect(actions.duplicateCard(cardIndex, deckId, createdOn)).toEqual(expectedAction)
     })
 
     it('should handle duplicating a card', () => {
@@ -308,9 +307,7 @@ describe('decks redux', () => {
         deckId,
         editedOn,
       }
-      expect(
-        actions.editCard(title, answer, cardIndex, deckId, editedOn)
-      ).toEqual(expectedAction)
+      expect(actions.editCard(title, answer, cardIndex, deckId, editedOn)).toEqual(expectedAction)
     })
 
     it('should handle editing a card in a deck', () => {
@@ -359,9 +356,7 @@ describe('decks redux', () => {
         srcDeckId,
         destDeckId,
       }
-      expect(actions.moveCard(cardIndex, srcDeckId, destDeckId)).toEqual(
-        expectedAction
-      )
+      expect(actions.moveCard(cardIndex, srcDeckId, destDeckId)).toEqual(expectedAction)
     })
 
     it('should handle moving a card between decks', () => {
