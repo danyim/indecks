@@ -1,4 +1,5 @@
-singleQuote: true
-trailingComma: es5
 printWidth: 100
-
+parser: flow
+semi: false
+trailingComma: es5
+singleQuote: true
