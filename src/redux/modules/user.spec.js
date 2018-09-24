@@ -1,7 +1,8 @@
 import reducer, * as actions from './config'
 
-describe('config redux module', () => {
-  describe('config actions', () => {
+// TODO: Write these tests
+describe('user redux module', () => {
+  describe('user actions', () => {
     it('should create an action to turn ON card shuffling', () => {
       const expectedAction = {
         type: 'config/SHUFFLE_ON',
