@@ -27,9 +27,7 @@ class Card extends React.Component {
   static renderEmpty() {
     return (
       <div className={`${styles.center}`}>
-        <p className={`${styles.grey}`}>
-          This card does not have an answer yet
-        </p>
+        <p className={`${styles.grey}`}>This card does not have an answer yet</p>
       </div>
     )
   }
@@ -37,10 +35,7 @@ class Card extends React.Component {
   static renderHasAnswerIcon(card) {
     if (!(card && card.answer && card.answer.trim() !== '')) {
       return (
-        <div
-          className={`${styles['no-answer']}`}
-          title="This card has no answer"
-        >
+        <div className={`${styles['no-answer']}`} title="This card has no answer">
           <div>No answer</div>
         </div>
       )
@@ -56,8 +51,7 @@ class Card extends React.Component {
 
   trimOverflowTitle(text) {
     const textWithoutImg = text.replace(/!\[.*\]\(.*\)/g, '')
-    return this.props.trimOverflow &&
-      textWithoutImg.length > this.props.trimOverflowLength
+    return this.props.trimOverflow && textWithoutImg.length > this.props.trimOverflowLength
       ? `${textWithoutImg.substr(0, this.props.trimOverflowLength)}...`
       : text
   }
@@ -92,9 +86,7 @@ class Card extends React.Component {
         onClick={() => handleOnClick()}
         role="presentation"
       >
-        <div className={`card-contents ${styles['card-contents']}`}>
-          {this.renderMarkdown()}
-        </div>
+        <div className={`card-contents ${styles['card-contents']}`}>{this.renderMarkdown()}</div>
         {Card.renderHasAnswerIcon(card)}
         {children}
       </figure>

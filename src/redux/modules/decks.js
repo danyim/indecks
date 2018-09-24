@@ -42,7 +42,9 @@ const initialState: State = []
 const reducers = {
   addCard: (state: State, { deckId, title, answer, createdOn }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
-    if (deckIndex === -1) return state
+    if (deckIndex === -1) {
+      return state
+    }
     const deck = state[deckIndex]
     const newCard = {
       title,
@@ -62,7 +64,9 @@ const reducers = {
 
   duplicateCard: (state: State, { deckId, cardIndex, createdOn }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
-    if (deckIndex === -1) return state
+    if (deckIndex === -1) {
+      return state
+    }
     const adjCardIndex = parseInt(cardIndex, 10) - 1
     const deck = state[deckIndex]
     const newCard = {
@@ -81,7 +85,9 @@ const reducers = {
 
   editCard: (state: State, { deckId, cardIndex, title, answer, editedOn }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
-    if (deckIndex === -1) return state
+    if (deckIndex === -1) {
+      return state
+    }
     // The card index coming in isn't 0-based and also a string, so convert
     const adjCardIndex = parseInt(cardIndex, 10) - 1
     const deck = { ...state[deckIndex] }
@@ -158,7 +164,9 @@ const reducers = {
 
   editDeck: (state: State, { deckId, title, description }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
-    if (deckIndex === -1) return state
+    if (deckIndex === -1) {
+      return state
+    }
     const deck = { ...state[deckIndex] }
     deck.title = title
     deck.description = description
@@ -167,7 +175,9 @@ const reducers = {
 
   removeDeck: (state: State, { deckId }) => {
     const deckIndex = state.findIndex(v => v.id === deckId)
-    if (deckIndex === -1) return state
+    if (deckIndex === -1) {
+      return state
+    }
     return [...state.slice(0, deckIndex), ...state.slice(deckIndex + 1)]
   },
 

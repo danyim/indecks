@@ -36,4 +36,4 @@ exports[`ModalHelpButton should render self and subcomponents 1`] = `
     <div />
   </Modal>
 </span>
-`;
+`

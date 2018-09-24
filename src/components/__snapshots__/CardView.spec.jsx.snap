@@ -56,4 +56,4 @@ exports[`CardView should render self and subcomponents 1`] = `
     shuffle={false}
   />
 </section>
-`;
+`

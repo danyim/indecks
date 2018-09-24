@@ -109,11 +109,7 @@ class DeckNavigator extends React.Component {
 
     return (
       <div className={`${styles['deck-navigator']}`}>
-        <KeyBinding
-          onKey={e => this.handleKeyDown(e)}
-          preventInputConflict
-          preventPropagation
-        />
+        <KeyBinding onKey={e => this.handleKeyDown(e)} preventInputConflict preventPropagation />
         <div className={`${styles.left}`}>
           <FrontBack flipped={flipped} handleFlip={this.handleFlip} />
         </div>
@@ -122,9 +118,7 @@ class DeckNavigator extends React.Component {
             className="button"
             title="Previous Card"
             onClick={this.props.handlePrevCard}
-            disabled={
-              !(this.props.cardIndex > 1 || this.props.shuffle === true)
-            }
+            disabled={!(this.props.cardIndex > 1 || this.props.shuffle === true)}
           >
             <i className="fa fa-backward" />
           </button>
@@ -139,10 +133,7 @@ class DeckNavigator extends React.Component {
             className="button"
             title="Next Card"
             onClick={this.props.handleNextCard}
-            disabled={
-              this.props.cardIndex >= this.maxCardIndex &&
-              this.props.shuffle !== true
-            }
+            disabled={this.props.cardIndex >= this.maxCardIndex && this.props.shuffle !== true}
           >
             <i className="fa fa-forward" />
           </button>

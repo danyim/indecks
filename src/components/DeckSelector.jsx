@@ -40,11 +40,7 @@ class DeckSelector extends React.Component {
 
     // Grab the currently viewed deck (if applicable) and pre-select it
     let index = null
-    if (
-      window &&
-      window.location.pathname &&
-      window.location.pathname.includes('/view/')
-    ) {
+    if (window && window.location.pathname && window.location.pathname.includes('/view/')) {
       const deckId = window.location.pathname.split('/')[2]
       index = this.props.decks.findIndex(x => x.id === deckId)
     }
@@ -77,10 +73,7 @@ class DeckSelector extends React.Component {
 
   moveDown() {
     this.setState({
-      selectedIndex: Math.min(
-        this.props.decks.length - 1,
-        this.state.selectedIndex + 1
-      ),
+      selectedIndex: Math.min(this.props.decks.length - 1, this.state.selectedIndex + 1),
     })
   }
 
@@ -97,8 +90,7 @@ class DeckSelector extends React.Component {
       <div>
         <h2 className={`${styles.header}`}>Deck Selector</h2>
         <p className={styles.help}>
-          Use the up and down arrows to select a deck. Press enter to navigate
-          to the deck.
+          Use the up and down arrows to select a deck. Press enter to navigate to the deck.
         </p>
         <ul
           ref={input => input && input.focus()}

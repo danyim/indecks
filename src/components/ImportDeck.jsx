@@ -200,24 +200,21 @@ class ImportDeck extends React.Component {
             </div>
             <h4>Import an existing deck collection or deck</h4>
             <p>
-              Supports a previous JSON export of your deck collections or a CSV
-              of cards{' '}
+              Supports a previous JSON export of your deck collections or a CSV of cards{' '}
               <ModalHelpButton style={{ minWidth: '350px' }}>
                 <h4>CSV</h4>
                 <p>
-                  Imported CSVs should be a standard CSV file with a header row
-                  in either of these formats:
+                  Imported CSVs should be a standard CSV file with a header row in either of these
+                  formats:
                   <ol>
                     <li>
-                      Two columns with the headers <code>title</code> and{' '}
-                      <code>column</code>. This option is easiest if you want to
-                      quickly create a deck from existing data.
+                      Two columns with the headers <code>title</code> and <code>column</code>. This
+                      option is easiest if you want to quickly create a deck from existing data.
                     </li>
                     <li>
-                      Four columns with the headers: <code>title</code>,{' '}
-                      <code>description</code>, and <code>cards</code>. This
-                      option is best paired with the CSV export function in the
-                      Settings.
+                      Four columns with the headers: <code>title</code>, <code>description</code>,
+                      and <code>cards</code>. This option is best paired with the CSV export
+                      function in the Settings.
                     </li>
                   </ol>
                 </p>
@@ -227,18 +224,21 @@ class ImportDeck extends React.Component {
                 <ol>
                   <li>
                     <code>
-                      &quot;title&quot;,&quot;answer&quot;<br />
-                      &quot;My test title&quot;,&quot;Test description&quot;<br />
-                      &quot;Another title&quot;,&quot;Yet another
-                      description&quot;<br />
+                      &quot;title&quot;,&quot;answer&quot;
+                      <br />
+                      &quot;My test title&quot;,&quot;Test description&quot;
+                      <br />
+                      &quot;Another title&quot;,&quot;Yet another description&quot;
+                      <br />
                       &quot;My demo card&quot;,&quot;Test data&quot;
                     </code>
                   </li>
                   <li>
                     <code>
-                      &quot;title&quot;,&quot;description&quot;,&quot;cards&quot;<br />
-                      &quot;My Deck&quot;,&quot;Description of
-                      Deck&quot;,&quot;[ ... ]&quot;<br />
+                      &quot;title&quot;,&quot;description&quot;,&quot;cards&quot;
+                      <br />
+                      &quot;My Deck&quot;,&quot;Description of Deck&quot;,&quot;[ ... ]&quot;
+                      <br />
                     </code>
                   </li>
                 </ol>
@@ -252,13 +252,9 @@ class ImportDeck extends React.Component {
               multiple={false}
               accept="application/json,text/csv"
             >
-              <p>
-                Click here or drag and drop the deck JSON/CSV file in the box
-              </p>
+              <p>Click here or drag and drop the deck JSON/CSV file in the box</p>
               {this.state.error !== null && (
-                <div className={`error ${styles.error}`}>
-                  {this.state.error}
-                </div>
+                <div className={`error ${styles.error}`}>{this.state.error}</div>
               )}
             </Dropzone>
             <div className={`${styles['or-bar']}`}>

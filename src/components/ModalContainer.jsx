@@ -62,22 +62,10 @@ class ModalContainer extends React.Component {
   render() {
     return (
       <div>
-        {this.renderModal(
-          ImportDeckContainer,
-          ModalTypes.Import,
-          'Import Deck'
-        )}
-        {this.renderModal(
-          ShortcutHelper,
-          ModalTypes.Shortcuts,
-          'Keyboard Shortcuts'
-        )}
+        {this.renderModal(ImportDeckContainer, ModalTypes.Import, 'Import Deck')}
+        {this.renderModal(ShortcutHelper, ModalTypes.Shortcuts, 'Keyboard Shortcuts')}
         {this.renderModal(SettingsContainer, ModalTypes.Settings, 'Settings')}
-        {this.renderModal(
-          DeckSelectorContainer,
-          ModalTypes.Selector,
-          'Deck Selector'
-        )}
+        {this.renderModal(DeckSelectorContainer, ModalTypes.Selector, 'Deck Selector')}
         <KeyListener handlers={this.handlers} />
       </div>
     )

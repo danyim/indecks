@@ -15,9 +15,7 @@ describe('CardCount', () => {
 
   it('should render the correct card current/max', () => {
     const { wrapper } = setup(CardCount, defaultProps)
-    expect(wrapper.find('span.current').text()).toEqual(
-      `${defaultProps.current}`
-    )
+    expect(wrapper.find('span.current').text()).toEqual(`${defaultProps.current}`)
     expect(wrapper.find('span.max').text()).toEqual(`${defaultProps.max}`)
   })
 })

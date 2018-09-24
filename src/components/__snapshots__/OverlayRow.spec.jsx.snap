@@ -4,4 +4,4 @@ exports[`OverlayRow should render self and subcomponents 1`] = `
 <div
   className=" hover-actions"
 />
-`;
+`

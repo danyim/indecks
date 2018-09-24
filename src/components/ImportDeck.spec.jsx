@@ -83,9 +83,7 @@ describe('ImportDeck', () => {
       push,
     })
 
-    wrapper
-      .find('button.button[children="Load Sample Decks"]')
-      .simulate('click')
+    wrapper.find('button.button[children="Load Sample Decks"]').simulate('click')
     expect(handlerSample.mock.calls.length).toBe(1)
     expect(push.mock.calls.length).toBe(1)
     expect(push.mock.calls[0][0]).toBe('/')

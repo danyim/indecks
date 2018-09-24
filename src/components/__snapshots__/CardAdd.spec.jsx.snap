@@ -164,4 +164,4 @@ exports[`CardAdd should render self and subcomponents 1`] = `
     </form>
   </figure>
 </CardAdd>
-`;
+`

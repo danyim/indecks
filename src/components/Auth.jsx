@@ -49,31 +49,15 @@ class Auth extends React.Component {
                 : null
               */}
               Logged in as&nbsp;
-              <strong>
-                {this.props.displayName
-                  ? this.props.displayName
-                  : this.props.email}
-              </strong>
+              <strong>{this.props.displayName ? this.props.displayName : this.props.email}</strong>
             </p>
-            <button
-              type="button"
-              className="btn"
-              onClick={this.props.saveDecksToFirebase}
-            >
+            <button type="button" className="btn" onClick={this.props.saveDecksToFirebase}>
               Save your decks
             </button>
-            <button
-              type="button"
-              className="btn"
-              onClick={this.props.fetchUserDecks}
-            >
+            <button type="button" className="btn" onClick={this.props.fetchUserDecks}>
               Reload decks from account
             </button>
-            <button
-              type="button"
-              className="button outline"
-              onClick={this.props.logout}
-            >
+            <button type="button" className="button outline" onClick={this.props.logout}>
               Log out
             </button>
           </div>

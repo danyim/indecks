@@ -37,7 +37,7 @@ exports[`DeckGrid should render self and subcomponents 1`] = `
 >
   <Component />
 </TransitionMotion>
-`;
+`
 
 exports[`DeckGrid should render self and subcomponents 2`] = `
 <TransitionMotion
@@ -48,4 +48,4 @@ exports[`DeckGrid should render self and subcomponents 2`] = `
 >
   <Component />
 </TransitionMotion>
-`;
+`

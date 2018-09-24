@@ -63,36 +63,16 @@ class Navbar extends React.Component {
       // <a href="javascript:void(0);" disabled><i className="fa fa-navicon"></i></a>
     } else if (routeComponents[0] === 'view' && routeComponents.length === 2) {
       // @/view/:deckId
-      addLink = Navbar.renderLink(
-        `/add/${routeComponents[1]}`,
-        'Add card',
-        'fa-plus-square-o'
-      )
+      addLink = Navbar.renderLink(`/add/${routeComponents[1]}`, 'Add card', 'fa-plus-square-o')
       listLink = Navbar.renderLink('/', 'View decks', 'fa-clone')
     } else if (routeComponents[0] === 'add' && routeComponents.length === 2) {
       // @/add/:deckId
-      addLink = Navbar.renderLink(
-        `/add/${routeComponents[1]}`,
-        'Add card',
-        'fa-plus-square-o'
-      )
-      listLink = Navbar.renderLink(
-        `/view/${routeComponents[1]}`,
-        'View cards',
-        'fa-square-o'
-      )
+      addLink = Navbar.renderLink(`/add/${routeComponents[1]}`, 'Add card', 'fa-plus-square-o')
+      listLink = Navbar.renderLink(`/view/${routeComponents[1]}`, 'View cards', 'fa-square-o')
     } else if (routeComponents[0] === 'view' && routeComponents.length === 3) {
       // @/view/:deckId/:cardId
-      addLink = Navbar.renderLink(
-        `/add/${routeComponents[1]}`,
-        'Add card',
-        'fa-plus-square-o'
-      )
-      listLink = Navbar.renderLink(
-        `/view/${routeComponents[1]}`,
-        'View cards',
-        'fa-square-o'
-      )
+      addLink = Navbar.renderLink(`/add/${routeComponents[1]}`, 'Add card', 'fa-plus-square-o')
+      listLink = Navbar.renderLink(`/view/${routeComponents[1]}`, 'View cards', 'fa-square-o')
     } else if (routeComponents[0] === 'add' && routeComponents.length === 1) {
       // @/add
       addLink = Navbar.renderNoAction()
@@ -100,11 +80,7 @@ class Navbar extends React.Component {
     } else if (routeComponents[0] === 'edit' && routeComponents.length === 3) {
       // @/edit/:deckId/:cardIndex
       addLink = Navbar.renderNoAction()
-      listLink = Navbar.renderLink(
-        `/view/${routeComponents[1]}`,
-        'View cards',
-        'fa-square-o'
-      )
+      listLink = Navbar.renderLink(`/view/${routeComponents[1]}`, 'View cards', 'fa-square-o')
     } else {
       addLink = Navbar.renderModalLink(
         () => this.props.changeActiveModal(ModalTypes.Import),
@@ -134,7 +110,8 @@ class Navbar extends React.Component {
             </span>
             <h1>
               <Link to="/">
-                in<span className={`${styles['title-bold']}`}>decks</span>
+                in
+                <span className={`${styles['title-bold']}`}>decks</span>
               </Link>
             </h1>
             <span className={`${styles['nav-right']}`}>

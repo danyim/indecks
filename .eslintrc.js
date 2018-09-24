@@ -17,7 +17,8 @@ module.exports = {
   },
   rules: {
     'linebreak-style': ['error', 'unix'],
-    semi: ['error', 'always'],
+    // semi: ['error', 'always'],
+    semi: 0,
     'arrow-spacing': 'error',
     complexity: 0,
     'consistent-return': 'warn',
@@ -61,7 +62,7 @@ module.exports = {
         annotationStyle: 'block',
       },
     ],
-    'flowtype/semi': 2,
+    'flowtype/semi': 0,
     'flowtype/space-after-type-colon': [2, 'always'],
     'flowtype/space-before-generic-bracket': [2, 'never'],
     'flowtype/space-before-type-colon': [2, 'never'],

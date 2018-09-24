@@ -101,9 +101,7 @@ exports[`DeckView should render self and subcomponents 1`] = `
         type="text"
       />
       <div>
-        <span
-          className="dosis"
-        />
+        <span />
       </div>
     </div>
     <div
@@ -137,27 +135,15 @@ exports[`DeckView should render self and subcomponents 1`] = `
       </a>
     </div>
     <div
-      className="arrange dosis"
+      className="arrange"
     >
-      <span>
-        Arrangement
-      </span>
       <a
         className="selected"
         onClick={[Function]}
         role="presentation"
       >
-        Two columns
-      </a>
-       
-      <a
-        className=""
-        onClick={[Function]}
-        role="presentation"
-      >
         Three columns
       </a>
-       
     </div>
   </div>
   <div

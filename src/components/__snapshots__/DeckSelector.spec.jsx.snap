@@ -83,4 +83,4 @@ exports[`DeckSelector should render self and subcomponents 1`] = `
     </ul>
   </div>
 </DeckSelector>
-`;
+`

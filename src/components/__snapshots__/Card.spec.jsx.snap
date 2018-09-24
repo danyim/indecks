@@ -42,4 +42,4 @@ exports[`Card should render self and subcomponents 1`] = `
     </div>
   </figure>
 </Card>
-`;
+`

@@ -11,4 +11,4 @@ exports[`Markdown should render self and subcomponents 1`] = `
   }
   onClick={null}
 />
-`;
+`

@@ -94,4 +94,4 @@ exports[`ShortcutHelper should render self and subcomponents 1`] = `
     </p>
   </div>
 </section>
-`;
+`

@@ -72,7 +72,7 @@ const reducers = {
     authenticated: true,
     isAuthenticating: false,
   }),
-  logout: (state: State, action) => ({
+  logout: (state: State) => ({
     ...state,
     displayName: null,
     email: null,
@@ -84,20 +84,20 @@ const reducers = {
     authenticated: false,
     isAuthenticating: false,
   }),
-  userAuthSuccess: (state: State, action) => ({
+  userAuthSuccess: (state: State) => ({
     ...state,
     authenticated: true,
     isAuthenticating: false,
   }),
-  userAuthRequest: (state: State, action) => ({
+  userAuthRequest: (state: State) => ({
     ...state,
     isAuthenticating: true,
   }),
-  userAuthFail: (state: State, action) => ({
+  userAuthFail: (state: State) => ({
     ...state,
     isAuthenticating: false,
   }),
-  stopAuthenticating: (state: State, action) => ({
+  stopAuthenticating: (state: State) => ({
     ...state,
     isAuthenticating: false,
   }),
@@ -159,7 +159,7 @@ export function setToken(token: string) {
 /**
  * Side Effects
  */
-export const logout = (username: string) => (dispatch: *) => {
+export const logout = () => (dispatch: *) => {
   auth.signOut()
   // dispatch(setToken(null))
   // localStorage.setItem(storageKey, {})
@@ -206,7 +206,7 @@ export const signInWithProvider = (provider: string) => (dispatch: *) => {
 
   return auth
     .signInWithPopup(provider)
-    .then(result => {
+    .then(() => {
       dispatch(userAuthSuccess())
 
       // const token = result.credential.accessToken
@@ -263,7 +263,7 @@ export const login = (username: string, password: string) => (dispatch: *) => {
 
   return auth
     .signInWithEmailAndPassword(username, password)
-    .then(user => {
+    .then(() => {
       dispatch(userAuthSuccess())
     })
     .catch(err => {

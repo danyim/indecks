@@ -24,8 +24,7 @@ DeckGridContainer.propTypes = propTypes
 DeckGridContainer.defaultProps = defaultProps
 
 const mapStateToProps = ({ decks }) => ({ decks })
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...deckActions, push }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ ...deckActions, push }, dispatch)
 
 export default connect(
   mapStateToProps,

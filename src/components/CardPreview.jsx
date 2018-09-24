@@ -44,20 +44,12 @@ class CardPreview extends React.Component {
           >
             <label htmlFor="title" className="no-pad">
               <span>Title</span>
-              <Markdown
-                name="title"
-                className={`${styles['card-title']}`}
-                text={title}
-              />
+              <Markdown name="title" className={`${styles['card-title']}`} text={title} />
             </label>
             <hr />
             <label htmlFor="answer" className="no-pad">
               <span>Answer</span>
-              <Markdown
-                name="answer"
-                className={`${styles['card-answer']}`}
-                text={answer}
-              />
+              <Markdown name="answer" className={`${styles['card-answer']}`} text={answer} />
             </label>
           </div>
         )}

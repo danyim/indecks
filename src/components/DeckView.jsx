@@ -247,7 +247,8 @@ class DeckView extends React.Component<Props, State> {
                 {this.state.search &&
                   this.state.search !== '' && (
                     <span>
-                      <strong>{filteredCards.length}</strong>&nbsp;&nbsp;matching
+                      <strong>{filteredCards.length}</strong>
+                      &nbsp;&nbsp;matching
                     </span>
                   )}
               </span>
@@ -263,7 +264,8 @@ class DeckView extends React.Component<Props, State> {
               })}
             >
               Last created
-            </a>&nbsp;
+            </a>
+            &nbsp;
             <a
               onClick={() => this.handleChangeSort(SORT_TYPES.EDITED)}
               role="presentation"
@@ -272,7 +274,8 @@ class DeckView extends React.Component<Props, State> {
               })}
             >
               Last edited
-            </a>&nbsp;
+            </a>
+            &nbsp;
             <a
               onClick={() => this.handleChangeSort(SORT_TYPES.UNANSWERED)}
               role="presentation"

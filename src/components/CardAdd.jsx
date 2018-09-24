@@ -86,10 +86,7 @@ class CardAdd extends React.Component {
 
     return (
       <figure className={`grid-figure ${styles['grid-figure']}`}>
-        <form
-          className="edit-form"
-          onSubmit={e => this.handleSubmit(e, deckId)}
-        >
+        <form className="edit-form" onSubmit={e => this.handleSubmit(e, deckId)}>
           <label htmlFor="title">
             <span>Card Title</span>
             <input
@@ -112,7 +109,8 @@ class CardAdd extends React.Component {
                 rel="noreferrer noopener"
               >
                 Markdown
-              </a>)
+              </a>
+              )
             </span>
             <textarea
               type="text"
@@ -131,11 +129,7 @@ class CardAdd extends React.Component {
             <button type="submit" className="button outline">
               Save
             </button>
-            <button
-              type="button"
-              className="button"
-              onClick={this.handleCancel}
-            >
+            <button type="button" className="button" onClick={this.handleCancel}>
               Cancel
             </button>
           </div>

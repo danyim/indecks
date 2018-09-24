@@ -25,9 +25,7 @@ class Modal extends React.Component {
 
   render() {
     const className = `${styles['modal-content']} ${this.props.className}`
-    const overlayClassName = `${styles['modal-overlay']} ${
-      this.props.overlayClassName
-    }`
+    const overlayClassName = `${styles['modal-overlay']} ${this.props.overlayClassName}`
 
     return (
       <ReactModal
@@ -39,11 +37,7 @@ class Modal extends React.Component {
         contentLabel={this.props.contentLabel}
         style={{ content: this.props.style }}
       >
-        <a
-          className="close-modal"
-          onClick={this.props.onRequestClose}
-          role="presentation"
-        >
+        <a className="close-modal" onClick={this.props.onRequestClose} role="presentation">
           Close
         </a>
         {this.props.children}

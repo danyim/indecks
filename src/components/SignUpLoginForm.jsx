@@ -70,13 +70,11 @@ class SignUpLoginForm extends React.Component {
       return
     }
 
-    this.props
-      .signUpEmail(this.state.username, this.state.password)
-      .then(message => {
-        if (message) {
-          this.setState({ message })
-        }
-      })
+    this.props.signUpEmail(this.state.username, this.state.password).then(message => {
+      if (message) {
+        this.setState({ message })
+      }
+    })
   }
 
   handleClickProviderAuth(e, provider = null) {
@@ -96,7 +94,7 @@ class SignUpLoginForm extends React.Component {
         }
       })
       .catch(err => {
-        console.log('error while trying to log on with provider', provider, err)
+        console.error('error while trying to log on with provider', provider, err)
       })
   }
 

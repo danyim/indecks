@@ -62,11 +62,7 @@ class ModalHelpButton extends React.Component {
           overlayClassName={styles.overlay}
           style={{ left: this.state.x, top: this.state.y, ...this.props.style }}
         >
-          <a
-            className="close-modal"
-            onClick={this.closeModal}
-            role="presentation"
-          >
+          <a className="close-modal" onClick={this.closeModal} role="presentation">
             Close
           </a>
           {this.props.children}

@@ -80,9 +80,7 @@ describe('SignUpLoginForm', () => {
   })
 
   it('should call signInGithub if the Github provider button is clicked', () => {
-    const handler = jest
-      .fn()
-      .mockReturnValue({ then: () => ({ catch: () => {} }) })
+    const handler = jest.fn().mockReturnValue({ then: () => ({ catch: () => {} }) })
     const { wrapper } = setup(SignUpLoginForm, {
       ...props,
       signInGithub: handler,
@@ -95,9 +93,7 @@ describe('SignUpLoginForm', () => {
   })
 
   it('should call signInTwitter if the Twitter provider button is clicked', () => {
-    const handler = jest
-      .fn()
-      .mockReturnValue({ then: () => ({ catch: () => {} }) })
+    const handler = jest.fn().mockReturnValue({ then: () => ({ catch: () => {} }) })
     const { wrapper } = setup(SignUpLoginForm, {
       ...props,
       signInTwitter: handler,
@@ -110,9 +106,7 @@ describe('SignUpLoginForm', () => {
   })
 
   it('should call signInGoogle if the Google provider button is clicked', () => {
-    const handler = jest
-      .fn()
-      .mockReturnValue({ then: () => ({ catch: () => {} }) })
+    const handler = jest.fn().mockReturnValue({ then: () => ({ catch: () => {} }) })
     const { wrapper } = setup(SignUpLoginForm, {
       ...props,
       signInGoogle: handler,

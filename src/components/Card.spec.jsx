@@ -98,9 +98,7 @@ describe('Card', () => {
     })
 
     expect(
-      wrapper
-        .find(`Markdown[text="${title.substr(0, trimOverflowLength)}..."]`)
-        .exists()
+      wrapper.find(`Markdown[text="${title.substr(0, trimOverflowLength)}..."]`).exists()
     ).toEqual(true)
   })
 
@@ -121,9 +119,7 @@ describe('Card', () => {
     })
 
     expect(
-      wrapper
-        .find(`Markdown[text="${title.substr(0, trimOverflowLength)}..."]`)
-        .exists()
+      wrapper.find(`Markdown[text="${title.substr(0, trimOverflowLength)}..."]`).exists()
     ).toEqual(true)
   })
 })

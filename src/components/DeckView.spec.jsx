@@ -245,9 +245,7 @@ describe('DeckView', () => {
     const { props, wrapper } = setupFull()
 
     const exportButton = wrapper.find('ExportDeckButton')
-    expect(exportButton.prop('exportFile')()).toEqual(
-      JSON.stringify(props.deck, null, 2)
-    )
+    expect(exportButton.prop('exportFile')()).toEqual(JSON.stringify(props.deck, null, 2))
   })
 
   xit('should search the cards for a string and return the right cards', () => {

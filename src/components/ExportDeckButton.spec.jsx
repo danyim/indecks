@@ -31,9 +31,7 @@ describe('ExportDeckButton', () => {
     const { wrapper } = setup()
     expect(wrapper.find('button').hasClass(defaultProps.className)).toBe(true)
 
-    const tree = renderer
-      .create(<ExportDeckButton {...defaultProps} />)
-      .toJSON()
+    const tree = renderer.create(<ExportDeckButton {...defaultProps} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 

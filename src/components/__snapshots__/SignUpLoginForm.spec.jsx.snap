@@ -100,4 +100,4 @@ exports[`SignUpLoginForm should render self and subcomponents 1`] = `
     </button>
   </div>
 </form>
-`;
+`

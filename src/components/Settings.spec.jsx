@@ -51,9 +51,7 @@ describe('Settings', () => {
       deckCount,
     })
 
-    const button = wrapper.find(
-      'button.btn-delete[children="Delete all decks from local storage"]'
-    )
+    const button = wrapper.find('button.btn-delete[children="Delete all decks from local storage"]')
     expect(button.exists()).toBe(true)
     expect(button.prop('disabled')).toBe('disabled')
   })

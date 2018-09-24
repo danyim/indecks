@@ -32,4 +32,4 @@ exports[`Modal should render self and subcomponents 1`] = `
   </a>
   <div />
 </Modal>
-`;
+`

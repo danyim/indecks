@@ -59,9 +59,7 @@ describe('OverlayRow', () => {
     expect(wrapper.find('span[name="test"]').exists()).toBe(true)
     expect(wrapper.find('a[name="test"]').hasClass('hover-button')).toBe(true)
     expect(wrapper.find('b[name="test"]').hasClass('hover-button')).toBe(true)
-    expect(wrapper.find('span[name="test"]').hasClass('hover-button')).toBe(
-      true
-    )
+    expect(wrapper.find('span[name="test"]').hasClass('hover-button')).toBe(true)
   })
 
   it('should append a class to all its children when a class exists', () => {

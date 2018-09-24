@@ -8,4 +8,4 @@ exports[`Overlay should render self and subcomponents 1`] = `
     className="hover-actions-container"
   />
 </div>
-`;
+`

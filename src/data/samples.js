@@ -24,8 +24,7 @@ const samples = [
         index: 3,
       },
       {
-        title:
-          'How can you use the scope of a variable to keep a copy of `i` in a loop?',
+        title: 'How can you use the scope of a variable to keep a copy of `i` in a loop?',
         answer: '',
         index: 4,
       },
@@ -37,8 +36,7 @@ const samples = [
         index: 5,
       },
       {
-        title:
-          'Describe the difference between classical inheritance vs prototypical inheritance',
+        title: 'Describe the difference between classical inheritance vs prototypical inheritance',
         answer: '',
         index: 6,
       },
@@ -79,8 +77,7 @@ const samples = [
         index: 12,
       },
       {
-        title:
-          'Are there any problems with serving pages as `application/xhtml+xml`?',
+        title: 'Are there any problems with serving pages as `application/xhtml+xml`?',
         answer: '',
         index: 13,
       },
@@ -96,15 +93,13 @@ const samples = [
         index: 15,
       },
       {
-        title:
-          'Describe the difference between a `cookie`, `sessionStorage` and `localStorage`',
+        title: 'Describe the difference between a `cookie`, `sessionStorage` and `localStorage`',
         answer:
           "A **cookie** is a set of values stored on the browser for a specific domain with an expiry.\n\nHTML5's **sessionStorage** is a set of values stored on the browser for a session, meaning if refreshed, the storage will be cleared\n\nHTML5's **localStorage** is similar to a cookie except it does not expire.\n\n\n#### Look up difference between cookie and local storage",
         index: 16,
       },
       {
-        title:
-          'Describe the difference between `<script>`, `<script async>` and `<script defer>`',
+        title: 'Describe the difference between `<script>`, `<script async>` and `<script defer>`',
         answer: '',
         index: 17,
       },
@@ -127,8 +122,7 @@ const samples = [
         index: 20,
       },
       {
-        title:
-          'Explain CSS sprites, and how you would implement them on a page or site',
+        title: 'Explain CSS sprites, and how you would implement them on a page or site',
         answer:
           'Employing CSS sprites is a method for reducing the total number of HTTP requests on a page, particularly for small image assets. \n\nYou can combine a set of small images (usually icons) into a single file (usually PNG because it\'s lossless) and serve it with a single request to the server. The CSS will then "cut" the larger images into smaller ones.\n',
         index: 21,
@@ -145,8 +139,7 @@ const samples = [
         index: 23,
       },
       {
-        title:
-          'What does `* { box-sizing: border-box; }` do? What are its advantages?',
+        title: 'What does `* { box-sizing: border-box; }` do? What are its advantages?',
         answer: '',
         index: 24,
       },
@@ -249,15 +242,13 @@ const samples = [
         index: 41,
       },
       {
-        title:
-          'What is `"use strict";`? What are the advantages and disadvantages to using it?',
+        title: 'What is `"use strict";`? What are the advantages and disadvantages to using it?',
         answer:
           "`\"use strict\";` is a way to tell the browser's Javascript interpreter to use a stricter specification of Javascript/ECMAScript for the scope of code where this is declared\n\n**Advantages**\n- Throws more errors that help identify potentially buggy code\n- Placing this everywhere means you're writing code that runs against a standard spec of Javascript, reducing the number of browser-specific errors\n\n**Disadvantages**\n- Ugly to write everywhere\n- Can't just put into legacy Javascript\n",
         index: 42,
       },
       {
-        title:
-          'Explain what a single page app is and how to make one SEO-friendly',
+        title: 'Explain what a single page app is and how to make one SEO-friendly',
         answer:
           "A single-page app, or SPA, is a web app that loads all of its content on the initial load of the page or with AJAX requests. This naturally doesn't work well with search engine crawlers, so some methods to make a SPA SEO-friendly would be to offer an alternative site for the engines to crawl through",
         index: 43,
@@ -269,14 +260,12 @@ const samples = [
         index: 44,
       },
       {
-        title:
-          'What are the differences between Long-Polling, Websockets and Server-Sent Events?',
+        title: 'What are the differences between Long-Polling, Websockets and Server-Sent Events?',
         answer: '',
         index: 45,
       },
       {
-        title:
-          'What are HTTP methods? List all HTTP methods that you know, and explain them',
+        title: 'What are HTTP methods? List all HTTP methods that you know, and explain them',
         answer:
           '- GET - Gets a resource\n- PUT - Puts a new resource on the server\n- POST - Updates a resource on the server\n- DELETE - Deletes a resource on the server\n- PATCH - Updates a subset of a resource on the server\n \n...',
         index: 46,
@@ -294,8 +283,7 @@ const samples = [
         index: 48,
       },
       {
-        title:
-          'What does `* { box-sizing: border-box; }` do? What are its advantages?',
+        title: 'What does `* { box-sizing: border-box; }` do? What are its advantages?',
         answer: '',
         index: 49,
       },
@@ -306,8 +294,7 @@ const samples = [
         index: 50,
       },
       {
-        title:
-          "What's the primary difference between `Array.slice()` and `Array.splice()`?",
+        title: "What's the primary difference between `Array.slice()` and `Array.splice()`?",
         answer:
           '`splice()` mutates the array, whereas `slice()` does not.\n\nAlso totally different in functionality: `splice(startIndex, numItems)` and `slice(startIndex, endIndex)`',
         index: 51,
@@ -358,8 +345,7 @@ const samples = [
         index: 3,
       },
       {
-        title:
-          'If you receive too many negligent driver points, the DMV will do what?',
+        title: 'If you receive too many negligent driver points, the DMV will do what?',
         answer:
           'In the event that you receive too many negligent driver points, the DMV will either place you on probation for one year with an included six-month suspension, or revoke your driving privilege altogether.\n\n_[Page, 93. Suspension or Revocation by the DMV, Administrative, California Drivers Handbook]_',
         index: 4,
@@ -371,8 +357,7 @@ const samples = [
         index: 5,
       },
       {
-        title:
-          'The Mature Driver Program is an eight-hour course for drivers of what age?',
+        title: 'The Mature Driver Program is an eight-hour course for drivers of what age?',
         answer:
           'The Mature Driver Program is an eight-hour course for drivers aged 55 years or older.\n\n_[Page, 18,19. Mature Driver Program, Miscellaneous Licensing Information, California Drivers Handbook]_',
         index: 6,
@@ -401,15 +386,13 @@ const samples = [
         index: 10,
       },
       {
-        title:
-          'Unless otherwise posted the speed limit in a residential district is ___ mph.',
+        title: 'Unless otherwise posted the speed limit in a residential district is ___ mph.',
         answer: '25',
         index: 11,
       },
       {
         title: 'When can you drive in a bike lane?',
-        answer:
-          'When you are within 200 feet of a cross street where you plan to turn right.',
+        answer: 'When you are within 200 feet of a cross street where you plan to turn right.',
         index: 12,
       },
       {
@@ -464,8 +447,7 @@ const samples = [
         index: 2,
       },
       {
-        title:
-          'What is the difference between `React.Component` and `React.PureComponent`?',
+        title: 'What is the difference between `React.Component` and `React.PureComponent`?',
         answer:
           'They are exactly the same except in a `PureComponent`, the `shouldComponentUpdate()` will only perform a shallow check of the state.\n\n[Source](https://facebook.github.io/react/docs/react-api.html#react.purecomponent)',
         index: 3,
@@ -491,8 +473,7 @@ const samples = [
         index: 2,
       },
       {
-        title:
-          '![](https://yunomi.us/files/2014/12/soba-noodle.jpg) Zaru Soba Noodles',
+        title: '![](https://yunomi.us/files/2014/12/soba-noodle.jpg) Zaru Soba Noodles',
         answer:
           '#### Ingredients\n- 1 bunch of Ju-wari (buckwheat) soba noodles\n- 1/4 cup sake\n- 1/2 cup mirin\n- 1/2 cup soy sauce\n- 1 piece of kombu (dried kelp) - 1"x1"\n- 1 cup of katsuobushi (dried bonito flakes)\n- **Garnish**\n  - 2 stalks of green onion\n  - Wasabi\n  - Roasted sesame seeds\n\n#### Preparation\n- **Mentsuyu** (soup base/dipping sauce)\n  - In a saucepan, add the sake, and bring it to a boil no high heat\n  - Add the soy sauce and mirin\n  - Add the kombu and bonito flakes (katsuobushi) as it comes to a boil and let simmer for 5 minutes on low heat\n- **Soba Noodles**\n  - Boil water in a large pot **without salt**\n  - Add soba noodles, separating them from each other\n  - Drain the noodles and vigorously rinse under running water to remove excess starch\n- Serve the noodles on a mat that will let the water drain and pour the dipping sauce into a bowl, garnishing with chopped green onions and a little bit of wasabi\n\nServing size: 2',
         index: 3,

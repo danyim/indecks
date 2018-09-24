@@ -14,11 +14,7 @@ const propTypes = {
 const defaultProps = {}
 
 const SettingsContainer = props => (
-  <Settings
-    deckCount={props.deckCount}
-    removeAllDecks={props.removeAllDecks}
-    {...props}
-  />
+  <Settings deckCount={props.deckCount} removeAllDecks={props.removeAllDecks} {...props} />
 )
 
 SettingsContainer.propTypes = propTypes

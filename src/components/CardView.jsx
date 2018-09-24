@@ -36,10 +36,7 @@ class CardView extends React.Component {
   }
 
   handleNextCard() {
-    if (
-      this.props.cardIndex < this.props.deck.cards.length ||
-      this.props.config.shuffle === true
-    ) {
+    if (this.props.cardIndex < this.props.deck.cards.length || this.props.config.shuffle === true) {
       this.handleFlip(null, false)
       let nextIndex = this.props.cardIndex + 1 // Going forwards
       if (this.props.config.shuffle === true) {
@@ -96,11 +93,7 @@ class CardView extends React.Component {
           onSwipedLeft={this.handleNextCard}
           onSwipedRight={this.handlePrevCard}
         >
-          <Card
-            card={card}
-            flipped={this.state.flipped}
-            handleOnClick={this.handleFlip}
-          />
+          <Card card={card} flipped={this.state.flipped} handleOnClick={this.handleFlip} />
         </Swipeable>
         <DeckNavigator
           deck={deck}

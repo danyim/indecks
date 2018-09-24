@@ -27,11 +27,7 @@ export function configureStore(initialState = {}, debug = IS_DEVELOPMENT) {
       )
     : compose(applyMiddleware(...envMiddlewares.prod))
 
-  const store = createStore(
-    connectRouter(history)(rootReducer),
-    initialState,
-    storeEnhancers
-  )
+  const store = createStore(connectRouter(history)(rootReducer), initialState, storeEnhancers)
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

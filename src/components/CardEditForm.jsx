@@ -20,14 +20,7 @@ const defaultProps = {
 const fields = ['cardTitle', 'cardAnswer']
 
 const CardEditForm = props => {
-  const {
-    deckId,
-    cardIndex,
-    handleSubmit,
-    handleDelete,
-    handleCancel,
-    formValues: form,
-  } = props
+  const { deckId, cardIndex, handleSubmit, handleDelete, handleCancel, formValues: form } = props
 
   return (
     <form className="edit-form" onSubmit={handleSubmit}>
@@ -52,7 +45,8 @@ const CardEditForm = props => {
             rel="noreferrer noopener"
           >
             Markdown
-          </a>)
+          </a>
+          )
         </span>
         <Field
           name="cardAnswer"

@@ -33,13 +33,7 @@ class KeyListener extends React.Component {
   }
 
   render() {
-    return (
-      <KeyBinding
-        onKey={e => this.handleKeyDown(e)}
-        preventInputConflict
-        preventPropagation
-      />
-    )
+    return <KeyBinding onKey={e => this.handleKeyDown(e)} preventInputConflict preventPropagation />
   }
 }
 

@@ -5,8 +5,7 @@
 import React from 'react'
 import { shallow as shallowEnzyme, mount as mountEnzyme } from 'enzyme'
 
-export const shallow = (Component, props) =>
-  shallowEnzyme(<Component {...props} />)
+export const shallow = (Component, props) => shallowEnzyme(<Component {...props} />)
 
 export const mount = (Component, props) => mountEnzyme(<Component {...props} />)
 

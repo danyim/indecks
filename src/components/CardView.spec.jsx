@@ -1,9 +1,6 @@
 import toJSON from 'enzyme-to-json'
 import { shallow, mount, setup, setupFull } from '../test/utils' // eslint-disable-line no-unused-vars
-import {
-  createStartTouchEventObject,
-  createMoveTouchEventObject,
-} from '../test/eventHelpers.js'
+import { createStartTouchEventObject, createMoveTouchEventObject } from '../test/eventHelpers.js'
 import CardView from './CardView'
 
 describe('CardView', () => {
@@ -63,10 +60,7 @@ describe('CardView', () => {
     })
     const subject = wrapper.find('Swipeable')
     expect(subject.exists()).toBe(true)
-    subject.simulate(
-      'touchStart',
-      createStartTouchEventObject({ x: 200, y: 0 })
-    )
+    subject.simulate('touchStart', createStartTouchEventObject({ x: 200, y: 0 }))
     subject.simulate('touchMove', createMoveTouchEventObject({ x: 150, y: 0 }))
     subject.simulate('touchEnd', createMoveTouchEventObject({ x: 100, y: 0 }))
     expect(handler).toHaveBeenCalled()
@@ -80,10 +74,7 @@ describe('CardView', () => {
     })
     const subject = wrapper.find('Swipeable')
     expect(subject.exists()).toBe(true)
-    subject.simulate(
-      'touchStart',
-      createStartTouchEventObject({ x: 100, y: 0 })
-    )
+    subject.simulate('touchStart', createStartTouchEventObject({ x: 100, y: 0 }))
     subject.simulate('touchMove', createMoveTouchEventObject({ x: 150, y: 0 }))
     subject.simulate('touchEnd', createMoveTouchEventObject({ x: 200, y: 0 }))
     expect(handler).toHaveBeenCalled()

@@ -16,17 +16,11 @@ const OverlayRow = props => {
   // Prepends the hover class to the original class on the child
   const modifiedChildren = React.Children.map(props.children, c =>
     React.cloneElement(c, {
-      className: `${styles['hover-button']}${
-        c.props.className ? ` ${c.props.className}` : ''
-      }`,
+      className: `${styles['hover-button']}${c.props.className ? ` ${c.props.className}` : ''}`,
     })
   )
 
-  return (
-    <div className={`${props.className} ${styles['hover-actions']}`}>
-      {modifiedChildren}
-    </div>
-  )
+  return <div className={`${props.className} ${styles['hover-actions']}`}>{modifiedChildren}</div>
 }
 
 OverlayRow.propTypes = propTypes

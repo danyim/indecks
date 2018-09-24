@@ -28,7 +28,6 @@ const middleware = (...listeners) => store => next => action => {
   })
 }
 
-export const combineListeners = listeners =>
-  listeners.map(listener => middleware(listener))
+export const combineListeners = listeners => listeners.map(listener => middleware(listener))
 
 export default middleware

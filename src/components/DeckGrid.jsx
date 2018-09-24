@@ -47,9 +47,7 @@ class DeckGrid extends React.Component {
               <Deck
                 key={config.key}
                 deck={config.data.deck}
-                handleOnClick={() =>
-                  this.props.push(`/view/${config.data.deck.id}`)
-                }
+                handleOnClick={() => this.props.push(`/view/${config.data.deck.id}`)}
                 push={this.props.push}
                 style={{
                   ...config.style,

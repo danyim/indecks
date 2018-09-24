@@ -58,8 +58,7 @@ class Settings extends React.Component {
   removeAllDecks(count) {
     if (
       window.confirm(
-        `Are you sure you want to delete all ${count} decks? ` +
-          'This action is permanent.'
+        `Are you sure you want to delete all ${count} decks? ` + 'This action is permanent.'
       )
     ) {
       this.props.removeAllDecks()
@@ -68,11 +67,7 @@ class Settings extends React.Component {
 
   renderDeleteAll(deckCount) {
     return deckCount === 0 ? (
-      <button
-        name="delete-all-decks"
-        className="btn-delete"
-        disabled="disabled"
-      >
+      <button name="delete-all-decks" className="btn-delete" disabled="disabled">
         Delete all decks from local storage
       </button>
     ) : (
@@ -94,9 +89,8 @@ class Settings extends React.Component {
         <h2 className={`${styles.header}`}>Settings</h2>
         <div className={`${styles['settings-content']}`}>
           <p>
-            If you&apos;re logged in, any changes made to your decks will
-            automatically be saved and synchronized in{' '}
-            <strong>real-time</strong>.
+            If you&apos;re logged in, any changes made to your decks will automatically be saved and
+            synchronized in <strong>real-time</strong>.
           </p>
 
           {/*
@@ -118,9 +112,7 @@ class Settings extends React.Component {
               handleClick={this.handleChangeExportType}
             />
             <ExportDeckButton
-              filename={
-                this.state.exportType === 1 ? 'indecks.json' : 'indecks.csv'
-              }
+              filename={this.state.exportType === 1 ? 'indecks.json' : 'indecks.csv'}
               label="Export"
               className="button"
               disabled={deckCount === 0}

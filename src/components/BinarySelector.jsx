@@ -33,8 +33,7 @@ class BinarySelector extends React.Component {
     margin: 0;
     transition: .2s all;
     padding: .2rem 1rem;
-    border-radius: ${props =>
-      props.left ? '.5rem 0 0 .5rem' : '0 .5rem .5rem 0'};
+    border-radius: ${props => (props.left ? '.5rem 0 0 .5rem' : '0 .5rem .5rem 0')};
     border-right-width: ${props => (props.left ? '0' : '2px')};
     border-left-width: ${props => (props.left ? '2px' : '0')};
     border-color: #125688;

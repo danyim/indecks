@@ -60,4 +60,4 @@ exports[`Navbar should render self and subcomponents 1`] = `
     </div>
   </div>
 </nav>
-`;
+`
