@@ -75,7 +75,7 @@
     "html-webpack-plugin": "2.29.0",
     "husky": "^0.14.3",
     "immutable": "^3.8.2",
-    "indecks": "link:./src",
+    "indecks": "file:./src",
     "jest": "^23.2.0",
     "jest-styled-components": "^5.0.1",
     "json2csv": "^4.1.5",
