@@ -39,14 +39,13 @@ Indecks is an interactive index card study app built using React/Redux. Use it t
 ### Builds
 **Local**
 
-1. `yarn` to grab all the necessary dependencies.
-2. `yarn start` and open [http://localhost:9406](http://localhost:9406) in your browser.
-3. `yarn test` to unit tests
+1. `npm start` and open [http://localhost:9406](http://localhost:9406) in your browser.
+2. `npm test` to unit tests
 
 **Production**
 
-1. Run `yarn build`
-2. Copy `index.html` into `/dist` 
+1. Run `npm run build`
+2. Copy `index.html` into `/dist`
 3. Place `/dist` on a server
 
 ### License
